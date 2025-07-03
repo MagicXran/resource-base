@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Package “base” &mdash; TC-Toolbox for MATLAB® 2023b documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Package “equilibrium”" href="equilibrium.html" />
+    <link rel="prev" title="Package “process_metallurgy”" href="../process_metallurgy.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            TC-Toolbox for MATLAB®
+          </a>
+              <div class="version">
+                2023b
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Quick Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture.html">Architecture overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../best_practices.html">Best Practices</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../api_reference.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../calculations.html">Calculations</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../single_equilibrium.html">Package “single_equilibrium”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../batch_equilibrium.html">Package “batch_equilibrium”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../precipitation.html">Package “precipitation”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scheil.html">Package “scheil”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../step_or_map_diagrams.html">Package “step_or_map_diagrams”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../diffusion.html">Package “diffusion”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../propertymodel.html">Package “propertymodel”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../material_to_material.html">Package “material_to_material”</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../process_metallurgy.html">Package “process_metallurgy”</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Package “base”</a></li>
+<li class="toctree-l4"><a class="reference internal" href="equilibrium.html">Package “equilibrium”</a></li>
+<li class="toctree-l4"><a class="reference internal" href="process.html">Package “process”</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../high_level_packages/root.html">Root Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../high_level_packages/system.html">Package “system”</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting.html">Troubleshooting</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">TC-Toolbox for MATLAB®</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../api_reference.html">API Reference</a></li>
+          <li class="breadcrumb-item"><a href="../../calculations.html">Calculations</a></li>
+          <li class="breadcrumb-item"><a href="../process_metallurgy.html">Package “process_metallurgy”</a></li>
+      <li class="breadcrumb-item active">Package “base”</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-+tc_toolbox.+process_metallurgy.+base">
+<span id="package-base"></span><h1>Package “base”<a class="headerlink" href="#module-+tc_toolbox.+process_metallurgy.+base" title="Permalink to this heading">¶</a></h1>
+<dl class="mat class">
+<dt class="sig sig-object mat" id="+tc_toolbox.+process_metallurgy.+base.AbstractAddition">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+tc_toolbox.+process_metallurgy.+base.</span></span><span class="sig-name descname"><span class="pre">AbstractAddition</span></span><a class="headerlink" href="#+tc_toolbox.+process_metallurgy.+base.AbstractAddition" title="Permalink to this definition">¶</a></dt>
+<dd><p>The base class for representing an addition to an equilibrium calculation or process simulation.</p>
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+process_metallurgy.+base.AbstractAddition.get_composition">
+<span class="sig-name descname"><span class="pre">get_composition</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+process_metallurgy.+base.AbstractAddition.get_composition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the composition of the addition - without containing a dependent component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The composition [in the unit provided by <code class="xref mat mat-func docutils literal notranslate"><span class="pre">getCompositionUnit()</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+process_metallurgy.+base.AbstractAddition.get_composition_unit">
+<span class="sig-name descname"><span class="pre">get_composition_unit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+process_metallurgy.+base.AbstractAddition.get_composition_unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the composition unit used in this addition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The composition unit</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+process_metallurgy.+base.AbstractAddition.get_dependent_component">
+<span class="sig-name descname"><span class="pre">get_dependent_component</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+process_metallurgy.+base.AbstractAddition.get_dependent_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the dependent component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The dependent component or an empty string if no dependent component is defined</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+process_metallurgy.+base.AbstractAddition.get_elements">
+<span class="sig-name descname"><span class="pre">get_elements</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+process_metallurgy.+base.AbstractAddition.get_elements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all elements of the addition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The elements</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+process_metallurgy.+base.AbstractAddition.get_id">
+<span class="sig-name descname"><span class="pre">get_id</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+process_metallurgy.+base.AbstractAddition.get_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the unique ID of the addition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The unique ID of the addition</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+process_metallurgy.+base.AbstractAddition.get_temperature">
+<span class="sig-name descname"><span class="pre">get_temperature</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+process_metallurgy.+base.AbstractAddition.get_temperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the temperature of the addition. This refers to the temperature before it is added to the process.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The temperature [K]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+process_metallurgy.+base.AbstractAddition.is_do_scale">
+<span class="sig-name descname"><span class="pre">is_do_scale</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+process_metallurgy.+base.AbstractAddition.is_do_scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns if the composition of the addition is being scaled to 100% / 1 or not.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>If the composition is scaled</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+process_metallurgy.+base.AbstractAddition.is_empty">
+<span class="sig-name descname"><span class="pre">is_empty</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+process_metallurgy.+base.AbstractAddition.is_empty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns if the addition is “empty”, i.e., has zero amount.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>If the addition is empty</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="mat class">
+<dt class="sig sig-object mat" id="+tc_toolbox.+process_metallurgy.+base.ActivityReference">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+tc_toolbox.+process_metallurgy.+base.</span></span><span class="sig-name descname"><span class="pre">ActivityReference</span></span><a class="headerlink" href="#+tc_toolbox.+process_metallurgy.+base.ActivityReference" title="Permalink to this definition">¶</a></dt>
+<dd><p>The reference for a slag activity calculation. The actual reference phase depends on the component for which the
+activity is request and can be obtained by using these methods on the result object:
+<code class="xref mat mat-func docutils literal notranslate"><span class="pre">+tc_toolbox.process_metallurgy.process.ProcessSimulationResult.get_formula_for_activity_of_slag()</span></code> or
+<code class="xref mat mat-func docutils literal notranslate"><span class="pre">+tc_toolbox.process_metallurgy.equilibrium.EquilibriumResult.get_formula_for_activity_of_slag()</span></code>.</p>
+</dd></dl>
+
+<dl class="mat class">
+<dt class="sig sig-object mat" id="+tc_toolbox.+process_metallurgy.+base.PhaseGroup">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+tc_toolbox.+process_metallurgy.+base.</span></span><span class="sig-name descname"><span class="pre">PhaseGroup</span></span><a class="headerlink" href="#+tc_toolbox.+process_metallurgy.+base.PhaseGroup" title="Permalink to this definition">¶</a></dt>
+<dd><p>The phase group, such a group is collecting all phases that belong to a certain type.</p>
+</dd></dl>
+
+<dl class="mat class">
+<dt class="sig sig-object mat" id="+tc_toolbox.+process_metallurgy.+base.ProcessDatabase">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+tc_toolbox.+process_metallurgy.+base.</span></span><span class="sig-name descname"><span class="pre">ProcessDatabase</span></span><a class="headerlink" href="#+tc_toolbox.+process_metallurgy.+base.ProcessDatabase" title="Permalink to this definition">¶</a></dt>
+<dd><p>The database used for a Process Metallurgy calculation.</p>
+</dd></dl>
+
+<dl class="mat class">
+<dt class="sig sig-object mat" id="+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+tc_toolbox.+process_metallurgy.+base.</span></span><span class="sig-name descname"><span class="pre">ProcessMetallurgyOptions</span></span><a class="headerlink" href="#+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>The options for a process metallurgy calculation.</p>
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions.ProcessMetallurgyOptions">
+<span class="sig-name descname"><span class="pre">ProcessMetallurgyOptions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions.ProcessMetallurgyOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>The options for a process metallurgy calculation.
+Constructs an instance of <a class="reference internal" href="#+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions" title="+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">ProcessMetallurgyOptions</span></code></a>.</p>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions.disable_approximate_driving_force_for_metastable_phases">
+<span class="sig-name descname"><span class="pre">disable_approximate_driving_force_for_metastable_phases</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions.disable_approximate_driving_force_for_metastable_phases" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disables the approximation of the driving force for metastable phases.</p>
+<p><strong>Default</strong>: Enabled</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When enabled, the metastable phases are included in all iterations.
+However, these may not have reached their most favorable composition and thus their driving forces may be
+only approximate.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This <a class="reference internal" href="#+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions" title="+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">ProcessMetallurgyOptions</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions.disable_control_step_size_during_minimization">
+<span class="sig-name descname"><span class="pre">disable_control_step_size_during_minimization</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions.disable_control_step_size_during_minimization" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disables step size control during minimization (non-global).</p>
+<p><strong>Default</strong>: Enabled</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This <a class="reference internal" href="#+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions" title="+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">ProcessMetallurgyOptions</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions.disable_force_positive_definite_phase_hessian">
+<span class="sig-name descname"><span class="pre">disable_force_positive_definite_phase_hessian</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions.disable_force_positive_definite_phase_hessian" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disables forcing of positive definite phase Hessian. This determines how the minimum of an equilibrium state
+in a normal minimization procedure (non-global) is reached. For details, search the Thermo-Calc documentation
+for “Hessian minimization”.</p>
+<p><strong>Default</strong>: Enabled</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This <a class="reference internal" href="#+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions" title="+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">ProcessMetallurgyOptions</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions.enable_approximate_driving_force_for_metastable_phases">
+<span class="sig-name descname"><span class="pre">enable_approximate_driving_force_for_metastable_phases</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions.enable_approximate_driving_force_for_metastable_phases" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enables the approximation of the driving force for metastable phases.</p>
+<p><strong>Default</strong>: Enabled</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When enabled, the metastable phases are included in all iterations.
+However, these may not have reached their most favorable composition and thus their driving forces may be
+only approximate.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This <a class="reference internal" href="#+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions" title="+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">ProcessMetallurgyOptions</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions.enable_control_step_size_during_minimization">
+<span class="sig-name descname"><span class="pre">enable_control_step_size_during_minimization</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions.enable_control_step_size_during_minimization" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enables step size control during normal minimization (non-global).</p>
+<p><strong>Default</strong>: Enabled</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This <a class="reference internal" href="#+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions" title="+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">ProcessMetallurgyOptions</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions.enable_force_positive_definite_phase_hessian">
+<span class="sig-name descname"><span class="pre">enable_force_positive_definite_phase_hessian</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions.enable_force_positive_definite_phase_hessian" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enables forcing of positive definite phase Hessian. This determines how the minimum of an equilibrium state
+in a normal minimization procedure (non-global) is reached. For details, search the Thermo-Calc documentation
+for “Hessian minimization”.</p>
+<p><strong>Default</strong>: Enabled</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This <a class="reference internal" href="#+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions" title="+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">ProcessMetallurgyOptions</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions.set_global_minimization_max_grid_points">
+<span class="sig-name descname"><span class="pre">set_global_minimization_max_grid_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">max_grid_points</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions.set_global_minimization_max_grid_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the maximum number of grid points in global minimization. <strong>Only applicable if global minimization
+is actually used</strong>.</p>
+<p><strong>Default</strong>: 2000 points</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>max_grid_points</strong> – The maximum number of grid points</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions" title="+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">ProcessMetallurgyOptions</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions.set_max_no_of_iterations">
+<span class="sig-name descname"><span class="pre">set_max_no_of_iterations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">max_no_of_iterations</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions.set_max_no_of_iterations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the maximum number of iterations for the CALPHAD minimizer.</p>
+<p><strong>Default</strong>: max. 2000 iterations</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>As some models give computation times of more than 1 CPU second/iteration, this number is also used to
+check the CPU time and the calculation stops if 500 CPU seconds/iterations are used.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>max_no_of_iterations</strong> – The max. number of iterations</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions" title="+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">ProcessMetallurgyOptions</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions.set_process_minimization_policy">
+<span class="sig-name descname"><span class="pre">set_process_minimization_policy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">minimization_policy</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions.set_process_minimization_policy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the minimization policy for the process metallurgy calculation. It is possible to choose policies that try
+different methods if one method fails.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>minimization_policy</strong> – The minimization policy to be used</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions" title="+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">ProcessMetallurgyOptions</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions.set_required_accuracy">
+<span class="sig-name descname"><span class="pre">set_required_accuracy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">accuracy</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions.set_required_accuracy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the required relative accuracy.</p>
+<p><strong>Default</strong>: 1.0E-6</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is a relative accuracy, and the program requires that the relative difference in each variable must
+be lower than this value before it has converged.
+A larger value normally means fewer iterations but less accurate solutions. The value should be at least
+one order of magnitude larger than the machine precision.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>accuracy</strong> – The required relative accuracy</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions" title="+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">ProcessMetallurgyOptions</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions.set_smallest_fraction">
+<span class="sig-name descname"><span class="pre">set_smallest_fraction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">smallest_fraction</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions.set_smallest_fraction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the smallest fraction for constituents that are unstable.</p>
+<p>It is normally only in the gas phase that you can find such low fractions.</p>
+<p>The <strong>default value</strong> for the smallest site-fractions is 1E-16 for all phases except for IDEAL phase with one
+sublattice site (such as the GAS mixture phase in many databases) for which the default value is always as
+1E-30.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>smallest_fraction</strong> – The smallest fraction for constituents that are unstable</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions" title="+tc_toolbox.+process_metallurgy.+base.ProcessMetallurgyOptions"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">ProcessMetallurgyOptions</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="mat class">
+<dt class="sig sig-object mat" id="+tc_toolbox.+process_metallurgy.+base.ProcessMinimizationPolicy">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+tc_toolbox.+process_metallurgy.+base.</span></span><span class="sig-name descname"><span class="pre">ProcessMinimizationPolicy</span></span><a class="headerlink" href="#+tc_toolbox.+process_metallurgy.+base.ProcessMinimizationPolicy" title="Permalink to this definition">¶</a></dt>
+<dd><p>The policy for the CALPHAD minimization routine used in a calculation.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This affects the runtime and stability of a calculation. Global minimization is more stable but more
+time-consuming. Local minimization is much faster but can miss new phases coming up. Global test is a compromise
+between both approaches.</p>
+</div>
+</dd></dl>
+
+<dl class="mat class">
+<dt class="sig sig-object mat" id="+tc_toolbox.+process_metallurgy.+base.SlagProperty">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+tc_toolbox.+process_metallurgy.+base.</span></span><span class="sig-name descname"><span class="pre">SlagProperty</span></span><a class="headerlink" href="#+tc_toolbox.+process_metallurgy.+base.SlagProperty" title="Permalink to this definition">¶</a></dt>
+<dd><p>The slag property, different definitions are available. The actual definition of a certain slag property for the
+current system can be obtained using these methods on the result object:
+<code class="xref mat mat-func docutils literal notranslate"><span class="pre">+tc_toolbox.process_metallurgy.process.ProcessSimulationResult.getFormulaForSlagProperty()</span></code> or
+<code class="xref mat mat-func docutils literal notranslate"><span class="pre">+tc_toolbox.process_metallurgy.equilibrium.EquilibriumResult.getFormulaForSlagProperty()</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If not all components required by the definition of slag property are available in a given system, the
+slag property will return <cite>NaN</cite>.</p>
+</div>
+</dd></dl>
+
+<dl class="mat class">
+<dt class="sig sig-object mat" id="+tc_toolbox.+process_metallurgy.+base.SlagType">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+tc_toolbox.+process_metallurgy.+base.</span></span><span class="sig-name descname"><span class="pre">SlagType</span></span><a class="headerlink" href="#+tc_toolbox.+process_metallurgy.+base.SlagType" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of slag considered for a slag property calculation.</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../process_metallurgy.html" class="btn btn-neutral float-left" title="Package “process_metallurgy”" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="equilibrium.html" class="btn btn-neutral float-right" title="Package “equilibrium”" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Foundation of Computational Thermodynamics, Stockholm, Sweden.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>  
+
+<style>
+    /* Sidebar header (and topbar for mobile) */
+    .wy-side-nav-search, .wy-nav-top {
+        background: #700707;
+    }
+</style>
+
+
+</body>
+</html>

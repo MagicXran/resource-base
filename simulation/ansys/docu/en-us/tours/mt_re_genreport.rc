@@ -1,0 +1,58 @@
+! Tour Page
+*mt_re_genreport*title: Tour - Generating or Viewing a Report
+*mt_re_genreport*next: mt_mt_home
+*mt_re_genreport*previous: mt_re_dispinfo
+*mt_re_genreport*htmlhelp: docu $euidlArray(language) mechhelp mt_re_genreport.html
+*mt_re_genreport*home: mt_mt_home
+
+! Tour Page Components
+*mt_re_genreport*tourlist: heading overview step1 step2 finish
+
+!
+! Component Definition
+!
+! Note:
+!     Use \t to insert a tab into the text
+!     Use \n to insert a line feed into the text
+!     Use \i to insert an image into the text
+!     Use \ to continue a line within this file
+!
+!     The \ is a used to specify that special characters be taken literally.
+!     If using characters [, ], ", \, $ and perhaps others you must precede
+!     them with the \ (backslash) to use them.
+!
+!     You have the following options available for a component:
+!         Text          - The text to show for this component
+!         HyperlinkCall - The method to call when this component is clicked on
+!         Show          - The helpID of the buttcon to flash when choosing the
+!                         magnifing glass.  This puts the magnifing glass in.
+!         ImageList     - The list of images to place in the \i locations.
+!                         This is not needed for the Show item but you must
+!                         put the \i in the Text. NOT SUPPORTED YET
+
+! heading
+!
+*mt_re_genreport*headingText: "Generating or Viewing a Report \n" HEADING2
+
+! overview
+!
+*mt_re_genreport*overviewText: "You can generate a new HTML report of \
+the results, or view an existing report.  You can use the standard format \
+that ANSYS provides or you can create your own template. \n" {BODY1} 
+
+! step1
+!
+*mt_re_genreport*step1Text: "1.\t" {STEP1} "Click the Show Report button. \
+A Report Options dialog box appears." {STEP1 step1}
+
+
+! step2
+!
+*mt_re_genreport*step2Text: "\n2.\t" {STEP1} "Click the appropriate radio \
+button to create a new report or view an existing report." {STEP1 step2} 
+
+! finish
+!
+*mt_re_genreport*finishText: "\n\nYou have now completed the \
+Tour of the Mechanical Toolbar. For more information on any \
+topic, refer to the online help. \n" {BODY1} 

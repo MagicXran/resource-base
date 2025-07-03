@@ -1,0 +1,41 @@
+.. DO ONLY EDIT THE TEMPLATE FILE (*.template.rst) AND NOT THE *.rst FILE, OTHERWISE YOUR CHANGES WILL BE LOST DURING THE DOCUMENTATION GENERATION PROCESS!
+.. THIS IS NECESSARY TO INJECT THE RELEASE VERSION NUMBER INTO THE DOCUMENTATION.
+.. --------------------------------------------------------------------------------------------------------------------------------------------------------
+
+.. _mac-os-environment-variables:
+
+Mac OS: Setting Environment Variables
+=====================================
+
+    In order to use TC-Python on Mac you need to set some environment variables.
+
+    .. code-block:: bash
+
+        TC23B_HOME=/Applications/Thermo-Calc-2023b.app/Contents/Resources
+
+    If you use a license server:
+
+    .. code-block:: bash
+
+        LSHOST=<name-of-the-license-server>
+
+    If you have a node-locked license:
+
+    .. code-block:: bash
+
+        LSHOST=NO-NET
+        LSERVRC=/Users/Shared/Thermo-Calc/lservrc
+
+
+    In PyCharm, you can add environment variables in the configurations.
+
+    Select **Run→Edit Configurations** to open the **Run/Debug Configurations** window. Choose **Templates** and then
+    **Python**. Enter the environment variable(s) by clicking the button to the right of the **Environment Variables**
+    text field. Now the environment variables(s) will be set for each new configuration by default.
+
+    .. note::
+
+        Existing configurations need to be removed and recreated to obtain the environment variables in them.
+
+    The same way for configuring the environment variables can be used on other operating systems as if
+    necessary.

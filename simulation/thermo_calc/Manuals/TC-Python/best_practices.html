@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Best Practices &mdash; TC-Python 2023b documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="API Reference" href="api_reference.html" />
+    <link rel="prev" title="Architecture overview" href="architecture.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            TC-Python
+          </a>
+              <div class="version">
+                2023b
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="environment_variables.html">Mac OS: Setting Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture overview</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Best Practices</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#re-use-of-the-single-equilibrium-calculation-state">Re-use of the single equilibrium calculation state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#re-use-and-saving-of-results">Re-use and saving of results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#all-tc-python-objects-are-non-copyable">All TC-Python objects are non-copyable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#python-virtual-environments">Python Virtual Environments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-with-tcpython-efficiently">Using <cite>with TCPython()</cite> efficiently</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parallel-calculations">Parallel calculations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#handling-crashes-of-the-calculation-engine">Handling crashes of the calculation engine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-tc-python-within-a-jupyter-notebook-or-the-python-console">Using TC-Python within a Jupyter Notebook or the Python console</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#property-model-framework">Property Model Framework</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#debugging-property-model-code">Debugging Property Model code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#developing-property-models-in-several-files">Developing Property Models in several files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#side-by-side-modules"><em>side-by-side</em> modules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#common-modules"><em>common</em> modules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#alternative-python-for-property-models">Alternative Python for Property Models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#default-bundled-python-interpreter">Default bundled Python interpreter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configuring-another-python-interpreter">Configuring another Python interpreter</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#process-metallurgy-calculations">Process Metallurgy Calculations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#equilibrium-calculations-with-changing-elements-between-calculations">Equilibrium calculations with changing elements between calculations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#zones">Zones</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#applications">Applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#implementation-of-practical-process-models">Implementation of practical process models</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">TC-Python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Best Practices</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="best-practices">
+<span id="best-practices-chapter"></span><h1>Best Practices<a class="headerlink" href="#best-practices" title="Permalink to this heading">¶</a></h1>
+<section id="re-use-of-the-single-equilibrium-calculation-state">
+<h2>Re-use of the single equilibrium calculation state<a class="headerlink" href="#re-use-of-the-single-equilibrium-calculation-state" title="Permalink to this heading">¶</a></h2>
+<p>The Thermo-Calc core keeps an internal state containing the data from previously performed calculations (such as
+composition of sublattices, previously formed phases, …). This will be used for start values of future calculations
+(if not explicitly overwritten) and can strongly influence their convergence and calculation time. It can be useful to
+save and restore later the core-state <strong>in advanced use cases</strong>, these include:</p>
+<ul class="simple">
+<li><p>Improving the convergence speed in case of very complicated equilibria if a similar equilibrium had been calculated
+already before. Similarity refers here primarily to composition, temperature and entered phase set. This case can
+occur for example with the Nickel-database TCNi.</p></li>
+<li><p>Convenient and fast switching between states that have changed a lot (for example regarding suspended phases,
+numerical settings, …)</p></li>
+</ul>
+<p>The mechanism of saving and restoring the state is called bookmarking and is controlled with the two methods
+<a class="reference internal" href="calculation_modules/single_equilibrium.html#tc_python.single_equilibrium.SingleEquilibriumCalculation.bookmark_state" title="tc_python.single_equilibrium.SingleEquilibriumCalculation.bookmark_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">tc_python.single_equilibrium.SingleEquilibriumCalculation.bookmark_state()</span></code></a> and
+<a class="reference internal" href="calculation_modules/single_equilibrium.html#tc_python.single_equilibrium.SingleEquilibriumCalculation.set_state_to_bookmark" title="tc_python.single_equilibrium.SingleEquilibriumCalculation.set_state_to_bookmark"><code class="xref py py-func docutils literal notranslate"><span class="pre">tc_python.single_equilibrium.SingleEquilibriumCalculation.set_state_to_bookmark()</span></code></a>. The following short example
+demonstrates how to switch between two different states easily in practice:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tc_python</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">with</span> <span class="n">TCPython</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+    <span class="n">calc</span> <span class="o">=</span> <span class="p">(</span><span class="n">session</span><span class="o">.</span>
+            <span class="n">select_database_and_elements</span><span class="p">(</span><span class="s2">&quot;FEDEMO&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;Fe&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">])</span><span class="o">.</span>
+            <span class="n">get_system</span><span class="p">()</span><span class="o">.</span>
+            <span class="n">with_single_equilibrium_calculation</span><span class="p">()</span><span class="o">.</span>
+            <span class="n">set_condition</span><span class="p">(</span><span class="n">ThermodynamicQuantity</span><span class="o">.</span><span class="n">temperature</span><span class="p">(),</span> <span class="mf">2000.0</span><span class="p">)</span><span class="o">.</span>
+            <span class="n">set_condition</span><span class="p">(</span><span class="s2">&quot;X(C)&quot;</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">))</span>
+
+    <span class="n">calc</span><span class="o">.</span><span class="n">calculate</span><span class="p">()</span>
+    <span class="n">bookmark_temp_condition</span> <span class="o">=</span> <span class="n">calc</span><span class="o">.</span><span class="n">bookmark_state</span><span class="p">()</span>
+
+    <span class="n">calc</span><span class="o">.</span><span class="n">set_phase_to_fixed</span><span class="p">(</span><span class="s2">&quot;BCC&quot;</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">calc</span><span class="o">.</span><span class="n">remove_condition</span><span class="p">(</span><span class="n">ThermodynamicQuantity</span><span class="o">.</span><span class="n">temperature</span><span class="p">())</span>
+    <span class="n">bookmark_fixed_phase_condition</span> <span class="o">=</span> <span class="n">calc</span><span class="o">.</span><span class="n">bookmark_state</span><span class="p">()</span>
+
+    <span class="n">result_temp</span> <span class="o">=</span> <span class="n">calc</span><span class="o">.</span><span class="n">set_state_to_bookmark</span><span class="p">(</span><span class="n">bookmark_temp_condition</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Conditions do contain temperature: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">result_temp</span><span class="o">.</span><span class="n">get_conditions</span><span class="p">()))</span>
+    <span class="c1"># this calculation had already been performed</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Stable phases (do not contain BCC): </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">result_temp</span><span class="o">.</span><span class="n">get_stable_phases</span><span class="p">()))</span>
+
+    <span class="n">result_fixed_phase</span> <span class="o">=</span> <span class="n">calc</span><span class="o">.</span><span class="n">set_state_to_bookmark</span><span class="p">(</span><span class="n">bookmark_fixed_phase_condition</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Conditions do not contain temperature: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">result_fixed_phase</span><span class="o">.</span><span class="n">get_conditions</span><span class="p">()))</span>
+    <span class="c1"># this calculation had **not yet** been performed</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Stable phases (do contain BCC): </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">calc</span><span class="o">.</span><span class="n">calculate</span><span class="p">()</span><span class="o">.</span><span class="n">get_stable_phases</span><span class="p">()))</span>
+</pre></div>
+</div>
+</section>
+<section id="re-use-and-saving-of-results">
+<h2>Re-use and saving of results<a class="headerlink" href="#re-use-and-saving-of-results" title="Permalink to this heading">¶</a></h2>
+<p>Before a calculation is run in TC-Python, a check is made to see if the exact same calculation has run before,
+and if that is the case, the result from the calculation can be loaded from disk instead of being re-calculated.</p>
+<p>This functionality is always enabled within a script running TC-Python, but you can make it work the same way
+when re-running a script, or even when running a completely different script.</p>
+<p>To use results from previous calculations, set a folder where TC-Python saves results,
+and looks for previous results.</p>
+<p>This is controlled by the method <a class="reference internal" href="high_level_modules/server.html#tc_python.server.SetUp.set_cache_folder" title="tc_python.server.SetUp.set_cache_folder"><code class="xref py py-func docutils literal notranslate"><span class="pre">tc_python.server.SetUp.set_cache_folder()</span></code></a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tc_python</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">with</span> <span class="n">TCPython</span><span class="p">()</span> <span class="k">as</span> <span class="n">start</span><span class="p">:</span>
+   <span class="n">start</span><span class="o">.</span><span class="n">set_cache_folder</span><span class="p">(</span><span class="s2">&quot;cache&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This folder can be a network folder and shared by many users.
+The calculation is not re-run if there is a previous TC-Python calculation with the same cache folder and exactly the
+same settings; the result is instead loaded from disk.</p>
+<p>Another possibility is to explicitly save the result to disk and reload it later:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tc_python</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">with</span> <span class="n">TCPython</span><span class="p">()</span> <span class="k">as</span> <span class="n">start</span><span class="p">:</span>
+    <span class="c1"># ... the system and calculator are set up and the calculation is performed</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">calculator</span><span class="o">.</span><span class="n">calculate</span><span class="p">()</span>
+
+    <span class="n">result</span><span class="o">.</span><span class="n">save_to_disk</span><span class="p">(</span><span class="s2">&quot;./result_dir&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can then load the result again in another session:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tc_python</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">with</span> <span class="n">TCPython</span><span class="p">()</span> <span class="k">as</span> <span class="n">start</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">SetUp</span><span class="p">()</span><span class="o">.</span><span class="n">load_result_from_disk</span><span class="p">()</span><span class="o">.</span><span class="n">diffusion</span><span class="p">(</span><span class="s2">&quot;./result_dir&quot;</span><span class="p">)</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">frac</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get_mole_fraction_of_component_at_time</span><span class="p">(</span><span class="s2">&quot;Cr&quot;</span><span class="p">,</span> <span class="mf">1000.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="all-tc-python-objects-are-non-copyable">
+<h2>All TC-Python objects are non-copyable<a class="headerlink" href="#all-tc-python-objects-are-non-copyable" title="Permalink to this heading">¶</a></h2>
+<p><em>Never create a copy</em> of an instance of a class in TC-Python, neither by using the Python built-in function
+<code class="xref py py-func docutils literal notranslate"><span class="pre">deepcopy()</span></code> nor in any other way. All classes in TC-Python are proxies for classes in the underlying calculation
+server and normally hold references to result files. A copied class object in Python would consequently point to the
+same classes and result files in the calculation server.</p>
+<p>Instead of making a copy, always create a new instance:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tc_python</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">with</span> <span class="n">TCPython</span><span class="p">()</span> <span class="k">as</span> <span class="n">start</span><span class="p">:</span>
+    <span class="n">system</span> <span class="o">=</span> <span class="n">start</span><span class="o">.</span><span class="n">select_database_and_elements</span><span class="p">(</span><span class="s2">&quot;FEDEMO&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;Fe&quot;</span><span class="p">,</span> <span class="s2">&quot;Cr&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">get_system</span><span class="p">()</span>
+    <span class="n">calculator</span> <span class="o">=</span> <span class="n">system</span><span class="o">.</span><span class="n">with_single_equilibrium_calculation</span><span class="p">()</span>
+
+    <span class="c1"># *do not* copy the `calculator` object, create another one instead</span>
+    <span class="n">calculator_2</span> <span class="o">=</span> <span class="n">system</span><span class="o">.</span><span class="n">with_single_equilibrium_calculation</span><span class="p">()</span>
+
+    <span class="c1"># now you can use both calculators for different calculations ...</span>
+</pre></div>
+</div>
+</section>
+<section id="python-virtual-environments">
+<span id="best-practices-chapter-virtual-envs"></span><h2>Python Virtual Environments<a class="headerlink" href="#python-virtual-environments" title="Permalink to this heading">¶</a></h2>
+<p>A Python installation can have several virtual environments. You can think of a virtual environment as a collection of
+third party packages that you have access to in your Python scripts. <code class="xref py py-data docutils literal notranslate"><span class="pre">tc_python</span></code> is such a package.</p>
+<p>To run TC-Python, you need to <strong>install it into the same virtual environment</strong> as your Python scripts are running in.
+If your scripts fail on <code class="xref py py-data docutils literal notranslate"><span class="pre">import</span> <span class="pre">tc_python</span></code>, you need to execute the following command <strong>in the terminal of the
+same Python environment</strong> as your script is running in:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>TC_Python-&lt;version&gt;-py3-none-any.whl
+</pre></div>
+</div>
+<p>If you use the PyCharm IDE, you should do that within the <strong>Terminal</strong> built into the IDE. This <strong>Terminal</strong> runs
+automatically within your actual (virtual) environment.</p>
+<p>To prevent confusion, it is recommend in most cases to <em>install TC-Python within your global interpreter</em>, for
+example by running the <code class="xref py py-data docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code> command within your default Anaconda prompt.</p>
+</section>
+<section id="using-with-tcpython-efficiently">
+<h2>Using <cite>with TCPython()</cite> efficiently<a class="headerlink" href="#using-with-tcpython-efficiently" title="Permalink to this heading">¶</a></h2>
+<p>Normally you should call <cite>with TCPython()</cite> only once within each process.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When leaving the <cite>with</cite>-clause, the Java backend engine process is stopped and all temporary data is deleted.
+Finally when entering the next <cite>with</cite>-clause a new Java process is started.
+This can take several seconds.</p>
+</div>
+<p>If appropriate, it is safe to run <cite>with TCPython()</cite> in a loop. <strong>Due to
+the time it takes this only makes sense if the calculation time per iteration is longer than a minute</strong>.</p>
+<p>To prevent calling <cite>with TCPython()</cite> multiple times and cleaning up temporary data, you can use the following
+pattern.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tc_python</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="c1"># ...</span>
+
+<span class="k">def</span> <span class="nf">calculation</span><span class="p">(</span><span class="n">calculator</span><span class="p">):</span>
+    <span class="c1"># you could also pass the `session` or `system` object if more appropriate</span>
+    <span class="n">calculator</span><span class="o">.</span><span class="n">set_condition</span><span class="p">(</span><span class="s2">&quot;W(Cr)&quot;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+    <span class="c1"># further configuration ...</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="n">calculator</span><span class="o">.</span><span class="n">calculate</span><span class="p">()</span>
+    <span class="c1"># ...</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">invalidate</span><span class="p">()</span>  <span class="c1"># if the temporary data needs to be cleaned up immediately</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">TCPython</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+        <span class="n">system</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">select_database_and_elements</span><span class="p">(</span><span class="s2">&quot;FEDEMO&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;Fe&quot;</span><span class="p">,</span> <span class="s2">&quot;Cr&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">get_system</span><span class="p">()</span>
+        <span class="n">calculator</span> <span class="o">=</span> <span class="n">system</span><span class="o">.</span><span class="n">with_single_equilibrium_calculation</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">):</span>
+            <span class="n">calculation</span><span class="p">(</span><span class="n">calculator</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="parallel-calculations">
+<h2>Parallel calculations<a class="headerlink" href="#parallel-calculations" title="Permalink to this heading">¶</a></h2>
+<p>It is possible to perform parallel calculations with TC-Python <strong>using multi-processing</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Please note that <strong>multi-threading is not suitable</strong> for parallelization of computationally intensive tasks in
+Python. Additionally the Thermo-Calc core is not thread-safe. Using suitable Python-frameworks it is also possible
+to dispatch the calculations on different computers of a cluster.</p>
+</div>
+<p>A general pattern that can be applied is shown below. This code snippet shows how to perform single equilibrium
+calculations for different compositions in parallel. In the same way all other calculators of Thermo-Calc can be
+used or combined. For performance reasons in a real application, probably <cite>numpy</cite> arrays instead of Python arrays
+should be used.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">concurrent.futures</span>
+
+<span class="kn">from</span> <span class="nn">tc_python</span> <span class="kn">import</span> <span class="o">*</span>
+
+
+<span class="k">def</span> <span class="nf">do_perform</span><span class="p">(</span><span class="n">parameters</span><span class="p">):</span>
+    <span class="c1"># this function runs within an own process</span>
+    <span class="k">with</span> <span class="n">TCPython</span><span class="p">()</span> <span class="k">as</span> <span class="n">start</span><span class="p">:</span>
+        <span class="n">elements</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Fe&quot;</span><span class="p">,</span> <span class="s2">&quot;Cr&quot;</span><span class="p">,</span> <span class="s2">&quot;Ni&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">]</span>
+        <span class="n">calculation</span> <span class="o">=</span> <span class="p">(</span><span class="n">start</span><span class="o">.</span><span class="n">select_database_and_elements</span><span class="p">(</span><span class="s2">&quot;FEDEMO&quot;</span><span class="p">,</span> <span class="n">elements</span><span class="p">)</span><span class="o">.</span>
+                       <span class="n">get_system</span><span class="p">()</span><span class="o">.</span>
+                       <span class="n">with_single_equilibrium_calculation</span><span class="p">()</span><span class="o">.</span>
+                       <span class="n">set_condition</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">,</span> <span class="mi">1100</span><span class="p">)</span><span class="o">.</span>
+                       <span class="n">set_condition</span><span class="p">(</span><span class="s2">&quot;W(C)&quot;</span><span class="p">,</span> <span class="mf">0.1</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span>
+                       <span class="n">set_condition</span><span class="p">(</span><span class="s2">&quot;W(Ni)&quot;</span><span class="p">,</span> <span class="mf">2.0</span> <span class="o">/</span> <span class="mi">100</span><span class="p">))</span>
+
+        <span class="n">phase_fractions</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">cr_contents</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;cr_min&quot;</span><span class="p">],</span>
+                            <span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;cr_max&quot;</span><span class="p">],</span>
+                            <span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;delta_cr&quot;</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">cr</span> <span class="ow">in</span> <span class="n">cr_contents</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">calculation</span><span class="o">.</span>
+                      <span class="n">set_condition</span><span class="p">(</span><span class="s2">&quot;W(Cr)&quot;</span><span class="p">,</span> <span class="n">cr</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span>
+                      <span class="n">calculate</span><span class="p">())</span>
+
+            <span class="n">phase_fractions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">get_value_of</span><span class="p">(</span><span class="s2">&quot;NPM(BCC_A2)&quot;</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">phase_fractions</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">parameters</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;cr_min&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">&quot;cr_max&quot;</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span> <span class="s2">&quot;delta_cr&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;cr_min&quot;</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span> <span class="s2">&quot;cr_max&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s2">&quot;delta_cr&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+    <span class="p">]</span>
+
+    <span class="n">bcc_phase_fraction</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">num_processes</span> <span class="o">=</span> <span class="mi">2</span>
+
+    <span class="k">with</span> <span class="n">concurrent</span><span class="o">.</span><span class="n">futures</span><span class="o">.</span><span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">num_processes</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">result_from_process</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">parameters</span><span class="p">,</span> <span class="n">executor</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">do_perform</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)):</span>
+            <span class="c1"># params can be used to identify the process and its parameters</span>
+            <span class="n">params</span><span class="p">,</span> <span class="n">phase_fractions_from_process</span> <span class="o">=</span> <span class="n">result_from_process</span>
+            <span class="n">bcc_phase_fraction</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">phase_fractions_from_process</span><span class="p">)</span>
+
+    <span class="c1"># use the result in `bcc_phase_fraction`, for example for plotting</span>
+</pre></div>
+</div>
+</section>
+<section id="handling-crashes-of-the-calculation-engine">
+<h2>Handling crashes of the calculation engine<a class="headerlink" href="#handling-crashes-of-the-calculation-engine" title="Permalink to this heading">¶</a></h2>
+<p>In some cases the Thermo-Calc calculation engine can crash. If batch calculations are performed, this brings
+down the complete batch. To handle this situation there is an exception you can use.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">UnrecoverableCalculationException</span>
+</pre></div>
+</div>
+<p>That exception is thrown if the calculation server enters a state where no further calculations are possible.
+You should catch that exception outside of the <cite>with TCPython()</cite> clause and continue within a new <cite>with</cite>-clause.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tc_python</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">for</span> <span class="n">temperature</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">900</span><span class="p">,</span> <span class="mi">1100</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">TCPython</span><span class="p">()</span> <span class="k">as</span> <span class="n">start</span><span class="p">:</span>
+            <span class="n">diffusion_result</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">start</span><span class="o">.</span>
+                    <span class="n">select_thermodynamic_and_kinetic_databases_with_elements</span><span class="p">(</span><span class="s2">&quot;FEDEMO&quot;</span><span class="p">,</span> <span class="s2">&quot;MFEDEMO&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;Fe&quot;</span><span class="p">,</span> <span class="s2">&quot;Ni&quot;</span><span class="p">])</span><span class="o">.</span>
+                    <span class="n">get_system</span><span class="p">()</span><span class="o">.</span>
+                    <span class="n">with_isothermal_diffusion_calculation</span><span class="p">()</span><span class="o">.</span>
+                        <span class="n">set_temperature</span><span class="p">(</span><span class="n">temperature</span><span class="p">)</span><span class="o">.</span>
+                        <span class="n">set_simulation_time</span><span class="p">(</span><span class="mf">108000.0</span><span class="p">)</span><span class="o">.</span>
+                        <span class="n">add_region</span><span class="p">(</span><span class="n">Region</span><span class="p">(</span><span class="s2">&quot;Austenite&quot;</span><span class="p">)</span><span class="o">.</span>
+                            <span class="n">set_width</span><span class="p">(</span><span class="mf">1E-4</span><span class="p">)</span><span class="o">.</span>
+                            <span class="n">with_grid</span><span class="p">(</span><span class="n">CalculatedGrid</span><span class="o">.</span><span class="n">linear</span><span class="p">()</span><span class="o">.</span><span class="n">set_no_of_points</span><span class="p">(</span><span class="mi">50</span><span class="p">))</span><span class="o">.</span>
+                            <span class="n">with_composition_profile</span><span class="p">(</span><span class="n">CompositionProfile</span><span class="p">()</span><span class="o">.</span>
+                                <span class="n">add</span><span class="p">(</span><span class="s2">&quot;Ni&quot;</span><span class="p">,</span> <span class="n">ElementProfile</span><span class="o">.</span><span class="n">linear</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">50.0</span><span class="p">))</span>
+                            <span class="p">)</span><span class="o">.</span>
+                        <span class="n">add_phase</span><span class="p">(</span><span class="s2">&quot;FCC_A1&quot;</span><span class="p">))</span><span class="o">.</span>
+                <span class="n">calculate</span><span class="p">())</span>
+
+            <span class="n">distance</span><span class="p">,</span> <span class="n">ni_fraction</span> <span class="o">=</span> <span class="n">diffusion_result</span><span class="o">.</span><span class="n">get_mass_fraction_of_component_at_time</span><span class="p">(</span><span class="s2">&quot;Ni&quot;</span><span class="p">,</span> <span class="mf">108000.0</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">ni_fraction</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="n">UnrecoverableCalculationException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Could not calculate. Continuing with next...&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="using-tc-python-within-a-jupyter-notebook-or-the-python-console">
+<span id="jupyter-notebook-chapter"></span><h2>Using TC-Python within a Jupyter Notebook or the Python console<a class="headerlink" href="#using-tc-python-within-a-jupyter-notebook-or-the-python-console" title="Permalink to this heading">¶</a></h2>
+<p>TC-Python can also be used from within an interactive Jupyter Notebook and a Python console as well as similar
+products. The main difference from a regular Python program is that it is not recommended to use a <cite>with</cite>-clause
+to manage the TC-Python resources. That is only possible within a single Jupyter Notebook cell. Instead the
+standalone functions <a class="reference internal" href="high_level_modules/server.html#tc_python.server.start_api_server" title="tc_python.server.start_api_server"><code class="xref py py-func docutils literal notranslate"><span class="pre">tc_python.server.start_api_server()</span></code></a> and <a class="reference internal" href="high_level_modules/server.html#tc_python.server.stop_api_server" title="tc_python.server.stop_api_server"><code class="xref py py-func docutils literal notranslate"><span class="pre">tc_python.server.stop_api_server()</span></code></a> should
+be used for manually managing the resources.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <em>resources</em> of TC-Python are primarily the Java-process running on the backend side that performs the actual
+calculations and the temporary-directory of TC-Python that can grow to a large size over time, especially
+if precipitation calculations are performed. If a <cite>with</cite>-clause is used, these resources are automatically cleared
+after use.</p>
+</div>
+<p><strong>You need to make sure that you execute the two functions</strong> <a class="reference internal" href="high_level_modules/server.html#tc_python.server.start_api_server" title="tc_python.server.start_api_server"><code class="xref py py-func docutils literal notranslate"><span class="pre">tc_python.server.start_api_server()</span></code></a>
+and <a class="reference internal" href="high_level_modules/server.html#tc_python.server.stop_api_server" title="tc_python.server.stop_api_server"><code class="xref py py-func docutils literal notranslate"><span class="pre">tc_python.server.stop_api_server()</span></code></a> <strong>exactly once within the Jupyter Notebook session</strong>.
+If not stopping TC-Python, extra Java-processes might be present and the temporary disk-space is not cleared.
+However, these issues can be resolved manually.</p>
+<p>The temporary directories of TC-Python are named, for example, <code class="file docutils literal notranslate"><span class="pre">TC_TMP4747588488953835507</span></code> that has a random ID.
+The temporary directory on different operating systems varies according to the pattern shown in the table.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Operating
+system</p></th>
+<th class="head"><p>Temporary directory</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Windows</p></td>
+<td><p><code class="file docutils literal notranslate"><span class="pre">C:\Users{UserName}\AppData\Local\Temp\TC_TMP4747588488953835507</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>MacOS</p></td>
+<td><p><code class="file docutils literal notranslate"><span class="pre">/var/folders/g7/7du81ti_b7mm84n184fn3k910000lg/T/TC_TMP4747588488953835507</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Linux</p></td>
+<td><p><code class="file docutils literal notranslate"><span class="pre">/tmp/TC_TMP4747588488953835507</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>In a Jupyter Notebook some features of an IDE such as auto-completion (<cite>TAB-key</cite>), available
+method lookup (press <cite>.</cite> and then <cite>TAB</cite>) and parameter lookup (set the cursor within the method-parenthesis and
+press <cite>SHIFT</cite> + <cite>TAB</cite> or <cite>SHIFT</cite> + <cite>TAB</cite> + <cite>TAB</cite> for the whole docstring) are also available.</p>
+<p><strong>Example using TC-Python with a Jupyter Notebook</strong>:</p>
+<img alt="_images/jupyter_notebook_screenshot.png" src="_images/jupyter_notebook_screenshot.png" />
+</section>
+<section id="property-model-framework">
+<h2>Property Model Framework<a class="headerlink" href="#property-model-framework" title="Permalink to this heading">¶</a></h2>
+<section id="debugging-property-model-code">
+<h3>Debugging Property Model code<a class="headerlink" href="#debugging-property-model-code" title="Permalink to this heading">¶</a></h3>
+<p>You can debug property models while running them from Thermo-Calc.</p>
+<ul class="simple">
+<li><p>Start Thermo-Calc and create a Property Model calculator.</p></li>
+<li><p>Select the model you want to debug and check the debug checkbox in the lower right corner of the Python code tab.</p></li>
+</ul>
+<img alt="_images/debugging_property_models_thermocalc.png" src="_images/debugging_property_models_thermocalc.png" />
+<p>Now the model that you want to debug has been updated with code needed to connect with Thermo-Calc.</p>
+<ul class="simple">
+<li><p>Start debugging the model in the IDE of your choice.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You must use a Python interpreter where TC-Python is installed.</p>
+</div>
+<p>In PyCharm it looks like this:</p>
+<img alt="_images/debugging_property_models_ide.png" src="_images/debugging_property_models_ide.png" />
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When your IDE and Thermo-Calc have sucessfully connected, you will see this in the Thermo-Calc log:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">10</span>:34:42,170<span class="w"> </span>INFO<span class="w">  </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>developer<span class="o">(</span>!<span class="o">)</span><span class="w"> </span>to<span class="w"> </span>start<span class="w"> </span>Python<span class="w"> </span>process<span class="w"> </span><span class="k">in</span><span class="w"> </span>debugger...DrivingForcePythonModel
+<span class="m">10</span>:34:42,171<span class="w"> </span>INFO<span class="w">  </span>Connected<span class="w"> </span>successfully<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>Python<span class="w"> </span>process<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>model<span class="w"> </span><span class="s1">&#39;DrivingForcePythonModel&#39;</span><span class="w"> </span><span class="k">in</span><span class="w"> </span>DEBUG<span class="w"> </span>mode
+</pre></div>
+</div>
+</div>
+<p>You can stop the debug session in your IDE, change the model code, and start debugging again.
+The changes you made will take effect in Thermo-Calc without the need to restart.
+If you for instance changed the method <code class="xref py py-func docutils literal notranslate"><span class="pre">evaluate_model()</span></code>, the change will take effect the next time you press
+<em>Perform</em>.</p>
+<p>It is also possible to start the models from TC-Python.
+The workflow is exactly the same as described above, except instead of starting Thermo-Calc graphical user interface,
+you start a Python script and use the parameter debug_model=True when selecting your model.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tc_python</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">with</span> <span class="n">TCPython</span><span class="p">()</span> <span class="k">as</span> <span class="n">start</span><span class="p">:</span>
+    <span class="n">property_model</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">start</span><span class="o">.</span>
+            <span class="n">select_database_and_elements</span><span class="p">(</span><span class="s2">&quot;FEDEMO&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;Fe&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">])</span><span class="o">.</span>
+            <span class="n">get_system</span><span class="p">()</span><span class="o">.</span>
+            <span class="n">with_property_model_calculation</span><span class="p">(</span><span class="s2">&quot;my own Driving Force&quot;</span><span class="p">,</span> <span class="n">debug_model</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span>
+            <span class="n">set_composition</span><span class="p">(</span><span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span><span class="o">.</span>
+            <span class="p">)</span>
+    <span class="n">property_model</span><span class="o">.</span><span class="n">calculate</span><span class="p">()</span>
+
+    <span class="o">...</span>
+</pre></div>
+</div>
+</section>
+<section id="developing-property-models-in-several-files">
+<h3>Developing Property Models in several files<a class="headerlink" href="#developing-property-models-in-several-files" title="Permalink to this heading">¶</a></h3>
+<p>You can split your Property Model code in several <cite>.py</cite> files, and there are two ways of doing that:</p>
+<ul class="simple">
+<li><p><em>side-by-side</em> modules</p></li>
+<li><p><em>common</em> modules</p></li>
+</ul>
+<p><em>Side-by-side</em> modules are Python files located in the same folder as the Property Model.</p>
+<p><em>Common</em> modules are Python files located in a folder outside of the Property Model folder, which makes it possible to
+share them with several models as a common library.</p>
+<section id="side-by-side-modules">
+<h4><em>side-by-side</em> modules<a class="headerlink" href="#side-by-side-modules" title="Permalink to this heading">¶</a></h4>
+<p>You are required to:</p>
+<ul class="simple">
+<li><p>Add a <code class="file docutils literal notranslate"><span class="pre">__init__.py</span></code> file to your Property Model folder</p></li>
+<li><p>Add all imports of <em>side-by-side</em> modules in your main Property Model Python file also to the <code class="file docutils literal notranslate"><span class="pre">__init__.py</span></code> file</p></li>
+</ul>
+<p><strong>Example</strong>:</p>
+<p><code class="file docutils literal notranslate"><span class="pre">CriticalTemperaturesPythonModel.py</span></code> (The main Property Model file):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">CriticalTemperaturesPython</span> <span class="kn">import</span> <span class="n">CriticalTemperatures</span>
+<span class="kn">from</span> <span class="nn">tc_python</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">class</span> <span class="nc">CriticalTemperaturesPythonModel</span><span class="p">(</span><span class="n">PropertyModel</span><span class="p">):</span>
+   <span class="o">...</span>
+</pre></div>
+</div>
+<p><code class="file docutils literal notranslate"><span class="pre">__init__.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">CriticalTemperaturesPython.critical_temperatures_library</span> <span class="kn">import</span> <span class="n">CriticalTemperatures</span>
+</pre></div>
+</div>
+<p>If you are using PyCharm, the package name of the Property Model might be highlighted as an error, in this case you can
+mark the Property Model directory (i.e. the root of the present model directory) by right-clicking on it in the project
+window of PyCharm and marking it as <em>Sources Root</em>:</p>
+<img alt="_images/property_models_with_multiple_files__pycharm_sources_root.png" src="_images/property_models_with_multiple_files__pycharm_sources_root.png" />
+<p><code class="file docutils literal notranslate"><span class="pre">critical_temperatures_library.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tc_python</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">optimize</span>
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+
+<span class="k">class</span> <span class="nc">CriticalTemperatures</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+   <span class="o">...</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Modules installed in the Python interpreter such as <cite>numpy</cite>, <cite>scipy</cite>, etc can be imported as normal.
+This only concerns files imported as <em>side-by-side</em> modules.</p>
+</div>
+</section>
+<section id="common-modules">
+<h4><em>common</em> modules<a class="headerlink" href="#common-modules" title="Permalink to this heading">¶</a></h4>
+<p><em>common</em> modules work very similar to <em>side-by-side</em> modules except the import statements are done in the “main”
+<code class="file docutils literal notranslate"><span class="pre">__init__.py</span></code> file in <a class="reference internal" href="architecture.html#property-model-directory-chapter"><span class="std std-ref">Property Model directory</span></a>.</p>
+<p>You are required to:</p>
+<ul class="simple">
+<li><p>Add a <code class="file docutils literal notranslate"><span class="pre">__init__.py</span></code> file to your property model folder.</p></li>
+<li><p>Add all imports of <em>common</em> modules in your main property model python file also to both the <code class="file docutils literal notranslate"><span class="pre">__init__.py</span></code>
+file in <a class="reference internal" href="architecture.html#property-model-directory-chapter"><span class="std std-ref">Property Model directory</span></a> AND the <code class="file docutils literal notranslate"><span class="pre">__init__.py</span></code> of the property model.</p></li>
+</ul>
+<p><strong>Example</strong>:</p>
+<p><code class="file docutils literal notranslate"><span class="pre">CriticalTemperaturesPythonModel.py</span></code> (The main Property Model file):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">PropertyModels</span> <span class="kn">import</span> <span class="n">Martensite</span>
+<span class="kn">from</span> <span class="nn">tc_python</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">class</span> <span class="nc">CriticalTemperaturesPythonModel</span><span class="p">(</span><span class="n">PropertyModel</span><span class="p">):</span>
+   <span class="o">...</span>
+</pre></div>
+</div>
+<p><code class="file docutils literal notranslate"><span class="pre">__init__.py</span></code>: (The init file located in the property model folder)</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">PropertyModels</span> <span class="kn">import</span> <span class="n">Martensite</span>
+</pre></div>
+</div>
+<p><code class="file docutils literal notranslate"><span class="pre">__init__.py</span></code>: (The init file located in <a class="reference internal" href="architecture.html#property-model-directory-chapter"><span class="std std-ref">Property Model directory</span></a>)</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">PropertyModels.common.martensite_library</span> <span class="kn">import</span> <span class="n">Martensite</span>
+</pre></div>
+</div>
+<p>The file <code class="file docutils literal notranslate"><span class="pre">critical_temperatures_library.py</span></code> should in this example be located in a folder called <code class="file docutils literal notranslate"><span class="pre">common</span></code>
+in the <a class="reference internal" href="architecture.html#property-model-directory-chapter"><span class="std std-ref">Property Model directory</span></a>.</p>
+<p><code class="file docutils literal notranslate"><span class="pre">critical_temperatures_library.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tc_python</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">optimize</span>
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+
+<span class="k">class</span> <span class="nc">CriticalTemperatures</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+   <span class="o">...</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><em>common</em> modules must be located in folder called <code class="file docutils literal notranslate"><span class="pre">common</span></code>.</p>
+</div>
+</section>
+</section>
+<section id="alternative-python-for-property-models">
+<h3>Alternative Python for Property Models<a class="headerlink" href="#alternative-python-for-property-models" title="Permalink to this heading">¶</a></h3>
+<section id="default-bundled-python-interpreter">
+<h4>Default bundled Python interpreter<a class="headerlink" href="#default-bundled-python-interpreter" title="Permalink to this heading">¶</a></h4>
+<blockquote>
+<div><p>Thermo-Calc is by default using a Python 3.7.2 interpreter bundled to the software for running the property models.
+It is containing the following major packages:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Package</p></th>
+<th class="head"><p>Version</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>matplotlib</p></td>
+<td><p>3.3.2</p></td>
+</tr>
+<tr class="row-odd"><td><p>numpy</p></td>
+<td><p>1.19.2</p></td>
+</tr>
+<tr class="row-even"><td><p>scikit-learn</p></td>
+<td><p>0.23.2</p></td>
+</tr>
+<tr class="row-odd"><td><p>scipy</p></td>
+<td><p>1.5.2</p></td>
+</tr>
+<tr class="row-even"><td><p>TC-Python</p></td>
+<td><p>2023b</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Any changes to the interpreter packages can therefore break Thermo-Calc and should be avoided</strong>. If the
+installation gets broken, it can be fixed by reinstalling Thermo-Calc after having removed it.</p>
+</div>
+<p>Please contact the Thermo-Calc support if you think that further packages might be useful in future releases. If
+these packages are insufficient for you, it is possible to use another Python-interpreter:
+<a class="reference internal" href="#best-practices-using-another-python"><span class="std std-ref">Configuring another Python interpreter</span></a>.</p>
+<p>The interpreter is located in different places depending on the platform:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Operating
+system</p></th>
+<th class="head"><p>Path to the bundled Python-interpreter</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Windows</p></td>
+<td><p><code class="file docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files\Thermo-Calc\2023b\python\python.exe</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Linux</p></td>
+<td><p><code class="file docutils literal notranslate"><span class="pre">/home/UserName/Thermo-Calc/2023b/python/bin/python3</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>MacOS</p></td>
+<td><p><code class="file docutils literal notranslate"><span class="pre">/Applications/Thermo-Calc-2023b.app/Contents/Resources/python/bin/python3</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</section>
+<section id="configuring-another-python-interpreter">
+<span id="best-practices-using-another-python"></span><h4>Configuring another Python interpreter<a class="headerlink" href="#configuring-another-python-interpreter" title="Permalink to this heading">¶</a></h4>
+<blockquote>
+<div><p>If you require additional Python-packages or prefer to use your own interpreter installed on your system, you can
+change the interpreter used by Thermo-Calc to run the property models. Select <strong>Tools→Options</strong> in the
+Thermo-Calc GUI and modify the path to that of your Python 3 interpreter of choice:</p>
+<img alt="_images/python_interpreter_path_screenshot.png" src="_images/python_interpreter_path_screenshot.png" />
+</div></blockquote>
+</section>
+</section>
+</section>
+<section id="process-metallurgy-calculations">
+<h2>Process Metallurgy Calculations<a class="headerlink" href="#process-metallurgy-calculations" title="Permalink to this heading">¶</a></h2>
+<section id="equilibrium-calculations-with-changing-elements-between-calculations">
+<h3>Equilibrium calculations with changing elements between calculations<a class="headerlink" href="#equilibrium-calculations-with-changing-elements-between-calculations" title="Permalink to this heading">¶</a></h3>
+<p>It is possible to add, change or remove additions after performing an equilibrium calculation using
+<a class="reference internal" href="calculation_modules/process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.EquilibriumCalculation.calculate" title="tc_python.process_metallurgy.equilibrium.EquilibriumCalculation.calculate"><code class="xref py py-func docutils literal notranslate"><span class="pre">tc_python.process_metallurgy.equilibrium.EquilibriumCalculation.calculate()</span></code></a>. This will change the elements
+being present in the system if the elements of the additions are differing. The Process Metallurgy Module will handle
+this situation by reloading the database with the latest set of elements. While this is an appropriate approach in most
+cases, there can be some disadvantages: reloading the database takes some time and the internal engine state
+is lost, which may lead to successive calculations failures in some situations.</p>
+<p><strong>To avoid the database reload</strong>, it is possible <strong>to add the respective elements to additions being present in
+all calculations (with a zero-fraction)</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tc_python</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">with</span> <span class="n">TCPython</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+    <span class="n">calc</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">with_metallurgy</span><span class="p">()</span><span class="o">.</span><span class="n">with_adiabatic_equilibrium_calculation</span><span class="p">(</span><span class="n">ProcessDatabase</span><span class="o">.</span><span class="n">OXDEMO</span><span class="p">)</span>
+
+    <span class="c1"># add the element Al with zero-fraction already</span>
+    <span class="n">steel</span> <span class="o">=</span> <span class="n">EquilibriumAddition</span><span class="p">({</span><span class="s1">&#39;Fe&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;Al&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">},</span> <span class="n">amount</span><span class="o">=</span><span class="mf">100.0e3</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mi">1700</span> <span class="o">+</span> <span class="mf">273.15</span><span class="p">)</span>
+    <span class="n">slag</span> <span class="o">=</span> <span class="n">EquilibriumAddition</span><span class="p">({</span><span class="s1">&#39;CaO&#39;</span><span class="p">:</span> <span class="mi">70</span><span class="p">,</span> <span class="s1">&#39;SiO2&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">},</span> <span class="n">amount</span><span class="o">=</span><span class="mf">3.0e3</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mi">1700</span> <span class="o">+</span> <span class="mf">273.15</span><span class="p">)</span>
+
+    <span class="n">al_addition</span> <span class="o">=</span> <span class="n">EquilibriumAddition</span><span class="p">({</span><span class="s1">&#39;Al&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">},</span> <span class="n">amount</span><span class="o">=</span><span class="mf">1.0e3</span><span class="p">)</span>
+
+    <span class="p">(</span><span class="n">calc</span>
+     <span class="o">.</span><span class="n">add_addition</span><span class="p">(</span><span class="n">steel</span><span class="p">)</span>
+     <span class="o">.</span><span class="n">add_addition</span><span class="p">(</span><span class="n">slag</span><span class="p">))</span>
+
+    <span class="n">result_1</span> <span class="o">=</span> <span class="n">calc</span><span class="o">.</span><span class="n">calculate</span><span class="p">()</span>
+
+    <span class="n">calc</span><span class="o">.</span><span class="n">add_addition</span><span class="p">(</span><span class="n">al_addition</span><span class="p">)</span>
+
+    <span class="n">result_2</span> <span class="o">=</span> <span class="n">calc</span><span class="o">.</span><span class="n">calculate</span><span class="p">()</span>
+    <span class="c1"># evaluate the result as required ...</span>
+</pre></div>
+</div>
+<p>Or <strong>to add a later addition already before the first call to</strong> <code class="xref py py-func docutils literal notranslate"><span class="pre">calculate()</span></code> <strong>with a zero amount</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tc_python</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">with</span> <span class="n">TCPython</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+    <span class="n">calc</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">with_metallurgy</span><span class="p">()</span><span class="o">.</span><span class="n">with_adiabatic_equilibrium_calculation</span><span class="p">(</span><span class="n">ProcessDatabase</span><span class="o">.</span><span class="n">OXDEMO</span><span class="p">)</span>
+
+    <span class="n">steel</span> <span class="o">=</span> <span class="n">EquilibriumAddition</span><span class="p">({</span><span class="s1">&#39;Fe&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">},</span> <span class="n">amount</span><span class="o">=</span><span class="mf">100.0e3</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mi">1700</span> <span class="o">+</span> <span class="mf">273.15</span><span class="p">)</span>
+    <span class="n">slag</span> <span class="o">=</span> <span class="n">EquilibriumAddition</span><span class="p">({</span><span class="s1">&#39;CaO&#39;</span><span class="p">:</span> <span class="mi">70</span><span class="p">,</span> <span class="s1">&#39;SiO2&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">},</span> <span class="n">amount</span><span class="o">=</span><span class="mf">3.0e3</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mi">1700</span> <span class="o">+</span> <span class="mf">273.15</span><span class="p">)</span>
+
+    <span class="c1"># add the addition for now with zero-amount</span>
+    <span class="n">al_addition</span> <span class="o">=</span> <span class="n">EquilibriumAddition</span><span class="p">({</span><span class="s1">&#39;Al&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">},</span> <span class="n">amount</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="p">(</span><span class="n">calc</span>
+     <span class="o">.</span><span class="n">add_addition</span><span class="p">(</span><span class="n">al_addition</span><span class="p">)</span>
+     <span class="o">.</span><span class="n">add_addition</span><span class="p">(</span><span class="n">steel</span><span class="p">)</span>
+     <span class="o">.</span><span class="n">add_addition</span><span class="p">(</span><span class="n">slag</span><span class="p">))</span>
+
+    <span class="n">result_1</span> <span class="o">=</span> <span class="n">calc</span><span class="o">.</span><span class="n">calculate</span><span class="p">()</span>
+
+    <span class="n">calc</span><span class="o">.</span><span class="n">update_addition</span><span class="p">(</span><span class="n">al_addition</span><span class="o">.</span><span class="n">set_amount</span><span class="p">(</span><span class="mf">1.0e3</span><span class="p">))</span>
+
+    <span class="n">result_2</span> <span class="o">=</span> <span class="n">calc</span><span class="o">.</span><span class="n">calculate</span><span class="p">()</span>
+    <span class="c1"># evaluate the result as required ...</span>
+</pre></div>
+</div>
+</section>
+<section id="zones">
+<h3>Zones<a class="headerlink" href="#zones" title="Permalink to this heading">¶</a></h3>
+<p>TC-Python is providing a <em>framework</em> for building time-dependent kinetic simulations of industrial and academic
+metallurgical processes where liquid phases are important. It is based on an <em>Effective Equilibrium Reaction Zone</em>
+(EERZ) approach which is separating a process into different zones. These zones have identical temperature and
+composition and are called <em>bulk zones</em>. Such zones can be in contact and react with each other by <em>reaction zones</em>.
+That means a <em>reaction zone</em> is modelling the interface between two <em>bulk zones</em>. One bulk zone is typically the steel
+melt and another bulk zone the top slag.</p>
+</section>
+<section id="applications">
+<h3>Applications<a class="headerlink" href="#applications" title="Permalink to this heading">¶</a></h3>
+<p>While this approach can in principle be extended to any number of zones, in the current release TC-Python is
+providing <strong>only one reaction zone</strong>. Practical work has however proven that this limitation is not critical for a
+lot of industrial processes, including ladle furnaces, AOD- and VOD-converters. Even more processes can be modelled
+with some limit of accuracy.</p>
+<p>The reason for the power of the current implementation is that a number of important process features can be included:</p>
+<ul class="simple">
+<li><p>heating (<a class="reference internal" href="calculation_modules/process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.Zone.add_power" title="tc_python.process_metallurgy.process.Zone.add_power"><code class="xref py py-func docutils literal notranslate"><span class="pre">tc_python.process_metallurgy.process.Zone.add_power()</span></code></a>)</p></li>
+<li><p>cooling (<a class="reference internal" href="calculation_modules/process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.Zone.add_power" title="tc_python.process_metallurgy.process.Zone.add_power"><code class="xref py py-func docutils literal notranslate"><span class="pre">tc_python.process_metallurgy.process.Zone.add_power()</span></code></a>)</p></li>
+<li><p>heat transfer between bulk zones (<a class="reference internal" href="calculation_modules/process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ReactionZone.add_heat_transfer" title="tc_python.process_metallurgy.process.ReactionZone.add_heat_transfer"><code class="xref py py-func docutils literal notranslate"><span class="pre">tc_python.process_metallurgy.process.ReactionZone.add_heat_transfer()</span></code></a>)</p></li>
+<li><p>inclusion formation</p></li>
+<li><p>inclusion flotation and other transfer of phase groups between bulk zones
+(<a class="reference internal" href="calculation_modules/process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ReactionZone.add_transfer_of_phase_group" title="tc_python.process_metallurgy.process.ReactionZone.add_transfer_of_phase_group"><code class="xref py py-func docutils literal notranslate"><span class="pre">tc_python.process_metallurgy.process.ReactionZone.add_transfer_of_phase_group()</span></code></a>)</p></li>
+<li><p>addition of material and gas at any time in any zone
+(<a class="reference internal" href="calculation_modules/process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.Zone.add_addition" title="tc_python.process_metallurgy.process.Zone.add_addition"><code class="xref py py-func docutils literal notranslate"><span class="pre">tc_python.process_metallurgy.process.Zone.add_addition()</span></code></a> /
+<a class="reference internal" href="calculation_modules/process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.Zone.add_continuous_addition" title="tc_python.process_metallurgy.process.Zone.add_continuous_addition"><code class="xref py py-func docutils literal notranslate"><span class="pre">tc_python.process_metallurgy.process.Zone.add_continuous_addition()</span></code></a>)</p></li>
+<li><p>an exhaust gas zone collecting all formed gas
+(<a class="reference internal" href="calculation_modules/process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ProcessSimulationResult.get_exhaust_gas" title="tc_python.process_metallurgy.process.ProcessSimulationResult.get_exhaust_gas"><code class="xref py py-func docutils literal notranslate"><span class="pre">tc_python.process_metallurgy.process.ProcessSimulationResult.get_exhaust_gas()</span></code></a>)</p></li>
+<li><p>time-dependent definition of most parameters (e.g., mass transfer coefficient, transfer of phase group, heating, etc.)</p></li>
+</ul>
+<p>Please note that many of these features are called as well a <em>reaction zone</em> in other EERZ model implementations.</p>
+</section>
+<section id="implementation-of-practical-process-models">
+<h3>Implementation of practical process models<a class="headerlink" href="#implementation-of-practical-process-models" title="Permalink to this heading">¶</a></h3>
+<p>The Process Metallurgy Module has been successfully applied to a number of industrial processes.</p>
+<p>Due to the broad range of industrial metallurgical processes, TC-Python is not providing ready-to-use models for
+certain processes. There are however examples available for common processes and this collection will be extended
+over time. The implementation of a model is an abstraction of the real process and should always be kept as simple
+as possible. Practical experience has proven that in many situations not more than one <em>reaction zone</em> is required.</p>
+<p>The mass transfer coefficient is a fundamental parameter describing the kinetics in a <em>reaction zone</em> and is generally
+an empirical parameter. It depends however mostly on the geometry and stirring conditions in the process and not on
+the material compositions. Further on, the mass transfer coefficient has usually typical values for a given process -
+regardless of the actual furnace. That means that existing suggestions from the literature can be used as a starting
+point to derive the actual mass transfer coefficient for the process of interest.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="architecture.html" class="btn btn-neutral float-left" title="Architecture overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api_reference.html" class="btn btn-neutral float-right" title="API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Foundation of Computational Thermodynamics, Stockholm, Sweden.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+Module "scheil"
+~~~~~~~~~~~~~~~
+
+.. automodule:: tc_python.scheil
+    :members:
+    :undoc-members:
+    :show-inheritance:

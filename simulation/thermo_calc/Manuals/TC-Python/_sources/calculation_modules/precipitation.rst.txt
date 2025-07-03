@@ -1,0 +1,7 @@
+Module "precipitation"
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. automodule:: tc_python.precipitation
+    :members:
+    :undoc-members:
+    :show-inheritance:

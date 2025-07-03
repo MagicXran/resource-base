@@ -1,0 +1,56 @@
+! Tour Page
+*mt_mo_defetoc*title: Tour - Defeaturing the Model
+*mt_mo_defetoc*next: mt_mo_attribu
+*mt_mo_defetoc*previous: mt_mo_impotoc
+*mt_mo_defetoc*htmlhelp: docu $euidlArray(language) mechhelp mt_mo_defeat.html
+*mt_mo_defetoc*home: mt_mt_home
+
+!
+! Component Definition
+!
+! Note:
+!     Use \t to insert a tab into the text
+!     Use \n to insert a line feed into the text
+!     Use \i to insert an image into the text
+!     Use \ to continue a line within this file
+!
+!     The \ is a used to specify that special characters be taken literally.
+!     If using characters [, ], ", \, $ and perhaps others you must precede
+!     them with the \ (backslash) to use them.
+!
+!     You have the following options available for a component:
+!         Text          - The text to show for this component
+!         HyperlinkCall - The method to call when this component is clicked on
+!         Show          - The helpID of the buttcon to flash when choosing the
+!                         magnifing glass.  This puts the magnifing glass in.
+!         ImageList     - The list of images to place in the \i locations.
+!                         This is not needed for the Show item but you must
+!                         put the \i in the Text. NOT SUPPORTED YET
+! Tour Page Components
+*mt_mo_defetoc*tourlist: heading overview step1 step2
+
+! heading
+!
+*mt_mo_defetoc*headingText: "Defeaturing the Model\n" HEADING2
+
+! overview
+!
+*mt_mo_defetoc*overviewText: "Follow these steps to defeature \
+the model:\n" {BODY1}
+
+! step1
+!
+*mt_mo_defetoc*step1Text: "1.\t" {STEP1 step1} "Select the clean-up \
+and defeature option."  {STEP1 step1}
+
+*mt_mo_defetoc*step2Text: "\n2.\t" {STEP1 step2} "Remove \
+unnecessary features from the model.   \
+Such features as sliver areas, small through holes, \
+fillets, small bosses, etc. may have no tangible effect on \
+the analysis \
+but can adversely affect the process of meshing.  \
+Remember, the defeaturing tools were designed for minor \
+changes to the model.  Don't try to elminate \
+or modify significant geometric entitities with this \
+option; major changes to the geometry should be done in a \
+CAD system before importing the file.\n" {STEP1 step2}

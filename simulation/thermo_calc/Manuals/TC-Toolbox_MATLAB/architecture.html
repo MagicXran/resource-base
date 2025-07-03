@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Architecture overview &mdash; TC-Toolbox for MATLAB® 2023b documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Best Practices" href="best_practices.html" />
+    <link rel="prev" title="Quick Installation Guide" href="installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            TC-Toolbox for MATLAB®
+          </a>
+              <div class="version">
+                2023b
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Quick Installation Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Architecture overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#tctoolbox">TCToolbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#systembuilder-and-system">SystemBuilder and System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#calculation">Calculation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#single-equilibrium-calculations">Single Equilibrium Calculations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#batch-equilibrium-calculations">Batch Equilibrium Calculations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#precipitation-calculations">Precipitation Calculations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scheil-calculations">Scheil Calculations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#property-diagram-calculations">Property Diagram Calculations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#phase-diagram-calculations">Phase Diagram Calculations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#diffusion-calculations">Diffusion Calculations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#property-model-calculations">Property Model Calculations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#material-to-material-calculations">Material to Material Calculations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#process-metallurgy-calculations">Process Metallurgy Calculations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#result">Result</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="best_practices.html">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">TC-Toolbox for MATLAB®</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Architecture overview</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="architecture-overview">
+<span id="high-level-architecture-chapter"></span><h1>Architecture overview<a class="headerlink" href="#architecture-overview" title="Permalink to this heading">¶</a></h1>
+<p>TC-Toolbox contains classes of these types:</p>
+<ul class="simple">
+<li><p><code class="xref mat mat-class docutils literal notranslate"><span class="pre">TCToolbox</span></code>                   – this is where you start with general settings.</p></li>
+<li><p><code class="xref mat mat-class docutils literal notranslate"><span class="pre">SystemBuilder</span></code> and <code class="xref mat mat-class docutils literal notranslate"><span class="pre">System</span></code>    – where you choose database and elements etc.</p></li>
+<li><p><code class="xref mat mat-class docutils literal notranslate"><span class="pre">Calculation</span></code>                 – where you choose and configure the calculation.</p></li>
+<li><p><code class="xref mat mat-class docutils literal notranslate"><span class="pre">Result</span></code>                      – where you get the results from a calculation you have run.</p></li>
+</ul>
+<section id="tctoolbox">
+<h2>TCToolbox<a class="headerlink" href="#tctoolbox" title="Permalink to this heading">¶</a></h2>
+<p>This is the starting point for all TC-Toolbox usage.</p>
+<p>You can think of this as the start of a “wizard”.</p>
+<p>You use it to select databases and elements and then in the next step, configure the system.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">import</span><span class="w"> </span><span class="n">tc_toolbox</span><span class="o">.*</span>
+
+<span class="n">session</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">TCToolbox</span><span class="p">();</span>
+<span class="n">session</span><span class="p">.</span><span class="n">select_database_and_elements</span><span class="p">(</span><span class="k">...</span>
+<span class="c">% e.t.c.</span>
+<span class="c">% ...</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When your MATLAB<sup>®</sup> script runs a row like this:</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">session</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">TCToolbox</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>a process running a calculation server starts.
+Your code, via TC-Toolbox, uses socket communication to send and receive messages to and from that server.</p>
+<p>When you remove the variable <cite>session</cite> from the MATLAB<sup>®</sup> workspace, the calculation server automatically shuts
+down, and all temporary files are deleted.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can set up a folder location to re-use results from saved calculations. This folder can be a network folder
+and shared by many users. This is done using the method <code class="xref mat mat-func docutils literal notranslate"><span class="pre">set_cache_folder()</span></code>.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">import</span><span class="w"> </span><span class="n">tc_toolbox</span><span class="o">.*</span>
+
+<span class="n">session</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">TCToolbox</span><span class="p">();</span>
+<span class="n">session</span><span class="p">.</span><span class="n">set_cache_folder</span><span class="p">(</span><span class="s">&quot;cache&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Once the cache folder is created, if a previous TC-Toolbox calculation has run with the same cache folder and
+<strong>exactly</strong> the same system and calculation settings, the calculation is not re-run. Instead the result is
+automatically loaded from disk.</p>
+<p>It is also possible to explicitly save and load results.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">import</span><span class="w"> </span><span class="n">tc_toolbox</span><span class="o">.*</span>
+
+<span class="n">session</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">TCToolbox</span><span class="p">();</span>
+<span class="c">%... diffusion calculation (could be any calculation type)</span>
+<span class="n">calculation_result</span><span class="p">.</span><span class="n">save_to_disk</span><span class="p">(</span><span class="s">&#39;path to folder&#39;</span><span class="p">)</span>
+<span class="c">%...</span>
+<span class="n">loaded_result</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">start</span><span class="p">.</span><span class="n">load_result_from_disk</span><span class="p">().</span><span class="n">diffusion</span><span class="p">(</span><span class="s">&#39;path to folder&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="systembuilder-and-system">
+<h2>SystemBuilder and System<a class="headerlink" href="#systembuilder-and-system" title="Permalink to this heading">¶</a></h2>
+<p>A <code class="xref mat mat-class docutils literal notranslate"><span class="pre">SystemBuilder</span></code> is returned when you have selected your database and elements in <code class="xref mat mat-class docutils literal notranslate"><span class="pre">TCToolbox</span></code>.</p>
+<p>The <code class="xref mat mat-class docutils literal notranslate"><span class="pre">SystemBuilder</span></code> lets you further specify your system, for example the phases that should be part of your
+system.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">import</span><span class="w"> </span><span class="n">tc_toolbox</span><span class="o">.*</span>
+
+<span class="n">session</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">TCToolbox</span><span class="p">();</span>
+<span class="nb">start</span><span class="p">.</span><span class="n">select_database_and_elements</span><span class="p">(</span><span class="s">&quot;ALDEMO&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;Al&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Sc&quot;</span><span class="p">]).</span><span class="n">select_phase</span><span class="p">(</span><span class="s">&quot;FCC_A1&quot;</span><span class="p">)</span>
+<span class="c">% e.t.c</span>
+</pre></div>
+</div>
+<p>When all configuration is done, you call <code class="xref mat mat-func docutils literal notranslate"><span class="pre">get_system()</span></code> which returns an instance of a <code class="xref mat mat-class docutils literal notranslate"><span class="pre">System</span></code> class.
+The <code class="xref mat mat-class docutils literal notranslate"><span class="pre">System</span></code> class is immutable and cannot be changed. If you want to change the database, elements, or something
+else, you can:</p>
+<ul class="simple">
+<li><p>change the <code class="xref mat mat-class docutils literal notranslate"><span class="pre">SystemBuilder</span></code> and call <code class="xref mat mat-func docutils literal notranslate"><span class="pre">get_system()</span></code> again, or</p></li>
+<li><p>create a new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">SystemBuilder</span></code> and call <code class="xref mat mat-func docutils literal notranslate"><span class="pre">get_system()</span></code>.</p></li>
+</ul>
+<p>From the <code class="xref mat mat-class docutils literal notranslate"><span class="pre">System</span></code> you can create one or more calculations, which is the next step in the “wizard”.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can use the same <code class="xref mat mat-class docutils literal notranslate"><span class="pre">System</span></code> object to create several calculations.</p>
+</div>
+</section>
+<section id="calculation">
+<h2>Calculation<a class="headerlink" href="#calculation" title="Permalink to this heading">¶</a></h2>
+<p>All available calculation types are set up in a similar way, some calculations have many settings.
+But default values are used where it is applicable, and are overridden if you specify something different.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Review the TC-Toolbox examples included with the Thermo-Calc installation to see how calculations are used for
+various solutions.</p>
+</div>
+<p>When you have configured your calculation you call <code class="xref mat mat-func docutils literal notranslate"><span class="pre">calculate()</span></code> to start the actual calculation.
+That returns a <code class="xref mat mat-class docutils literal notranslate"><span class="pre">Result</span></code>, which is the next step.</p>
+<section id="single-equilibrium-calculations">
+<h3>Single Equilibrium Calculations<a class="headerlink" href="#single-equilibrium-calculations" title="Permalink to this heading">¶</a></h3>
+<p>In single equilibrium calculations you need to specify the correct number of conditions, depending on how many elements
+your <code class="xref mat mat-class docutils literal notranslate"><span class="pre">System</span></code> contains.</p>
+<p>This is done by calling <code class="xref mat mat-func docutils literal notranslate"><span class="pre">set_condition()</span></code>.</p>
+<p><strong>An important difference from other calculations is that single equilibrium calculations have two functions to get
+result values.</strong></p>
+<p>The <code class="xref mat mat-func docutils literal notranslate"><span class="pre">calculate()</span></code> method, which gives a <code class="xref mat mat-class docutils literal notranslate"><span class="pre">SingleEquilibriumTempResult</span></code>, is used to get actual values.
+This result is <em>temporary</em>, meaning that if you run other calculations or rerun the current one, the resulting object
+no longer gives values corresponding to the first calculation.</p>
+<p>This is different from how other calculations work. If you want a <code class="xref mat mat-class docutils literal notranslate"><span class="pre">Result</span></code> that you can use <em>after</em> running other
+calculations, you need to call <code class="xref mat mat-func docutils literal notranslate"><span class="pre">calculate_with_state()</span></code>, which returns a <code class="xref mat mat-class docutils literal notranslate"><span class="pre">SingleEquilibriumResult</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="xref mat mat-func docutils literal notranslate"><span class="pre">calculate()</span></code> is the recommended function and works in almost all situations. Also it has <em>significantly</em>
+better performance than <code class="xref mat mat-func docutils literal notranslate"><span class="pre">calculate_with_state()</span></code>.</p>
+</div>
+<p><strong>Example:</strong></p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">import</span><span class="w"> </span><span class="n">tc_toolbox</span><span class="o">.*</span>
+
+<span class="n">session</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">TCToolbox</span><span class="p">();</span>
+
+<span class="n">sys</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="n">select_database_and_elements</span><span class="p">(</span><span class="s">&quot;FEDEMO&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;Fe&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Cr&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="p">]).</span><span class="n">get_system</span><span class="p">();</span>
+<span class="n">calculation</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">sys</span><span class="p">.</span><span class="n">with_single_equilibrium_calculation</span><span class="p">()</span><span class="k">...</span>
+<span class="w">                 </span><span class="p">.</span><span class="n">set_condition</span><span class="p">(</span><span class="n">ThermodynamicQuantity</span><span class="p">.</span><span class="n">temperature</span><span class="p">(),</span><span class="w"> </span><span class="mf">2000.0</span><span class="p">)</span><span class="k">...</span>
+<span class="w">                 </span><span class="p">.</span><span class="n">set_condition</span><span class="p">(</span><span class="n">ThermodynamicQuantity</span><span class="p">.</span><span class="n">mole_fraction_of_a_component</span><span class="p">(</span><span class="s">&quot;Cr&quot;</span><span class="p">),</span><span class="w"> </span><span class="mf">0.1</span><span class="p">)</span><span class="k">...</span>
+<span class="w">                 </span><span class="p">.</span><span class="n">set_condition</span><span class="p">(</span><span class="n">ThermodynamicQuantity</span><span class="p">.</span><span class="n">mole_fraction_of_a_component</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">),</span><span class="w"> </span><span class="mf">0.01</span><span class="p">)</span><span class="k">...</span>
+<span class="w">                 </span><span class="p">.</span><span class="n">calculate</span><span class="p">();</span>
+
+<span class="n">gibbs_energy</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">calculation</span><span class="p">.</span><span class="n">get_value_of</span><span class="p">(</span><span class="s">&quot;G&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="batch-equilibrium-calculations">
+<h3>Batch Equilibrium Calculations<a class="headerlink" href="#batch-equilibrium-calculations" title="Permalink to this heading">¶</a></h3>
+<p>Batch equilibrium calculations are used when you want to do many single equilibrium calculations and it is known from
+the beginning which result values are required from the equilibrium. This is a vectorized type of calculation that can
+reduce the overhead from MATLAB<sup>®</sup> and TC-Toolbox.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The performance of batch equilibrium calculations can be significantly better than looping and using single
+equilibrium calculations <strong>if the actual Thermo-Calc calculation is fast</strong>. There is little advantage if the
+Thermo-Calc equilibrium calculations take a long time (typically for large systems and databases).</p>
+</div>
+<p><strong>Example:</strong></p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">import</span><span class="w"> </span><span class="n">tc_toolbox</span><span class="o">.*</span>
+
+<span class="n">session</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">TCToolbox</span><span class="p">();</span>
+<span class="n">session</span><span class="p">.</span><span class="n">set_cache_folder</span><span class="p">(</span><span class="s">&quot;_cache&quot;</span><span class="p">);</span>
+
+<span class="n">system_builder</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="n">select_database_and_elements</span><span class="p">(</span><span class="s">&quot;NIDEMO&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;Ni&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Al&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Cr&quot;</span><span class="p">]);</span>
+<span class="n">system_builder</span><span class="p">.</span><span class="n">without_default_phases</span><span class="p">();</span>
+<span class="n">system_builder</span><span class="p">.</span><span class="n">select_phase</span><span class="p">(</span><span class="s">&#39;BCC_A2&#39;</span><span class="p">);</span>
+<span class="n">sys</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">system_builder</span><span class="p">.</span><span class="n">get_system</span><span class="p">();</span>
+<span class="n">batch_calculation</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">sys</span><span class="p">.</span><span class="n">with_batch_equilibrium_calculation</span><span class="p">();</span>
+
+<span class="n">batch_calculation</span><span class="p">.</span><span class="n">set_condition</span><span class="p">(</span><span class="s">&quot;T&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">800</span><span class="p">);</span>
+<span class="n">batch_calculation</span><span class="p">.</span><span class="n">set_condition</span><span class="p">(</span><span class="s">&quot;X(Al)&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">1E-2</span><span class="p">);</span>
+<span class="n">batch_calculation</span><span class="p">.</span><span class="n">set_condition</span><span class="p">(</span><span class="s">&quot;X(Cr)&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">1E-2</span><span class="p">);</span>
+<span class="n">batch_calculation</span><span class="p">.</span><span class="n">disable_global_minimization</span><span class="p">();</span>
+
+<span class="n">list_of_x_Al</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">linspace</span><span class="p">(</span><span class="mf">1e-4</span><span class="p">,</span><span class="w"> </span><span class="mf">10e-2</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
+<span class="n">list_of_x_Cr</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">linspace</span><span class="p">(</span><span class="mf">1e-4</span><span class="p">,</span><span class="w"> </span><span class="mf">15e-2</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
+<span class="n">list_of_density</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[];</span>
+<span class="n">equilibria</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">{};</span>
+
+<span class="nb">i</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="k">for</span><span class="w"> </span><span class="n">x_Al</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">list_of_x_Al</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">x_Cr</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">list_of_x_Cr</span>
+<span class="w">        </span><span class="n">equilibria</span><span class="p">{</span><span class="nb">i</span><span class="p">}</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">{{</span><span class="s">&quot;X(Al)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x_Al</span><span class="p">}</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;X(Cr)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x_Cr</span><span class="p">}};</span>
+<span class="w">        </span><span class="nb">i</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">batch_calculation</span><span class="p">.</span><span class="n">set_conditions_for_equilibria</span><span class="p">(</span><span class="n">equilibria</span><span class="p">);</span>
+
+<span class="n">results</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">batch_calculation</span><span class="p">.</span><span class="n">calculate</span><span class="p">([</span><span class="s">&quot;BM&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;VM&quot;</span><span class="p">],</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span>
+
+<span class="n">masses</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">results</span><span class="p">.</span><span class="n">get_values_of</span><span class="p">(</span><span class="s">&quot;BM&quot;</span><span class="p">);</span>
+<span class="n">volumes</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">results</span><span class="p">.</span><span class="n">get_values_of</span><span class="p">(</span><span class="s">&#39;VM&#39;</span><span class="p">);</span>
+<span class="n">density</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mf">1e-3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">masses</span><span class="w"> </span><span class="o">./</span><span class="w"> </span><span class="n">volumes</span>
+</pre></div>
+</div>
+</section>
+<section id="precipitation-calculations">
+<h3>Precipitation Calculations<a class="headerlink" href="#precipitation-calculations" title="Permalink to this heading">¶</a></h3>
+<p>All the configuration settings for the <em>Precipitation Calculator</em> in Graphical Mode are available for this calculation.
+However, you must at least enter a matrix phase, a precipitate phase, temperature, simulation time, and compositions.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">import</span><span class="w"> </span><span class="n">tc_toolbox</span><span class="p">.</span><span class="n">precipitation</span><span class="o">.*</span>
+<span class="nb">import</span><span class="w"> </span><span class="n">tc_toolbox</span><span class="o">.*</span>
+
+<span class="n">session</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">TCToolbox</span><span class="p">();</span>
+<span class="n">session</span><span class="p">.</span><span class="n">set_cache_folder</span><span class="p">(</span><span class="s">&quot;_cache&quot;</span><span class="p">);</span>
+
+<span class="n">system_builder</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="n">select_thermodynamic_and_kinetic_databases_with_elements</span><span class="p">(</span><span class="s">&quot;ALDEMO&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;MALDEMO&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;Al&quot;</span><span class="p">,</span><span class="s">&quot;Sc&quot;</span><span class="p">]);</span>
+<span class="n">sys</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">system_builder</span><span class="p">.</span><span class="n">get_system</span><span class="p">();</span>
+
+<span class="n">precipitationCalculation</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">sys</span><span class="p">.</span><span class="n">with_isothermal_precipitation_calculation</span><span class="p">();</span>
+<span class="n">precipitationCalculation</span><span class="p">.</span><span class="n">set_composition</span><span class="p">(</span><span class="s">&quot;Sc&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">0.18</span><span class="p">);</span>
+<span class="n">precipitationCalculation</span><span class="p">.</span><span class="n">set_temperature</span><span class="p">(</span><span class="mf">623.15</span><span class="p">);</span>
+<span class="n">precipitationCalculation</span><span class="p">.</span><span class="n">set_simulation_time</span><span class="p">(</span><span class="mf">1e5</span><span class="p">);</span>
+<span class="n">precipitationCalculation</span><span class="p">.</span><span class="n">with_matrix_phase</span><span class="p">(</span><span class="n">MatrixPhase</span><span class="p">(</span><span class="s">&quot;FCC_A1&quot;</span><span class="p">)</span><span class="k">...</span>
+<span class="w">                                           </span><span class="p">.</span><span class="n">add_precipitate_phase</span><span class="p">(</span><span class="n">PrecipitatePhase</span><span class="p">(</span><span class="s">&quot;AL3SC&quot;</span><span class="p">)));</span>
+
+<span class="n">result</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">precipitationCalculation</span><span class="p">.</span><span class="n">calculate</span><span class="p">();</span>
+<span class="p">[</span><span class="nb">time</span><span class="p">,</span><span class="w"> </span><span class="n">meanRadius</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="n">get_mean_radius_of</span><span class="p">(</span><span class="s">&quot;AL3SC&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="scheil-calculations">
+<h3>Scheil Calculations<a class="headerlink" href="#scheil-calculations" title="Permalink to this heading">¶</a></h3>
+<p>All Scheil calculation settings available in Graphical Mode (using the <em>Scheil Calculator</em>) or Console Mode (using the
+Scheil module) are available for this calculation. The minimum you need to specify are the elements and compositions.
+Everything else is set to a default value.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">import</span><span class="w"> </span><span class="n">tc_toolbox</span><span class="o">.*</span>
+
+<span class="n">session</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">TCToolbox</span><span class="p">();</span>
+<span class="n">sys</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="n">select_database_and_elements</span><span class="p">(</span><span class="s">&quot;FEDEMO&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;Fe&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="p">]).</span><span class="n">get_system</span><span class="p">();</span>
+<span class="n">temperature_vs_mole_fraction_of_solid</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">sys</span><span class="p">.</span><span class="n">with_scheil_calculation</span><span class="p">()</span><span class="k">...</span>
+<span class="w">                                           </span><span class="p">.</span><span class="n">set_composition</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">)</span><span class="k">...</span>
+<span class="w">                                           </span><span class="p">.</span><span class="n">calculate</span><span class="p">()</span><span class="k">...</span>
+<span class="w">                                           </span><span class="p">.</span><span class="n">get_values_of</span><span class="p">(</span><span class="n">ScheilQuantity</span><span class="p">.</span><span class="n">temperature</span><span class="p">(),</span><span class="k">...</span>
+<span class="w">                                                          </span><span class="n">ScheilQuantity</span><span class="p">.</span><span class="n">mole_fraction_of_all_solid_phases</span><span class="p">());</span>
+</pre></div>
+</div>
+</section>
+<section id="property-diagram-calculations">
+<h3>Property Diagram Calculations<a class="headerlink" href="#property-diagram-calculations" title="Permalink to this heading">¶</a></h3>
+<p>For the property diagram (step) calculation, everything that you can configure in the <em>Equilibrium Calculator</em> when
+choosing <em>One axis</em> in Graphical Mode can also be configured in this calculation. In Console Mode the property
+diagram is created using the Step command. The minimum you need to specify are elements, conditions, and the calculation
+axis. All other settings use the default values unless specified otherwise.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">import</span><span class="w"> </span><span class="n">tc_toolbox</span><span class="o">.*</span>
+<span class="nb">import</span><span class="w"> </span><span class="n">tc_toolbox</span><span class="p">.</span><span class="n">step_or_map_diagrams</span><span class="o">.*</span>
+
+<span class="n">session</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">TCToolbox</span><span class="p">();</span>
+<span class="w">    </span><span class="n">property_diagram</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">session</span><span class="k">...</span>
+<span class="w">            </span><span class="p">.</span><span class="n">select_database_and_elements</span><span class="p">(</span><span class="s">&quot;FEDEMO&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;Fe&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="p">])</span><span class="k">...</span>
+<span class="w">            </span><span class="p">.</span><span class="n">get_system</span><span class="p">()</span><span class="k">...</span>
+<span class="w">            </span><span class="p">.</span><span class="n">with_property_diagram_calculation</span><span class="p">()</span><span class="k">...</span>
+<span class="w">                </span><span class="p">.</span><span class="n">with_axis</span><span class="p">(</span><span class="n">CalculationAxis</span><span class="p">(</span><span class="n">ThermodynamicQuantity</span><span class="p">.</span><span class="n">temperature</span><span class="p">())</span><span class="k">...</span>
+<span class="w">                           </span><span class="p">.</span><span class="n">set_min</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="k">...</span>
+<span class="w">                           </span><span class="p">.</span><span class="n">set_max</span><span class="p">(</span><span class="mi">3000</span><span class="p">))</span><span class="k">...</span>
+<span class="w">                </span><span class="p">.</span><span class="n">set_condition</span><span class="p">(</span><span class="n">ThermodynamicQuantity</span><span class="p">.</span><span class="n">mole_fraction_of_a_component</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">),</span><span class="w"> </span><span class="mf">0.01</span><span class="p">)</span><span class="k">...</span>
+<span class="w">                </span><span class="p">.</span><span class="n">calculate</span><span class="p">()</span><span class="k">...</span>
+<span class="w">                </span><span class="p">.</span><span class="n">get_values_grouped_by_stable_phases_of</span><span class="p">(</span><span class="n">ThermodynamicQuantity</span><span class="p">.</span><span class="n">temperature</span><span class="p">(),</span><span class="k">...</span>
+<span class="w">                                                        </span><span class="n">ThermodynamicQuantity</span><span class="p">.</span><span class="n">volume_fraction_of_a_phase</span><span class="p">(</span><span class="s">&quot;ALL&quot;</span><span class="p">));</span>
+</pre></div>
+</div>
+</section>
+<section id="phase-diagram-calculations">
+<h3>Phase Diagram Calculations<a class="headerlink" href="#phase-diagram-calculations" title="Permalink to this heading">¶</a></h3>
+<p>For the phase diagram (map) calculation, everything that you can configure in the <em>Equilibrium Calculator</em> when
+choosing <em>Phase diagram</em> in Graphical Mode can also be configured in this calculation. In Console Mode the phase
+diagram is created using the Map command. The minimum you need to specify are elements, conditions, and two calculation
+axes. All other settings use the default values unless specified otherwise.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">import</span><span class="w"> </span><span class="n">tc_toolbox</span><span class="o">.*</span>
+<span class="nb">import</span><span class="w"> </span><span class="n">tc_toolbox</span><span class="p">.</span><span class="n">step_or_map_diagrams</span><span class="o">.*</span>
+
+<span class="n">session</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">TCToolbox</span><span class="p">();</span>
+<span class="w">    </span><span class="n">property_diagram</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">session</span><span class="k">...</span>
+<span class="w">            </span><span class="p">.</span><span class="n">select_database_and_elements</span><span class="p">(</span><span class="s">&quot;FEDEMO&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;Fe&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="p">])</span><span class="k">...</span>
+<span class="w">            </span><span class="p">.</span><span class="n">get_system</span><span class="p">()</span><span class="k">...</span>
+<span class="w">            </span><span class="p">.</span><span class="n">with_phase_diagram_calculation</span><span class="p">()</span><span class="k">...</span>
+<span class="w">                </span><span class="p">.</span><span class="n">with_first_axis</span><span class="p">(</span><span class="n">CalculationAxis</span><span class="p">(</span><span class="n">ThermodynamicQuantity</span><span class="p">.</span><span class="n">temperature</span><span class="p">())</span><span class="k">...</span>
+<span class="w">                                 </span><span class="p">.</span><span class="n">set_min</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="k">...</span>
+<span class="w">                                 </span><span class="p">.</span><span class="n">set_max</span><span class="p">(</span><span class="mi">3000</span><span class="p">))</span><span class="k">...</span>
+<span class="w">                </span><span class="p">.</span><span class="n">with_second_axis</span><span class="p">(</span><span class="n">CalculationAxis</span><span class="p">(</span><span class="n">ThermodynamicQuantity</span><span class="p">.</span><span class="n">mole_fraction_of_a_component</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">))</span><span class="k">...</span>
+<span class="w">                                  </span><span class="p">.</span><span class="n">set_min</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="k">...</span>
+<span class="w">                                  </span><span class="p">.</span><span class="n">set_max</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span><span class="k">...</span>
+<span class="w">                </span><span class="p">.</span><span class="n">set_condition</span><span class="p">(</span><span class="n">ThermodynamicQuantity</span><span class="p">.</span><span class="n">mole_fraction_of_a_component</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">),</span><span class="w"> </span><span class="mf">0.01</span><span class="p">)</span><span class="k">...</span>
+<span class="w">                </span><span class="p">.</span><span class="n">calculate</span><span class="p">()</span><span class="k">...</span>
+<span class="w">                </span><span class="p">.</span><span class="n">get_values_grouped_by_stable_phases_of</span><span class="p">(</span><span class="n">ThermodynamicQuantity</span><span class="p">.</span><span class="n">mass_fraction_of_a_component</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">),</span><span class="k">...</span>
+<span class="w">                                                        </span><span class="n">ThermodynamicQuantity</span><span class="p">.</span><span class="n">temperature</span><span class="p">());</span>
+</pre></div>
+</div>
+</section>
+<section id="diffusion-calculations">
+<h3>Diffusion Calculations<a class="headerlink" href="#diffusion-calculations" title="Permalink to this heading">¶</a></h3>
+<p>For diffusion calculations, everything that you can configure in the <em>Diffusion Calculator</em> can also be configured in
+this calculation. The minimum you need to specify are elements, temperature, simulation time, a region with a grid and
+width, a phase, and an initial composition.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">import</span><span class="w"> </span><span class="n">tc_toolbox</span><span class="p">.</span><span class="n">diffusion</span><span class="o">.*</span>
+<span class="nb">import</span><span class="w"> </span><span class="n">tc_toolbox</span><span class="o">.*</span>
+
+<span class="n">session</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">TCToolbox</span><span class="p">();</span>
+
+<span class="n">tc_system</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">session</span><span class="k">...</span>
+<span class="w">    </span><span class="p">.</span><span class="n">select_thermodynamic_and_kinetic_databases_with_elements</span><span class="p">(</span><span class="s">&quot;FEDEMO&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;MFEDEMO&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;Fe&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Ni&quot;</span><span class="p">])</span><span class="k">...</span>
+<span class="w">    </span><span class="p">.</span><span class="n">get_system</span><span class="p">();</span>
+
+<span class="n">calculator</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">tc_system</span><span class="k">...</span>
+<span class="w">                </span><span class="p">.</span><span class="n">with_isothermal_diffusion_calculation</span><span class="p">()</span><span class="k">...</span>
+<span class="w">                </span><span class="p">.</span><span class="n">set_temperature</span><span class="p">(</span><span class="mf">1400.0</span><span class="p">)</span><span class="k">...</span>
+<span class="w">                </span><span class="p">.</span><span class="n">set_simulation_time</span><span class="p">(</span><span class="mf">108000.0</span><span class="p">)</span><span class="k">...</span>
+<span class="w">                </span><span class="p">.</span><span class="n">add_region</span><span class="p">(</span><span class="n">Region</span><span class="p">(</span><span class="s">&quot;Austenite&quot;</span><span class="p">)</span><span class="k">...</span>
+<span class="w">                            </span><span class="p">.</span><span class="n">set_width</span><span class="p">(</span><span class="mf">100E-6</span><span class="p">)</span><span class="k">...</span>
+<span class="w">                            </span><span class="p">.</span><span class="n">with_grid</span><span class="p">(</span><span class="n">CalculatedGrid</span><span class="p">.</span><span class="n">linear</span><span class="p">()</span><span class="k">...</span>
+<span class="w">                                       </span><span class="p">.</span><span class="n">set_no_of_points</span><span class="p">(</span><span class="mi">50</span><span class="p">))</span><span class="k">...</span>
+<span class="w">                                       </span><span class="p">.</span><span class="n">with_composition_profile</span><span class="p">(</span><span class="n">CompositionProfile</span><span class="p">()</span><span class="k">...</span>
+<span class="w">                                                                 </span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="s">&quot;Ni&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ElementProfile</span><span class="p">.</span><span class="n">linear</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span><span class="w"> </span><span class="mf">50.0</span><span class="p">)))</span><span class="k">...</span>
+<span class="w">                                       </span><span class="p">.</span><span class="n">add_phase</span><span class="p">(</span><span class="s">&quot;FCC_A1&quot;</span><span class="p">));</span>
+
+<span class="n">results</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">calculator</span><span class="p">.</span><span class="n">calculate</span><span class="p">();</span>
+
+<span class="p">[</span><span class="n">distance</span><span class="p">,</span><span class="w"> </span><span class="n">mass_frac_ni</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">results</span><span class="p">.</span><span class="n">get_mass_fraction_of_component_at_time</span><span class="p">(</span><span class="s">&quot;Ni&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">SimulationTime</span><span class="p">.</span><span class="n">LAST</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="property-model-calculations">
+<h3>Property Model Calculations<a class="headerlink" href="#property-model-calculations" title="Permalink to this heading">¶</a></h3>
+<p>For Property Model calculations, all the configuration settings for the <em>Property Model Calculator</em> in Graphical Mode
+are available for this calculation. The minimum you need to specify are elements, composition, and which Property Model
+you want to use.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">import</span><span class="w"> </span><span class="n">tc_toolbox</span><span class="o">.*</span>
+
+<span class="n">session</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">TCToolbox</span><span class="p">();</span>
+<span class="s">&quot;Available property models: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="n">get_property_models</span><span class="p">()</span>
+
+<span class="n">property_model</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">session</span><span class="k">...</span>
+<span class="w">                    </span><span class="p">.</span><span class="n">select_database_and_elements</span><span class="p">(</span><span class="s">&quot;FEDEMO&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;Fe&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="p">])</span><span class="k">...</span>
+<span class="w">                    </span><span class="p">.</span><span class="n">get_system</span><span class="p">()</span><span class="k">...</span>
+<span class="w">                    </span><span class="p">.</span><span class="n">with_property_model_calculation</span><span class="p">(</span><span class="s">&quot;Driving Force&quot;</span><span class="p">)</span><span class="k">...</span>
+<span class="w">                    </span><span class="p">.</span><span class="n">set_composition</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">)</span><span class="k">...</span>
+<span class="w">                    </span><span class="p">.</span><span class="n">set_argument</span><span class="p">(</span><span class="s">&quot;matrix&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;LIQUID&quot;</span><span class="p">)</span><span class="k">...</span>
+<span class="w">                    </span><span class="p">.</span><span class="n">set_argument</span><span class="p">(</span><span class="s">&quot;precipitate&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;GRAPHITE&quot;</span><span class="p">);</span>
+
+<span class="s">&quot;Available arguments: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">property_model</span><span class="p">.</span><span class="n">get_arguments</span><span class="p">()</span>
+<span class="n">result</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">property_model</span><span class="p">.</span><span class="n">calculate</span><span class="p">();</span>
+
+<span class="s">&quot;Available result quantities: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="n">get_result_quantities</span><span class="p">()</span>
+<span class="n">driving_force</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="n">get_value_of</span><span class="p">(</span><span class="s">&quot;normalizedDrivingForce&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="material-to-material-calculations">
+<h3>Material to Material Calculations<a class="headerlink" href="#material-to-material-calculations" title="Permalink to this heading">¶</a></h3>
+<p>Material to Material calculations are generally regular single equilibrium, property diagram or phase diagram
+calculations but they are specialised to handle the mixture of two materials A and B. Everything that you can
+configure in the Material to Material Calculator in Graphical Mode can also be configured in this calculation. The
+minimum required configuration is shown below for a Property diagram calculation for varying amount of material B. The
+other calculators (single fraction of material B and phase diagram calculations) are configured in a similar way.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">import</span><span class="w"> </span><span class="n">tc_toolbox</span><span class="o">.*</span>
+<span class="nb">import</span><span class="w"> </span><span class="n">tc_toolbox</span><span class="p">.</span><span class="n">material_to_material</span><span class="o">.*</span><span class="p">;</span>
+
+<span class="n">independent_elements</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;Cr&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Ni&quot;</span><span class="p">];</span>
+<span class="n">a_comp</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mf">10.0</span><span class="p">,</span><span class="w"> </span><span class="mf">15.0</span><span class="p">];</span>
+<span class="n">b_comp</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mf">15.0</span><span class="p">,</span><span class="w"> </span><span class="mf">10.0</span><span class="p">];</span>
+
+<span class="n">activity_elements</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;C&quot;</span><span class="p">];</span>
+<span class="n">activities</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mf">0.1</span><span class="p">];</span>
+
+<span class="n">session</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">TCToolbox</span><span class="p">();</span>
+
+<span class="n">material_to_material_property_diagram</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">session</span><span class="k">...</span>
+<span class="w">    </span><span class="p">.</span><span class="n">select_database_and_elements</span><span class="p">(</span><span class="s">&quot;FEDEMO&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;Fe&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Cr&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Ni&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="p">])</span><span class="k">...</span>
+<span class="w">    </span><span class="p">.</span><span class="n">get_system</span><span class="p">()</span><span class="k">...</span>
+<span class="w">    </span><span class="p">.</span><span class="n">with_material_to_material</span><span class="p">()</span><span class="k">...</span>
+<span class="w">        </span><span class="p">.</span><span class="n">with_property_diagram_calculation</span><span class="p">()</span><span class="k">...</span>
+<span class="w">        </span><span class="p">.</span><span class="n">set_material_a</span><span class="p">(</span><span class="nb">containers.Map</span><span class="p">(</span><span class="n">independent_elements</span><span class="p">,</span><span class="w"> </span><span class="n">a_comp</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;Fe&quot;</span><span class="p">)</span><span class="k">...</span>
+<span class="w">        </span><span class="p">.</span><span class="n">set_material_b</span><span class="p">(</span><span class="nb">containers.Map</span><span class="p">(</span><span class="n">independent_elements</span><span class="p">,</span><span class="w"> </span><span class="n">b_comp</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;Fe&quot;</span><span class="p">)</span><span class="k">...</span>
+<span class="w">        </span><span class="p">.</span><span class="n">set_activities</span><span class="p">(</span><span class="nb">containers.Map</span><span class="p">(</span><span class="n">activity_elements</span><span class="p">,</span><span class="w"> </span><span class="n">activities</span><span class="p">))</span><span class="k">...</span>
+<span class="w">        </span><span class="p">.</span><span class="n">with_constant_condition</span><span class="p">(</span><span class="n">ConstantCondition</span><span class="p">.</span><span class="n">temperature</span><span class="p">(</span><span class="mi">800</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">273.15</span><span class="p">))</span><span class="k">...</span>
+<span class="w">        </span><span class="p">.</span><span class="n">with_axis</span><span class="p">(</span><span class="n">MaterialToMaterialCalculationAxis</span><span class="p">.</span><span class="n">fraction_of_material_b</span><span class="p">());</span>
+
+<span class="n">result</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">material_to_material_property_diagram</span><span class="p">.</span><span class="n">calculate</span><span class="p">();</span>
+<span class="n">data</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="n">get_values_grouped_by_quantity_of</span><span class="p">(</span><span class="k">...</span>
+<span class="w">    </span><span class="n">Constants</span><span class="p">.</span><span class="n">MATERIAL_B_FRACTION</span><span class="p">,</span><span class="k">...</span>
+<span class="w">    </span><span class="n">ThermodynamicQuantity</span><span class="p">.</span><span class="n">volume_fraction_of_a_phase</span><span class="p">(</span><span class="n">Constants</span><span class="p">.</span><span class="n">ALL_PHASES</span><span class="p">));</span>
+
+<span class="k">for</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="w">    </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">data</span><span class="p">(</span><span class="n">k</span><span class="p">{</span><span class="mi">1</span><span class="p">});</span>
+<span class="w">    </span><span class="n">fractions_of_b</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">group</span><span class="p">.</span><span class="n">get_x</span><span class="p">();</span>
+<span class="w">    </span><span class="n">volume_fraction_of_phase</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">group</span><span class="p">.</span><span class="n">get_y</span><span class="p">();</span>
+<span class="w">    </span><span class="n">phase_name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">group</span><span class="p">.</span><span class="n">get_label</span><span class="p">();</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</section>
+<section id="process-metallurgy-calculations">
+<h3>Process Metallurgy Calculations<a class="headerlink" href="#process-metallurgy-calculations" title="Permalink to this heading">¶</a></h3>
+<p>Process Metallurgy calculations are specialized to support the convenient handling of component-based additions
+(i.e., slag compositions such as <em>50% Al2O3 - 30% CaO - 20% SiO2</em>), provide tailor-made result quantities, a framework
+for developing kinetic process simulations, and more useful features.</p>
+<p>There are two distinct type of calculations:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="calculation_packages/process_metallurgy_modules/equilibrium.html#+tc_toolbox.+process_metallurgy.+equilibrium.EquilibriumCalculation" title="+tc_toolbox.+process_metallurgy.+equilibrium.EquilibriumCalculation"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">+tc_toolbox.+process_metallurgy.+equilibrium.EquilibriumCalculation</span></code></a>: isothermal and adiabatic equilibrium
+calculations</p></li>
+<li><p><a class="reference internal" href="calculation_packages/process_metallurgy_modules/process.html#+tc_toolbox.+process_metallurgy.+process.ProcessSimulationCalculation" title="+tc_toolbox.+process_metallurgy.+process.ProcessSimulationCalculation"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">+tc_toolbox.+process_metallurgy.+process.ProcessSimulationCalculation</span></code></a>: a kinetic process simulation
+framework, based an <em>Effective Equilibrium Reaction Zone</em> (EERZ) approach</p></li>
+</ul>
+<p><strong>Equilibrium calculation example:</strong></p>
+<p>Equilibrium calculations are useful in a large large of situations when considering the kinetics of a process is
+unnecessary.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">import</span><span class="w"> </span><span class="n">tc_toolbox</span><span class="p">.</span><span class="n">process_metallurgy</span><span class="p">.</span><span class="n">base</span><span class="o">.*</span><span class="p">;</span>
+<span class="n">import</span><span class="w"> </span><span class="s">tc_toolbox.process_metallurgy.equilibrium.*</span><span class="p">;</span>
+<span class="n">import</span><span class="w"> </span><span class="s">tc_toolbox.*</span>
+
+<span class="n">session</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">tc_toolbox</span><span class="p">.</span><span class="n">TCToolbox</span><span class="p">();</span>
+
+<span class="n">metal</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">EquilibriumAddition</span><span class="p">(</span><span class="nb">containers.Map</span><span class="p">([</span><span class="s">&quot;Fe&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Si&quot;</span><span class="p">],</span><span class="w"> </span><span class="p">{</span><span class="nb">NaN</span><span class="p">,</span><span class="w"> </span><span class="mf">4.5</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">}),</span><span class="w"> </span><span class="mf">100e3</span><span class="p">,</span><span class="w"> </span><span class="mi">1650</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">273.15</span><span class="p">);</span>
+<span class="n">slag</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">EquilibriumAddition</span><span class="p">(</span><span class="nb">containers.Map</span><span class="p">([</span><span class="s">&quot;CaO&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Al2O3&quot;</span><span class="p">],</span><span class="w"> </span><span class="p">{</span><span class="mi">75</span><span class="p">,</span><span class="w"> </span><span class="mi">25</span><span class="p">}),</span><span class="w"> </span><span class="mf">3e3</span><span class="p">,</span><span class="w"> </span><span class="mi">1600</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">273.15</span><span class="p">);</span>
+<span class="n">gas</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">EquilibriumGasAddition</span><span class="p">(</span><span class="nb">containers.Map</span><span class="p">({</span><span class="s">&#39;O2&#39;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="mi">100</span><span class="p">}),</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w"> </span><span class="n">GasAmountUnit</span><span class="p">.</span><span class="n">NORM_CUBIC_METER</span><span class="p">);</span>
+<span class="n">calc</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="n">with_metallurgy</span><span class="p">().</span><span class="n">with_adiabatic_equilibrium_calculation</span><span class="p">(</span><span class="n">ProcessDatabase</span><span class="p">.</span><span class="n">OXDEMO</span><span class="p">);</span>
+
+<span class="p">(</span><span class="n">calc</span><span class="k">...</span>
+<span class="w"> </span><span class="p">.</span><span class="n">add_addition</span><span class="p">(</span><span class="n">metal</span><span class="p">)</span><span class="k">...</span>
+<span class="w"> </span><span class="p">.</span><span class="n">add_addition</span><span class="p">(</span><span class="n">slag</span><span class="p">)</span><span class="k">...</span>
+<span class="w"> </span><span class="p">.</span><span class="n">add_addition</span><span class="p">(</span><span class="n">gas</span><span class="p">));</span>
+
+<span class="n">result</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">calc</span><span class="p">.</span><span class="n">calculate</span><span class="p">();</span>
+
+<span class="nb">disp</span><span class="p">(</span><span class="s">&quot;Stable phases:&quot;</span><span class="p">)</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">get_stable_phases</span><span class="p">())</span>
+<span class="nb">disp</span><span class="p">(</span><span class="s">&quot;Temperature: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="n">get_temperature</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; K&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Process simulation example:</strong></p>
+<p>TC-Toolbox is providing a <em>framework</em> for modelling in principle any process in metallurgy, especially steel-making. It
+is up to the user to actually develop a concrete model for the process in question. The framework is in the current
+release limited to one reaction zone connecting two bulk zones. These bulk zones are typically the steel melt and the
+top slag, but not limited to that. The framework in its current version has proven to be useful to model industrial
+ladle furnaces, AOD- and VOD-converters and more. Process features such as heating and cooling, heat transfer between
+the bulk zones, inclusion formation and their flotation, etc., can be modelled.</p>
+<p>This is a very simplified minimal but complete model mimicking a BOF process:</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">import</span><span class="w"> </span><span class="n">tc_toolbox</span><span class="p">.</span><span class="n">process_metallurgy</span><span class="p">.</span><span class="n">base</span><span class="o">.*</span><span class="p">;</span>
+<span class="n">import</span><span class="w"> </span><span class="s">tc_toolbox.process_metallurgy.process.*</span><span class="p">;</span>
+<span class="n">import</span><span class="w"> </span><span class="s">tc_toolbox.*</span>
+
+<span class="n">session</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">tc_toolbox</span><span class="p">.</span><span class="n">TCToolbox</span><span class="p">();</span>
+
+
+<span class="n">calc</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="n">session</span><span class="p">.</span><span class="n">with_metallurgy</span><span class="p">()</span><span class="k">...</span>
+<span class="w">        </span><span class="p">.</span><span class="n">with_adiabatic_process_calculation</span><span class="p">(</span><span class="n">ProcessDatabase</span><span class="p">.</span><span class="n">OXDEMO</span><span class="p">)</span><span class="k">...</span>
+<span class="w">        </span><span class="p">.</span><span class="n">set_end_time</span><span class="p">(</span><span class="mi">15</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">60</span><span class="p">));</span>
+
+<span class="n">steel_zone</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">MetalBulkZone</span><span class="p">(</span><span class="mi">7800</span><span class="p">);</span>
+<span class="n">slag_zone</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">SlagBulkZone</span><span class="p">(</span><span class="mi">4500</span><span class="p">);</span>
+
+<span class="n">steel_zone</span><span class="p">.</span><span class="n">add_addition</span><span class="p">(</span><span class="n">SingleTimeAddition</span><span class="p">(</span><span class="nb">containers.Map</span><span class="p">([</span><span class="s">&quot;Fe&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Si&quot;</span><span class="p">],</span><span class="w"> </span><span class="p">{</span><span class="nb">NaN</span><span class="p">,</span><span class="w"> </span><span class="mf">4.5</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">}),</span><span class="w"> </span><span class="mf">120e3</span><span class="p">,</span><span class="k">...</span>
+<span class="w">                                           </span><span class="mi">1600</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">273.15</span><span class="p">),</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="n">slag_zone</span><span class="p">.</span><span class="n">add_addition</span><span class="p">(</span><span class="n">SingleTimeAddition</span><span class="p">(</span><span class="nb">containers.Map</span><span class="p">([</span><span class="s">&quot;CaO&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;SiO2&quot;</span><span class="p">],</span><span class="w"> </span><span class="p">{</span><span class="mi">75</span><span class="p">,</span><span class="w"> </span><span class="mi">25</span><span class="p">}),</span><span class="w"> </span><span class="mf">1.2e3</span><span class="p">,</span><span class="k">...</span>
+<span class="w">                                          </span><span class="mi">1500</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">273.15</span><span class="p">,</span><span class="k">...</span>
+<span class="w">                                          </span><span class="n">CompositionUnit</span><span class="p">.</span><span class="n">MOLE_PERCENT</span><span class="p">),</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+
+<span class="n">steel_zone</span><span class="p">.</span><span class="n">add_continuous_addition</span><span class="p">(</span><span class="n">ContinuousGasAddition</span><span class="p">(</span><span class="nb">containers.Map</span><span class="p">({</span><span class="s">&#39;O2&#39;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="mi">100</span><span class="p">}),</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="k">...</span>
+<span class="w">                                                         </span><span class="n">GasRateUnit</span><span class="p">.</span><span class="n">NORM_CUBIC_METER_PER_SEC</span><span class="p">));</span>
+
+<span class="n">calc</span><span class="p">.</span><span class="n">with_reaction_zone</span><span class="p">(</span><span class="n">ReactionZone</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span><span class="k">...</span>
+<span class="w">                                     </span><span class="n">steel_zone</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0e-5</span><span class="p">,</span><span class="k">...</span>
+<span class="w">                                     </span><span class="n">slag_zone</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0e-6</span><span class="p">));</span>
+
+<span class="n">result</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">calc</span><span class="p">.</span><span class="n">calculate</span><span class="p">();</span>
+
+<span class="nb">disp</span><span class="p">(</span><span class="s">&quot;Stable phases in the steel melt:&quot;</span><span class="p">)</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">get_stable_phases</span><span class="p">(</span><span class="s">&#39;metal&#39;</span><span class="p">))</span>
+<span class="nb">disp</span><span class="p">(</span><span class="s">&quot;C-content in steel vs. time:&quot;</span><span class="p">)</span>
+<span class="n">compositions</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="n">get_composition_of_phase_group</span><span class="p">(</span><span class="s">&#39;metal&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">PhaseGroup</span><span class="p">.</span><span class="n">ALL_METAL</span><span class="p">);</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">compositions</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="result">
+<h2>Result<a class="headerlink" href="#result" title="Permalink to this heading">¶</a></h2>
+<p>All calculations have a method called <code class="xref mat mat-func docutils literal notranslate"><span class="pre">calculate()</span></code> that starts the calculations and when finished, returns
+a <code class="xref mat mat-class docutils literal notranslate"><span class="pre">Result</span></code>.</p>
+<p>The <code class="xref mat mat-class docutils literal notranslate"><span class="pre">Result</span></code> classes have very different methods, depending on the type of calculation.</p>
+<p>The <code class="xref mat mat-class docutils literal notranslate"><span class="pre">Result</span></code> is used to get numerical values from a calculation that has run.</p>
+<p>The <code class="xref mat mat-class docutils literal notranslate"><span class="pre">Result</span></code> can be saved to disk by the method <code class="xref mat mat-func docutils literal notranslate"><span class="pre">save_to_disk()</span></code>.</p>
+<p>Previously saved results can be loaded by the method <code class="xref mat mat-func docutils literal notranslate"><span class="pre">load_result_from_disk()</span></code> on the <code class="xref mat mat-class docutils literal notranslate"><span class="pre">SetUp</span></code> class.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">% code above sets up the calculation</span>
+<span class="n">r</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">calculation</span><span class="p">.</span><span class="n">calculate</span><span class="p">()</span>
+<span class="nb">time</span><span class="p">,</span><span class="w"> </span><span class="n">meanRadius</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">get_mean_radius_of</span><span class="p">(</span><span class="s">&quot;AL3SC&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <code class="xref mat mat-class docutils literal notranslate"><span class="pre">Result</span></code> objects are completely independent from calculations done before or after they are created. The
+objects return valid values corresponding to the calculation they were created from, for their lifetime. The only
+exception is if you call <code class="xref mat mat-func docutils literal notranslate"><span class="pre">calculate()</span></code> and not <code class="xref mat mat-func docutils literal notranslate"><span class="pre">calculate_with_state()</span></code> on a single equilibrium calculation.</p>
+<p>As in the following example you can mix different calculations and results, and use old results after another
+calculation has run.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">% ...</span>
+<span class="c">% some code to set up a single equilibrium calculation</span>
+<span class="c">% ...</span>
+
+<span class="n">single_eq_result</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">single_eq_calculation</span><span class="p">.</span><span class="n">calculate_with_state</span><span class="p">()</span>
+
+<span class="c">% ...</span>
+<span class="c">% some code to set up a precipitation calculation</span>
+<span class="c">% ...</span>
+
+<span class="n">prec_result</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">precipitation_calculation</span><span class="p">.</span><span class="n">calculate</span><span class="p">()</span>
+
+<span class="c">% ...</span>
+<span class="c">% some code to set up a Scheil calculation</span>
+<span class="c">% ...</span>
+
+<span class="n">scheil_result</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">scheil_calculations</span><span class="p">.</span><span class="n">calculate</span><span class="p">()</span>
+
+<span class="c">% now it is possible to get results from the single equilibrium calculation,</span>
+<span class="c">% without having to re-run it (because it has been calculated with saving of the state)</span>
+
+<span class="n">gibbs</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">single_eq_result</span><span class="p">.</span><span class="n">get_value_of</span><span class="p">(</span><span class="s">&quot;G&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="installation.html" class="btn btn-neutral float-left" title="Quick Installation Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="best_practices.html" class="btn btn-neutral float-right" title="Best Practices" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Foundation of Computational Thermodynamics, Stockholm, Sweden.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>  
+
+<style>
+    /* Sidebar header (and topbar for mobile) */
+    .wy-side-nav-search, .wy-nav-top {
+        background: #700707;
+    }
+</style>
+
+
+</body>
+</html>

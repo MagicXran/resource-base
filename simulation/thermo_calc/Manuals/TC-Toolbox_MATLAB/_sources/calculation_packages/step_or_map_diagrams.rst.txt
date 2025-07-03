@@ -1,0 +1,7 @@
+Package "step_or_map_diagrams"
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. automodule:: +tc_toolbox.+step_or_map_diagrams
+    :members:
+    :exclude-members: backend
+    :undoc-members:

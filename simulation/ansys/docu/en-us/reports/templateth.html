@@ -1,0 +1,201 @@
+<!-- templateth.html  ---  steady-state thermal report  ---  with figures -->
+<!-- $Revision$ -->
+<!-- $Date$ -->
+<ansys>
+*ulib,report,lib
+_dogrph=1
+_fignum=1
+_tabnum=1
+*use,h_setup
+*abset,'Mechanical Toolbar Report Generator',bar
+</ansys>
+
+<HTML>
+<HEAD> <TITLE><ansys>*use,h_title,1</ansys></TITLE> </HEAD>
+<BODY>
+<a name="top">
+<IMG SRC="ansysnb.gif">
+<p>
+<blockquote>
+
+<!-- ######################################################## -->
+<!-- Get report title, author, date -->
+<!-- ######################################################## -->
+<ansys>*use,h_title</ansys>
+<p><hr><p>
+
+<!-- ######################################################## -->
+<!-- Resize the graphics window -->
+<!-- ######################################################## -->
+<ansys>
+*get,_igui,common,,mccom,,int,16
+*if,_igui,eq,1,then
+/ui,wsize,200,250,550,415
+*endif
+*del,_igui
+</ansys>
+
+<!-- ######################################################## -->
+<!-- Figure Vplot/Aplot -->
+<!-- ######################################################## -->
+<ansys>
+*abcheck,20,'Plotting Model Geometry'
+*use,h_gmplot,_fignum
+_fignum=_fignum+1
+</ansys>
+<p><a href="#top"> Back to top</a><br>
+
+<!-- ######################################################## -->
+<!-- Summary Section -->
+<!-- ######################################################## -->
+<a name="summary">
+<ansys>*use,h_summry</ansys>
+<p><hr><p>
+
+<!-- ######################################################## -->
+<!-- Model Information Section -->
+<!-- ######################################################## -->
+<a name="model">
+<ansys>*use,h_model</ansys>
+
+<!-- ######################################################## -->
+<!-- Figure Eplot -->
+<!-- ######################################################## -->
+<ansys>
+*abcheck,50,'Finite Element Mesh'
+*use,h_mshplt,_fignum
+_fignum=_fignum+1
+</ansys>
+<p><a href="#top"> Back to top</a><br>
+
+
+<!-- ######################################################## -->
+<!-- Table elements, Table materials -->
+<!-- ######################################################## -->
+<ansys>
+*use,h_geom,_tabnum
+_tabnum=_tabnum+1
+_MATTB(1)=0   ! EX
+_MATTB(2)=0   ! NUXY
+_MATTB(3)=0   ! ALPX
+_MATTB(4)=1   ! DENS
+_MATTB(5)=1   ! KXX
+_MATTB(6)=1   ! C
+*use,h_mater,_tabnum
+_tabnum=_tabnum+1
+</ansys>
+
+<!-- ######################################################## -->
+<!-- Figure Contact Pair Plot -->
+<!-- ######################################################## -->
+<ansys>
+*if,_NCPAIRS,gt,0,then
+   *abcheck,35,'Plotting Contact Pairs'
+   *use,h_ctplot,_fignum
+   _fignum=_fignum+1
+   /com,<blockquote><p><a href="#top"> Back to top</a><br></blockquote>
+*endif
+</ansys>
+
+<!-- ######################################################## -->
+<!-- Table Contact Pairs -->
+<!-- ######################################################## -->
+<ansys>
+*if,_NCPAIRS,gt,0,then
+   *use,h_cttabl,_tabnum
+   _tabnum=_tabnum+1
+   /com,<blockquote>
+   /com,<p><a href="#top"> Back to top</a><br>
+   /com,</blockquote>
+*endif
+</ansys>
+<p><hr><p>
+
+<!-- ######################################################## -->
+<!-- Analysis Information Section -->
+<!-- ######################################################## -->
+<a name="analy">
+<ansys>*use,h_analy</ansys>
+
+<!-- ######################################################## -->
+<!-- Figure Vplot/Aplot with loads -->
+<!-- ######################################################## -->
+<ansys>
+*abcheck,65,'Loads and Boundary Conditions'
+*use,h_bcplot,_fignum
+_fignum=_fignum+1
+</ansys>
+<blockquote><p><a href="#top"> Back to top</a><br></blockquote>
+
+<!-- ######################################################## -->
+<!-- Table Loads & B.C. -->
+<!-- ######################################################## -->
+<ansys>
+mtenvprp,_curenv,_tabnum
+_tabnum=_tabnum+1
+</ansys>
+<blockquote>
+<p><a href="#top"> Back to top</a><br>
+</blockquote>
+
+<p><hr><p>
+<!-- ######################################################## -->
+<!-- Results Information Section -->
+<!-- ######################################################## -->
+<a name="results">
+<ansys>*use,h_results</ansys>
+
+<!-- ######################################################## -->
+<!-- Figure Temperature contours -->
+<!-- ######################################################## -->
+<ansys>
+*abcheck,70,'Temperature Contours'
+*use,h_tmpplt,_fignum
+_fignum=_fignum+1
+</ansys>
+<blockquote><p><a href="#top"> Back to top</a><br></blockquote>
+
+<!-- ######################################################## -->
+<!-- Figure Temperature gradient contours -->
+<!-- ######################################################## -->
+<ansys>
+*abcheck,85,'Temperature Gradient Contours'
+*use,h_tgrplt,_fignum
+_fignum=_fignum+1
+</ansys>
+<blockquote><p><a href="#top"> Back to top</a><br></blockquote>
+<p>
+
+<!-- ######################################################## -->
+<!-- Misc Results Tables -->
+<!-- ######################################################## -->
+<ansys>
+*abcheck,95,'Results Tables'
+*use,h_temps,_tabnum
+_tabnum=_tabnum+1
+*use,h_thgrad,_tabnum
+_tabnum=_tabnum+1
+*use,h_thflux,_tabnum
+_tabnum=_tabnum+1
+</ansys>
+<p>
+<blockquote>
+<hr>
+<address>
+<B>Caution: </b>Do not accept or reject a design based solely on the
+results shown here. ANSYS, Inc. recommends that you also take into 
+account experimental test data and/or prior experience with similar
+analyses when evaluating a design.
+</address>
+<hr>
+</blockquote>
+</blockquote>
+<ansys>
+*use,h_finish
+*abfini
+_tabnum=
+_fignum=
+</ansys>
+</BODY>
+</HTML>
+

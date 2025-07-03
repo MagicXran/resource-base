@@ -1,0 +1,65 @@
+! Tour Page
+*mt_re_toc1*title: Tour - Viewing Results
+*mt_re_toc1*next: mt_mt_home
+*mt_re_toc1*previous: mt_so_toc1
+*mt_re_toc1*htmlhelp: docu $euidlArray(language) mechhelp mt_re_toc1.html
+*mt_re_toc1*home: mt_mt_home
+
+! Tour Page Components
+*mt_re_toc1*tourlist: heading overview step1 step2 step3 step4
+
+!
+! Component Definition
+!
+! Note:
+!     Use \t to insert a tab into the text
+!     Use \n to insert a line feed into the text
+!     Use \i to insert an image into the text
+!     Use \ to continue a line within this file
+!
+!     The \ is a used to specify that special characters be taken literally.
+!     If using characters [, ], ", \, $ and perhaps others you must precede
+!     them with the \ (backslash) to use them.
+!
+!     You have the following options available for a component:
+!         Text          - The text to show for this component
+!         HyperlinkCall - The method to call when this component is clicked on
+!         Show          - The helpID of the buttcon to flash when choosing the
+!                         magnifing glass.  This puts the magnifing glass in.
+!         ImageList     - The list of images to place in the \i locations.
+!                         This is not needed for the Show item but you must
+!                         put the \i in the Text. NOT SUPPORTED YET
+
+! heading
+!
+*mt_re_toc1*headingText: "Viewing Results\n" HEADING2
+
+! overview
+!
+*mt_re_toc1*overviewText: "Use the Results tab to view results:\n" {BODY1}
+
+! step1
+!
+*mt_re_toc1*step1Text: "1.\t" {STEP1} "Choose an environment." \
+{STEP1 HYPERLINK step1} 
+*mt_re_toc1*step1HyperlinkCall: showTour mt_re_selenvir
+
+
+! step2
+!
+*mt_re_toc1*step2Text: "\n2.\t" {STEP1} "Choose a result item." \
+{STEP1 HYPERLINK step2} 
+*mt_re_toc1*step2HyperlinkCall: showTour mt_re_seleitem
+
+
+! step3
+!
+*mt_re_toc1*step3Text: "\n3.\t" {STEP1} "Display results information." \
+{STEP1 HYPERLINK step3} 
+*mt_re_toc1*step3HyperlinkCall: showTour mt_re_dispinfo
+
+! step4
+!
+*mt_re_toc1*step4Text: "\n4.\t" {STEP1} "Generate a report." \
+{STEP1 HYPERLINK step4} 
+*mt_re_toc1*step4HyperlinkCall: showTour mt_re_genreport

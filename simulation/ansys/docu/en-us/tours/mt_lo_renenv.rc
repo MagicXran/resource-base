@@ -1,0 +1,62 @@
+! Tour Page
+*mt_lo_renenv*title: Tour - Renaming an Environment
+*mt_lo_renenv*next: mt_lo_seleload
+*mt_lo_renenv*previous: mt_lo_delenv
+*mt_lo_renenv*htmlhelp: docu $euidlArray(language) mechhelp mt_lo_renamenv.html
+*mt_lo_renenv*home: mt_mt_home
+
+! Tour Page Components
+*mt_lo_renenv*tourlist: heading step1 step2 step3 step4 body seenext
+
+!
+! Component Definition
+!
+! Note:
+!     Use \t to insert a tab into the text
+!     Use \n to insert a line feed into the text
+!     Use \i to insert an image into the text
+!     Use \ to continue a line within this file
+!
+!     The \ is a used to specify that special characters be taken literally.
+!     If using characters [, ], ", \, $ and perhaps others you must precede
+!     them with the \ (backslash) to use them.
+!
+!     You have the following options available for a component:
+!         Text          - The text to show for this component
+!         HyperlinkCall - The method to call when this component is clicked on
+!         Show          - The helpID of the buttcon to flash when choosing the
+!                         magnifing glass.  This puts the magnifing glass in.
+!         ImageList     - The list of images to place in the \i locations.
+!                         This is not needed for the Show item but you must
+!                         put the \i in the Text. NOT SUPPORTED YET
+
+! heading
+!
+*mt_lo_renenv*headingText: "Renaming an Environment \n" HEADING2
+
+! step1
+!
+*mt_lo_renenv*step1Text: "1.\t" {STEP1} "Click Rename Environment..." \
+{STEP1 step1} 
+
+! step2
+!
+*mt_lo_renenv*step2Text: "\n2.\t" {STEP1} "Select the environment you \
+want to rename." {STEP1 step2} 
+
+! step3
+!
+*mt_lo_renenv*step3Text: "\n3.\t" {STEP1} "Type the new name." \
+{STEP1 step3} 
+
+! step4
+!
+*mt_lo_renenv*step4Text: "\n4.\t" {STEP1} "Click OK. \n" {STEP1 step4} 
+
+! body
+!
+*mt_lo_renenv*bodyText: "\nThe environment now appears in the Load \
+Environment drop down list box under the new name. \n" BODY1
+
+*mt_lo_renenv*seenextText: "\n\nClick Next to learn how to add or\
+ delete loads.\n" {BODY1}

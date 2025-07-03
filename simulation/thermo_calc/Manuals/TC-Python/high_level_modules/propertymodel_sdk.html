@@ -1,0 +1,1863 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module “propertymodel_sdk” &mdash; TC-Python 2023b documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Module “exceptions”" href="exceptions.html" />
+    <link rel="prev" title="Module “utils”" href="utils.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            TC-Python
+          </a>
+              <div class="version">
+                2023b
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment_variables.html">Mac OS: Setting Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../best_practices.html">Best Practices</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api_reference.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../calculations.html">Calculations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system.html">Module “system”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entities.html">Module “entities”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server.html">Module “server”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quantity_factory.html">Module “quantity_factory”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">Module “utils”</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Module “propertymodel_sdk”</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.propertymodel_sdk.CCTResult"><code class="docutils literal notranslate"><span class="pre">CCTResult</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.CCTResult.add_time_temperature"><code class="docutils literal notranslate"><span class="pre">CCTResult.add_time_temperature()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.CCTResult.temperature_suffix"><code class="docutils literal notranslate"><span class="pre">CCTResult.temperature_suffix</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.CCTResult.time_suffix"><code class="docutils literal notranslate"><span class="pre">CCTResult.time_suffix</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.propertymodel_sdk.CCTResultValues"><code class="docutils literal notranslate"><span class="pre">CCTResultValues</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.CCTResultValues.set_result_time_temperature"><code class="docutils literal notranslate"><span class="pre">CCTResultValues.set_result_time_temperature()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.propertymodel_sdk.CalculationContext"><code class="docutils literal notranslate"><span class="pre">CalculationContext</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.CalculationContext.get_argument_ids"><code class="docutils literal notranslate"><span class="pre">CalculationContext.get_argument_ids()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.CalculationContext.get_dependent_component"><code class="docutils literal notranslate"><span class="pre">CalculationContext.get_dependent_component()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.CalculationContext.get_mass_fractions"><code class="docutils literal notranslate"><span class="pre">CalculationContext.get_mass_fractions()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.CalculationContext.get_mass_percents"><code class="docutils literal notranslate"><span class="pre">CalculationContext.get_mass_percents()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.CalculationContext.get_mole_fractions"><code class="docutils literal notranslate"><span class="pre">CalculationContext.get_mole_fractions()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.CalculationContext.get_mole_percents"><code class="docutils literal notranslate"><span class="pre">CalculationContext.get_mole_percents()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.CalculationContext.get_temperature"><code class="docutils literal notranslate"><span class="pre">CalculationContext.get_temperature()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.CalculationContext.get_ui_boolean_value"><code class="docutils literal notranslate"><span class="pre">CalculationContext.get_ui_boolean_value()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.CalculationContext.get_ui_condition_list"><code class="docutils literal notranslate"><span class="pre">CalculationContext.get_ui_condition_list()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.CalculationContext.get_ui_float_value"><code class="docutils literal notranslate"><span class="pre">CalculationContext.get_ui_float_value()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.CalculationContext.get_ui_list_value"><code class="docutils literal notranslate"><span class="pre">CalculationContext.get_ui_list_value()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.CalculationContext.get_ui_string_value"><code class="docutils literal notranslate"><span class="pre">CalculationContext.get_ui_string_value()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.CalculationContext.get_ui_temperature_value"><code class="docutils literal notranslate"><span class="pre">CalculationContext.get_ui_temperature_value()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.CalculationContext.set_result_cct_values"><code class="docutils literal notranslate"><span class="pre">CalculationContext.set_result_cct_values()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.CalculationContext.set_result_quantity_value"><code class="docutils literal notranslate"><span class="pre">CalculationContext.set_result_quantity_value()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.CalculationContext.set_single_equilibrium_result"><code class="docutils literal notranslate"><span class="pre">CalculationContext.set_single_equilibrium_result()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.propertymodel_sdk.ConditionListEntry"><code class="docutils literal notranslate"><span class="pre">ConditionListEntry</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.propertymodel_sdk.PropertyModel"><code class="docutils literal notranslate"><span class="pre">PropertyModel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.PropertyModel.add_button_callback"><code class="docutils literal notranslate"><span class="pre">PropertyModel.add_button_callback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.PropertyModel.after_evaluations"><code class="docutils literal notranslate"><span class="pre">PropertyModel.after_evaluations()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.PropertyModel.before_evaluations"><code class="docutils literal notranslate"><span class="pre">PropertyModel.before_evaluations()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.PropertyModel.evaluate_model"><code class="docutils literal notranslate"><span class="pre">PropertyModel.evaluate_model()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.PropertyModel.get_license_key"><code class="docutils literal notranslate"><span class="pre">PropertyModel.get_license_key()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.PropertyModel.provide_calculation_result_quantities"><code class="docutils literal notranslate"><span class="pre">PropertyModel.provide_calculation_result_quantities()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.PropertyModel.provide_model_category"><code class="docutils literal notranslate"><span class="pre">PropertyModel.provide_model_category()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.PropertyModel.provide_model_description"><code class="docutils literal notranslate"><span class="pre">PropertyModel.provide_model_description()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.PropertyModel.provide_model_name"><code class="docutils literal notranslate"><span class="pre">PropertyModel.provide_model_name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.PropertyModel.provide_model_parameters"><code class="docutils literal notranslate"><span class="pre">PropertyModel.provide_model_parameters()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.PropertyModel.provide_ui_panel_components"><code class="docutils literal notranslate"><span class="pre">PropertyModel.provide_ui_panel_components()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.PropertyModel.remove_button_callback"><code class="docutils literal notranslate"><span class="pre">PropertyModel.remove_button_callback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.PropertyModel.set_model_parameter"><code class="docutils literal notranslate"><span class="pre">PropertyModel.set_model_parameter()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.propertymodel_sdk.ResultQuantity"><code class="docutils literal notranslate"><span class="pre">ResultQuantity</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.ResultQuantity.get_description"><code class="docutils literal notranslate"><span class="pre">ResultQuantity.get_description()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.ResultQuantity.get_id"><code class="docutils literal notranslate"><span class="pre">ResultQuantity.get_id()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.ResultQuantity.get_type"><code class="docutils literal notranslate"><span class="pre">ResultQuantity.get_type()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.propertymodel_sdk.ResultQuantityType"><code class="docutils literal notranslate"><span class="pre">ResultQuantityType</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.ResultQuantityType.CCT_QUANTITY"><code class="docutils literal notranslate"><span class="pre">ResultQuantityType.CCT_QUANTITY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.ResultQuantityType.ENERGY_QUANTITY"><code class="docutils literal notranslate"><span class="pre">ResultQuantityType.ENERGY_QUANTITY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.ResultQuantityType.GENERAL_QUANTITY"><code class="docutils literal notranslate"><span class="pre">ResultQuantityType.GENERAL_QUANTITY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.ResultQuantityType.LENGTH_QUANTITY"><code class="docutils literal notranslate"><span class="pre">ResultQuantityType.LENGTH_QUANTITY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.ResultQuantityType.SINGLE_EQUILIBRIUM_QUANTITY"><code class="docutils literal notranslate"><span class="pre">ResultQuantityType.SINGLE_EQUILIBRIUM_QUANTITY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.ResultQuantityType.STRENGTH_QUANTITY"><code class="docutils literal notranslate"><span class="pre">ResultQuantityType.STRENGTH_QUANTITY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.ResultQuantityType.SURFACE_ENERGY_QUANTITY"><code class="docutils literal notranslate"><span class="pre">ResultQuantityType.SURFACE_ENERGY_QUANTITY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.ResultQuantityType.TEMPERATURE_QUANTITY"><code class="docutils literal notranslate"><span class="pre">ResultQuantityType.TEMPERATURE_QUANTITY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.ResultQuantityType.TIME_QUANTITY"><code class="docutils literal notranslate"><span class="pre">ResultQuantityType.TIME_QUANTITY</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.propertymodel_sdk.SpecialListMarkers"><code class="docutils literal notranslate"><span class="pre">SpecialListMarkers</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.SpecialListMarkers.ANY_LIST_MARKER"><code class="docutils literal notranslate"><span class="pre">SpecialListMarkers.ANY_LIST_MARKER</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.SpecialListMarkers.NONE_LIST_MARKER"><code class="docutils literal notranslate"><span class="pre">SpecialListMarkers.NONE_LIST_MARKER</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIBooleanComponent"><code class="docutils literal notranslate"><span class="pre">UIBooleanComponent</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIBooleanComponent.connect_component_enableability"><code class="docutils literal notranslate"><span class="pre">UIBooleanComponent.connect_component_enableability()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIBooleanComponent.connect_component_visibility"><code class="docutils literal notranslate"><span class="pre">UIBooleanComponent.connect_component_visibility()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIBooleanComponent.enable_add_button"><code class="docutils literal notranslate"><span class="pre">UIBooleanComponent.enable_add_button()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIBooleanComponent.enable_remove_button"><code class="docutils literal notranslate"><span class="pre">UIBooleanComponent.enable_remove_button()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIBooleanComponent.get_dependent_components"><code class="docutils literal notranslate"><span class="pre">UIBooleanComponent.get_dependent_components()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIBooleanComponent.get_setting"><code class="docutils literal notranslate"><span class="pre">UIBooleanComponent.get_setting()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIBooleanComponent.remove_component_visibility"><code class="docutils literal notranslate"><span class="pre">UIBooleanComponent.remove_component_visibility()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIBooleanComponent.set_index"><code class="docutils literal notranslate"><span class="pre">UIBooleanComponent.set_index()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIComponent"><code class="docutils literal notranslate"><span class="pre">UIComponent</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIComponent.get_description"><code class="docutils literal notranslate"><span class="pre">UIComponent.get_description()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIComponent.get_id"><code class="docutils literal notranslate"><span class="pre">UIComponent.get_id()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIComponent.get_name"><code class="docutils literal notranslate"><span class="pre">UIComponent.get_name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIComponent.set_enabled"><code class="docutils literal notranslate"><span class="pre">UIComponent.set_enabled()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIComponent.set_visible"><code class="docutils literal notranslate"><span class="pre">UIComponent.set_visible()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIConditionListComponent"><code class="docutils literal notranslate"><span class="pre">UIConditionListComponent</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIFloatComponent"><code class="docutils literal notranslate"><span class="pre">UIFloatComponent</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIFloatComponent.enable_add_button"><code class="docutils literal notranslate"><span class="pre">UIFloatComponent.enable_add_button()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIFloatComponent.enable_remove_button"><code class="docutils literal notranslate"><span class="pre">UIFloatComponent.enable_remove_button()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIFloatComponent.get_value"><code class="docutils literal notranslate"><span class="pre">UIFloatComponent.get_value()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIFloatComponent.set_index"><code class="docutils literal notranslate"><span class="pre">UIFloatComponent.set_index()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIGeneralListComponent"><code class="docutils literal notranslate"><span class="pre">UIGeneralListComponent</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIGeneralListComponent.connect_component_visibility"><code class="docutils literal notranslate"><span class="pre">UIGeneralListComponent.connect_component_visibility()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIGeneralListComponent.enable_add_button"><code class="docutils literal notranslate"><span class="pre">UIGeneralListComponent.enable_add_button()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIGeneralListComponent.enable_remove_button"><code class="docutils literal notranslate"><span class="pre">UIGeneralListComponent.enable_remove_button()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIGeneralListComponent.get_content"><code class="docutils literal notranslate"><span class="pre">UIGeneralListComponent.get_content()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIGeneralListComponent.get_dependent_components"><code class="docutils literal notranslate"><span class="pre">UIGeneralListComponent.get_dependent_components()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIGeneralListComponent.get_selected_entry"><code class="docutils literal notranslate"><span class="pre">UIGeneralListComponent.get_selected_entry()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIGeneralListComponent.remove_component_visibility"><code class="docutils literal notranslate"><span class="pre">UIGeneralListComponent.remove_component_visibility()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIGeneralListComponent.set_index"><code class="docutils literal notranslate"><span class="pre">UIGeneralListComponent.set_index()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIPhaseListComponent"><code class="docutils literal notranslate"><span class="pre">UIPhaseListComponent</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIPhaseListComponent.enable_add_button"><code class="docutils literal notranslate"><span class="pre">UIPhaseListComponent.enable_add_button()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIPhaseListComponent.enable_remove_button"><code class="docutils literal notranslate"><span class="pre">UIPhaseListComponent.enable_remove_button()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIPhaseListComponent.get_any_marker_setting"><code class="docutils literal notranslate"><span class="pre">UIPhaseListComponent.get_any_marker_setting()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIPhaseListComponent.get_default_phase"><code class="docutils literal notranslate"><span class="pre">UIPhaseListComponent.get_default_phase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIPhaseListComponent.set_index"><code class="docutils literal notranslate"><span class="pre">UIPhaseListComponent.set_index()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.propertymodel_sdk.UISectionDividerComponent"><code class="docutils literal notranslate"><span class="pre">UISectionDividerComponent</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.UISectionDividerComponent.get_value"><code class="docutils literal notranslate"><span class="pre">UISectionDividerComponent.get_value()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.UISectionDividerComponent.set_index"><code class="docutils literal notranslate"><span class="pre">UISectionDividerComponent.set_index()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIStringComponent"><code class="docutils literal notranslate"><span class="pre">UIStringComponent</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIStringComponent.enable_add_button"><code class="docutils literal notranslate"><span class="pre">UIStringComponent.enable_add_button()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIStringComponent.enable_remove_button"><code class="docutils literal notranslate"><span class="pre">UIStringComponent.enable_remove_button()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIStringComponent.get_value"><code class="docutils literal notranslate"><span class="pre">UIStringComponent.get_value()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIStringComponent.set_index"><code class="docutils literal notranslate"><span class="pre">UIStringComponent.set_index()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.propertymodel_sdk.UITemperatureComponent"><code class="docutils literal notranslate"><span class="pre">UITemperatureComponent</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.UITemperatureComponent.enable_add_button"><code class="docutils literal notranslate"><span class="pre">UITemperatureComponent.enable_add_button()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.UITemperatureComponent.enable_remove_button"><code class="docutils literal notranslate"><span class="pre">UITemperatureComponent.enable_remove_button()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.UITemperatureComponent.get_temp"><code class="docutils literal notranslate"><span class="pre">UITemperatureComponent.get_temp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.propertymodel_sdk.UITemperatureComponent.set_index"><code class="docutils literal notranslate"><span class="pre">UITemperatureComponent.set_index()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.propertymodel_sdk.create_boolean_ui_component"><code class="docutils literal notranslate"><span class="pre">create_boolean_ui_component()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.propertymodel_sdk.create_condition_list_ui_component"><code class="docutils literal notranslate"><span class="pre">create_condition_list_ui_component()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.propertymodel_sdk.create_energy_quantity"><code class="docutils literal notranslate"><span class="pre">create_energy_quantity()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.propertymodel_sdk.create_float_ui_component"><code class="docutils literal notranslate"><span class="pre">create_float_ui_component()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.propertymodel_sdk.create_general_quantity"><code class="docutils literal notranslate"><span class="pre">create_general_quantity()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.propertymodel_sdk.create_length_quantity"><code class="docutils literal notranslate"><span class="pre">create_length_quantity()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.propertymodel_sdk.create_list_ui_component"><code class="docutils literal notranslate"><span class="pre">create_list_ui_component()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.propertymodel_sdk.create_phase_list_ui_component"><code class="docutils literal notranslate"><span class="pre">create_phase_list_ui_component()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.propertymodel_sdk.create_section_divider_ui_component"><code class="docutils literal notranslate"><span class="pre">create_section_divider_ui_component()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.propertymodel_sdk.create_strength_quantity"><code class="docutils literal notranslate"><span class="pre">create_strength_quantity()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.propertymodel_sdk.create_string_ui_component"><code class="docutils literal notranslate"><span class="pre">create_string_ui_component()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.propertymodel_sdk.create_surface_energy_quantity"><code class="docutils literal notranslate"><span class="pre">create_surface_energy_quantity()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.propertymodel_sdk.create_temperature_quantity"><code class="docutils literal notranslate"><span class="pre">create_temperature_quantity()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.propertymodel_sdk.create_temperature_ui_component"><code class="docutils literal notranslate"><span class="pre">create_temperature_ui_component()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.propertymodel_sdk.create_time_quantity"><code class="docutils literal notranslate"><span class="pre">create_time_quantity()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html">Module “exceptions”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="abstract_base.html">Module “abstract_base”</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">TC-Python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api_reference.html">API Reference</a></li>
+      <li class="breadcrumb-item active">Module “propertymodel_sdk”</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-tc_python.propertymodel_sdk">
+<span id="module-propertymodel-sdk"></span><h1>Module “propertymodel_sdk”<a class="headerlink" href="#module-tc_python.propertymodel_sdk" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.CCTResult">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.propertymodel_sdk.</span></span><span class="sig-name descname"><span class="pre">CCTResult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quantity_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.CCTResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tc_python.propertymodel_sdk.ResultQuantity" title="tc_python.propertymodel_sdk.ResultQuantity"><code class="xref py py-class docutils literal notranslate"><span class="pre">ResultQuantity</span></code></a></p>
+<p>Represents a Continuous Cooling (CCT) result.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>quantity_id</strong> – The id of this result</p></li>
+<li><p><strong>description</strong> – The description of this result</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.CCTResult.add_time_temperature">
+<span class="sig-name descname"><span class="pre">add_time_temperature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_temperature_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.CCTResult.add_time_temperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a time-temperature pair to the result.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>time_temperature_id</strong> – The id of the time-temperature pair</p></li>
+<li><p><strong>description</strong> – The description of the time-temperature pair</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.CCTResult.temperature_suffix">
+<span class="sig-name descname"><span class="pre">temperature_suffix</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'</span> <span class="pre">(T)'</span></em><a class="headerlink" href="#tc_python.propertymodel_sdk.CCTResult.temperature_suffix" title="Permalink to this definition">¶</a></dt>
+<dd><p>The temperature suffix of a <a class="reference internal" href="#tc_python.propertymodel_sdk.CCTResult" title="tc_python.propertymodel_sdk.CCTResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">CCTResult</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.CCTResult.time_suffix">
+<span class="sig-name descname"><span class="pre">time_suffix</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'</span> <span class="pre">(t)'</span></em><a class="headerlink" href="#tc_python.propertymodel_sdk.CCTResult.time_suffix" title="Permalink to this definition">¶</a></dt>
+<dd><p>The time suffix of a <a class="reference internal" href="#tc_python.propertymodel_sdk.CCTResult" title="tc_python.propertymodel_sdk.CCTResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">CCTResult</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.CCTResultValues">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.propertymodel_sdk.</span></span><span class="sig-name descname"><span class="pre">CCTResultValues</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cooling_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cooling_rate_start_temperature</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cooling_rate_end_temperature</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-1.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.CCTResultValues" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represents Continuous Cooling (CCT) result values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cooling_rate</strong> – The cooling rate [K/s]</p></li>
+<li><p><strong>cooling_rate_start_temperature</strong> – The start temperature of cooling [K]</p></li>
+<li><p><strong>cooling_rate_end_temperature</strong> – The end temperature of cooling [K]</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.CCTResultValues.set_result_time_temperature">
+<span class="sig-name descname"><span class="pre">set_result_time_temperature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_temperature_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temperature</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.CCTResultValues.set_result_time_temperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets a time-temperature pair of the result.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>time_temperature_id</strong> – The id of the time-temperature pair</p></li>
+<li><p><strong>time</strong> – The time [s]</p></li>
+<li><p><strong>temperature</strong> – The temperature [K]</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.CalculationContext">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.propertymodel_sdk.</span></span><span class="sig-name descname"><span class="pre">CalculationContext</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">system</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="system.html#tc_python.system.System" title="tc_python.system.System"><span class="pre">System</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_utils</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.CalculationContext" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represents the interface of the Property Model with the Thermo-Calc application and the rest of the TC-Python
+functionality.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>system</strong> – The system object of this calculation</p></li>
+<li><p><strong>model_utils</strong> – The model utils object</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.CalculationContext.get_argument_ids">
+<span class="sig-name descname"><span class="pre">get_argument_ids</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.CalculationContext.get_argument_ids" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list with the arguments of the models. Including arguments created from dynamic parameters.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.CalculationContext.get_dependent_component">
+<span class="sig-name descname"><span class="pre">get_dependent_component</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.CalculationContext.get_dependent_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtains the dependent component from the UI</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The dependent component is that which has no composition specified explicitly, typically this is the
+major element of the material (such as Fe, Al, Ni, …)</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The dependent component</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.CalculationContext.get_mass_fractions">
+<span class="sig-name descname"><span class="pre">get_mass_fractions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.CalculationContext.get_mass_fractions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtains the current composition from the UI as mass-fraction.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In case of stepping over one or multiple axis, the returned data will represent the composition at the
+current step.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The composition (key: component, value: content) [mass-fraction]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.CalculationContext.get_mass_percents">
+<span class="sig-name descname"><span class="pre">get_mass_percents</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.CalculationContext.get_mass_percents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtains the current composition from the UI in mass-percent.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In case of stepping over one or multiple axis, the returned data will represent the composition at the
+current step.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The composition (key: component, value: content) [mass-percent]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.CalculationContext.get_mole_fractions">
+<span class="sig-name descname"><span class="pre">get_mole_fractions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.CalculationContext.get_mole_fractions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtains the current composition from the UI as mole-fraction.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In case of stepping over one or multiple axis, the returned data will represent the composition at the
+current step.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The composition (key: component, value: content) [mole-fraction]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.CalculationContext.get_mole_percents">
+<span class="sig-name descname"><span class="pre">get_mole_percents</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.CalculationContext.get_mole_percents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtains the current composition from the UI in mole-percent.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In case of stepping over one or multiple axis, the returned data will represent the composition at the
+current step.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The composition (key: component, value: content) [mole-percent]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.CalculationContext.get_temperature">
+<span class="sig-name descname"><span class="pre">get_temperature</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.CalculationContext.get_temperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtains the current temperature from the UI.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The temperature [K]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.CalculationContext.get_ui_boolean_value">
+<span class="sig-name descname"><span class="pre">get_ui_boolean_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.CalculationContext.get_ui_boolean_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtains the value from the specified checkbox UI component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>component_id</strong> – Id of the checkbox</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The setting of the checkbox</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.CalculationContext.get_ui_condition_list">
+<span class="sig-name descname"><span class="pre">get_ui_condition_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#tc_python.propertymodel_sdk.ConditionListEntry" title="tc_python.propertymodel_sdk.ConditionListEntry"><span class="pre">ConditionListEntry</span></a></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.CalculationContext.get_ui_condition_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to get the selected condition from components of type UIConditionListComponent
+:param component_id:  Id of the list UI component
+:return: The selected condition</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.CalculationContext.get_ui_float_value">
+<span class="sig-name descname"><span class="pre">get_ui_float_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.CalculationContext.get_ui_float_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtains the value from the specified UI component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>component_id</strong> – Id of the UI component</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The value</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.CalculationContext.get_ui_list_value">
+<span class="sig-name descname"><span class="pre">get_ui_list_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.CalculationContext.get_ui_list_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtains the selected entry from a UI component list. If a special element (such as <cite>ANY</cite>, <cite>NONE</cite>, …) is
+selected, the corresponding locale-independent placeholder is provided.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>component_id</strong> – Id of the list UI component</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The selected entry</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.CalculationContext.get_ui_string_value">
+<span class="sig-name descname"><span class="pre">get_ui_string_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.CalculationContext.get_ui_string_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtains the selected entry from a UI component text field.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>component_id</strong> – Id of the string UI component</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The selected entry</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.CalculationContext.get_ui_temperature_value">
+<span class="sig-name descname"><span class="pre">get_ui_temperature_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.CalculationContext.get_ui_temperature_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtains the temperature from the specified temperature UI component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>component_id</strong> – Id of the temperature UI component</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The temperature [K], note that input unit of the UI is specified in the model panel. If required, the
+temperature is automatically converted to K.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.CalculationContext.set_result_cct_values">
+<span class="sig-name descname"><span class="pre">set_result_cct_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quantity_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#tc_python.propertymodel_sdk.CCTResultValues" title="tc_python.propertymodel_sdk.CCTResultValues"><span class="pre">CCTResultValues</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.CalculationContext.set_result_cct_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of a previously defined result quantity (of type <a class="reference internal" href="#tc_python.propertymodel_sdk.CCTResultValues" title="tc_python.propertymodel_sdk.CCTResultValues"><code class="xref py py-class docutils literal notranslate"><span class="pre">CCTResultValues</span></code></a>) for further usage in
+the Thermo-Calc application for plotting, etc.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>quantity_id</strong> – unique id of the result quantity</p></li>
+<li><p><strong>r</strong> – the <a class="reference internal" href="#tc_python.propertymodel_sdk.CCTResultValues" title="tc_python.propertymodel_sdk.CCTResultValues"><code class="xref py py-class docutils literal notranslate"><span class="pre">CCTResultValues</span></code></a> to be set</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.CalculationContext.set_result_quantity_value">
+<span class="sig-name descname"><span class="pre">set_result_quantity_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quantity_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.CalculationContext.set_result_quantity_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of a previously defined result quantity for further usage in the Thermo-Calc application
+for plotting, etc.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Any result quantity that remains unset is automatically set to <cite>NaN</cite>.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>quantity_id</strong> – Unique id of the result quantity</p></li>
+<li><p><strong>parameter</strong> – Use if result is parameterized. f.i. “per phase”</p></li>
+<li><p><strong>value</strong> – The value to be set</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.CalculationContext.set_single_equilibrium_result">
+<span class="sig-name descname"><span class="pre">set_single_equilibrium_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quantity_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../calculation_modules/single_equilibrium.html#tc_python.single_equilibrium.SingleEquilibriumResult" title="tc_python.single_equilibrium.SingleEquilibriumResult"><span class="pre">SingleEquilibriumResult</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.CalculationContext.set_single_equilibrium_result" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.ConditionListEntry">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.propertymodel_sdk.</span></span><span class="sig-name descname"><span class="pre">ConditionListEntry</span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.ConditionListEntry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Used in combination with components of type UIConditionListComponent.</p>
+<p>Contains the element, if the selected condition is a composition
+Contains the Console Mode syntax of the selected condition.
+Contains the unit of the selected condition</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.PropertyModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.propertymodel_sdk.</span></span><span class="sig-name descname"><span class="pre">PropertyModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_locale</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'en-US'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.PropertyModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The abstract base class for all property models.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Every Property Model needs to implement most of the abstract methods of this class. However, some abstract
+methods are optional and should only be implemented if required.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If overwriting the constructor in a Property Model, the constructor of the implemented class must have the
+identical signature and should pass the parameters to this base class constructor.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>It is possible to switch off <strong>internal INFO-log messages coming from the calculation engine</strong> by changing the
+log-level on the TC-Python log object like this: <cite>logging.getLogger(“tc_python”).setLevel(logging.ERROR)</cite>.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>_locale</strong> – The locale to be used, <strong>this is an internal parameter and is of no meaning to the end-user</strong></p>
+</dd>
+<dt class="field-even">Variables<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>logger</strong> – logger object that is connected to the Thermo-Calc UI (<cite>INFO</cite>- and <cite>WARNING</cite>-level will be printed as
+<cite>INFO</cite>, <cite>ERROR</cite>-level as <cite>ERROR</cite>), it can be accessed like this: <cite>self.logger.info(“Some message”)</cite></p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.PropertyModel.add_button_callback">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_button_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ui_components</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#tc_python.propertymodel_sdk.UIComponent" title="tc_python.propertymodel_sdk.UIComponent"><span class="pre">UIComponent</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#tc_python.propertymodel_sdk.UIComponent" title="tc_python.propertymodel_sdk.UIComponent"><span class="pre">UIComponent</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.PropertyModel.add_button_callback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implement this method if you have one or more UI components on which you called
+<code class="xref py py-func docutils literal notranslate"><span class="pre">UIComponent.enable_add_button()</span></code>, which adds a <cite>+</cite> button next to the component.</p>
+<p>This method will be executed when you press any such <cite>+</cite> button.</p>
+<p>This method is typically used to add more UI components dynamically and the method must return a list of
+the UI components to be added.</p>
+<p><strong>This method can optionally be implemented by a Property Model.</strong></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component_id</strong> – The id of the UI component next to the pressed <cite>+</cite> button</p></li>
+<li><p><strong>ui_components</strong> – dict with the components and the index of the current ui components of the model. Including arguments created in previous calls to add_button_callback.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of <cite>UIComponent</cite> objects to be added</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.PropertyModel.after_evaluations">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">after_evaluations</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.PropertyModel.after_evaluations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called by the Thermo-Calc application immediately after the last model evaluation (using the method
+<a class="reference internal" href="#tc_python.propertymodel_sdk.PropertyModel.evaluate_model" title="tc_python.propertymodel_sdk.PropertyModel.evaluate_model"><code class="xref py py-func docutils literal notranslate"><span class="pre">PropertyModel.evaluate_model()</span></code></a>). Use this method for any required cleanup.</p>
+<p><strong>This method can optionally be implemented by a Property Model.</strong></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.PropertyModel.before_evaluations">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">before_evaluations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#tc_python.propertymodel_sdk.CalculationContext" title="tc_python.propertymodel_sdk.CalculationContext"><span class="pre">CalculationContext</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.PropertyModel.before_evaluations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called by the Thermo-Calc application immediately before the first model evaluation (using the method
+<a class="reference internal" href="#tc_python.propertymodel_sdk.PropertyModel.evaluate_model" title="tc_python.propertymodel_sdk.PropertyModel.evaluate_model"><code class="xref py py-func docutils literal notranslate"><span class="pre">PropertyModel.evaluate_model()</span></code></a>). Use this method for any required preparations.</p>
+<p><strong>This method can optionally be implemented by a Property Model.</strong></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>context</strong> – The calculation context</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.PropertyModel.evaluate_model">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">evaluate_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#tc_python.propertymodel_sdk.CalculationContext" title="tc_python.propertymodel_sdk.CalculationContext"><span class="pre">CalculationContext</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.PropertyModel.evaluate_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called by the Thermo-Calc application when the model should be actually calculated. <strong>This is the main-method
+of the Property Model that contains the actual calculation code.</strong></p>
+<p><strong>This method needs to be implemented by all property models.</strong></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>context</strong> – The calculation context, this provides access to the Thermo-Calc application and all other
+TC-Python modules</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.PropertyModel.get_license_key">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_license_key</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.PropertyModel.get_license_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides the license key of the model.</p>
+<p><strong>This method can optionally be implemented by a Property Model.</strong></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.PropertyModel.provide_calculation_result_quantities">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">provide_calculation_result_quantities</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#tc_python.propertymodel_sdk.ResultQuantity" title="tc_python.propertymodel_sdk.ResultQuantity"><span class="pre">ResultQuantity</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.PropertyModel.provide_calculation_result_quantities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called by the Thermo-Calc application when the model should provide its result quantity objects.</p>
+<p><strong>This method needs to be implemented by all property models.</strong></p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Result quantity objects of the model (to be filled later with results in the method
+<a class="reference internal" href="#tc_python.propertymodel_sdk.PropertyModel.evaluate_model" title="tc_python.propertymodel_sdk.PropertyModel.evaluate_model"><code class="xref py py-func docutils literal notranslate"><span class="pre">PropertyModel.evaluate_model()</span></code></a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.PropertyModel.provide_model_category">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">provide_model_category</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.PropertyModel.provide_model_category" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called by the Thermo-Calc application when the model should provide its category (shown in the Thermo-Calc
+model tree).</p>
+<p><strong>This method needs to be implemented by all property models.</strong></p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Category of the model, it may be present in several categories</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.PropertyModel.provide_model_description">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">provide_model_description</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.PropertyModel.provide_model_description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called by the Thermo-Calc application when the model should provide its detailed description.</p>
+<p><strong>This method needs to be implemented by all property models.</strong></p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Description text for the model</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.PropertyModel.provide_model_name">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">provide_model_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.PropertyModel.provide_model_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called by the Thermo-Calc application when the model should provide its name (shown in the Thermo-Calc
+model tree).</p>
+<p><strong>This method needs to be implemented by all property models.</strong></p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Name of the model</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.PropertyModel.provide_model_parameters">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">provide_model_parameters</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.PropertyModel.provide_model_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called by the Thermo-Calc application when the model should provide all model parameters and their current
+values.</p>
+<p><strong>This method can optionally be implemented by a Property Model.</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These are internal variables of the Property Model that are intended to be modified from the outside.
+Typically this is used to adjust their values in a optimizer during the development of the model.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The model parameter ids and their current values [unit according to the parameter meaning]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.PropertyModel.provide_ui_panel_components">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">provide_ui_panel_components</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#tc_python.propertymodel_sdk.UIComponent" title="tc_python.propertymodel_sdk.UIComponent"><span class="pre">UIComponent</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.PropertyModel.provide_ui_panel_components" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called by the Thermo-Calc application when the model should provide its UI components for the model panel to be
+plotted. This happens also whenever a model gets checked in the model tree.</p>
+<p><strong>This method needs to be implemented by all property models.</strong></p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Model UI panel components in the order to be presented in the model panel</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.PropertyModel.remove_button_callback">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">remove_button_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ui_components</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#tc_python.propertymodel_sdk.UIComponent" title="tc_python.propertymodel_sdk.UIComponent"><span class="pre">UIComponent</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.PropertyModel.remove_button_callback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implement this method if you have one or more UI components on which you called
+<code class="xref py py-func docutils literal notranslate"><span class="pre">UIComponent.enable_remove_button()</span></code>, which adds a <cite>-</cite> button next to the component.</p>
+<p>This method will be executed when you press any such <cite>-</cite> button.</p>
+<p>This method is typically used to remove UI components dynamically and the method must return a list of the
+ids of the components that are going to be removed.</p>
+<p><strong>This method can optionally be implemented by a Property Model.</strong></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component_id</strong> – the id of the UI component next to the pressed <cite>-</cite> button</p></li>
+<li><p><strong>ui_components</strong> – list with the components and the index of the current ui components of the model. Including arguments created in previous calls to add_button_callback.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a list of UI component ids that are required to be removed</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.PropertyModel.set_model_parameter">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_model_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_parameter_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.PropertyModel.set_model_parameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called by the Thermo-Calc application when a model parameter should be reset.</p>
+<p><strong>This method can optionally be implemented by a Property Model.</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These are internal variables of the Property Model that are intended to be modified from the outside.
+Typically this is used to adjust their values in a optimizer during the development of the model.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model_parameter_id</strong> – The parameter id</p></li>
+<li><p><strong>value</strong> – The value [unit according to the parameter meaning]</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.ResultQuantity">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.propertymodel_sdk.</span></span><span class="sig-name descname"><span class="pre">ResultQuantity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quantity_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quantity_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#tc_python.propertymodel_sdk.ResultQuantityType" title="tc_python.propertymodel_sdk.ResultQuantityType"><span class="pre">ResultQuantityType</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.ResultQuantity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Defines a calculation result quantity of a Property Model that is identified by a unique id.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>quantity_id</strong> – Unique id of the quantity</p></li>
+<li><p><strong>description</strong> – Description of the quantity (shown in the Thermo-Calc UI)</p></li>
+<li><p><strong>quantity_type</strong> – Type of the quantity (defines the unit)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.ResultQuantity.get_description">
+<span class="sig-name descname"><span class="pre">get_description</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.ResultQuantity.get_description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtains the description of the quantity.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Description of the quantity</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.ResultQuantity.get_id">
+<span class="sig-name descname"><span class="pre">get_id</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.ResultQuantity.get_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtains the id of the quantity.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Unique id of the quantity</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.ResultQuantity.get_type">
+<span class="sig-name descname"><span class="pre">get_type</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#tc_python.propertymodel_sdk.ResultQuantityType" title="tc_python.propertymodel_sdk.ResultQuantityType"><span class="pre">ResultQuantityType</span></a></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.ResultQuantity.get_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtains the type of quantity.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Type of the quantity</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.ResultQuantityType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.propertymodel_sdk.</span></span><span class="sig-name descname"><span class="pre">ResultQuantityType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.ResultQuantityType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>Defining the type of a result quantity.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.ResultQuantityType.CCT_QUANTITY">
+<span class="sig-name descname"><span class="pre">CCT_QUANTITY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#tc_python.propertymodel_sdk.ResultQuantityType.CCT_QUANTITY" title="Permalink to this definition">¶</a></dt>
+<dd><p>A cct quantity</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.ResultQuantityType.ENERGY_QUANTITY">
+<span class="sig-name descname"><span class="pre">ENERGY_QUANTITY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#tc_python.propertymodel_sdk.ResultQuantityType.ENERGY_QUANTITY" title="Permalink to this definition">¶</a></dt>
+<dd><p>An energy quantity</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.ResultQuantityType.GENERAL_QUANTITY">
+<span class="sig-name descname"><span class="pre">GENERAL_QUANTITY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#tc_python.propertymodel_sdk.ResultQuantityType.GENERAL_QUANTITY" title="Permalink to this definition">¶</a></dt>
+<dd><p>A general quantity</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.ResultQuantityType.LENGTH_QUANTITY">
+<span class="sig-name descname"><span class="pre">LENGTH_QUANTITY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">7</span></em><a class="headerlink" href="#tc_python.propertymodel_sdk.ResultQuantityType.LENGTH_QUANTITY" title="Permalink to this definition">¶</a></dt>
+<dd><p>A length in quantity</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.ResultQuantityType.SINGLE_EQUILIBRIUM_QUANTITY">
+<span class="sig-name descname"><span class="pre">SINGLE_EQUILIBRIUM_QUANTITY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6</span></em><a class="headerlink" href="#tc_python.propertymodel_sdk.ResultQuantityType.SINGLE_EQUILIBRIUM_QUANTITY" title="Permalink to this definition">¶</a></dt>
+<dd><p>A cct quantity</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.ResultQuantityType.STRENGTH_QUANTITY">
+<span class="sig-name descname"><span class="pre">STRENGTH_QUANTITY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></em><a class="headerlink" href="#tc_python.propertymodel_sdk.ResultQuantityType.STRENGTH_QUANTITY" title="Permalink to this definition">¶</a></dt>
+<dd><p>A strength quantity</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.ResultQuantityType.SURFACE_ENERGY_QUANTITY">
+<span class="sig-name descname"><span class="pre">SURFACE_ENERGY_QUANTITY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#tc_python.propertymodel_sdk.ResultQuantityType.SURFACE_ENERGY_QUANTITY" title="Permalink to this definition">¶</a></dt>
+<dd><p>A surface energy quantity</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.ResultQuantityType.TEMPERATURE_QUANTITY">
+<span class="sig-name descname"><span class="pre">TEMPERATURE_QUANTITY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#tc_python.propertymodel_sdk.ResultQuantityType.TEMPERATURE_QUANTITY" title="Permalink to this definition">¶</a></dt>
+<dd><p>A temperature quantity</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.ResultQuantityType.TIME_QUANTITY">
+<span class="sig-name descname"><span class="pre">TIME_QUANTITY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#tc_python.propertymodel_sdk.ResultQuantityType.TIME_QUANTITY" title="Permalink to this definition">¶</a></dt>
+<dd><p>A time quantity</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.SpecialListMarkers">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.propertymodel_sdk.</span></span><span class="sig-name descname"><span class="pre">SpecialListMarkers</span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.SpecialListMarkers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Placeholders for special list elements that are locale-dependent. They will be provided by UI list components
+if a special marker has been selected.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.SpecialListMarkers.ANY_LIST_MARKER">
+<span class="sig-name descname"><span class="pre">ANY_LIST_MARKER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ANY'</span></em><a class="headerlink" href="#tc_python.propertymodel_sdk.SpecialListMarkers.ANY_LIST_MARKER" title="Permalink to this definition">¶</a></dt>
+<dd><p>Marker that represents “Any”</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.SpecialListMarkers.NONE_LIST_MARKER">
+<span class="sig-name descname"><span class="pre">NONE_LIST_MARKER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'NONE'</span></em><a class="headerlink" href="#tc_python.propertymodel_sdk.SpecialListMarkers.NONE_LIST_MARKER" title="Permalink to this definition">¶</a></dt>
+<dd><p>Marker that represents “None”</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UIBooleanComponent">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.propertymodel_sdk.</span></span><span class="sig-name descname"><span class="pre">UIBooleanComponent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">setting</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.UIBooleanComponent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tc_python.propertymodel_sdk.UIComponent" title="tc_python.propertymodel_sdk.UIComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">UIComponent</span></code></a></p>
+<p>Checkbox UI component of the model panel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component_id</strong> – Unique id of the component</p></li>
+<li><p><strong>name</strong> – Name of the component, will be presented in the model panel</p></li>
+<li><p><strong>description</strong> – Additional description of the component</p></li>
+<li><p><strong>setting</strong> – Initial setting of the checkbox</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UIBooleanComponent.connect_component_enableability">
+<span class="sig-name descname"><span class="pre">connect_component_enableability</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dependent_component_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.UIBooleanComponent.connect_component_enableability" title="Permalink to this definition">¶</a></dt>
+<dd><p>Connects the state enabled of any other UI component of the model panel to the value of this boolean component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dependent_component_id</strong> – Id of the UI element to be dependent on this boolean component</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UIBooleanComponent.connect_component_visibility">
+<span class="sig-name descname"><span class="pre">connect_component_visibility</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dependent_component_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.UIBooleanComponent.connect_component_visibility" title="Permalink to this definition">¶</a></dt>
+<dd><p>Connects the visibility of any other UI component of the model panel to the value of this boolean component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dependent_component_id</strong> – Id of the UI element to be dependent on this boolean component</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UIBooleanComponent.enable_add_button">
+<span class="sig-name descname"><span class="pre">enable_add_button</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.UIBooleanComponent.enable_add_button" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a <cite>+</cite> button to the right of the UI component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This UI component</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UIBooleanComponent.enable_remove_button">
+<span class="sig-name descname"><span class="pre">enable_remove_button</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.UIBooleanComponent.enable_remove_button" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a <cite>-</cite> button to the right of the UI component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This UI component</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UIBooleanComponent.get_dependent_components">
+<span class="sig-name descname"><span class="pre">get_dependent_components</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.UIBooleanComponent.get_dependent_components" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtains a list containing all UI elements currently connected regarding their visibility.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list with the component id of all UI elements currently connected</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UIBooleanComponent.get_setting">
+<span class="sig-name descname"><span class="pre">get_setting</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.UIBooleanComponent.get_setting" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtains the setting of the checkbox.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The setting of the checkbox</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UIBooleanComponent.remove_component_visibility">
+<span class="sig-name descname"><span class="pre">remove_component_visibility</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dependent_component_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.UIBooleanComponent.remove_component_visibility" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes the visibility connection to a UI component that has been previously connected.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dependent_component_id</strong> – Id of the previously connection UI element</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UIBooleanComponent.set_index">
+<span class="sig-name descname"><span class="pre">set_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.UIBooleanComponent.set_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the position in the graphical user interface.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>index</strong> – The position</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This UI component</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UIComponent">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.propertymodel_sdk.</span></span><span class="sig-name descname"><span class="pre">UIComponent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.UIComponent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Abstract Base class for all UI components of the model panel.</p>
+<p>Never make an instance of UIComponent, always use the sub-classes. For instance UIStringComponent.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component_id</strong> – Unique id of the component</p></li>
+<li><p><strong>name</strong> – Name of the component, will be presented in the model panel</p></li>
+<li><p><strong>description</strong> – Additional description of the component</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UIComponent.get_description">
+<span class="sig-name descname"><span class="pre">get_description</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.UIComponent.get_description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtains the additional description of the component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Additional description of the component</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UIComponent.get_id">
+<span class="sig-name descname"><span class="pre">get_id</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.UIComponent.get_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtains the unique id of the component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Unique id of the component</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UIComponent.get_name">
+<span class="sig-name descname"><span class="pre">get_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.UIComponent.get_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtains the name of the component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Name of the component, will be presented in the model panel</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UIComponent.set_enabled">
+<span class="sig-name descname"><span class="pre">set_enabled</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">enabled</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.UIComponent.set_enabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets whether the component should be enabled or not</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>enabled</strong> – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This UI component</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UIComponent.set_visible">
+<span class="sig-name descname"><span class="pre">set_visible</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">visible</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.UIComponent.set_visible" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the visibility of the component</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>visible</strong> – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This UI component</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UIConditionListComponent">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.propertymodel_sdk.</span></span><span class="sig-name descname"><span class="pre">UIConditionListComponent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.UIConditionListComponent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tc_python.propertymodel_sdk.UIComponent" title="tc_python.propertymodel_sdk.UIComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">UIComponent</span></code></a></p>
+<p>System condition list UI component of the model panel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component_id</strong> – Unique id of the component</p></li>
+<li><p><strong>name</strong> – Name of the component, will be presented in the model panel</p></li>
+<li><p><strong>description</strong> – Additional description of the component</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UIFloatComponent">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.propertymodel_sdk.</span></span><span class="sig-name descname"><span class="pre">UIFloatComponent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.UIFloatComponent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tc_python.propertymodel_sdk.UIComponent" title="tc_python.propertymodel_sdk.UIComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">UIComponent</span></code></a></p>
+<p>General real value text field UI component of the model panel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component_id</strong> – Unique id of the component</p></li>
+<li><p><strong>name</strong> – Name of the component, will be presented in the model panel</p></li>
+<li><p><strong>description</strong> – Additional description of the component</p></li>
+<li><p><strong>value</strong> – Initial setting of the text field</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UIFloatComponent.enable_add_button">
+<span class="sig-name descname"><span class="pre">enable_add_button</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.UIFloatComponent.enable_add_button" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a <cite>+</cite> button to the right of the UI component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This UI component</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UIFloatComponent.enable_remove_button">
+<span class="sig-name descname"><span class="pre">enable_remove_button</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.UIFloatComponent.enable_remove_button" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a <cite>-</cite> button to the right of the UI component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>this UI component</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UIFloatComponent.get_value">
+<span class="sig-name descname"><span class="pre">get_value</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.UIFloatComponent.get_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtains the setting of the text field.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The setting of the text field</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UIFloatComponent.set_index">
+<span class="sig-name descname"><span class="pre">set_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.UIFloatComponent.set_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the position in the graphical user interface.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>index</strong> – The position</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This UI component</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UIGeneralListComponent">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.propertymodel_sdk.</span></span><span class="sig-name descname"><span class="pre">UIGeneralListComponent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">selected_entry</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.UIGeneralListComponent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tc_python.propertymodel_sdk.UIComponent" title="tc_python.propertymodel_sdk.UIComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">UIComponent</span></code></a></p>
+<p>General list UI component of the model panel that can contain any strings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component_id</strong> – Unique id of the component</p></li>
+<li><p><strong>name</strong> – Name of the component, will be presented in the model panel</p></li>
+<li><p><strong>description</strong> – Additional description of the component</p></li>
+<li><p><strong>content</strong> – Entries of the list, they need to contain a locale-independent id and a localized
+content string, for example: <cite>[(“ENTRY_1_ID”, “entry 1”), (ENTRY_2_ID”, “entry 2”)]</cite></p></li>
+<li><p><strong>selected_entry</strong> – Entry to be initially selected. If omitted, by default the first element is selected.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UIGeneralListComponent.connect_component_visibility">
+<span class="sig-name descname"><span class="pre">connect_component_visibility</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dependent_component_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">selected_item_to_set_visible</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.UIGeneralListComponent.connect_component_visibility" title="Permalink to this definition">¶</a></dt>
+<dd><p>Connects the visibility of any other UI component of the model panel to the selection of a certain entry of
+the list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dependent_component_id</strong> – Id of the UI element to be dependent on the chosen element</p></li>
+<li><p><strong>selected_item_to_set_visible</strong> – Entry (locale independent id) of the list to be chosen to set the
+dependent component visible</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UIGeneralListComponent.enable_add_button">
+<span class="sig-name descname"><span class="pre">enable_add_button</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.UIGeneralListComponent.enable_add_button" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a <cite>+</cite> button to the right of the UI component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This UI component</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UIGeneralListComponent.enable_remove_button">
+<span class="sig-name descname"><span class="pre">enable_remove_button</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.UIGeneralListComponent.enable_remove_button" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a <cite>-</cite> button to the right of the UI component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This UI component</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UIGeneralListComponent.get_content">
+<span class="sig-name descname"><span class="pre">get_content</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.UIGeneralListComponent.get_content" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtains the entries of the list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Entries of the list, they need to contain a locale-independent id and a localized content string,
+for example: <cite>[(“ENTRY_1_ID”, “entry 1”), (ENTRY_2_ID”, “entry 2”)]</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UIGeneralListComponent.get_dependent_components">
+<span class="sig-name descname"><span class="pre">get_dependent_components</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.UIGeneralListComponent.get_dependent_components" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtains a dictionary containing all UI elements currently connected regarding their visibility.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>All UI elements currently connected (key: dependent component id, value: required list entries to set
+it visible)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UIGeneralListComponent.get_selected_entry">
+<span class="sig-name descname"><span class="pre">get_selected_entry</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.UIGeneralListComponent.get_selected_entry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtains the initially selected entry.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Initially selected entry. If empty, the first element is selected.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UIGeneralListComponent.remove_component_visibility">
+<span class="sig-name descname"><span class="pre">remove_component_visibility</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dependent_component_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.UIGeneralListComponent.remove_component_visibility" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes the visibility connection to a UI component that has been previously connected.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dependent_component_id</strong> – Id of the previously connection UI element</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UIGeneralListComponent.set_index">
+<span class="sig-name descname"><span class="pre">set_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.UIGeneralListComponent.set_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the position in the graphical user interface.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>index</strong> – The position</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This UI component</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UIPhaseListComponent">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.propertymodel_sdk.</span></span><span class="sig-name descname"><span class="pre">UIPhaseListComponent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_phase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">any_marker_setting</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.UIPhaseListComponent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tc_python.propertymodel_sdk.UIComponent" title="tc_python.propertymodel_sdk.UIComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">UIComponent</span></code></a></p>
+<p>Phase list UI component of the model panel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component_id</strong> – Unique id of the component</p></li>
+<li><p><strong>name</strong> – Name of the component, will be presented in the model panel</p></li>
+<li><p><strong>description</strong> – Additional description of the component</p></li>
+<li><p><strong>default_phase</strong> – Default phase, if omitted no default phase is chosen and only initially the first
+element of the list is selected.
+If an ANY-marker is added, this is chosen as the default element.</p></li>
+<li><p><strong>any_marker_setting</strong> – Defines if an entry “ANY PHASE” should be added to the phase list, if set to true
+this overrides any default phase setting</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UIPhaseListComponent.enable_add_button">
+<span class="sig-name descname"><span class="pre">enable_add_button</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.UIPhaseListComponent.enable_add_button" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a <cite>+</cite> button to the right of the UI component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This UI component</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UIPhaseListComponent.enable_remove_button">
+<span class="sig-name descname"><span class="pre">enable_remove_button</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.UIPhaseListComponent.enable_remove_button" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a <cite>-</cite> button to the right of the UI component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This UI component</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UIPhaseListComponent.get_any_marker_setting">
+<span class="sig-name descname"><span class="pre">get_any_marker_setting</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.UIPhaseListComponent.get_any_marker_setting" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtains the setting if any entry “ANY PHASE” is added to the phase list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>If an entry “ANY PHASE” is added to the phase list, if set to true this overrides any default phase
+setting</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UIPhaseListComponent.get_default_phase">
+<span class="sig-name descname"><span class="pre">get_default_phase</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.UIPhaseListComponent.get_default_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtains the default phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Default phase, if omitted no default phase is chosen and only initially the first element of the list
+is selected. If an ANY-marker is added, this is chosen as the default element.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UIPhaseListComponent.set_index">
+<span class="sig-name descname"><span class="pre">set_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.UIPhaseListComponent.set_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the position in the graphical user interface.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>index</strong> – The position</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This UI component</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UISectionDividerComponent">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.propertymodel_sdk.</span></span><span class="sig-name descname"><span class="pre">UISectionDividerComponent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.UISectionDividerComponent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tc_python.propertymodel_sdk.UIComponent" title="tc_python.propertymodel_sdk.UIComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">UIComponent</span></code></a></p>
+<p>General text field UI component of the model panel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component_id</strong> – Unique id of the component</p></li>
+<li><p><strong>name</strong> – Name of the component, will be presented in the model panel</p></li>
+<li><p><strong>description</strong> – Additional description of the component</p></li>
+<li><p><strong>string</strong> – Initial setting of the text field</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UISectionDividerComponent.get_value">
+<span class="sig-name descname"><span class="pre">get_value</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.UISectionDividerComponent.get_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtains the setting of the text field.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The setting of the text field</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UISectionDividerComponent.set_index">
+<span class="sig-name descname"><span class="pre">set_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.UISectionDividerComponent.set_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the position in the graphical user interface.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>index</strong> – The position</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This UI component</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UIStringComponent">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.propertymodel_sdk.</span></span><span class="sig-name descname"><span class="pre">UIStringComponent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.UIStringComponent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tc_python.propertymodel_sdk.UIComponent" title="tc_python.propertymodel_sdk.UIComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">UIComponent</span></code></a></p>
+<p>General text field UI component of the model panel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component_id</strong> – Unique id of the component</p></li>
+<li><p><strong>name</strong> – Name of the component, will be presented in the model panel</p></li>
+<li><p><strong>description</strong> – Additional description of the component</p></li>
+<li><p><strong>string</strong> – Initial setting of the text field</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UIStringComponent.enable_add_button">
+<span class="sig-name descname"><span class="pre">enable_add_button</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.UIStringComponent.enable_add_button" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a <cite>+</cite> button to the right of the UI component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This UI component</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UIStringComponent.enable_remove_button">
+<span class="sig-name descname"><span class="pre">enable_remove_button</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.UIStringComponent.enable_remove_button" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a <cite>-</cite> button to the right of the UI component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This UI component</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UIStringComponent.get_value">
+<span class="sig-name descname"><span class="pre">get_value</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.UIStringComponent.get_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtains the setting of the text field.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The setting of the text field</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UIStringComponent.set_index">
+<span class="sig-name descname"><span class="pre">set_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.UIStringComponent.set_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the position in the graphical user interface.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>index</strong> – The position</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This UI component</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UITemperatureComponent">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.propertymodel_sdk.</span></span><span class="sig-name descname"><span class="pre">UITemperatureComponent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.UITemperatureComponent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tc_python.propertymodel_sdk.UIComponent" title="tc_python.propertymodel_sdk.UIComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">UIComponent</span></code></a></p>
+<p>Temperature value text field UI component of the model panel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component_id</strong> – Unique id of the component</p></li>
+<li><p><strong>name</strong> – Name of the component, will be presented in the model panel</p></li>
+<li><p><strong>description</strong> – Additional description of the component</p></li>
+<li><p><strong>temp</strong> – Initial temperature to be set in the text field (unit defined by the user in the
+Thermo-Calc system)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UITemperatureComponent.enable_add_button">
+<span class="sig-name descname"><span class="pre">enable_add_button</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.UITemperatureComponent.enable_add_button" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a <cite>+</cite> button to the right of the UI component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This UI component</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UITemperatureComponent.enable_remove_button">
+<span class="sig-name descname"><span class="pre">enable_remove_button</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.UITemperatureComponent.enable_remove_button" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a <cite>-</cite> button to the right of the UI component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This UI component</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UITemperatureComponent.get_temp">
+<span class="sig-name descname"><span class="pre">get_temp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.UITemperatureComponent.get_temp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtains the temperature set in the text field.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The temperature to be set in the text field (unit defined by the user in the Thermo-Calc system)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.UITemperatureComponent.set_index">
+<span class="sig-name descname"><span class="pre">set_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.propertymodel_sdk.UITemperatureComponent.set_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the position in the graphical user interface.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>index</strong> – The position</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This UI component</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.create_boolean_ui_component">
+<span class="sig-prename descclassname"><span class="pre">tc_python.propertymodel_sdk.</span></span><span class="sig-name descname"><span class="pre">create_boolean_ui_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_setting</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIBooleanComponent" title="tc_python.propertymodel_sdk.UIBooleanComponent"><span class="pre">UIBooleanComponent</span></a></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.create_boolean_ui_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a UI checkbox component for a boolean value. The value of that component can later be accessed during
+the model evaluation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component_id</strong> – Unique id of the component</p></li>
+<li><p><strong>name</strong> – Name of the component, will be presented in the model panel</p></li>
+<li><p><strong>description</strong> – Additional description of the component</p></li>
+<li><p><strong>initial_setting</strong> – Initial setting of the checkbox</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The created component</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.create_condition_list_ui_component">
+<span class="sig-prename descclassname"><span class="pre">tc_python.propertymodel_sdk.</span></span><span class="sig-name descname"><span class="pre">create_condition_list_ui_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIConditionListComponent" title="tc_python.propertymodel_sdk.UIConditionListComponent"><span class="pre">UIConditionListComponent</span></a></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.create_condition_list_ui_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a UI list component for all conditions defined in the system. The value of that component can later be
+accessed during the model evaluation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component_id</strong> – Unique id of the component</p></li>
+<li><p><strong>name</strong> – Name of the component, will be presented in the model panel</p></li>
+<li><p><strong>description</strong> – Additional description of the component</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The created component</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.create_energy_quantity">
+<span class="sig-prename descclassname"><span class="pre">tc_python.propertymodel_sdk.</span></span><span class="sig-name descname"><span class="pre">create_energy_quantity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quantity_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#tc_python.propertymodel_sdk.ResultQuantity" title="tc_python.propertymodel_sdk.ResultQuantity"><span class="pre">ResultQuantity</span></a></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.create_energy_quantity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a UI energy result quantity (in J). When the model is evaluated, a value can be added to the quantity and
+it will be used to transfer the result to the Thermo-Calc plot engine.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>quantity_id</strong> – Unique id of the result quantity</p></li>
+<li><p><strong>description</strong> – Additional description of the result quantity</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The created result quantity</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.create_float_ui_component">
+<span class="sig-prename descclassname"><span class="pre">tc_python.propertymodel_sdk.</span></span><span class="sig-name descname"><span class="pre">create_float_ui_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIFloatComponent" title="tc_python.propertymodel_sdk.UIFloatComponent"><span class="pre">UIFloatComponent</span></a></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.create_float_ui_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a UI text field component for a real number. The value of that component can later be accessed during
+the model evaluation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component_id</strong> – Unique id of the component</p></li>
+<li><p><strong>name</strong> – Name of the component, will be presented in the model panel</p></li>
+<li><p><strong>description</strong> – Additional description of the component</p></li>
+<li><p><strong>value</strong> – Initial setting of the text field</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The created component</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.create_general_quantity">
+<span class="sig-prename descclassname"><span class="pre">tc_python.propertymodel_sdk.</span></span><span class="sig-name descname"><span class="pre">create_general_quantity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quantity_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#tc_python.propertymodel_sdk.ResultQuantity" title="tc_python.propertymodel_sdk.ResultQuantity"><span class="pre">ResultQuantity</span></a></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.create_general_quantity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a general result quantity that can contain any type of result (without a unit). When the model is evaluated,
+a value can be added to the quantity and it will be used to transfer the result to the Thermo-Calc plot engine.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>quantity_id</strong> – Unique id of the result quantity</p></li>
+<li><p><strong>description</strong> – Additional description of the result quantity</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The created result quantity</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.create_length_quantity">
+<span class="sig-prename descclassname"><span class="pre">tc_python.propertymodel_sdk.</span></span><span class="sig-name descname"><span class="pre">create_length_quantity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quantity_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#tc_python.propertymodel_sdk.ResultQuantity" title="tc_python.propertymodel_sdk.ResultQuantity"><span class="pre">ResultQuantity</span></a></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.create_length_quantity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a length result quantity. When the model is evaluated, a value can be added to the quantity and
+it will be used to transfer the result to the Thermo-Calc plot engine.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>quantity_id</strong> – Unique id of the result quantity</p></li>
+<li><p><strong>description</strong> – Additional description of the result quantity</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The created result quantity</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.create_list_ui_component">
+<span class="sig-prename descclassname"><span class="pre">tc_python.propertymodel_sdk.</span></span><span class="sig-name descname"><span class="pre">create_list_ui_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">entry_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">selected_entry</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIGeneralListComponent" title="tc_python.propertymodel_sdk.UIGeneralListComponent"><span class="pre">UIGeneralListComponent</span></a></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.create_list_ui_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a UI list component for string entries. The value of that component can later be accessed during
+the model evaluation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component_id</strong> – Unique id of the component</p></li>
+<li><p><strong>name</strong> – Name of the component, will be presented in the model panel</p></li>
+<li><p><strong>description</strong> – Additional description of the component</p></li>
+<li><p><strong>entry_list</strong> – Entries of the list, they need to contain a locale-independent id and a localized
+content string, for example: <cite>[(“ENTRY_1_ID”, “entry 1”), (ENTRY_2_ID”, “entry 2”)]</cite></p></li>
+<li><p><strong>selected_entry</strong> – Entry to be initially selected.
+If omitted, by default the first element is selected.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The created component</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.create_phase_list_ui_component">
+<span class="sig-prename descclassname"><span class="pre">tc_python.propertymodel_sdk.</span></span><span class="sig-name descname"><span class="pre">create_phase_list_ui_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_phase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">any_marker</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIPhaseListComponent" title="tc_python.propertymodel_sdk.UIPhaseListComponent"><span class="pre">UIPhaseListComponent</span></a></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.create_phase_list_ui_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a UI list component for all phases defined in the system. It is possible to select a default phase
+that is supposed to be the <strong>expected phase selection</strong> for that list. The value of that component can later be
+accessed during the model evaluation.</p>
+<p>A <strong>default</strong> phase is the phase that is initially selected and re-selected as soon as a currently selected phase is
+removed. If the default phase is not available, a “NONE”-marker will be created and used instead of the default
+phase. A typical use case for the default phase setting is a phase list that expects to contain the LIQUID-phase of
+a system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component_id</strong> – Unique id of the component</p></li>
+<li><p><strong>name</strong> – Name of the component, will be presented in the model panel</p></li>
+<li><p><strong>description</strong> – Additional description of the component</p></li>
+<li><p><strong>default_phase</strong> – Default phase, if omitted no default phase is chosen and only initially the first
+element of the list is selected.
+<strong>If an ANY-marker is added, this is chosen as the default element.</strong></p></li>
+<li><p><strong>any_marker</strong> – Defines if an entry “ANY PHASE” should be added to the phase list, if set to true this
+overrides any default phase setting</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The created component</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.create_section_divider_ui_component">
+<span class="sig-prename descclassname"><span class="pre">tc_python.propertymodel_sdk.</span></span><span class="sig-name descname"><span class="pre">create_section_divider_ui_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#tc_python.propertymodel_sdk.UISectionDividerComponent" title="tc_python.propertymodel_sdk.UISectionDividerComponent"><span class="pre">UISectionDividerComponent</span></a></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.create_section_divider_ui_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an empty UI component acting as a spacer.
+:param component_id: Unique id of the component
+:return: The created component</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.create_strength_quantity">
+<span class="sig-prename descclassname"><span class="pre">tc_python.propertymodel_sdk.</span></span><span class="sig-name descname"><span class="pre">create_strength_quantity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quantity_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#tc_python.propertymodel_sdk.ResultQuantity" title="tc_python.propertymodel_sdk.ResultQuantity"><span class="pre">ResultQuantity</span></a></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.create_strength_quantity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a strength result quantity. When the model is evaluated, a value can be added to the quantity and
+it will be used to transfer the result to the Thermo-Calc plot engine.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>quantity_id</strong> – Unique id of the result quantity</p></li>
+<li><p><strong>description</strong> – Additional description of the result quantity</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The created result quantity</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.create_string_ui_component">
+<span class="sig-prename descclassname"><span class="pre">tc_python.propertymodel_sdk.</span></span><span class="sig-name descname"><span class="pre">create_string_ui_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#tc_python.propertymodel_sdk.UIStringComponent" title="tc_python.propertymodel_sdk.UIStringComponent"><span class="pre">UIStringComponent</span></a></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.create_string_ui_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a UI text field component. The value of that component can later be accessed during
+the model evaluation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component_id</strong> – Unique id of the component</p></li>
+<li><p><strong>name</strong> – Name of the component, will be presented in the model panel</p></li>
+<li><p><strong>description</strong> – Additional description of the component</p></li>
+<li><p><strong>string</strong> – Initial setting of the text field</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The created component</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.create_surface_energy_quantity">
+<span class="sig-prename descclassname"><span class="pre">tc_python.propertymodel_sdk.</span></span><span class="sig-name descname"><span class="pre">create_surface_energy_quantity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quantity_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#tc_python.propertymodel_sdk.ResultQuantity" title="tc_python.propertymodel_sdk.ResultQuantity"><span class="pre">ResultQuantity</span></a></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.create_surface_energy_quantity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an energy result quantity (in J). When the model is evaluated, a value can be added to the quantity and it
+will be used to transfer the result to the Thermo-Calc plot engine.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>quantity_id</strong> – Unique id of the result quantity</p></li>
+<li><p><strong>description</strong> – Additional description of the result quantity</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The created result quantity</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.create_temperature_quantity">
+<span class="sig-prename descclassname"><span class="pre">tc_python.propertymodel_sdk.</span></span><span class="sig-name descname"><span class="pre">create_temperature_quantity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quantity_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#tc_python.propertymodel_sdk.ResultQuantity" title="tc_python.propertymodel_sdk.ResultQuantity"><span class="pre">ResultQuantity</span></a></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.create_temperature_quantity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a temperature result quantity (in K). When the model is evaluated, a value can be added to the quantity and
+it will be used to transfer the result to the Thermo-Calc plot engine.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>quantity_id</strong> – Unique id of the result quantity</p></li>
+<li><p><strong>description</strong> – Additional description of the result quantity</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The created result quantity</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.create_temperature_ui_component">
+<span class="sig-prename descclassname"><span class="pre">tc_python.propertymodel_sdk.</span></span><span class="sig-name descname"><span class="pre">create_temperature_ui_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_temp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#tc_python.propertymodel_sdk.UITemperatureComponent" title="tc_python.propertymodel_sdk.UITemperatureComponent"><span class="pre">UITemperatureComponent</span></a></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.create_temperature_ui_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a UI text field component for a temperature value. The value of that component can later be accessed during
+the model evaluation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component_id</strong> – Unique id of the component</p></li>
+<li><p><strong>name</strong> – Name of the component, will be presented in the model panel</p></li>
+<li><p><strong>description</strong> – Additional description of the component</p></li>
+<li><p><strong>initial_temp</strong> – Initial temperature to be set in the text field. (The unit of initial_temp is Kelvin. The value in the text field will be automatically converted using the unit chosen by the user.)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The created component</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tc_python.propertymodel_sdk.create_time_quantity">
+<span class="sig-prename descclassname"><span class="pre">tc_python.propertymodel_sdk.</span></span><span class="sig-name descname"><span class="pre">create_time_quantity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quantity_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#tc_python.propertymodel_sdk.ResultQuantity" title="tc_python.propertymodel_sdk.ResultQuantity"><span class="pre">ResultQuantity</span></a></span></span><a class="headerlink" href="#tc_python.propertymodel_sdk.create_time_quantity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a time result quantity (in s). When the model is evaluated, a value can be added to the quantity and
+it will be used to transfer the result to the Thermo-Calc plot engine.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>quantity_id</strong> – Unique id of the result quantity</p></li>
+<li><p><strong>description</strong> – Additional description of the result quantity</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The created result quantity</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="utils.html" class="btn btn-neutral float-left" title="Module “utils”" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="exceptions.html" class="btn btn-neutral float-right" title="Module “exceptions”" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Foundation of Computational Thermodynamics, Stockholm, Sweden.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,756 @@
+/* -*- coding: gb2312 -*- */
+/**
+ * 可视化样式文件 - ParaviewWeb集成
+ */
+
+/* ============================================
+   3D可视化容器
+   ============================================ */
+.visualization-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #1a1a1a;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.visualization-canvas {
+    width: 100%;
+    height: 100%;
+}
+
+/* ============================================
+   可视化控制面板
+   ============================================ */
+.viz-controls {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    min-width: 280px;
+    max-width: 350px;
+    z-index: 100;
+    transition: transform 0.3s ease;
+}
+
+.viz-controls.collapsed {
+    transform: translateX(calc(100% - 50px));
+}
+
+.viz-controls-toggle {
+    position: absolute;
+    left: -40px;
+    top: 20px;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 4px 0 0 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: -2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.viz-controls-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.viz-controls-title {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #2c3e50;
+}
+
+/* ============================================
+   场选择器
+   ============================================ */
+.field-selector {
+    margin-bottom: 1rem;
+}
+
+.field-selector-label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.field-selector-dropdown {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    background-color: white;
+    cursor: pointer;
+}
+
+.field-info {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.field-range {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.25rem;
+}
+
+/* ============================================
+   颜色映射控制
+   ============================================ */
+.colormap-section {
+    margin-bottom: 1rem;
+}
+
+.colormap-header {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 0.5rem;
+}
+
+.colormap-preset {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.colormap-option {
+    height: 30px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.colormap-option:hover {
+    transform: scale(1.1);
+}
+
+.colormap-option.selected {
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.colormap-option.rainbow {
+    background: linear-gradient(to right, 
+        #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3);
+}
+
+.colormap-option.coolwarm {
+    background: linear-gradient(to right, #3b4cc0, #ffffff, #b40426);
+}
+
+.colormap-option.viridis {
+    background: linear-gradient(to right, #440154, #31688e, #35b779, #fde725);
+}
+
+.colormap-option.plasma {
+    background: linear-gradient(to right, #0d0887, #cc4778, #f0f921);
+}
+
+.colormap-range-controls {
+    margin-top: 0.5rem;
+}
+
+.range-input-group {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 0.25rem;
+}
+
+.range-input-group label {
+    font-size: 0.8rem;
+    color: #666;
+    width: 40px;
+}
+
+.range-input-group input {
+    flex: 1;
+    padding: 0.25rem 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+
+/* ============================================
+   过滤器控制
+   ============================================ */
+.filter-section {
+    margin-bottom: 1rem;
+}
+
+.filter-tabs {
+    display: flex;
+    gap: 0.25rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.filter-tab {
+    padding: 0.25rem 0.75rem;
+    border: none;
+    background: none;
+    font-size: 0.85rem;
+    color: #666;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.2s ease;
+}
+
+.filter-tab:hover {
+    color: #2c3e50;
+}
+
+.filter-tab.active {
+    color: #3498db;
+    font-weight: 500;
+}
+
+.filter-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #3498db;
+}
+
+.filter-content {
+    padding: 0.5rem 0;
+}
+
+/* 等值线过滤器 */
+.contour-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.contour-levels {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.contour-levels input[type="number"] {
+    width: 60px;
+    padding: 0.25rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+
+.contour-preview {
+    margin-top: 0.5rem;
+    height: 40px;
+    background: repeating-linear-gradient(
+        90deg,
+        #3498db,
+        #3498db 2px,
+        transparent 2px,
+        transparent 10px
+    );
+    border-radius: 4px;
+    position: relative;
+}
+
+/* 切片过滤器 */
+.slice-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.slice-axis {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.axis-button {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    background-color: white;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.axis-button:hover {
+    background-color: #f8f9fa;
+}
+
+.axis-button.active {
+    background-color: #3498db;
+    color: white;
+    border-color: #3498db;
+}
+
+.slice-position {
+    margin-top: 0.5rem;
+}
+
+.slice-slider {
+    width: 100%;
+    margin: 0.5rem 0;
+}
+
+/* ============================================
+   相机控制
+   ============================================ */
+.camera-section {
+    margin-bottom: 1rem;
+}
+
+.camera-presets {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.25rem;
+}
+
+.camera-preset-btn {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    background-color: white;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.camera-preset-btn:hover {
+    background-color: #f8f9fa;
+    border-color: #3498db;
+}
+
+.camera-preset-btn i {
+    display: block;
+    font-size: 1.2rem;
+    margin-bottom: 0.25rem;
+    color: #3498db;
+}
+
+/* ============================================
+   动画控制
+   ============================================ */
+.animation-controls {
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    padding: 0.75rem;
+    margin-top: 1rem;
+}
+
+.animation-timeline {
+    position: relative;
+    height: 40px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+}
+
+.timeline-progress {
+    height: 100%;
+    background-color: #3498db;
+    border-radius: 4px;
+    transition: width 0.1s linear;
+    position: relative;
+}
+
+.timeline-handle {
+    position: absolute;
+    right: -8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    background-color: white;
+    border: 2px solid #3498db;
+    border-radius: 50%;
+    cursor: grab;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.timeline-handle:active {
+    cursor: grabbing;
+}
+
+.animation-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.animation-btn {
+    width: 36px;
+    height: 36px;
+    border: 1px solid #ddd;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.animation-btn:hover {
+    background-color: #3498db;
+    color: white;
+    border-color: #3498db;
+}
+
+.animation-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.animation-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 0.5rem;
+}
+
+/* ============================================
+   工具栏
+   ============================================ */
+.viz-toolbar {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    padding: 0.5rem;
+    display: flex;
+    gap: 0.5rem;
+    z-index: 100;
+}
+
+.toolbar-btn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background-color: transparent;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.toolbar-btn:hover {
+    background-color: #f8f9fa;
+}
+
+.toolbar-btn.active {
+    background-color: #3498db;
+    color: white;
+}
+
+.toolbar-btn i {
+    font-size: 1.2rem;
+}
+
+.toolbar-separator {
+    width: 1px;
+    background-color: #e0e0e0;
+    margin: 0 0.25rem;
+}
+
+/* 工具提示 */
+.toolbar-btn::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    margin-bottom: 0.5rem;
+}
+
+.toolbar-btn:hover::after {
+    opacity: 1;
+}
+
+/* ============================================
+   图例和标尺
+   ============================================ */
+.color-legend {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 4px;
+    padding: 0.75rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.legend-title {
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+}
+
+.legend-gradient {
+    width: 200px;
+    height: 20px;
+    border-radius: 2px;
+    margin-bottom: 0.25rem;
+    position: relative;
+}
+
+.legend-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: #666;
+}
+
+.scale-indicator {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 4px;
+    padding: 0.5rem 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+}
+
+.scale-bar {
+    width: 100px;
+    height: 4px;
+    background-color: #2c3e50;
+    border-radius: 2px;
+}
+
+/* ============================================
+   信息面板
+   ============================================ */
+.info-panel {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    border-radius: 4px;
+    padding: 0.75rem;
+    font-size: 0.85rem;
+    min-width: 200px;
+    transition: opacity 0.3s ease;
+}
+
+.info-panel.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.25rem;
+}
+
+.info-label {
+    color: #aaa;
+}
+
+.info-value {
+    font-weight: 500;
+}
+
+/* ============================================
+   加载状态
+   ============================================ */
+.viz-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+}
+
+.viz-loading-spinner {
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+}
+
+.viz-loading-text {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.viz-loading-progress {
+    width: 200px;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.viz-loading-progress-bar {
+    height: 100%;
+    background-color: #3498db;
+    transition: width 0.3s ease;
+}
+
+/* ============================================
+   错误状态
+   ============================================ */
+.viz-error {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+}
+
+.viz-error-icon {
+    font-size: 3rem;
+    color: #e74c3c;
+    margin-bottom: 1rem;
+}
+
+.viz-error-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+}
+
+.viz-error-message {
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.viz-error-button {
+    padding: 0.5rem 1.5rem;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: background-color 0.2s ease;
+}
+
+.viz-error-button:hover {
+    background-color: #2980b9;
+}
+
+/* ============================================
+   响应式设计
+   ============================================ */
+@media (max-width: 768px) {
+    .viz-controls {
+        max-width: 280px;
+        right: 10px;
+        top: 10px;
+    }
+    
+    .viz-toolbar {
+        bottom: 10px;
+        padding: 0.25rem;
+    }
+    
+    .toolbar-btn {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .color-legend {
+        top: auto;
+        bottom: 60px;
+        left: 10px;
+    }
+    
+    .scale-indicator {
+        display: none;
+    }
+}
+
+/* ============================================
+   全屏模式
+   ============================================ */
+.visualization-fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 5000;
+    background-color: #000;
+}
+
+.fullscreen-exit {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    z-index: 110;
+    transition: all 0.2s ease;
+}
+
+.fullscreen-exit:hover {
+    background-color: white;
+    transform: scale(1.1);
+}

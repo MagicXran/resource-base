@@ -1,0 +1,7 @@
+Module "base"
+~~~~~~~~~~~~~
+
+.. automodule:: tc_python.process_metallurgy.base
+    :members:
+    :undoc-members:
+    :show-inheritance:

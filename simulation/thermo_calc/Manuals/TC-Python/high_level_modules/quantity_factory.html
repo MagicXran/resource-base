@@ -1,0 +1,1443 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module “quantity_factory” &mdash; TC-Python 2023b documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Module “utils”" href="utils.html" />
+    <link rel="prev" title="Module “server”" href="server.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            TC-Python
+          </a>
+              <div class="version">
+                2023b
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment_variables.html">Mac OS: Setting Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../best_practices.html">Best Practices</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api_reference.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../calculations.html">Calculations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system.html">Module “system”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entities.html">Module “entities”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server.html">Module “server”</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Module “quantity_factory”</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.quantity_factory.DiffusionQuantity"><code class="docutils literal notranslate"><span class="pre">DiffusionQuantity</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.DiffusionQuantity.activity_of_component"><code class="docutils literal notranslate"><span class="pre">DiffusionQuantity.activity_of_component()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.DiffusionQuantity.chemical_diffusion_coefficient"><code class="docutils literal notranslate"><span class="pre">DiffusionQuantity.chemical_diffusion_coefficient()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.DiffusionQuantity.chemical_potential_of_component"><code class="docutils literal notranslate"><span class="pre">DiffusionQuantity.chemical_potential_of_component()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.DiffusionQuantity.distance"><code class="docutils literal notranslate"><span class="pre">DiffusionQuantity.distance()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.DiffusionQuantity.intrinsic_diffusion_coefficient"><code class="docutils literal notranslate"><span class="pre">DiffusionQuantity.intrinsic_diffusion_coefficient()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.DiffusionQuantity.l_bis"><code class="docutils literal notranslate"><span class="pre">DiffusionQuantity.l_bis()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.DiffusionQuantity.mass_fraction_of_a_component"><code class="docutils literal notranslate"><span class="pre">DiffusionQuantity.mass_fraction_of_a_component()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.DiffusionQuantity.mass_fraction_of_a_phase"><code class="docutils literal notranslate"><span class="pre">DiffusionQuantity.mass_fraction_of_a_phase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.DiffusionQuantity.mobility_of_component_in_phase"><code class="docutils literal notranslate"><span class="pre">DiffusionQuantity.mobility_of_component_in_phase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.DiffusionQuantity.mole_fraction_of_a_component"><code class="docutils literal notranslate"><span class="pre">DiffusionQuantity.mole_fraction_of_a_component()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.DiffusionQuantity.mole_fraction_of_a_phase"><code class="docutils literal notranslate"><span class="pre">DiffusionQuantity.mole_fraction_of_a_phase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.DiffusionQuantity.position_of_lower_boundary_of_region"><code class="docutils literal notranslate"><span class="pre">DiffusionQuantity.position_of_lower_boundary_of_region()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.DiffusionQuantity.position_of_upper_boundary_of_region"><code class="docutils literal notranslate"><span class="pre">DiffusionQuantity.position_of_upper_boundary_of_region()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.DiffusionQuantity.temperature"><code class="docutils literal notranslate"><span class="pre">DiffusionQuantity.temperature()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.DiffusionQuantity.thermodynamic_factor"><code class="docutils literal notranslate"><span class="pre">DiffusionQuantity.thermodynamic_factor()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.DiffusionQuantity.time"><code class="docutils literal notranslate"><span class="pre">DiffusionQuantity.time()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.DiffusionQuantity.total_mass_fraction_of_component"><code class="docutils literal notranslate"><span class="pre">DiffusionQuantity.total_mass_fraction_of_component()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.DiffusionQuantity.total_mass_fraction_of_component_in_phase"><code class="docutils literal notranslate"><span class="pre">DiffusionQuantity.total_mass_fraction_of_component_in_phase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.DiffusionQuantity.total_mass_fraction_of_phase"><code class="docutils literal notranslate"><span class="pre">DiffusionQuantity.total_mass_fraction_of_phase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.DiffusionQuantity.total_mole_fraction_of_component"><code class="docutils literal notranslate"><span class="pre">DiffusionQuantity.total_mole_fraction_of_component()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.DiffusionQuantity.total_mole_fraction_of_component_in_phase"><code class="docutils literal notranslate"><span class="pre">DiffusionQuantity.total_mole_fraction_of_component_in_phase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.DiffusionQuantity.total_volume_fraction_of_phase"><code class="docutils literal notranslate"><span class="pre">DiffusionQuantity.total_volume_fraction_of_phase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.DiffusionQuantity.tracer_diffusion_coefficient"><code class="docutils literal notranslate"><span class="pre">DiffusionQuantity.tracer_diffusion_coefficient()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.DiffusionQuantity.u_fraction_of_a_component"><code class="docutils literal notranslate"><span class="pre">DiffusionQuantity.u_fraction_of_a_component()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.DiffusionQuantity.user_defined_function"><code class="docutils literal notranslate"><span class="pre">DiffusionQuantity.user_defined_function()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.DiffusionQuantity.velocity_of_lower_boundary_of_region"><code class="docutils literal notranslate"><span class="pre">DiffusionQuantity.velocity_of_lower_boundary_of_region()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.DiffusionQuantity.velocity_of_upper_boundary_of_region"><code class="docutils literal notranslate"><span class="pre">DiffusionQuantity.velocity_of_upper_boundary_of_region()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.DiffusionQuantity.width_of_region"><code class="docutils literal notranslate"><span class="pre">DiffusionQuantity.width_of_region()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.quantity_factory.IndependentVariable"><code class="docutils literal notranslate"><span class="pre">IndependentVariable</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.IndependentVariable.distance"><code class="docutils literal notranslate"><span class="pre">IndependentVariable.distance()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.IndependentVariable.time"><code class="docutils literal notranslate"><span class="pre">IndependentVariable.time()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.quantity_factory.PlotCondition"><code class="docutils literal notranslate"><span class="pre">PlotCondition</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.PlotCondition.distance"><code class="docutils literal notranslate"><span class="pre">PlotCondition.distance()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.PlotCondition.integral"><code class="docutils literal notranslate"><span class="pre">PlotCondition.integral()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.PlotCondition.interface"><code class="docutils literal notranslate"><span class="pre">PlotCondition.interface()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.PlotCondition.time"><code class="docutils literal notranslate"><span class="pre">PlotCondition.time()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity"><code class="docutils literal notranslate"><span class="pre">ScheilQuantity</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.apparent_heat_capacity_per_gram"><code class="docutils literal notranslate"><span class="pre">ScheilQuantity.apparent_heat_capacity_per_gram()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.apparent_heat_capacity_per_mole"><code class="docutils literal notranslate"><span class="pre">ScheilQuantity.apparent_heat_capacity_per_mole()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.apparent_volumetric_thermal_expansion_coefficient"><code class="docutils literal notranslate"><span class="pre">ScheilQuantity.apparent_volumetric_thermal_expansion_coefficient()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.average_composition_of_solid_phases_as_mass_fraction"><code class="docutils literal notranslate"><span class="pre">ScheilQuantity.average_composition_of_solid_phases_as_mass_fraction()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.average_composition_of_solid_phases_as_mole_fraction"><code class="docutils literal notranslate"><span class="pre">ScheilQuantity.average_composition_of_solid_phases_as_mole_fraction()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.composition_of_phase_as_mole_fraction"><code class="docutils literal notranslate"><span class="pre">ScheilQuantity.composition_of_phase_as_mole_fraction()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.composition_of_phase_as_weight_fraction"><code class="docutils literal notranslate"><span class="pre">ScheilQuantity.composition_of_phase_as_weight_fraction()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.density_of_phase"><code class="docutils literal notranslate"><span class="pre">ScheilQuantity.density_of_phase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.density_of_system"><code class="docutils literal notranslate"><span class="pre">ScheilQuantity.density_of_system()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.distribution_of_component_of_phase"><code class="docutils literal notranslate"><span class="pre">ScheilQuantity.distribution_of_component_of_phase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.heat_per_gram"><code class="docutils literal notranslate"><span class="pre">ScheilQuantity.heat_per_gram()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.heat_per_mole"><code class="docutils literal notranslate"><span class="pre">ScheilQuantity.heat_per_mole()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.latent_heat_per_gram"><code class="docutils literal notranslate"><span class="pre">ScheilQuantity.latent_heat_per_gram()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.latent_heat_per_mole"><code class="docutils literal notranslate"><span class="pre">ScheilQuantity.latent_heat_per_mole()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.mass_fraction_of_a_solid_phase"><code class="docutils literal notranslate"><span class="pre">ScheilQuantity.mass_fraction_of_a_solid_phase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.mass_fraction_of_all_liquid"><code class="docutils literal notranslate"><span class="pre">ScheilQuantity.mass_fraction_of_all_liquid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.mass_fraction_of_all_solid_phases"><code class="docutils literal notranslate"><span class="pre">ScheilQuantity.mass_fraction_of_all_solid_phases()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.molar_volume_of_phase"><code class="docutils literal notranslate"><span class="pre">ScheilQuantity.molar_volume_of_phase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.molar_volume_of_system"><code class="docutils literal notranslate"><span class="pre">ScheilQuantity.molar_volume_of_system()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.mole_fraction_of_a_solid_phase"><code class="docutils literal notranslate"><span class="pre">ScheilQuantity.mole_fraction_of_a_solid_phase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.mole_fraction_of_all_liquid"><code class="docutils literal notranslate"><span class="pre">ScheilQuantity.mole_fraction_of_all_liquid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.mole_fraction_of_all_solid_phases"><code class="docutils literal notranslate"><span class="pre">ScheilQuantity.mole_fraction_of_all_solid_phases()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.site_fraction_of_component_in_phase"><code class="docutils literal notranslate"><span class="pre">ScheilQuantity.site_fraction_of_component_in_phase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.temperature"><code class="docutils literal notranslate"><span class="pre">ScheilQuantity.temperature()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.volume_fraction_of_a_solid_phase"><code class="docutils literal notranslate"><span class="pre">ScheilQuantity.volume_fraction_of_a_solid_phase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.volume_fraction_of_all_liquid"><code class="docutils literal notranslate"><span class="pre">ScheilQuantity.volume_fraction_of_all_liquid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.volume_fraction_of_all_solid_phases"><code class="docutils literal notranslate"><span class="pre">ScheilQuantity.volume_fraction_of_all_solid_phases()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.quantity_factory.ThermodynamicQuantity"><code class="docutils literal notranslate"><span class="pre">ThermodynamicQuantity</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ThermodynamicQuantity.activity_of_component"><code class="docutils literal notranslate"><span class="pre">ThermodynamicQuantity.activity_of_component()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ThermodynamicQuantity.chemical_diffusion_coefficient"><code class="docutils literal notranslate"><span class="pre">ThermodynamicQuantity.chemical_diffusion_coefficient()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ThermodynamicQuantity.chemical_potential_of_component"><code class="docutils literal notranslate"><span class="pre">ThermodynamicQuantity.chemical_potential_of_component()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ThermodynamicQuantity.composition_of_phase_as_mole_fraction"><code class="docutils literal notranslate"><span class="pre">ThermodynamicQuantity.composition_of_phase_as_mole_fraction()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ThermodynamicQuantity.composition_of_phase_as_weight_fraction"><code class="docutils literal notranslate"><span class="pre">ThermodynamicQuantity.composition_of_phase_as_weight_fraction()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ThermodynamicQuantity.gibbs_energy_of_a_phase"><code class="docutils literal notranslate"><span class="pre">ThermodynamicQuantity.gibbs_energy_of_a_phase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ThermodynamicQuantity.mass_fraction_of_a_component"><code class="docutils literal notranslate"><span class="pre">ThermodynamicQuantity.mass_fraction_of_a_component()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ThermodynamicQuantity.mass_fraction_of_a_phase"><code class="docutils literal notranslate"><span class="pre">ThermodynamicQuantity.mass_fraction_of_a_phase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ThermodynamicQuantity.mole_fraction_of_a_component"><code class="docutils literal notranslate"><span class="pre">ThermodynamicQuantity.mole_fraction_of_a_component()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ThermodynamicQuantity.mole_fraction_of_a_phase"><code class="docutils literal notranslate"><span class="pre">ThermodynamicQuantity.mole_fraction_of_a_phase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ThermodynamicQuantity.normalized_driving_force_of_a_phase"><code class="docutils literal notranslate"><span class="pre">ThermodynamicQuantity.normalized_driving_force_of_a_phase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ThermodynamicQuantity.pressure"><code class="docutils literal notranslate"><span class="pre">ThermodynamicQuantity.pressure()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ThermodynamicQuantity.system_size"><code class="docutils literal notranslate"><span class="pre">ThermodynamicQuantity.system_size()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ThermodynamicQuantity.temperature"><code class="docutils literal notranslate"><span class="pre">ThermodynamicQuantity.temperature()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ThermodynamicQuantity.tracer_diffusion_coefficient"><code class="docutils literal notranslate"><span class="pre">ThermodynamicQuantity.tracer_diffusion_coefficient()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ThermodynamicQuantity.u_fraction_of_a_component"><code class="docutils literal notranslate"><span class="pre">ThermodynamicQuantity.u_fraction_of_a_component()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ThermodynamicQuantity.user_defined_function"><code class="docutils literal notranslate"><span class="pre">ThermodynamicQuantity.user_defined_function()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.quantity_factory.ThermodynamicQuantity.volume_fraction_of_a_phase"><code class="docutils literal notranslate"><span class="pre">ThermodynamicQuantity.volume_fraction_of_a_phase()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">Module “utils”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="propertymodel_sdk.html">Module “propertymodel_sdk”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html">Module “exceptions”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="abstract_base.html">Module “abstract_base”</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">TC-Python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api_reference.html">API Reference</a></li>
+      <li class="breadcrumb-item active">Module “quantity_factory”</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-tc_python.quantity_factory">
+<span id="module-quantity-factory"></span><h1>Module “quantity_factory”<a class="headerlink" href="#module-tc_python.quantity_factory" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.DiffusionQuantity">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.quantity_factory.</span></span><span class="sig-name descname"><span class="pre">DiffusionQuantity</span></span><a class="headerlink" href="#tc_python.quantity_factory.DiffusionQuantity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractQuantity</span></code></p>
+<p>Factory class providing quantities used for defining diffusion simulations and their results.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In this factory class only the most common quantities are defined, you can always use the <em>Console Mode</em> syntax
+strings in the respective methods as an alternative (for example: “NPM(*)”).</p>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.DiffusionQuantity.activity_of_component">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">activity_of_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_ser</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ActivityOfComponent</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.DiffusionQuantity.activity_of_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the activity of a component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component</strong> – The name of the component, use <cite>ALL_COMPONENTS</cite> to choose all components</p></li>
+<li><p><strong>use_ser</strong> – Use Stable-Element-Reference(SER). The user-defined reference state is be used if this
+setting is set to <cite>False</cite>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">ActivityOfComponent</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.DiffusionQuantity.chemical_diffusion_coefficient">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">chemical_diffusion_coefficient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diffusing_element</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gradient_element</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_element</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ChemicalDiffusionCoefficient</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.DiffusionQuantity.chemical_diffusion_coefficient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the chemical diffusion coefficient of a phase [m^2/s].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – The name of the phase</p></li>
+<li><p><strong>diffusing_element</strong> – The diffusing element</p></li>
+<li><p><strong>gradient_element</strong> – The gradient element</p></li>
+<li><p><strong>reference_element</strong> – The reference element (for example “Fe” in a steel)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">ChemicalDiffusionCoefficient</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.DiffusionQuantity.chemical_potential_of_component">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">chemical_potential_of_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_ser</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ChemicalPotentialOfComponent</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.DiffusionQuantity.chemical_potential_of_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the chemical potential of a component [J].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component</strong> – The name of the component, use <cite>ALL_COMPONENTS</cite> to choose all components</p></li>
+<li><p><strong>use_ser</strong> – Use Stable-Element-Reference(SER). The user-defined reference state is used if this
+setting is set to <cite>False</cite>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">ChemicalPotentialOfComponent</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.DiffusionQuantity.distance">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">region</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'All'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Distance</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.DiffusionQuantity.distance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the distance [m].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>region</strong> – The name of the region or <cite>All</cite> to choose global.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.DiffusionQuantity.intrinsic_diffusion_coefficient">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">intrinsic_diffusion_coefficient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diffusing_element</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gradient_element</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_element</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">IntrinsicDiffusionCoefficient</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.DiffusionQuantity.intrinsic_diffusion_coefficient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the intrinsic diffusion coefficient of a phase [m^2/s].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – The name of the phase</p></li>
+<li><p><strong>diffusing_element</strong> – The diffusing element</p></li>
+<li><p><strong>gradient_element</strong> – The gradient element</p></li>
+<li><p><strong>reference_element</strong> – The reference element (for example “Fe” in a steel)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">IntrinsicDiffusionCoefficient</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.DiffusionQuantity.l_bis">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">l_bis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diffusing_element</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gradient_element</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_element</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Lbis</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.DiffusionQuantity.l_bis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing L’’ of a phase [m^2/s].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – The name of the phase</p></li>
+<li><p><strong>diffusing_element</strong> – The diffusing element</p></li>
+<li><p><strong>gradient_element</strong> – The gradient element</p></li>
+<li><p><strong>reference_element</strong> – The reference element (for example “Fe” in a steel)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">Lbis</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.DiffusionQuantity.mass_fraction_of_a_component">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mass_fraction_of_a_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">MassFractionOfAComponent</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.DiffusionQuantity.mass_fraction_of_a_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the mass fraction of a component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>component</strong> – The name of the component or <cite>ALL_COMPONENTS</cite> to choose all components</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">MassFractionOfAComponent</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.DiffusionQuantity.mass_fraction_of_a_phase">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mass_fraction_of_a_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">MassFractionOfAPhase</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.DiffusionQuantity.mass_fraction_of_a_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the mass fraction of a phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>phase</strong> – The name of the phase or <cite>ALL_PHASES</cite> to choose all phases.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">MassFractionOfAPhase</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.DiffusionQuantity.mobility_of_component_in_phase">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mobility_of_component_in_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">MobilityOfComponentInPhase</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.DiffusionQuantity.mobility_of_component_in_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the mobility of a component in a phase [m^2/Js].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – The name of the phase</p></li>
+<li><p><strong>component</strong> – The name of the component</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">MobilityOfComponentInPhase</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.DiffusionQuantity.mole_fraction_of_a_component">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mole_fraction_of_a_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">MoleFractionOfAComponent</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.DiffusionQuantity.mole_fraction_of_a_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the mole fraction of a component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>component</strong> – The name of the component or <cite>ALL_COMPONENTS</cite> to choose all components</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">MoleFractionOfAComponent</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.DiffusionQuantity.mole_fraction_of_a_phase">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mole_fraction_of_a_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">MoleFractionOfAPhase</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.DiffusionQuantity.mole_fraction_of_a_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the mole fraction of a phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>phase</strong> – The name of the phase or <cite>ALL_PHASES</cite> to choose all phases</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">MoleFractionOfAPhase</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.DiffusionQuantity.position_of_lower_boundary_of_region">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">position_of_lower_boundary_of_region</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">region</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">PositionOfLowerBoundaryOfRegion</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.DiffusionQuantity.position_of_lower_boundary_of_region" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the position of lower boundary of a region [m].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>region</strong> – The name of the region</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">PositionOfLowerBoundaryOfRegion</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.DiffusionQuantity.position_of_upper_boundary_of_region">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">position_of_upper_boundary_of_region</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">region</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">PositionOfUpperBoundaryOfRegion</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.DiffusionQuantity.position_of_upper_boundary_of_region" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the position of upper boundary of a region [m].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>region</strong> – The name of the region</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">PositionOfUpperBoundaryOfRegion</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.DiffusionQuantity.temperature">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">temperature</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Temperature</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.DiffusionQuantity.temperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the temperature [K].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">Temperature</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.DiffusionQuantity.thermodynamic_factor">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">thermodynamic_factor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diffusing_element</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gradient_element</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_element</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ThermoDynamicFactor</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.DiffusionQuantity.thermodynamic_factor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing thermodynamic factor of a phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – The name of the phase</p></li>
+<li><p><strong>diffusing_element</strong> – The diffusing element</p></li>
+<li><p><strong>gradient_element</strong> – The gradient element</p></li>
+<li><p><strong>reference_element</strong> – The reference element (for example “Fe” in a steel)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">ThermoDynamicFactor</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.DiffusionQuantity.time">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">time</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Time</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.DiffusionQuantity.time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the time [s].</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.DiffusionQuantity.total_mass_fraction_of_component">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">total_mass_fraction_of_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">TotalMassFractionOfComponent</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.DiffusionQuantity.total_mass_fraction_of_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the total mass fraction of a component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>component</strong> – The name of the component</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">TotalMassFractionOfComponent</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.DiffusionQuantity.total_mass_fraction_of_component_in_phase">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">total_mass_fraction_of_component_in_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">TotalMassFractionOfComponentInPhase</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.DiffusionQuantity.total_mass_fraction_of_component_in_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the total mass fraction of a component in a phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – The name of the phase</p></li>
+<li><p><strong>component</strong> – The name of the component</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">TotalMassFractionOfComponentInPhase</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.DiffusionQuantity.total_mass_fraction_of_phase">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">total_mass_fraction_of_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">TotalMassFractionOfPhase</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.DiffusionQuantity.total_mass_fraction_of_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the total mass fraction of a phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>phase</strong> – The name of the phase.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">TotalMassFractionOfPhase</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.DiffusionQuantity.total_mole_fraction_of_component">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">total_mole_fraction_of_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">TotalMoleFractionOfComponent</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.DiffusionQuantity.total_mole_fraction_of_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the total mole fraction of a component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>component</strong> – The name of the component</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">TotalMoleFractionOfComponent</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.DiffusionQuantity.total_mole_fraction_of_component_in_phase">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">total_mole_fraction_of_component_in_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">TotalMoleFractionOfComponentInPhase</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.DiffusionQuantity.total_mole_fraction_of_component_in_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the total mole fraction of a component in a phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – The name of the phase</p></li>
+<li><p><strong>component</strong> – The name of the component</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">TotalMoleFractionOfComponentInPhase</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.DiffusionQuantity.total_volume_fraction_of_phase">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">total_volume_fraction_of_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">TotalVolumeFractionOfPhase</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.DiffusionQuantity.total_volume_fraction_of_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the total volume fraction of a phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>phase</strong> – The name of the phase.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">TotalVolumeFractionOfPhase</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.DiffusionQuantity.tracer_diffusion_coefficient">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tracer_diffusion_coefficient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diffusing_element</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">TracerDiffusionCoefficient</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.DiffusionQuantity.tracer_diffusion_coefficient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing tracer diffusion coefficient of a phase [m^2/s].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – The name of the phase</p></li>
+<li><p><strong>diffusing_element</strong> – The diffusing element</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">TracerDiffusionCoefficient</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.DiffusionQuantity.u_fraction_of_a_component">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">u_fraction_of_a_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">UFractionOfAComponent</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.DiffusionQuantity.u_fraction_of_a_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the u-fraction of a component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>component</strong> – The name of the component</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">UFractionOfAComponent</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.DiffusionQuantity.user_defined_function">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">user_defined_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expression</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Function</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.DiffusionQuantity.user_defined_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing a user-defined function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>expression</strong> – The function expression</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">Function</span></code> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.DiffusionQuantity.velocity_of_lower_boundary_of_region">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">velocity_of_lower_boundary_of_region</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">region</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">VelocityOfLowerBoundaryOfRegion</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.DiffusionQuantity.velocity_of_lower_boundary_of_region" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the velocity of lower boundary of a region [m/s].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>region</strong> – The name of the region</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">VelocityOfLowerBoundaryOfRegion</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.DiffusionQuantity.velocity_of_upper_boundary_of_region">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">velocity_of_upper_boundary_of_region</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">region</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">VelocityOfUpperBoundaryOfRegion</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.DiffusionQuantity.velocity_of_upper_boundary_of_region" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the velocity of upper boundary of a region [m/s].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>region</strong> – The name of the region</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">VelocityOfUpperBoundaryOfRegion</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.DiffusionQuantity.width_of_region">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">width_of_region</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">region</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Function</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.DiffusionQuantity.width_of_region" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the width of a region [m].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>region</strong> – The name of the region</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">WidthOfRegion</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.IndependentVariable">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.quantity_factory.</span></span><span class="sig-name descname"><span class="pre">IndependentVariable</span></span><a class="headerlink" href="#tc_python.quantity_factory.IndependentVariable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractQuantity</span></code></p>
+<p>Factory class providing quantities used for defining the independent variable in general diffusion result querying.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.IndependentVariable.distance">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">region</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'All'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Distance</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.IndependentVariable.distance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an independent variable representing the distance [m].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <cite>Distance</cite> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.IndependentVariable.time">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">time</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Time</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.IndependentVariable.time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an independent variable representing the time [s].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <cite>Time</cite> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.PlotCondition">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.quantity_factory.</span></span><span class="sig-name descname"><span class="pre">PlotCondition</span></span><a class="headerlink" href="#tc_python.quantity_factory.PlotCondition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractQuantity</span></code></p>
+<p>Factory class providing quantities used for defining the plot condition in general diffusion result querying.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In this factory class only the most common quantities are defined, you can always use the <em>Console Mode</em> syntax
+strings in the respective methods as an alternative (for example: “time last”).</p>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.PlotCondition.distance">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distancepoint</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">region</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'All'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DistanceCondition</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.PlotCondition.distance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a plot condition representing the distance [m].</p>
+<p><strong>Change in version 2019b</strong>: Mandatory parameter <cite>distancepoint</cite> added</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>distancepoint</strong> – The distance from the lower interface of the region</p></li>
+<li><p><strong>region</strong> – The name of the region or <cite>All</cite> to choose global.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <cite>DistanceCondition</cite> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.PlotCondition.integral">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">integral</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">IntegralCondition</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.PlotCondition.integral" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an integral plot condition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <cite>IntegralCondition</cite> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.PlotCondition.interface">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">interface</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">region</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interface_position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="utils.html#tc_python.utils.InterfacePosition" title="tc_python.utils.InterfacePosition"><span class="pre">InterfacePosition</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">InterfaceCondition</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.PlotCondition.interface" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a plot condition representing an interface between two regions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>region</strong> – The name of the region used for defining the interface</p></li>
+<li><p><strong>interface_position</strong> – The position of the interface relative to that region (lower or upper)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <cite>InterfaceCondition</cite> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.PlotCondition.time">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timepoint</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Last'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">TimeCondition</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.PlotCondition.time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a plot condition representing the time [s].</p>
+<p><strong>Change in version 2019b</strong>: Lists of timepoints are no longer supported</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>timepoint</strong> – The timepoint. Optionally “Last” can be used for the end of the simulation</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <cite>TimeCondition</cite> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ScheilQuantity">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.quantity_factory.</span></span><span class="sig-name descname"><span class="pre">ScheilQuantity</span></span><a class="headerlink" href="#tc_python.quantity_factory.ScheilQuantity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractQuantity</span></code></p>
+<p>Factory class providing quantities used for defining a Scheil calculation result
+(<a class="reference internal" href="../calculation_modules/scheil.html#tc_python.scheil.ScheilCalculationResult" title="tc_python.scheil.ScheilCalculationResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">tc_python.scheil.ScheilCalculationResult</span></code></a>).</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ScheilQuantity.apparent_heat_capacity_per_gram">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">apparent_heat_capacity_per_gram</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ApparentHeatCapacityPerGram</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ScheilQuantity.apparent_heat_capacity_per_gram" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the apparent heat capacity [J/g/K].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">ApparentHeatCapacityPerGram</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ScheilQuantity.apparent_heat_capacity_per_mole">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">apparent_heat_capacity_per_mole</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ApparentHeatCapacityPerMole</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ScheilQuantity.apparent_heat_capacity_per_mole" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the apparent heat capacity [J/mol/K].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">ApparentHeatCapacityPerMole</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ScheilQuantity.apparent_volumetric_thermal_expansion_coefficient">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">apparent_volumetric_thermal_expansion_coefficient</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ApparentVolumetricThermalExpansionCoefficient</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ScheilQuantity.apparent_volumetric_thermal_expansion_coefficient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the apparent volumetric thermal expansion coefficient of the system [1/K].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">ApparentVolumetricThermalExpansionCoefficient</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ScheilQuantity.average_composition_of_solid_phases_as_mass_fraction">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">average_composition_of_solid_phases_as_mass_fraction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">AverageCompositionOfSolidPhasesAsMassFraction</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ScheilQuantity.average_composition_of_solid_phases_as_mass_fraction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the average composition of solid phases [mass fraction] at the current Scheil
+step.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>component</strong> – The name of the component, use <cite>ALL_COMPONENTS</cite> to choose all components</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">AverageCompositionOFSolidPhasesAsMassFraction</span></code>  object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ScheilQuantity.average_composition_of_solid_phases_as_mole_fraction">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">average_composition_of_solid_phases_as_mole_fraction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">AverageCompositionOfSolidPhasesAsMoleFraction</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ScheilQuantity.average_composition_of_solid_phases_as_mole_fraction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the average composition of solid phases [mole fraction] at the current Scheil
+step.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>component</strong> – The name of the component, use <cite>ALL_COMPONENTS</cite> to choose all components</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">AverageCompositionOFSolidPhasesAsMoleFraction</span></code>  object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ScheilQuantity.composition_of_phase_as_mole_fraction">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">composition_of_phase_as_mole_fraction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">CompositionOfPhaseAsMoleFraction</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ScheilQuantity.composition_of_phase_as_mole_fraction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the composition of a phase [mole-fraction].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – The name of the phase, use <cite>ALL_PHASES</cite> to choose all stable phases</p></li>
+<li><p><strong>component</strong> – The name of the component, use <cite>ALL_COMPONENTS</cite> to choose all components</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">CompositionOfPhaseAsMoleFraction</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ScheilQuantity.composition_of_phase_as_weight_fraction">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">composition_of_phase_as_weight_fraction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">CompositionOfPhaseAsWeightFraction</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ScheilQuantity.composition_of_phase_as_weight_fraction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the composition of a phase [weight-fraction].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – The name of the phase, use <cite>ALL_PHASES</cite> to choose all stable phases</p></li>
+<li><p><strong>component</strong> – The name of the component, use <cite>ALL_COMPONENTS</cite> to choose all components</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">CompositionOfPhaseAsWeightFraction</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ScheilQuantity.density_of_phase">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">density_of_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DensityOfPhase</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ScheilQuantity.density_of_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the average density of a phase [g/cm^3].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>phase</strong> – The name of the phase or <cite>ALL_PHASES</cite> to choose all phases</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">DensityOfPhase</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ScheilQuantity.density_of_system">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">density_of_system</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DensityOfSystem</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ScheilQuantity.density_of_system" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the average density of the system [g/cm^3].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">DensityOfSystem</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ScheilQuantity.distribution_of_component_of_phase">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">distribution_of_component_of_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DistributionOfComponentOfPhase</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ScheilQuantity.distribution_of_component_of_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the (molar) fraction of the specified component being present in the specified
+phase compared to the overall system [-]. This corresponds to the degree of segregation to that phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – The name of the phase</p></li>
+<li><p><strong>component</strong> – The name of the component</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">DistributionOfComponentOfPhase</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ScheilQuantity.heat_per_gram">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">heat_per_gram</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">HeatPerGram</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ScheilQuantity.heat_per_gram" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the total heat release from the liquidus temperature down to the current
+temperature [J/g].</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The total or apparent heat release during the solidification process consists of two parts: one is the
+so-called latent heat, i.e. heat due to the liquid -&gt; solid phase transformation
+(<a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.latent_heat_per_mole" title="tc_python.quantity_factory.ScheilQuantity.latent_heat_per_mole"><code class="xref py py-func docutils literal notranslate"><span class="pre">latent_heat_per_mole()</span></code></a> and <a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.latent_heat_per_gram" title="tc_python.quantity_factory.ScheilQuantity.latent_heat_per_gram"><code class="xref py py-func docutils literal notranslate"><span class="pre">latent_heat_per_gram()</span></code></a>), and the other is the heat
+related to the specific heat of liquid and solid phases (<a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.heat_per_mole" title="tc_python.quantity_factory.ScheilQuantity.heat_per_mole"><code class="xref py py-func docutils literal notranslate"><span class="pre">heat_per_mole()</span></code></a>
+and <a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.heat_per_gram" title="tc_python.quantity_factory.ScheilQuantity.heat_per_gram"><code class="xref py py-func docutils literal notranslate"><span class="pre">heat_per_gram()</span></code></a>).</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">HeatPerGram</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ScheilQuantity.heat_per_mole">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">heat_per_mole</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">HeatPerMole</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ScheilQuantity.heat_per_mole" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the total heat release from the liquidus temperature down to the current
+temperature [J/mol].</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The total or apparent heat release during the solidification process consists of two parts: one is the
+so-called latent heat, i.e. heat due to the liquid -&gt; solid phase transformation
+(<a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.latent_heat_per_mole" title="tc_python.quantity_factory.ScheilQuantity.latent_heat_per_mole"><code class="xref py py-func docutils literal notranslate"><span class="pre">latent_heat_per_mole()</span></code></a> and <a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.latent_heat_per_gram" title="tc_python.quantity_factory.ScheilQuantity.latent_heat_per_gram"><code class="xref py py-func docutils literal notranslate"><span class="pre">latent_heat_per_gram()</span></code></a>), and the other is the heat
+related to the specific heat of liquid and solid phases (<a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.heat_per_mole" title="tc_python.quantity_factory.ScheilQuantity.heat_per_mole"><code class="xref py py-func docutils literal notranslate"><span class="pre">heat_per_mole()</span></code></a>
+and <a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.heat_per_gram" title="tc_python.quantity_factory.ScheilQuantity.heat_per_gram"><code class="xref py py-func docutils literal notranslate"><span class="pre">heat_per_gram()</span></code></a>).</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">HeatPerMole</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ScheilQuantity.latent_heat_per_gram">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">latent_heat_per_gram</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">LatentHeatPerGram</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ScheilQuantity.latent_heat_per_gram" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the cumulated latent heat release from the liquidus temperature down to the
+current temperature [J/g].</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The total or apparent heat release during the solidification process consists of two parts: one is the
+so-called latent heat, i.e. heat due to the liquid -&gt; solid phase transformation
+(<a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.latent_heat_per_mole" title="tc_python.quantity_factory.ScheilQuantity.latent_heat_per_mole"><code class="xref py py-func docutils literal notranslate"><span class="pre">latent_heat_per_mole()</span></code></a> and <a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.latent_heat_per_gram" title="tc_python.quantity_factory.ScheilQuantity.latent_heat_per_gram"><code class="xref py py-func docutils literal notranslate"><span class="pre">latent_heat_per_gram()</span></code></a>), and the other is the heat
+related to the specific heat of liquid and solid phases (<a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.heat_per_mole" title="tc_python.quantity_factory.ScheilQuantity.heat_per_mole"><code class="xref py py-func docutils literal notranslate"><span class="pre">heat_per_mole()</span></code></a>
+and <a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.heat_per_gram" title="tc_python.quantity_factory.ScheilQuantity.heat_per_gram"><code class="xref py py-func docutils literal notranslate"><span class="pre">heat_per_gram()</span></code></a>).</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">LatentHeatPerGram</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ScheilQuantity.latent_heat_per_mole">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">latent_heat_per_mole</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">LatentHeatPerMole</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ScheilQuantity.latent_heat_per_mole" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the cumulated latent heat release from the liquidus temperature down to the
+current temperature [J/mol].</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The total or apparent heat release during the solidification process consists of two parts: one is the
+so-called latent heat, i.e. heat due to the liquid -&gt; solid phase transformation
+(<a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.latent_heat_per_mole" title="tc_python.quantity_factory.ScheilQuantity.latent_heat_per_mole"><code class="xref py py-func docutils literal notranslate"><span class="pre">latent_heat_per_mole()</span></code></a> and <a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.latent_heat_per_gram" title="tc_python.quantity_factory.ScheilQuantity.latent_heat_per_gram"><code class="xref py py-func docutils literal notranslate"><span class="pre">latent_heat_per_gram()</span></code></a>), and the other is the heat
+related to the specific heat of liquid and solid phases (<a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.heat_per_mole" title="tc_python.quantity_factory.ScheilQuantity.heat_per_mole"><code class="xref py py-func docutils literal notranslate"><span class="pre">heat_per_mole()</span></code></a>
+and <a class="reference internal" href="#tc_python.quantity_factory.ScheilQuantity.heat_per_gram" title="tc_python.quantity_factory.ScheilQuantity.heat_per_gram"><code class="xref py py-func docutils literal notranslate"><span class="pre">heat_per_gram()</span></code></a>).</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">LatentHeatPerMole</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ScheilQuantity.mass_fraction_of_a_solid_phase">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mass_fraction_of_a_solid_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">MassFractionOfASolidPhase</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ScheilQuantity.mass_fraction_of_a_solid_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the mass fraction of a solid phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>phase</strong> – The name of the phase or <cite>ALL_PHASES</cite> to choose all solid phases</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">MassFractionOfASolidPhase</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ScheilQuantity.mass_fraction_of_all_liquid">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mass_fraction_of_all_liquid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">MassFractionOfAllLiquid</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ScheilQuantity.mass_fraction_of_all_liquid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the total mass fraction of all the liquid phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">MassFractionOfAllLiquid</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ScheilQuantity.mass_fraction_of_all_solid_phases">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mass_fraction_of_all_solid_phases</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">MassFractionOfAllSolidPhase</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ScheilQuantity.mass_fraction_of_all_solid_phases" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the total mass fraction of all solid phases.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">MassFractionOfAllSolidPhase</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ScheilQuantity.molar_volume_of_phase">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">molar_volume_of_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">MolarVolumeOfPhase</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ScheilQuantity.molar_volume_of_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the molar volume of a phase [m^3/mol].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>phase</strong> – The name of the phase or <cite>ALL_PHASES</cite> to choose all phases</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">MolarVolumeOfPhase</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ScheilQuantity.molar_volume_of_system">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">molar_volume_of_system</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">MolarVolumeOfSystem</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ScheilQuantity.molar_volume_of_system" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the molar volume of the system [m^3/mol].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">MolarVolumeOfSystem</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ScheilQuantity.mole_fraction_of_a_solid_phase">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mole_fraction_of_a_solid_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">MoleFractionOfASolidPhase</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ScheilQuantity.mole_fraction_of_a_solid_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the molar fraction of a solid phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>phase</strong> – The name of the phase or <cite>ALL_PHASES</cite> to choose all solid phases</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">MoleFractionOfASolidPhase</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ScheilQuantity.mole_fraction_of_all_liquid">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mole_fraction_of_all_liquid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">MoleFractionOfAllLiquid</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ScheilQuantity.mole_fraction_of_all_liquid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the total molar fraction of all the liquid phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">MoleFractionOfAllLiquid</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ScheilQuantity.mole_fraction_of_all_solid_phases">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mole_fraction_of_all_solid_phases</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">MoleFractionOfAllSolidPhases</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ScheilQuantity.mole_fraction_of_all_solid_phases" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the total molar fraction of all solid phases.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">MoleFractionOfAllSolidPhases</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ScheilQuantity.site_fraction_of_component_in_phase">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">site_fraction_of_component_in_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sub_lattice_ordinal_no</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">SiteFractionOfComponentInPhase</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ScheilQuantity.site_fraction_of_component_in_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the site fractions [-].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – The name of the phase, use <cite>ALL_PHASES</cite> to choose all stable phases</p></li>
+<li><p><strong>component</strong> – The name of the component, use <cite>ALL_COMPONENTS</cite> to choose all components</p></li>
+<li><p><strong>sub_lattice_ordinal_no</strong> – The ordinal number (i.e. 1, 2, …) of the sublattice of interest, use None
+to choose all sublattices</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Detailed information about the sublattices can be obtained by getting the <cite>Phase</cite> object of a phase from
+the <cite>System</cite> object using <code class="xref py py-class docutils literal notranslate"><span class="pre">tc_python.system.System.get_phase_in_system</span></code>. For each phase the
+sublattices are obtained by using <code class="xref py py-class docutils literal notranslate"><span class="pre">tc_python.system.Phase.get_sublattices</span></code>. The order in the
+returned list is equivalent to the sublattice ordinal number expected, <strong>but note that the ordinal numbers
+start with 1</strong>.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">SiteFractionOfComponentInPhase</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ScheilQuantity.temperature">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">temperature</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Temperature</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ScheilQuantity.temperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the temperature [K].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">Temperature</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ScheilQuantity.volume_fraction_of_a_solid_phase">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">volume_fraction_of_a_solid_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">VolumeFractionOfASolidPhase</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ScheilQuantity.volume_fraction_of_a_solid_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the volume fraction of a solid phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>phase</strong> – The name of the phase or <cite>ALL_PHASES</cite> to choose all solid phases</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">VolumeFractionOfASolidPhase</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ScheilQuantity.volume_fraction_of_all_liquid">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">volume_fraction_of_all_liquid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">VolumeFractionOfAllLiquid</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ScheilQuantity.volume_fraction_of_all_liquid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the total volume fraction of all the liquid phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">VolumeFractionOfAllLiquid</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ScheilQuantity.volume_fraction_of_all_solid_phases">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">volume_fraction_of_all_solid_phases</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">VolumeFractionOfAllSolidPhases</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ScheilQuantity.volume_fraction_of_all_solid_phases" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the total volume fraction of all solid phases.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">VolumeFractionOfAllSolidPhases</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ThermodynamicQuantity">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.quantity_factory.</span></span><span class="sig-name descname"><span class="pre">ThermodynamicQuantity</span></span><a class="headerlink" href="#tc_python.quantity_factory.ThermodynamicQuantity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractQuantity</span></code></p>
+<p>Factory class providing quantities used for defining equilibrium calculations (single equilibrium, property and
+phase diagrams, …) and their results.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In this factory class only the most common quantities are defined, you can always use the <em>Console Mode</em> syntax
+strings in the respective methods as an alternative (for example: “NPM(*)”).</p>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ThermodynamicQuantity.activity_of_component">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">activity_of_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_ser</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ActivityOfComponent</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ThermodynamicQuantity.activity_of_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the activity of a component [-].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component</strong> – The name of the component, use <cite>ALL_COMPONENTS</cite> to choose all components</p></li>
+<li><p><strong>use_ser</strong> – Use Stable-Element-Reference(SER). The user-defined reference state is used if this setting is
+set to <cite>False</cite>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">ActivityOfComponent</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ThermodynamicQuantity.chemical_diffusion_coefficient">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">chemical_diffusion_coefficient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diffusing_element</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gradient_element</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_element</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ChemicalDiffusionCoefficient</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ThermodynamicQuantity.chemical_diffusion_coefficient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the chemical diffusion coefficient of a phase [m^2/s].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – The name of the phase</p></li>
+<li><p><strong>diffusing_element</strong> – The diffusing element</p></li>
+<li><p><strong>gradient_element</strong> – The gradient element</p></li>
+<li><p><strong>reference_element</strong> – The reference element (for example “Fe” in a steel)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">ChemicalDiffusionCoefficient</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ThermodynamicQuantity.chemical_potential_of_component">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">chemical_potential_of_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_ser</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ChemicalPotentialOfComponent</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ThermodynamicQuantity.chemical_potential_of_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the chemical potential of a component [J].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component</strong> – The name of the component, use <cite>ALL_COMPONENTS</cite> to choose all components</p></li>
+<li><p><strong>use_ser</strong> – Use Stable-Element-Reference(SER). The user-defined reference state is used if this setting is
+set to <cite>False</cite>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">ChemicalPotentialOfComponent</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ThermodynamicQuantity.composition_of_phase_as_mole_fraction">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">composition_of_phase_as_mole_fraction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'All'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">CompositionOfPhaseAsMoleFraction</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ThermodynamicQuantity.composition_of_phase_as_mole_fraction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the composition of a phase [mole-fraction].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – The name of the phase, use <cite>ALL_PHASES</cite> to choose all stable phases</p></li>
+<li><p><strong>component</strong> – The name of the component, use <cite>ALL_COMPONENTS</cite> to choose all components</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">CompositionOfPhaseAsMoleFraction</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ThermodynamicQuantity.composition_of_phase_as_weight_fraction">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">composition_of_phase_as_weight_fraction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">CompositionOfPhaseAsWeightFraction</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ThermodynamicQuantity.composition_of_phase_as_weight_fraction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the composition of a phase [weight-fraction].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – The name of the phase, use <cite>ALL_PHASES</cite> to choose all stable phases</p></li>
+<li><p><strong>component</strong> – The name of the component, use <cite>ALL_COMPONENTS</cite> to choose all components</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">CompositionOfPhaseAsWeightFraction</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ThermodynamicQuantity.gibbs_energy_of_a_phase">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">gibbs_energy_of_a_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_ser</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">GibbsEnergyOfAPhase</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ThermodynamicQuantity.gibbs_energy_of_a_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the Gibbs energy of a phase [J].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – The name of the phase or <cite>ALL_PHASES</cite> to choose all phases</p></li>
+<li><p><strong>use_ser</strong> – Use Stable-Element-Reference(SER). The user-defined reference state will be used when this setting is set to False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">GibbsEnergyOfAPhase</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ThermodynamicQuantity.mass_fraction_of_a_component">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mass_fraction_of_a_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">MassFractionOfAComponent</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ThermodynamicQuantity.mass_fraction_of_a_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the mass fraction of a component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>component</strong> – The name of the component or <cite>ALL_COMPONENTS</cite> to choose all components</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">MassFractionOfAComponent</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ThermodynamicQuantity.mass_fraction_of_a_phase">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mass_fraction_of_a_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">MassFractionOfAPhase</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ThermodynamicQuantity.mass_fraction_of_a_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the mass fraction of a phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>phase</strong> – The name of the phase or <cite>ALL_PHASES</cite> to choose all phases.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">MassFractionOfAPhase</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ThermodynamicQuantity.mole_fraction_of_a_component">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mole_fraction_of_a_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">MoleFractionOfAComponent</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ThermodynamicQuantity.mole_fraction_of_a_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the mole fraction of a component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>component</strong> – The name of the component or <cite>ALL_COMPONENTS</cite> to choose all components</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">MoleFractionOfAComponent</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ThermodynamicQuantity.mole_fraction_of_a_phase">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mole_fraction_of_a_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">MoleFractionOfAPhase</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ThermodynamicQuantity.mole_fraction_of_a_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the mole fraction of a phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>phase</strong> – The name of the phase or <cite>ALL_PHASES</cite> to choose all phases</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">MoleFractionOfAPhase</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ThermodynamicQuantity.normalized_driving_force_of_a_phase">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">normalized_driving_force_of_a_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">NormalizedDrivingForceOfAPhase</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ThermodynamicQuantity.normalized_driving_force_of_a_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing normalized driving force of a phase [-].</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>A driving force calculation requires that the respective phase has been set to the state <em>DORMANT</em>.
+The parameter <cite>All</cite> is only reasonable if all phases have been set to that state.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>phase</strong> – The name of the phase or <cite>ALL_PHASES</cite> to choose all phases</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">DrivingForceOfAPhase</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ThermodynamicQuantity.pressure">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pressure</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Pressure</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ThermodynamicQuantity.pressure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the pressure [Pa].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">Pressure</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ThermodynamicQuantity.system_size">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">system_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">SystemSize</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ThermodynamicQuantity.system_size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the system size [mol].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">SystemSize</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ThermodynamicQuantity.temperature">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">temperature</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Temperature</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ThermodynamicQuantity.temperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the temperature [K].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">Temperature</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ThermodynamicQuantity.tracer_diffusion_coefficient">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tracer_diffusion_coefficient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diffusing_element</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">TracerDiffusionCoefficient</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ThermodynamicQuantity.tracer_diffusion_coefficient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing tracer diffusion coefficient of a phase [m^2/s].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – The name of the phase</p></li>
+<li><p><strong>diffusing_element</strong> – The diffusing element</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">TracerDiffusionCoefficient</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ThermodynamicQuantity.u_fraction_of_a_component">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">u_fraction_of_a_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">UFractionOfAComponent</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ThermodynamicQuantity.u_fraction_of_a_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the u-fraction of a component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>component</strong> – The name of the component</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">UFractionOfAComponent</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ThermodynamicQuantity.user_defined_function">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">user_defined_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expression</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Function</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ThermodynamicQuantity.user_defined_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing a user-defined function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>expression</strong> – The function expression</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">Function</span></code> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.quantity_factory.ThermodynamicQuantity.volume_fraction_of_a_phase">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">volume_fraction_of_a_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">VolumeFractionOfAPhase</span></span></span><a class="headerlink" href="#tc_python.quantity_factory.ThermodynamicQuantity.volume_fraction_of_a_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the volume fraction of a phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>phase</strong> – The name of the phase or <cite>ALL_PHASES</cite> to choose all phases</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">VolumeFractionOfAPhase</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="server.html" class="btn btn-neutral float-left" title="Module “server”" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="utils.html" class="btn btn-neutral float-right" title="Module “utils”" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Foundation of Computational Thermodynamics, Stockholm, Sweden.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

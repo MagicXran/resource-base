@@ -1,0 +1,182 @@
+Troubleshooting
+===============
+
+This section provides an FAQ for common problems that occur when using TC-Python.
+
+
+Diagnostics script
+------------------
+
+If you have problems running TC-Python, run the diagnostics script below.
+
+On Linux you can alternatively download the script directly into your current working directory by:
+
+.. code:: console
+
+        curl -O https://download.thermocalc.com/downloads/support/diagnostics-py/2023b/tc-python-diagnostic-script-2023b.py
+
+
+.. code:: python
+
+    """
+    Run this script when troubleshooting TC-Python
+
+    It is important to run this script EXACTLY the same way as you run your TC-Python script
+    (In the same IDE, same project, same Python environment, same Jupyter notebook e.t.c)
+
+    """
+
+    version = '2023b'
+
+    print('Testing TC-Python version: ' + version)
+    print('Please make sure that the variable "version" above, matches the release that you want to test, if not change it and re-run this script.')
+
+    # below this line, nothing needs to be manually updated.
+
+    import sys
+    print('')
+    print('Python version: (should be at least 3.5 and can NOT be older than 3.0)')
+    print(str(sys.version_info[0]) + '.' + str(sys.version_info[1]))
+    if sys.version_info[0] < 3 or sys.version_info[1] < 5:
+        print('Wrong version of Python !!!!!')
+
+    print('')
+    print('Python executable path: (gives a hint about the used virtual / conda environment, in case of Anaconda the corresponding \n'
+          'environment name can be found by running `conda env list` on the Anaconda command prompt, '
+          'TC-Python must be installed into \nEACH separate environment used!)')
+    print(sys.executable)
+
+    import os
+    print('')
+    print('Thermo-Calc ' + version + ' installation directory: (must be a valid path to a complete installation of ' + version + ')')
+    tc_env_variable = 'TC' + version[2:].upper() + '_HOME'
+    try:
+        print(os.environ[tc_env_variable])
+    except:
+        print('No Thermo-calc environment variable for ' + version + ' was found. (' + tc_env_variable + ')')
+
+    print('')
+    print('Url of license server: (if license server is NO-NET, you need a local license file)')
+    try:
+        print(os.environ['LSHOST'])
+    except:
+        print('No Thermo-calc license server url was found. (LSHOST)')
+
+
+    print('')
+    print('Path to local license file: (only necessary if not using license server)')
+    try:
+        print(os.environ['LSERVRC'])
+    except:
+        print('No path to local license file was found. (LSERVRC)')
+
+
+    import tc_python
+    numerical_version = version[:-1]
+    if version[-1] == 'a':
+        numerical_version += '.1.*'
+    elif version[-1] == 'b':
+        numerical_version += '.2.*'
+    print('')
+    print('TC-Python version: (needs to be ' + numerical_version + ')')
+    print(tc_python.__version__)
+
+
+    with tc_python.TCPython() as session:
+        print('')
+        print('Lists the databases: (should be a complete list of the installed databases that you have license for or do not require license)')
+        print(session.get_databases())
+
+
+
+"No module named tc_python" error on first usage
+------------------------------------------------
+
+This problem occurs because your used Python interpreter cannot find the TC-Python package. We expect that you have
+installed the TC-Python package in your **Python system interpreter** following the instructions in the
+:ref:`installation-chapter`.
+
+Normally the error message "*No module named tc_python*" is caused by unintentionally configuring a PyCharm project to
+use a so-called **Virtual Environment**. This happens unfortunately by default when creating a new PyCharm project
+with not changing the default settings.
+
+.. note::
+
+    A Virtual Environment is basically a separate and completely independent copy of
+    the system-wide Python interpreter. It does not contain any packages.
+
+On Windows systems we recommend to use the Anaconda Python Distribution as Python interpreter. However, the instructions
+given here are valid for any operating system and distribution.
+
+Since TC-Python 2018b we do recommend to **not use Virtual Environments** unless there is a reasonable use case for
+that.
+
+There are two possible solutions to fix the problem:
+
+1.  The quick fix for your problem is to run
+
+    .. code-block:: bash
+
+        pip install <path to the TC-Python folder>/TC_Python-<version>-py3-none-any.whl
+
+    within the *Terminal window* of the opened PyCharm project. This *Terminal window* automatically runs within the
+    *Virtual Environment* configured for the project (if any). You can see the name of the *Virtual Environment* at the
+    beginning of each command prompt line (here it is called `venv`):
+
+    .. code-block:: bash
+
+        Microsoft Windows [Version 10.0.16299.431]
+        (c) 2017 Microsoft Corporation. All rights reserved.
+
+        (venv) C:\Users\User\Documents\>
+
+
+    The command will consequently **install TC-Python also within that Virtual Environment automatically**. The
+    Terminal window can be found at the bottom of the IDE. Note that it might be necessary to enable these buttons
+    first by selecting the menu entry **View→Tool Buttons**.
+
+
+2.  The better fix is to change your project **to use the system interpreter**. This is described in detail in the
+    section :ref:`installation-chapter-fixing-environ` in Step 5 of the :ref:`installation-chapter`.
+
+    *It is recommendable to use that approach also for all your future projects.*
+
+Both fixes will only change the configuration of the opened project.
+Further useful information can be found in the section :ref:`best-practices-chapter-virtual-envs`.
+
+
+.. _pip-proxy-error-chapter:
+
+"pip install" fails with "Failed to establish a new network connection" or similar
+----------------------------------------------------------------------------------
+
+If `pip install` fails with a network related error (might also be "*socket not available*", "*retrying after connection
+broken*", ...) it is often due to the computer being behind a proxy-server, this is common in large organizations.
+Of course also the network connection might be broken.
+
+TC-Python has dependencies to a few other packages:
+
+    * `py4j`
+    * `jproperties`
+    * `six` (transient dependency of `jproperties`)
+
+1.  The recommended approach is to simply use `pip`. It will resolve the dependencies automatically by downloading them
+    from the `PyPI`-repository server (https://pypi.org). If your computer is located behind a proxy-server, the
+    connection to the repository will fail. In that case it is necessary to configure `pip` with the detailed
+    configuration of the proxy server:
+
+    .. code-block:: bash
+
+        pip install -proxy user:password@proxy_ip:port py4j jproperties
+
+2.  Another alternative is to manually download the latest :file:`*.whl`-file of each dependency from the repository
+    server (https://pypi.org -> *Search projects*) and to install it manually using:
+
+    .. code-block:: bash
+
+        pip install py4j-#.#.#-py2.py3-none-any.whl
+        ...
+
+    The actual actual version number needs to be inserted into the file name. The downside of this
+    approach is that updates to that package have to be fully manual also in the future. Additionally it is also
+    necessary to install all transient dependencies in that way.

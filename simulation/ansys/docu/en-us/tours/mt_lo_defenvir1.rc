@@ -1,0 +1,70 @@
+! Tour Page
+*mt_lo_defenvir1*title: Tour - Defining an Environment
+*mt_lo_defenvir1*next: mt_lo_seleload
+*mt_lo_defenvir1*previous: mt_lo_toc1
+*mt_lo_defenvir1*htmlhelp: docu $euidlArray(language) mechhelp mt_lo_defenvir1.html
+*mt_lo_defenvir1*home: mt_mt_home
+
+! Tour Page Components
+*mt_lo_defenvir1*tourlist: heading overview option1 option2 option3 option4 \
+seenext
+!
+! Component Definition
+!
+! Note:
+!     Use \t to insert a tab into the text
+!     Use \n to insert a line feed into the text
+!     Use \i to insert an image into the text
+!     Use \ to continue a line within this file
+!
+!     The \ is a used to specify that special characters be taken literally.
+!     If using characters [, ], ", \, $ and perhaps others you must precede
+!     them with the \ (backslash) to use them.
+!
+!     You have the following options available for a component:
+!         Text          - The text to show for this component
+!         HyperlinkCall - The method to call when this component is clicked on
+!         Show          - The helpID of the buttcon to flash when choosing the
+!                         magnifing glass.  This puts the magnifing glass in.
+!         ImageList     - The list of images to place in the \i locations.
+!                         This is not needed for the Show item but you must
+!                         put the \i in the Text. NOT SUPPORTED YET
+
+! heading
+!
+*mt_lo_defenvir1*headingText: "Defining An Environment \n" HEADING2
+
+! overview
+!
+*mt_lo_defenvir1*overviewText: "Use the Load Environment drop down list \
+box to add, copy, delete, or rename an environment.  Click the arrow \
+and choose one of the following options: \n" {BODY1}
+
+! option1
+!
+*mt_lo_defenvir1*option1Text: "New Environment... \n" \
+{STEP1 HYPERLINK option1} 
+*mt_lo_defenvir1*option1HyperlinkCall: showTour mt_lo_addenv
+
+
+! option2
+!
+*mt_lo_defenvir1*option2Text: "Copy Environment... \n" \
+{STEP1 HYPERLINK option2} 
+*mt_lo_defenvir1*option2HyperlinkCall: showTour mt_lo_copyenv
+
+
+! option3
+!
+*mt_lo_defenvir1*option3Text: "Delete Environment... \n" \
+{STEP1 HYPERLINK option3} 
+*mt_lo_defenvir1*option3HyperlinkCall: showTour mt_lo_delenv
+
+! option4
+!
+*mt_lo_defenvir1*option4Text: "Rename Environment... \n" \
+{STEP1 HYPERLINK option4} 
+*mt_lo_defenvir1*option4HyperlinkCall: showTour mt_lo_renenv
+
+*mt_lo_defenvir1*seenextText: "\n\nClick Next to learn how to add or\
+ delete loads.\n" {BODY1}

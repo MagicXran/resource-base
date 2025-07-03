@@ -1,0 +1,2516 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Root Package &mdash; TC-Toolbox for MATLAB® 2023b documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Package “system”" href="system.html" />
+    <link rel="prev" title="Package “process”" href="../calculation_packages/process_metallurgy_modules/process.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            TC-Toolbox for MATLAB®
+          </a>
+              <div class="version">
+                2023b
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Quick Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../best_practices.html">Best Practices</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api_reference.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../calculations.html">Calculations</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Root Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system.html">Package “system”</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">TC-Toolbox for MATLAB®</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api_reference.html">API Reference</a></li>
+      <li class="breadcrumb-item active">Root Package</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-+tc_toolbox">
+<span id="root-package"></span><h1>Root Package<a class="headerlink" href="#module-+tc_toolbox" title="Permalink to this heading">¶</a></h1>
+<dl class="mat class">
+<dt class="sig sig-object mat" id="+tc_toolbox.AbstractCalculation">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+tc_toolbox.</span></span><span class="sig-name descname"><span class="pre">AbstractCalculation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">back</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.AbstractCalculation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract base class for calculations.</p>
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.AbstractCalculation.AbstractCalculation">
+<span class="sig-name descname"><span class="pre">AbstractCalculation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">back</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.AbstractCalculation.AbstractCalculation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs an instance of <a class="reference internal" href="#+tc_toolbox.AbstractCalculation" title="+tc_toolbox.AbstractCalculation"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">AbstractCalculation</span></code></a>.</p>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.AbstractCalculation.get_configuration_as_string">
+<span class="sig-name descname"><span class="pre">get_configuration_as_string</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.AbstractCalculation.get_configuration_as_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns detailed information about the current state of the calculation object.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The structure of the calculator objects is an implementation detail and might change between releases
+without notice. <strong>Therefore do not rely on the internal object structure</strong>.</p>
+</div>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.AbstractCalculation.get_system_data">
+<span class="sig-name descname"><span class="pre">get_system_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.AbstractCalculation.get_system_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the content of the database for the currently loaded system. This can be used to modify the parameters
+and functions and to change the current system by using <a class="reference internal" href="#+tc_toolbox.AbstractCalculation.with_system_modifications" title="+tc_toolbox.AbstractCalculation.with_system_modifications"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">with_system_modifications()</span></code></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Parameters can only be read from unencrypted (i.e. <em>user</em>) databases loaded as <cite>*.tdb</cite>-file.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The system data</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.AbstractCalculation.invalidate">
+<span class="sig-name descname"><span class="pre">invalidate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.AbstractCalculation.invalidate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invalidates the object and frees the disk space used by it. <em>This is only required if the disk space occupied
+by the object needs to be released during the calculation</em>. No data can be retrieved from the object afterwards.</p>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.AbstractCalculation.with_system_modifications">
+<span class="sig-name descname"><span class="pre">with_system_modifications</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">system_modifications</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.AbstractCalculation.with_system_modifications" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the system of this calculator with the supplied system modification (containing new phase parameters
+and system functions).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is only possible if the system has been read from unencrypted (i.e. <em>user</em>) databases loaded as a <code class="file docutils literal notranslate"><span class="pre">*.tdb</span></code>-file.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>system_modifications</strong> – The system modification to be performed</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="mat class">
+<dt class="sig sig-object mat" id="+tc_toolbox.AbstractResult">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+tc_toolbox.</span></span><span class="sig-name descname"><span class="pre">AbstractResult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">back</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.AbstractResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract base class for results.
+This can be used to query for specific values .</p>
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.AbstractResult.AbstractResult">
+<span class="sig-name descname"><span class="pre">AbstractResult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">back</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.AbstractResult.AbstractResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs an instance of <a class="reference internal" href="#+tc_toolbox.AbstractResult" title="+tc_toolbox.AbstractResult"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">AbstractResult</span></code></a>.</p>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.AbstractResult.invalidate">
+<span class="sig-name descname"><span class="pre">invalidate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.AbstractResult.invalidate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invalidates the object and frees the disk space used by it. <em>This is only required if the disk space occupied
+by the object needs to be released during the calculation</em>. No data can be retrieved from the object afterwards.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="mat class">
+<dt class="sig sig-object mat" id="+tc_toolbox.CompositionType">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+tc_toolbox.</span></span><span class="sig-name descname"><span class="pre">CompositionType</span></span><a class="headerlink" href="#+tc_toolbox.CompositionType" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of composition.</p>
+</dd></dl>
+
+<dl class="mat class">
+<dt class="sig sig-object mat" id="+tc_toolbox.CompositionUnit">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+tc_toolbox.</span></span><span class="sig-name descname"><span class="pre">CompositionUnit</span></span><a class="headerlink" href="#+tc_toolbox.CompositionUnit" title="Permalink to this definition">¶</a></dt>
+<dd><p>The composition unit.</p>
+</dd></dl>
+
+<dl class="mat class">
+<dt class="sig sig-object mat" id="+tc_toolbox.Constants">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+tc_toolbox.</span></span><span class="sig-name descname"><span class="pre">Constants</span></span><a class="headerlink" href="#+tc_toolbox.Constants" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="mat attribute">
+<dt class="sig sig-object mat" id="+tc_toolbox.Constants.ALL_COMPONENTS">
+<span class="sig-name descname"><span class="pre">ALL_COMPONENTS</span></span><a class="headerlink" href="#+tc_toolbox.Constants.ALL_COMPONENTS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="+tc_toolbox.Constants.ALL_PHASES">
+<span class="sig-name descname"><span class="pre">ALL_PHASES</span></span><a class="headerlink" href="#+tc_toolbox.Constants.ALL_PHASES" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="+tc_toolbox.Constants.CURRENT_TEMPERATURE">
+<span class="sig-name descname"><span class="pre">CURRENT_TEMPERATURE</span></span><a class="headerlink" href="#+tc_toolbox.Constants.CURRENT_TEMPERATURE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="+tc_toolbox.Constants.MATERIAL_B_FRACTION">
+<span class="sig-name descname"><span class="pre">MATERIAL_B_FRACTION</span></span><a class="headerlink" href="#+tc_toolbox.Constants.MATERIAL_B_FRACTION" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="+tc_toolbox.Constants.SER">
+<span class="sig-name descname"><span class="pre">SER</span></span><a class="headerlink" href="#+tc_toolbox.Constants.SER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="mat class">
+<dt class="sig sig-object mat" id="+tc_toolbox.ConversionUnit">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+tc_toolbox.</span></span><span class="sig-name descname"><span class="pre">ConversionUnit</span></span><a class="headerlink" href="#+tc_toolbox.ConversionUnit" title="Permalink to this definition">¶</a></dt>
+<dd><p>The composition unit used in a conversion.</p>
+</dd></dl>
+
+<dl class="mat class">
+<dt class="sig sig-object mat" id="+tc_toolbox.DiffusionQuantity">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+tc_toolbox.</span></span><span class="sig-name descname"><span class="pre">DiffusionQuantity</span></span><a class="headerlink" href="#+tc_toolbox.DiffusionQuantity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Factory class providing quantities used for defining diffusion simulations and their results.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In this factory class only the most common quantities are defined, you can always use the <em>Console Mode</em> syntax
+strings in the respective methods as an alternative (for example: “NPM(*)”).</p>
+</div>
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.DiffusionQuantity.activity_of_component">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">activity_of_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">component</span></em>, <em class="sig-param"><span class="pre">use_ser</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.DiffusionQuantity.activity_of_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the activity of a component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component</strong> – The name of the component, use <cite>ALL_COMPONENTS</cite> to choose all components</p></li>
+<li><p><strong>use_ser</strong> – Use Stable-Element-Reference(SER). The user-defined reference state is be used if this
+setting is set to <cite>False</cite>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">ActivityOfComponent</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.DiffusionQuantity.chemical_diffusion_coefficient">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">chemical_diffusion_coefficient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">phase</span></em>, <em class="sig-param"><span class="pre">diffusing_element</span></em>, <em class="sig-param"><span class="pre">gradient_element</span></em>, <em class="sig-param"><span class="pre">reference_element</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.DiffusionQuantity.chemical_diffusion_coefficient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the chemical diffusion coefficient of a phase [m^2/s].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – The name of the phase</p></li>
+<li><p><strong>diffusing_element</strong> – The diffusing element</p></li>
+<li><p><strong>gradient_element</strong> – The gradient element</p></li>
+<li><p><strong>reference_element</strong> – The reference element (for example “Fe” in a steel)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">ChemicalDiffusionCoefficient</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.DiffusionQuantity.chemical_potential_of_component">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">chemical_potential_of_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">component</span></em>, <em class="sig-param"><span class="pre">use_ser</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.DiffusionQuantity.chemical_potential_of_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the chemical potential of a component [J].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component</strong> – The name of the component, use <cite>ALL_COMPONENTS</cite> to choose all components</p></li>
+<li><p><strong>use_ser</strong> – Use Stable-Element-Reference(SER). The user-defined reference state is used if this
+setting is set to <cite>False</cite>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">ChemicalPotentialOfComponent</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.DiffusionQuantity.distance">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">region</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.DiffusionQuantity.distance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the distance [m].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>region</strong> – The name of the region or <cite>All</cite> to choose global.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.DiffusionQuantity.intrinsic_diffusion_coefficient">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">intrinsic_diffusion_coefficient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">phase</span></em>, <em class="sig-param"><span class="pre">diffusing_element</span></em>, <em class="sig-param"><span class="pre">gradient_element</span></em>, <em class="sig-param"><span class="pre">reference_element</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.DiffusionQuantity.intrinsic_diffusion_coefficient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the intrinsic diffusion coefficient of a phase [m^2/s].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – The name of the phase</p></li>
+<li><p><strong>diffusing_element</strong> – The diffusing element</p></li>
+<li><p><strong>gradient_element</strong> – The gradient element</p></li>
+<li><p><strong>reference_element</strong> – The reference element (for example “Fe” in a steel)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">IntrinsicDiffusionCoefficient</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.DiffusionQuantity.l_bis">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">l_bis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">phase</span></em>, <em class="sig-param"><span class="pre">diffusing_element</span></em>, <em class="sig-param"><span class="pre">gradient_element</span></em>, <em class="sig-param"><span class="pre">reference_element</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.DiffusionQuantity.l_bis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing L’’ of a phase [m^2/s].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – The name of the phase</p></li>
+<li><p><strong>diffusing_element</strong> – The diffusing element</p></li>
+<li><p><strong>gradient_element</strong> – The gradient element</p></li>
+<li><p><strong>reference_element</strong> – The reference element (for example “Fe” in a steel)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">Lbis</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.DiffusionQuantity.mass_fraction_of_a_component">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">mass_fraction_of_a_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">component</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.DiffusionQuantity.mass_fraction_of_a_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the mass fraction of a component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>component</strong> – The name of the component or <cite>ALL_COMPONENTS</cite> to choose all components</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">MassFractionOfAComponent</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.DiffusionQuantity.mass_fraction_of_a_phase">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">mass_fraction_of_a_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">phase</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.DiffusionQuantity.mass_fraction_of_a_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the mass fraction of a phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>phase</strong> – The name of the phase or <cite>ALL_PHASES</cite> to choose all phases.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">MassFractionOfAPhase</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.DiffusionQuantity.mobility_of_component_in_phase">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">mobility_of_component_in_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">phase</span></em>, <em class="sig-param"><span class="pre">component</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.DiffusionQuantity.mobility_of_component_in_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the mobility of a component in a phase [m^2/Js].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – The name of the phase</p></li>
+<li><p><strong>component</strong> – The name of the component</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">MobilityOfComponentInPhase</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.DiffusionQuantity.mole_fraction_of_a_component">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">mole_fraction_of_a_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">component</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.DiffusionQuantity.mole_fraction_of_a_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the mole fraction of a component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>component</strong> – The name of the component or <cite>ALL_COMPONENTS</cite> to choose all components</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">MoleFractionOfAComponent</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.DiffusionQuantity.mole_fraction_of_a_phase">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">mole_fraction_of_a_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">phase</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.DiffusionQuantity.mole_fraction_of_a_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the mole fraction of a phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>phase</strong> – The name of the phase or <cite>ALL_PHASES</cite> to choose all phases</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">MoleFractionOfAPhase</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.DiffusionQuantity.position_of_lower_boundary_of_region">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">position_of_lower_boundary_of_region</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">region</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.DiffusionQuantity.position_of_lower_boundary_of_region" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the position of lower boundary of a region [m].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>region</strong> – The name of the region</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">PositionOfLowerBoundaryOfRegion</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.DiffusionQuantity.position_of_upper_boundary_of_region">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">position_of_upper_boundary_of_region</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">region</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.DiffusionQuantity.position_of_upper_boundary_of_region" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the position of upper boundary of a region [m].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>region</strong> – The name of the region</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">PositionOfUpperBoundaryOfRegion</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.DiffusionQuantity.temperature">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">temperature</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.DiffusionQuantity.temperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the temperature [K].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">Temperature</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.DiffusionQuantity.thermodynamic_factor">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">thermodynamic_factor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">phase</span></em>, <em class="sig-param"><span class="pre">diffusing_element</span></em>, <em class="sig-param"><span class="pre">gradient_element</span></em>, <em class="sig-param"><span class="pre">reference_element</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.DiffusionQuantity.thermodynamic_factor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing thermodynamic factor of a phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – The name of the phase</p></li>
+<li><p><strong>diffusing_element</strong> – The diffusing element</p></li>
+<li><p><strong>gradient_element</strong> – The gradient element</p></li>
+<li><p><strong>reference_element</strong> – The reference element (for example “Fe” in a steel)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">ThermoDynamicFactor</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.DiffusionQuantity.time">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">time</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.DiffusionQuantity.time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the time [s].</p>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.DiffusionQuantity.total_mass_fraction_of_component">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">total_mass_fraction_of_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">component</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.DiffusionQuantity.total_mass_fraction_of_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the total mass fraction of a component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>component</strong> – The name of the component</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">TotalMassFractionOfComponent</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.DiffusionQuantity.total_mass_fraction_of_component_in_phase">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">total_mass_fraction_of_component_in_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">phase</span></em>, <em class="sig-param"><span class="pre">component</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.DiffusionQuantity.total_mass_fraction_of_component_in_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the total mass fraction of a component in a phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – The name of the phase</p></li>
+<li><p><strong>component</strong> – The name of the component</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">TotalMassFractionOfComponentInPhase</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.DiffusionQuantity.total_mass_fraction_of_phase">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">total_mass_fraction_of_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">phase</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.DiffusionQuantity.total_mass_fraction_of_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the total mass fraction of a phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>phase</strong> – The name of the phase.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">TotalMassFractionOfPhase</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.DiffusionQuantity.total_mole_fraction_of_component">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">total_mole_fraction_of_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">component</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.DiffusionQuantity.total_mole_fraction_of_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the total mole fraction of a component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>component</strong> – The name of the component</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">TotalMoleFractionOfComponent</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.DiffusionQuantity.total_mole_fraction_of_component_in_phase">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">total_mole_fraction_of_component_in_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">phase</span></em>, <em class="sig-param"><span class="pre">component</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.DiffusionQuantity.total_mole_fraction_of_component_in_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the total mole fraction of a component in a phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – The name of the phase</p></li>
+<li><p><strong>component</strong> – The name of the component</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">TotalMoleFractionOfComponentInPhase</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.DiffusionQuantity.total_volume_fraction_of_phase">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">total_volume_fraction_of_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">phase</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.DiffusionQuantity.total_volume_fraction_of_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the total volume fraction of a phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>phase</strong> – The name of the phase.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">TotalVolumeFractionOfPhase</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.DiffusionQuantity.tracer_diffusion_coefficient">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">tracer_diffusion_coefficient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">phase</span></em>, <em class="sig-param"><span class="pre">diffusing_element</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.DiffusionQuantity.tracer_diffusion_coefficient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing tracer diffusion coefficient of a phase [m^2/s].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – The name of the phase</p></li>
+<li><p><strong>diffusing_element</strong> – The diffusing element</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">TracerDiffusionCoefficient</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.DiffusionQuantity.u_fraction_of_a_component">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">u_fraction_of_a_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">component</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.DiffusionQuantity.u_fraction_of_a_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the u-fraction of a component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>component</strong> – The name of the component</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">UFractionOfAComponent</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.DiffusionQuantity.user_defined_function">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">user_defined_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">expression</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.DiffusionQuantity.user_defined_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing a user-defined function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>expression</strong> – The function expression</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">Function</span></code> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.DiffusionQuantity.velocity_of_lower_boundary_of_region">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">velocity_of_lower_boundary_of_region</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">region</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.DiffusionQuantity.velocity_of_lower_boundary_of_region" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the velocity of lower boundary of a region [m/s].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>region</strong> – The name of the region</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">VelocityOfLowerBoundaryOfRegion</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.DiffusionQuantity.velocity_of_upper_boundary_of_region">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">velocity_of_upper_boundary_of_region</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">region</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.DiffusionQuantity.velocity_of_upper_boundary_of_region" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the velocity of upper boundary of a region [m/s].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>region</strong> – The name of the region</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">VelocityOfUpperBoundaryOfRegion</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.DiffusionQuantity.width_of_region">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">width_of_region</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">region</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.DiffusionQuantity.width_of_region" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the width of a region [m].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>region</strong> – The name of the region</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">WidthOfRegion</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="mat class">
+<dt class="sig sig-object mat" id="+tc_toolbox.GasAmountUnit">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+tc_toolbox.</span></span><span class="sig-name descname"><span class="pre">GasAmountUnit</span></span><a class="headerlink" href="#+tc_toolbox.GasAmountUnit" title="Permalink to this definition">¶</a></dt>
+<dd><p>The amount of a gas.</p>
+</dd></dl>
+
+<dl class="mat class">
+<dt class="sig sig-object mat" id="+tc_toolbox.GasCompositionUnit">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+tc_toolbox.</span></span><span class="sig-name descname"><span class="pre">GasCompositionUnit</span></span><a class="headerlink" href="#+tc_toolbox.GasCompositionUnit" title="Permalink to this definition">¶</a></dt>
+<dd><p>The composition unit for a gas.</p>
+</dd></dl>
+
+<dl class="mat class">
+<dt class="sig sig-object mat" id="+tc_toolbox.GasRateUnit">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+tc_toolbox.</span></span><span class="sig-name descname"><span class="pre">GasRateUnit</span></span><a class="headerlink" href="#+tc_toolbox.GasRateUnit" title="Permalink to this definition">¶</a></dt>
+<dd><p>The rate of a gas flow.</p>
+</dd></dl>
+
+<dl class="mat class">
+<dt class="sig sig-object mat" id="+tc_toolbox.IndependentVariable">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+tc_toolbox.</span></span><span class="sig-name descname"><span class="pre">IndependentVariable</span></span><a class="headerlink" href="#+tc_toolbox.IndependentVariable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Factory class providing quantities used for defining the independent variable in general diffusion result querying.</p>
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.IndependentVariable.distance">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">region</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.IndependentVariable.distance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an independent variable representing the distance [m].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <cite>Distance</cite> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.IndependentVariable.time">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">time</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.IndependentVariable.time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an independent variable representing the time [s].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <cite>Time</cite> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="mat class">
+<dt class="sig sig-object mat" id="+tc_toolbox.InterfacePosition">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+tc_toolbox.</span></span><span class="sig-name descname"><span class="pre">InterfacePosition</span></span><a class="headerlink" href="#+tc_toolbox.InterfacePosition" title="Permalink to this definition">¶</a></dt>
+<dd><p>The position of an interface relative to its region. Only used for diffusion simulations.</p>
+</dd></dl>
+
+<dl class="mat class">
+<dt class="sig sig-object mat" id="+tc_toolbox.MetallurgyCalculations">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+tc_toolbox.</span></span><span class="sig-name descname"><span class="pre">MetallurgyCalculations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">back</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.MetallurgyCalculations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides access to the calculation objects for all Process Metallurgy calculations.</p>
+<p>These are specialised calculations for working with metallurgical processes. Both equilibrium calculations and
+kinetic process simulations (Effective Equilibrium Reaction Zone model) are available.</p>
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.MetallurgyCalculations.MetallurgyCalculations">
+<span class="sig-name descname"><span class="pre">MetallurgyCalculations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">back</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.MetallurgyCalculations.MetallurgyCalculations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs an instance of <a class="reference internal" href="#+tc_toolbox.MetallurgyCalculations" title="+tc_toolbox.MetallurgyCalculations"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">MetallurgyCalculations</span></code></a>.</p>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.MetallurgyCalculations.with_adiabatic_equilibrium_calculation">
+<span class="sig-name descname"><span class="pre">with_adiabatic_equilibrium_calculation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">database</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.MetallurgyCalculations.with_adiabatic_equilibrium_calculation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an adiabatic equilibrium calculation for Process Metallurgy.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>database</strong> – The thermodynamic database used in the calculation</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">AdiabaticEquilibriumCalculation</span></code> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.MetallurgyCalculations.with_adiabatic_process_calculation">
+<span class="sig-name descname"><span class="pre">with_adiabatic_process_calculation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">database</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.MetallurgyCalculations.with_adiabatic_process_calculation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an adiabatic kinetic process simulation (EERZ, i.e. Effective Equilibrium Reaction Zone model).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>database</strong> – The thermodynamic database used in the calculation</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">ProcessSimulationCalculation</span></code> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.MetallurgyCalculations.with_isothermal_equilibrium_calculation">
+<span class="sig-name descname"><span class="pre">with_isothermal_equilibrium_calculation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">database</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.MetallurgyCalculations.with_isothermal_equilibrium_calculation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an isothermal equilibrium calculation for Process Metallurgy.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>database</strong> – The thermodynamic database used in the calculation</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">IsoThermalEquilibriumCalculation</span></code> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="mat class">
+<dt class="sig sig-object mat" id="+tc_toolbox.PhaseParameter">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+tc_toolbox.</span></span><span class="sig-name descname"><span class="pre">PhaseParameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">parameter_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.PhaseParameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Database phase parameter expression used by <a class="reference internal" href="#+tc_toolbox.SystemModifications.set" title="+tc_toolbox.SystemModifications.set"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">SystemModifications.set()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parameter_name</strong> – The phase parameter name</p>
+</dd>
+</dl>
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.PhaseParameter.PhaseParameter">
+<span class="sig-name descname"><span class="pre">PhaseParameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">parameter_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.PhaseParameter.PhaseParameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs an instance of <a class="reference internal" href="#+tc_toolbox.PhaseParameter" title="+tc_toolbox.PhaseParameter"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">PhaseParameter</span></code></a>.</p>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.PhaseParameter.get_intervals">
+<span class="sig-name descname"><span class="pre">get_intervals</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.PhaseParameter.get_intervals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the list of all defined intervals.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The defined temperature intervals</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.PhaseParameter.get_lower_temperature_limit">
+<span class="sig-name descname"><span class="pre">get_lower_temperature_limit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.PhaseParameter.get_lower_temperature_limit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the lower temperature limit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The lower temperature limit in K</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.PhaseParameter.get_name">
+<span class="sig-name descname"><span class="pre">get_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.PhaseParameter.get_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the name of the phase parameter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The name of the phase parameter.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.PhaseParameter.remove_all_intervals">
+<span class="sig-name descname"><span class="pre">remove_all_intervals</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.PhaseParameter.remove_all_intervals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes all previously defined temperature intervals.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This <a class="reference internal" href="#+tc_toolbox.PhaseParameter" title="+tc_toolbox.PhaseParameter"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">PhaseParameter</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.PhaseParameter.remove_interval_with_upper_limit">
+<span class="sig-name descname"><span class="pre">remove_interval_with_upper_limit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">upper_temperature_limit</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.PhaseParameter.remove_interval_with_upper_limit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes a previously defined temperature interval with matching upper temperature limit.</p>
+<p><strong>If no such interval exists, an exception is thrown.</strong></p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This <a class="reference internal" href="#+tc_toolbox.PhaseParameter" title="+tc_toolbox.PhaseParameter"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">PhaseParameter</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.PhaseParameter.set_expression_with_upper_limit">
+<span class="sig-name descname"><span class="pre">set_expression_with_upper_limit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">parameter_expression</span></em>, <em class="sig-param"><span class="pre">upper_temperature_limit</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.PhaseParameter.set_expression_with_upper_limit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds/overwrites a parameter expression for a temperature interval.</p>
+<p><strong>Default value of the upper limit of the interval</strong>: 6000 K</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The lower temperature limit is either defined by the lower temperature limit given with
+<a class="reference internal" href="#+tc_toolbox.PhaseParameter.set_lower_temperature_limit" title="+tc_toolbox.PhaseParameter.set_lower_temperature_limit"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">PhaseParameter.set_lower_temperature_limit()</span></code></a> or by the upper temperature limit of the adjacent
+interval.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If there is an existing interval with exactly the same <cite>upper_temperature_limit</cite>, that interval is
+overwritten, otherwise the interval is added.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parameter_expression</strong> – The parameter expression, example: <cite>+V34*T*LN(T)+V35*T**2+V36*T**(-1)+V37*T**3”)</cite></p></li>
+<li><p><strong>upper_temperature_limit</strong> – The upper temperature limit for which the expression should be used</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#+tc_toolbox.PhaseParameter" title="+tc_toolbox.PhaseParameter"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">PhaseParameter</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.PhaseParameter.set_interval">
+<span class="sig-name descname"><span class="pre">set_interval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">interval</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.PhaseParameter.set_interval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds/overwrites a temperature interval.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The lower temperature limit is either defined by the lower temperature limit given with
+<a class="reference internal" href="#+tc_toolbox.PhaseParameter.set_lower_temperature_limit" title="+tc_toolbox.PhaseParameter.set_lower_temperature_limit"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">PhaseParameter.set_lower_temperature_limit()</span></code></a> or by the upper temperature limit of the adjacent
+interval.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If there is an existing interval with exactly the same <cite>upper_temperature_limit</cite>, that interval is
+overwritten, otherwise the interval is added.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This <a class="reference internal" href="#+tc_toolbox.PhaseParameter" title="+tc_toolbox.PhaseParameter"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">PhaseParameter</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.PhaseParameter.set_lower_temperature_limit">
+<span class="sig-name descname"><span class="pre">set_lower_temperature_limit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">lower_temperature_limit</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.PhaseParameter.set_lower_temperature_limit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the lower temperature limit of the phase parameter.</p>
+<p><strong>Default</strong>: 298.15 K</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>lower_temperature_limit</strong> – The lower temperature limit in K</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#+tc_toolbox.PhaseParameter" title="+tc_toolbox.PhaseParameter"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">PhaseParameter</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="mat class">
+<dt class="sig sig-object mat" id="+tc_toolbox.PhaseUnit">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+tc_toolbox.</span></span><span class="sig-name descname"><span class="pre">PhaseUnit</span></span><a class="headerlink" href="#+tc_toolbox.PhaseUnit" title="Permalink to this definition">¶</a></dt>
+<dd><p>The units available for a phase fraction.</p>
+</dd></dl>
+
+<dl class="mat class">
+<dt class="sig sig-object mat" id="+tc_toolbox.PlotCondition">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+tc_toolbox.</span></span><span class="sig-name descname"><span class="pre">PlotCondition</span></span><a class="headerlink" href="#+tc_toolbox.PlotCondition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Factory class providing quantities used for defining the plot condition in general diffusion result querying.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In this factory class only the most common quantities are defined, you can always use the <em>Console Mode</em> syntax
+strings in the respective methods as an alternative (for example: “time last”).</p>
+</div>
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.PlotCondition.distance">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">distancepoint</span></em>, <em class="sig-param"><span class="pre">region</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.PlotCondition.distance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a plot condition representing the distance [m].</p>
+<p><strong>Change in version 2019b</strong>: Mandatory parameter <cite>distancepoint</cite> added</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>distancepoint</strong> – The distance from the lower interface of the region</p></li>
+<li><p><strong>region</strong> – The name of the region or <cite>All</cite> to choose global.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <cite>DistanceCondition</cite> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.PlotCondition.integral">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">integral</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.PlotCondition.integral" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an integral plot condition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <cite>IntegralCondition</cite> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.PlotCondition.interface">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">interface</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">region</span></em>, <em class="sig-param"><span class="pre">interface_position</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.PlotCondition.interface" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a plot condition representing an interface between two regions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>region</strong> – The name of the region used for defining the interface</p></li>
+<li><p><strong>interface_position</strong> – The position of the interface relative to that region (lower or upper)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <cite>InterfaceCondition</cite> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.PlotCondition.time">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">timepoint</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.PlotCondition.time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a plot condition representing the time [s].</p>
+<p><strong>Change in version 2019b</strong>: Lists of timepoints are no longer supported</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>timepoint</strong> – The timepoint. Optionally “Last” can be used for the end of the simulation</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <cite>TimeCondition</cite> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="mat class">
+<dt class="sig sig-object mat" id="+tc_toolbox.ResultLoader">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+tc_toolbox.</span></span><span class="sig-name descname"><span class="pre">ResultLoader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">back</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ResultLoader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contains methods for loading results from previously done calculations.</p>
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.ResultLoader.ResultLoader">
+<span class="sig-name descname"><span class="pre">ResultLoader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">back</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ResultLoader.ResultLoader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs an instance of <a class="reference internal" href="#+tc_toolbox.ResultLoader" title="+tc_toolbox.ResultLoader"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">ResultLoader</span></code></a>.</p>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.ResultLoader.diffusion">
+<span class="sig-name descname"><span class="pre">diffusion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ResultLoader.diffusion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a <code class="xref mat mat-class docutils literal notranslate"><span class="pre">DiffusionCalculationResult</span></code> from disc.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> – path to the folder where result was previously saved.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">DiffusionCalculationResult</span></code> object which later can be used to get specific values from the
+calculated result</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.ResultLoader.phase_diagram">
+<span class="sig-name descname"><span class="pre">phase_diagram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ResultLoader.phase_diagram" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a <code class="xref mat mat-class docutils literal notranslate"><span class="pre">PhaseDiagramResult</span></code> from disc.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> – path to the folder where result was previously saved.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">PhaseDiagramResult</span></code> object which later can be used to get specific values from the
+calculated result</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.ResultLoader.precipitation_TTT_or_CCT">
+<span class="sig-name descname"><span class="pre">precipitation_TTT_or_CCT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ResultLoader.precipitation_TTT_or_CCT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a <code class="xref mat mat-class docutils literal notranslate"><span class="pre">PrecipitationCalculationTTTorCCTResult</span></code> from disc.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> – path to the folder where result was previously saved.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">PrecipitationCalculationTTTorCCTResult</span></code> object which later can be used to get specific values from the
+calculated result</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.ResultLoader.precipitation_single">
+<span class="sig-name descname"><span class="pre">precipitation_single</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ResultLoader.precipitation_single" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a <code class="xref mat mat-class docutils literal notranslate"><span class="pre">PrecipitationCalculationSingleResult</span></code> from disc.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> – path to the folder where result was previously saved.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">PrecipitationCalculationSingleResult</span></code> object which later can be used to get specific values from the
+calculated result</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.ResultLoader.property_diagram">
+<span class="sig-name descname"><span class="pre">property_diagram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ResultLoader.property_diagram" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a <code class="xref mat mat-class docutils literal notranslate"><span class="pre">PropertyDiagramResult</span></code> from disc.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> – path to the folder where result was previously saved.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">PropertyDiagramResult</span></code> object which later can be used to get specific values from the
+calculated result</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.ResultLoader.property_model">
+<span class="sig-name descname"><span class="pre">property_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ResultLoader.property_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a <code class="xref mat mat-class docutils literal notranslate"><span class="pre">PropertyModelResult</span></code> from disc.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> – path to the folder where result was previously saved.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">PropertyModelResult</span></code> object which later can be used to get specific values from the
+calculated result</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.ResultLoader.scheil">
+<span class="sig-name descname"><span class="pre">scheil</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ResultLoader.scheil" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a <code class="xref mat mat-class docutils literal notranslate"><span class="pre">ScheilCalculationResult</span></code> from disc.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> – path to the folder where result was previously saved.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">ScheilCalculationResult</span></code> object which later can be used to get specific values from the
+calculated result</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.ResultLoader.single_equilibrium">
+<span class="sig-name descname"><span class="pre">single_equilibrium</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ResultLoader.single_equilibrium" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a <code class="xref mat mat-class docutils literal notranslate"><span class="pre">SingleEquilibriumResult</span></code> from disc.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> – path to the folder where result was previously saved.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">SingleEquilibriumResult</span></code> object which later can be used to get specific values from the
+calculated result</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="mat class">
+<dt class="sig sig-object mat" id="+tc_toolbox.ResultValueGroup">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+tc_toolbox.</span></span><span class="sig-name descname"><span class="pre">ResultValueGroup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">back</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ResultValueGroup" title="Permalink to this definition">¶</a></dt>
+<dd><p>A x-y-dataset representing a line data calculation result (i.e. a Thermo-Calc <cite>quantity 1</cite> vs. <cite>quantity 2</cite>).</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Depending on the calculator, the dataset might contain <cite>NaN</cite>-values to separate the data between different
+subsets.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list of floats representing the second quantity (“y-axis”)</p>
+</dd>
+</dl>
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.ResultValueGroup.ResultValueGroup">
+<span class="sig-name descname"><span class="pre">ResultValueGroup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">back</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ResultValueGroup.ResultValueGroup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs an instance of <a class="reference internal" href="#+tc_toolbox.ResultValueGroup" title="+tc_toolbox.ResultValueGroup"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">ResultValueGroup</span></code></a>.</p>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.ResultValueGroup.get_label">
+<span class="sig-name descname"><span class="pre">get_label</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ResultValueGroup.get_label" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor for the line label
+:return the line label</p>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.ResultValueGroup.get_x">
+<span class="sig-name descname"><span class="pre">get_x</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ResultValueGroup.get_x" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor for the x-values
+:return the x values</p>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.ResultValueGroup.get_y">
+<span class="sig-name descname"><span class="pre">get_y</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ResultValueGroup.get_y" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor for the y-values
+:return the y values</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="mat class">
+<dt class="sig sig-object mat" id="+tc_toolbox.ScheilQuantity">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+tc_toolbox.</span></span><span class="sig-name descname"><span class="pre">ScheilQuantity</span></span><a class="headerlink" href="#+tc_toolbox.ScheilQuantity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Factory class providing quantities used for defining a Scheil calculation result
+(<code class="xref mat mat-class docutils literal notranslate"><span class="pre">+tc_toolbox.scheil.ScheilCalculationResult</span></code>).</p>
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ScheilQuantity.apparent_heat_capacity_per_gram">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">apparent_heat_capacity_per_gram</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ScheilQuantity.apparent_heat_capacity_per_gram" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the apparent heat capacity [J/g/K].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">ApparentHeatCapacityPerGram</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ScheilQuantity.apparent_heat_capacity_per_mole">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">apparent_heat_capacity_per_mole</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ScheilQuantity.apparent_heat_capacity_per_mole" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the apparent heat capacity [J/mol/K].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">ApparentHeatCapacityPerMole</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ScheilQuantity.apparent_volumetric_thermal_expansion_coefficient">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">apparent_volumetric_thermal_expansion_coefficient</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ScheilQuantity.apparent_volumetric_thermal_expansion_coefficient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the apparent volumetric thermal expansion coefficient of the system [1/K].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">ApparentVolumetricThermalExpansionCoefficient</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ScheilQuantity.average_composition_of_solid_phases_as_mass_fraction">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">average_composition_of_solid_phases_as_mass_fraction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">component</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ScheilQuantity.average_composition_of_solid_phases_as_mass_fraction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the average composition of solid phases [mass fraction] at the current Scheil
+step.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>component</strong> – The name of the component, use <cite>ALL_COMPONENTS</cite> to choose all components</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">AverageCompositionOFSolidPhasesAsMassFraction</span></code>  object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ScheilQuantity.average_composition_of_solid_phases_as_mole_fraction">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">average_composition_of_solid_phases_as_mole_fraction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">component</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ScheilQuantity.average_composition_of_solid_phases_as_mole_fraction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the average composition of solid phases [mole fraction] at the current Scheil
+step.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>component</strong> – The name of the component, use <cite>ALL_COMPONENTS</cite> to choose all components</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">AverageCompositionOFSolidPhasesAsMoleFraction</span></code>  object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ScheilQuantity.composition_of_phase_as_mole_fraction">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">composition_of_phase_as_mole_fraction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">phase</span></em>, <em class="sig-param"><span class="pre">component</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ScheilQuantity.composition_of_phase_as_mole_fraction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the composition of a phase [mole-fraction].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – The name of the phase, use <cite>ALL_PHASES</cite> to choose all stable phases</p></li>
+<li><p><strong>component</strong> – The name of the component, use <cite>ALL_COMPONENTS</cite> to choose all components</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">CompositionOfPhaseAsMoleFraction</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ScheilQuantity.composition_of_phase_as_weight_fraction">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">composition_of_phase_as_weight_fraction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">phase</span></em>, <em class="sig-param"><span class="pre">component</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ScheilQuantity.composition_of_phase_as_weight_fraction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the composition of a phase [weight-fraction].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – The name of the phase, use <cite>ALL_PHASES</cite> to choose all stable phases</p></li>
+<li><p><strong>component</strong> – The name of the component, use <cite>ALL_COMPONENTS</cite> to choose all components</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">CompositionOfPhaseAsWeightFraction</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ScheilQuantity.density_of_phase">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">density_of_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">phase</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ScheilQuantity.density_of_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the average density of a phase [g/cm^3].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>phase</strong> – The name of the phase or <cite>ALL_PHASES</cite> to choose all phases</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">DensityOfPhase</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ScheilQuantity.density_of_system">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">density_of_system</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ScheilQuantity.density_of_system" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the average density of the system [g/cm^3].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">DensityOfSystem</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ScheilQuantity.distribution_of_component_of_phase">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">distribution_of_component_of_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">phase</span></em>, <em class="sig-param"><span class="pre">component</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ScheilQuantity.distribution_of_component_of_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the (molar) fraction of the specified component being present in the specified
+phase compared to the overall system [-]. This corresponds to the degree of segregation to that phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – The name of the phase</p></li>
+<li><p><strong>component</strong> – The name of the component</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">DistributionOfComponentOfPhase</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ScheilQuantity.heat_per_gram">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">heat_per_gram</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ScheilQuantity.heat_per_gram" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the total heat release from the liquidus temperature down to the current
+temperature [J/g].</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The total or apparent heat release during the solidification process consists of two parts: one is the
+so-called latent heat, i.e. heat due to the liquid -&gt; solid phase transformation
+(<a class="reference internal" href="#+tc_toolbox.ScheilQuantity.latent_heat_per_mole" title="+tc_toolbox.ScheilQuantity.latent_heat_per_mole"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">latent_heat_per_mole()</span></code></a> and <a class="reference internal" href="#+tc_toolbox.ScheilQuantity.latent_heat_per_gram" title="+tc_toolbox.ScheilQuantity.latent_heat_per_gram"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">latent_heat_per_gram()</span></code></a>), and the other is the heat
+related to the specific heat of liquid and solid phases (<a class="reference internal" href="#+tc_toolbox.ScheilQuantity.heat_per_mole" title="+tc_toolbox.ScheilQuantity.heat_per_mole"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">heat_per_mole()</span></code></a>
+and <a class="reference internal" href="#+tc_toolbox.ScheilQuantity.heat_per_gram" title="+tc_toolbox.ScheilQuantity.heat_per_gram"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">heat_per_gram()</span></code></a>).</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">HeatPerGram</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ScheilQuantity.heat_per_mole">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">heat_per_mole</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ScheilQuantity.heat_per_mole" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the total heat release from the liquidus temperature down to the current
+temperature [J/mol].</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The total or apparent heat release during the solidification process consists of two parts: one is the
+so-called latent heat, i.e. heat due to the liquid -&gt; solid phase transformation
+(<a class="reference internal" href="#+tc_toolbox.ScheilQuantity.latent_heat_per_mole" title="+tc_toolbox.ScheilQuantity.latent_heat_per_mole"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">latent_heat_per_mole()</span></code></a> and <a class="reference internal" href="#+tc_toolbox.ScheilQuantity.latent_heat_per_gram" title="+tc_toolbox.ScheilQuantity.latent_heat_per_gram"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">latent_heat_per_gram()</span></code></a>), and the other is the heat
+related to the specific heat of liquid and solid phases (<a class="reference internal" href="#+tc_toolbox.ScheilQuantity.heat_per_mole" title="+tc_toolbox.ScheilQuantity.heat_per_mole"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">heat_per_mole()</span></code></a>
+and <a class="reference internal" href="#+tc_toolbox.ScheilQuantity.heat_per_gram" title="+tc_toolbox.ScheilQuantity.heat_per_gram"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">heat_per_gram()</span></code></a>).</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">HeatPerMole</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ScheilQuantity.latent_heat_per_gram">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">latent_heat_per_gram</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ScheilQuantity.latent_heat_per_gram" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the cumulated latent heat release from the liquidus temperature down to the
+current temperature [J/g].</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The total or apparent heat release during the solidification process consists of two parts: one is the
+so-called latent heat, i.e. heat due to the liquid -&gt; solid phase transformation
+(<a class="reference internal" href="#+tc_toolbox.ScheilQuantity.latent_heat_per_mole" title="+tc_toolbox.ScheilQuantity.latent_heat_per_mole"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">latent_heat_per_mole()</span></code></a> and <a class="reference internal" href="#+tc_toolbox.ScheilQuantity.latent_heat_per_gram" title="+tc_toolbox.ScheilQuantity.latent_heat_per_gram"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">latent_heat_per_gram()</span></code></a>), and the other is the heat
+related to the specific heat of liquid and solid phases (<a class="reference internal" href="#+tc_toolbox.ScheilQuantity.heat_per_mole" title="+tc_toolbox.ScheilQuantity.heat_per_mole"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">heat_per_mole()</span></code></a>
+and <a class="reference internal" href="#+tc_toolbox.ScheilQuantity.heat_per_gram" title="+tc_toolbox.ScheilQuantity.heat_per_gram"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">heat_per_gram()</span></code></a>).</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">LatentHeatPerGram</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ScheilQuantity.latent_heat_per_mole">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">latent_heat_per_mole</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ScheilQuantity.latent_heat_per_mole" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the cumulated latent heat release from the liquidus temperature down to the
+current temperature [J/mol].</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The total or apparent heat release during the solidification process consists of two parts: one is the
+so-called latent heat, i.e. heat due to the liquid -&gt; solid phase transformation
+(<a class="reference internal" href="#+tc_toolbox.ScheilQuantity.latent_heat_per_mole" title="+tc_toolbox.ScheilQuantity.latent_heat_per_mole"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">latent_heat_per_mole()</span></code></a> and <a class="reference internal" href="#+tc_toolbox.ScheilQuantity.latent_heat_per_gram" title="+tc_toolbox.ScheilQuantity.latent_heat_per_gram"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">latent_heat_per_gram()</span></code></a>), and the other is the heat
+related to the specific heat of liquid and solid phases (<a class="reference internal" href="#+tc_toolbox.ScheilQuantity.heat_per_mole" title="+tc_toolbox.ScheilQuantity.heat_per_mole"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">heat_per_mole()</span></code></a>
+and <a class="reference internal" href="#+tc_toolbox.ScheilQuantity.heat_per_gram" title="+tc_toolbox.ScheilQuantity.heat_per_gram"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">heat_per_gram()</span></code></a>).</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">LatentHeatPerMole</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ScheilQuantity.mass_fraction_of_a_solid_phase">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">mass_fraction_of_a_solid_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">phase</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ScheilQuantity.mass_fraction_of_a_solid_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the mass fraction of a solid phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>phase</strong> – The name of the phase or <cite>ALL_PHASES</cite> to choose all solid phases</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">MassFractionOfASolidPhase</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ScheilQuantity.mass_fraction_of_all_liquid">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">mass_fraction_of_all_liquid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ScheilQuantity.mass_fraction_of_all_liquid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the total mass fraction of all the liquid phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">MassFractionOfAllLiquid</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ScheilQuantity.mass_fraction_of_all_solid_phases">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">mass_fraction_of_all_solid_phases</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ScheilQuantity.mass_fraction_of_all_solid_phases" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the total mass fraction of all solid phases.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">MassFractionOfAllSolidPhase</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ScheilQuantity.molar_volume_of_phase">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">molar_volume_of_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">phase</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ScheilQuantity.molar_volume_of_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the molar volume of a phase [m^3/mol].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>phase</strong> – The name of the phase or <cite>ALL_PHASES</cite> to choose all phases</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">MolarVolumeOfPhase</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ScheilQuantity.molar_volume_of_system">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">molar_volume_of_system</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ScheilQuantity.molar_volume_of_system" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the molar volume of the system [m^3/mol].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">MolarVolumeOfSystem</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ScheilQuantity.mole_fraction_of_a_solid_phase">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">mole_fraction_of_a_solid_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">phase</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ScheilQuantity.mole_fraction_of_a_solid_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the molar fraction of a solid phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>phase</strong> – The name of the phase or <cite>ALL_PHASES</cite> to choose all solid phases</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">MoleFractionOfASolidPhase</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ScheilQuantity.mole_fraction_of_all_liquid">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">mole_fraction_of_all_liquid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ScheilQuantity.mole_fraction_of_all_liquid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the total molar fraction of all the liquid phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">MoleFractionOfAllLiquid</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ScheilQuantity.mole_fraction_of_all_solid_phases">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">mole_fraction_of_all_solid_phases</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ScheilQuantity.mole_fraction_of_all_solid_phases" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the total molar fraction of all solid phases.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">MoleFractionOfAllSolidPhases</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ScheilQuantity.site_fraction_of_component_in_phase">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">site_fraction_of_component_in_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">phase</span></em>, <em class="sig-param"><span class="pre">component</span></em>, <em class="sig-param"><span class="pre">sub_lattice_ordinal_no</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ScheilQuantity.site_fraction_of_component_in_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the site fractions [-].</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Detailed information about the sublattices can be obtained by getting the <cite>Phase</cite> object of a phase from
+the <cite>System</cite> object using <code class="xref mat mat-class docutils literal notranslate"><span class="pre">+tc_toolbox.system.System.get_phase_in_system</span></code>. For each phase the
+sublattices are obtained by using <code class="xref mat mat-class docutils literal notranslate"><span class="pre">+tc_toolbox.system.Phase.get_sublattices</span></code>. The order in the
+returned list is equivalent to the sublattice ordinal number expected, <strong>but note that the ordinal numbers
+start with 1</strong>.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – The name of the phase, use <cite>ALL_PHASES</cite> to choose all stable phases</p></li>
+<li><p><strong>component</strong> – The name of the component, use <cite>ALL_COMPONENTS</cite> to choose all components</p></li>
+<li><p><strong>sub_lattice_ordinal_no</strong> – The ordinal number (i.e. 1, 2, …) of the sublattice of interest, use None
+to choose all sublattices</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">SiteFractionOfComponentInPhase</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ScheilQuantity.temperature">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">temperature</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ScheilQuantity.temperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the temperature [K].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">Temperature</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ScheilQuantity.volume_fraction_of_a_solid_phase">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">volume_fraction_of_a_solid_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">phase</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ScheilQuantity.volume_fraction_of_a_solid_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the volume fraction of a solid phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>phase</strong> – The name of the phase or <cite>ALL_PHASES</cite> to choose all solid phases</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">VolumeFractionOfASolidPhase</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ScheilQuantity.volume_fraction_of_all_liquid">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">volume_fraction_of_all_liquid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ScheilQuantity.volume_fraction_of_all_liquid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the total volume fraction of all the liquid phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">VolumeFractionOfAllLiquid</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ScheilQuantity.volume_fraction_of_all_solid_phases">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">volume_fraction_of_all_solid_phases</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ScheilQuantity.volume_fraction_of_all_solid_phases" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the total volume fraction of all solid phases.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">VolumeFractionOfAllSolidPhases</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="mat class">
+<dt class="sig sig-object mat" id="+tc_toolbox.SystemData">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+tc_toolbox.</span></span><span class="sig-name descname"><span class="pre">SystemData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">back</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.SystemData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides information about the parameters and functions of a user database. The obtained objects can be used to modify
+the database using <code class="xref mat mat-func docutils literal notranslate"><span class="pre">with_system_modifications()</span></code> of all calculators.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Parameters can only be read from unencrypted (i.e. <em>user</em>) databases loaded as <cite>*.tdb</cite>-file.</p>
+</div>
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.SystemData.SystemData">
+<span class="sig-name descname"><span class="pre">SystemData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">back</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.SystemData.SystemData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs an instance of <a class="reference internal" href="#+tc_toolbox.SystemData" title="+tc_toolbox.SystemData"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">SystemData</span></code></a>.</p>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.SystemData.get_phase_parameter">
+<span class="sig-name descname"><span class="pre">get_phase_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">parameter</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.SystemData.get_phase_parameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a phase parameter.</p>
+<p>Example:</p>
+<p><cite>system_data.get_phase_parameter(‘G(HCP_A3,FE:VA;0)’)</cite></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Parameters can only be read from unencrypted (i.e. <em>user</em>) databases loaded as a <code class="file docutils literal notranslate"><span class="pre">*.tdb</span></code>-file.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For details about the syntax search the Thermo-Calc help for <em>GES</em> (the name for the Gibbs Energy System
+module in Console Mode).</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parameter</strong> – The name of the phase parameter (for example: <cite>“G(LIQUID,FE;0)”</cite>)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The phase parameter</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.SystemData.get_phase_parameter_names">
+<span class="sig-name descname"><span class="pre">get_phase_parameter_names</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.SystemData.get_phase_parameter_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all phase parameters present in the current system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The list of phase parameters</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.SystemData.get_system_function">
+<span class="sig-name descname"><span class="pre">get_system_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">f</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.SystemData.get_system_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a system function.</p>
+<p>Example:</p>
+<p><cite>system_data.get_system_function(‘GHSERCR’)</cite></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The parameter ‘f’ was previously called ‘function’ but was renamed.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Functions can only be read from unencrypted (i.e. <em>user</em>) databases loaded as a <code class="file docutils literal notranslate"><span class="pre">*.tdb</span></code>-file.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For details about the syntax search the Thermo-Calc help for <em>GES</em> (the name for the Gibbs Energy System
+module in Console Mode).</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>f</strong> – The name of the system function (for example: <cite>“GHSERCR”</cite>)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The system function</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.SystemData.get_system_function_names">
+<span class="sig-name descname"><span class="pre">get_system_function_names</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.SystemData.get_system_function_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all system functions present in the current system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The list of system functions</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="mat class">
+<dt class="sig sig-object mat" id="+tc_toolbox.SystemFunction">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+tc_toolbox.</span></span><span class="sig-name descname"><span class="pre">SystemFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">function_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.SystemFunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Database function expression used by <a class="reference internal" href="#+tc_toolbox.SystemModifications.set" title="+tc_toolbox.SystemModifications.set"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">SystemModifications.set()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>function_name</strong> – The function name</p>
+</dd>
+</dl>
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.SystemFunction.SystemFunction">
+<span class="sig-name descname"><span class="pre">SystemFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">function_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.SystemFunction.SystemFunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs an instance of <a class="reference internal" href="#+tc_toolbox.SystemFunction" title="+tc_toolbox.SystemFunction"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">SystemFunction</span></code></a>.</p>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.SystemFunction.get_intervals">
+<span class="sig-name descname"><span class="pre">get_intervals</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.SystemFunction.get_intervals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the list of all defined intervals.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The defined temperature intervals</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.SystemFunction.get_lower_temperature_limit">
+<span class="sig-name descname"><span class="pre">get_lower_temperature_limit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.SystemFunction.get_lower_temperature_limit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the lower temperature limit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The lower temperature limit in K</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.SystemFunction.get_name">
+<span class="sig-name descname"><span class="pre">get_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.SystemFunction.get_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the name of the system function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The name of the system function</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.SystemFunction.remove_all_intervals">
+<span class="sig-name descname"><span class="pre">remove_all_intervals</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.SystemFunction.remove_all_intervals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes all previously defined temperature intervals.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This <a class="reference internal" href="#+tc_toolbox.SystemFunction" title="+tc_toolbox.SystemFunction"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">SystemFunction</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.SystemFunction.remove_interval_with_upper_limit">
+<span class="sig-name descname"><span class="pre">remove_interval_with_upper_limit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">upper_temperature_limit</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.SystemFunction.remove_interval_with_upper_limit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes a previously defined temperature interval with matching upper temperature limit.</p>
+<p><strong>If no such interval exists, an exception is thrown.</strong></p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This <a class="reference internal" href="#+tc_toolbox.SystemFunction" title="+tc_toolbox.SystemFunction"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">SystemFunction</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.SystemFunction.set_expression_with_upper_limit">
+<span class="sig-name descname"><span class="pre">set_expression_with_upper_limit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">function_expression</span></em>, <em class="sig-param"><span class="pre">upper_temperature_limit</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.SystemFunction.set_expression_with_upper_limit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds/overwrites a function expression for a temperature interval.</p>
+<p><strong>Default value of the upper limit of the interval</strong>: 6000 K</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The lower temperature limit is either defined by the lower temperature limit given with
+<a class="reference internal" href="#+tc_toolbox.SystemFunction.set_lower_temperature_limit" title="+tc_toolbox.SystemFunction.set_lower_temperature_limit"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">SystemFunction.set_lower_temperature_limit()</span></code></a> or by the upper temperature limit of the adjacent
+interval.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If there is an existing interval with exactly the same <cite>upper_temperature_limit</cite>, that interval is
+overwritten, otherwise the interval is added.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>function_expression</strong> – The function expression, example: <cite>+V34*T*LN(T)+V35*T**2+V36*T**(-1)+V37*T**3”)</cite></p></li>
+<li><p><strong>upper_temperature_limit</strong> – The upper temperature limit for which the expression should be used</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#+tc_toolbox.SystemFunction" title="+tc_toolbox.SystemFunction"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">SystemFunction</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.SystemFunction.set_interval">
+<span class="sig-name descname"><span class="pre">set_interval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">interval</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.SystemFunction.set_interval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds/overwrites a temperature interval.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The lower temperature limit is either defined by the lower temperature limit given with
+<a class="reference internal" href="#+tc_toolbox.SystemFunction.set_lower_temperature_limit" title="+tc_toolbox.SystemFunction.set_lower_temperature_limit"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">SystemFunction.set_lower_temperature_limit()</span></code></a> or by the upper temperature limit of the adjacent
+interval.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If there is an existing interval with exactly the same <cite>upper_temperature_limit</cite>, that interval is
+overwritten, otherwise the interval is added.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This <a class="reference internal" href="#+tc_toolbox.SystemFunction" title="+tc_toolbox.SystemFunction"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">SystemFunction</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.SystemFunction.set_lower_temperature_limit">
+<span class="sig-name descname"><span class="pre">set_lower_temperature_limit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">lower_temperature_limit</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.SystemFunction.set_lower_temperature_limit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the lower temperature limit of the system function.</p>
+<p><strong>Default</strong>: 298.15 K</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>lower_temperature_limit</strong> – The lower limit in K</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#+tc_toolbox.SystemFunction" title="+tc_toolbox.SystemFunction"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">SystemFunction</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="mat class">
+<dt class="sig sig-object mat" id="+tc_toolbox.SystemModifications">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+tc_toolbox.</span></span><span class="sig-name descname"><span class="pre">SystemModifications</span></span><a class="headerlink" href="#+tc_toolbox.SystemModifications" title="Permalink to this definition">¶</a></dt>
+<dd><p>Functionality to modify a user database during a calculation by changing phase parameters and system functions.</p>
+<p>The actual changes are <strong>only applied</strong> by using
+<code class="xref mat mat-func docutils literal notranslate"><span class="pre">+tc_toolbox.abstract_base.AbstractCalculation.with_system_modifications()</span></code> on a calculator object.</p>
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.SystemModifications.SystemModifications">
+<span class="sig-name descname"><span class="pre">SystemModifications</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.SystemModifications.SystemModifications" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs an instance of <a class="reference internal" href="#+tc_toolbox.SystemModifications" title="+tc_toolbox.SystemModifications"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">SystemModifications</span></code></a>.</p>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.SystemModifications.run_ges_command">
+<span class="sig-name descname"><span class="pre">run_ges_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">ges_command</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.SystemModifications.run_ges_command" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sends a GES-command. <strong>This is actually applied when running `with_system_modifications` on a calculator
+object.</strong></p>
+<p>Example: <cite>run_ges_command(“AM-PH-DE FCC_A1 C_S 2 Fe:C”)</cite> for adding a second composition set to the FCC_A1
+phase with <cite>Fe</cite> as major constituent on first sublattice and <cite>C</cite> as major constituent on second sublattice.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For details about the syntax search the Thermo-Calc help for <em>GES</em> (the name for the Gibbs Energy System
+module in Console Mode).</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It should not be necessary for most users to use this method, try to use the corresponding method
+implemented in the API instead.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>As this method runs raw GES-commands directly in the engine, it may hang the program in case
+of spelling mistakes (e.g. forgotten parenthesis, …).</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ges_command</strong> – The GES-command (for example: <cite>“AM-PH-DE FCC_A1 C_S 2 Fe:C”</cite>)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#+tc_toolbox.SystemModifications" title="+tc_toolbox.SystemModifications"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">SystemModifications</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.SystemModifications.set">
+<span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">parameter_or_function</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.SystemModifications.set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overwrites or creates a phase parameter or system function.</p>
+<p>Example: <cite>system_modifications.set(PhaseParameter(‘G(LIQUID,FE;0)’).set_expression_with_upper_limit(‘+1.2*GFELIQ’))</cite></p>
+<p>Example: <cite>system_modifications.set(SystemFunction(“DGDEF”).set_expression_with_upper_limit(‘+10.0-R*T’, 1000).set_expression_with_upper_limit(‘+20.0-R*T’, 3000))</cite></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The old parameter/function is <strong>overwritten</strong> and any temperature intervals not defined are lost.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Please consult the Thermo-Calc GES-system documentation for details about the syntax.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This <a class="reference internal" href="#+tc_toolbox.SystemModifications" title="+tc_toolbox.SystemModifications"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">SystemModifications</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="mat class">
+<dt class="sig sig-object mat" id="+tc_toolbox.TCToolbox">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+tc_toolbox.</span></span><span class="sig-name descname"><span class="pre">TCToolbox</span></span><a class="headerlink" href="#+tc_toolbox.TCToolbox" title="Permalink to this definition">¶</a></dt>
+<dd><p>TCToolbox Starting point for all calculations.
+This class exposes methods that have no precondition, it is used for choosing databases and elements.</p>
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.TCToolbox.TCToolbox">
+<span class="sig-name descname"><span class="pre">TCToolbox</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.TCToolbox.TCToolbox" title="Permalink to this definition">¶</a></dt>
+<dd><p>TCToolbox Construct an instance of this class</p>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.TCToolbox.delete">
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.TCToolbox.delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>TCToolbox Clears all resources used by the session
+Shuts down the API server and deletes all temporary files.
+The disk usage of temporary files might be significant.</p>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.TCToolbox.disable_caching">
+<span class="sig-name descname"><span class="pre">disable_caching</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.TCToolbox.disable_caching" title="Permalink to this definition">¶</a></dt>
+<dd><p>A previously set cache folder is no longer used.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Within the session, caching is activated and used through the default temporary directory.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This <cite>SetUp</cite> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.TCToolbox.get_database_info">
+<span class="sig-name descname"><span class="pre">get_database_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">database_short_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.TCToolbox.get_database_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtains the short information available for the specified database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>database_short_name</strong> – The name of the database (i.e. “FEDEMO”, …)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The short information about the database</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.TCToolbox.get_database_path_on_disk">
+<span class="sig-name descname"><span class="pre">get_database_path_on_disk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">database_short_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.TCToolbox.get_database_path_on_disk" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtains the path to the database file on disk. <cite>TCPATH</cite> is a placeholder for the root path of the used
+Thermo-Calc installation.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Encrypted databases (<cite>*.TDC</cite>) cannot be edited.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>database_short_name</strong> – The name of the database (i.e. “FEDEMO”, …)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The path to the database on disk</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.TCToolbox.get_databases">
+<span class="sig-name descname"><span class="pre">get_databases</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.TCToolbox.get_databases" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtains the short names of all databases available in the used Thermo-Calc installation.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Only databases with a valid license are listed.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List of the available databases</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.TCToolbox.get_property_models">
+<span class="sig-name descname"><span class="pre">get_property_models</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">path_to_models</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.TCToolbox.get_property_models" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lists the names of all Property Models in the specified directory.</p>
+<p>If the directory is not specified, the Property Model folder used by the normal Thermo-Calc application is used.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path_to_models</strong> – The path where the Property Models are installed. If no value is entered, the Property
+Model folder used by the normal Thermo-Calc application is used.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Set containing all Property Model names</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.TCToolbox.load_result_from_disk">
+<span class="sig-name descname"><span class="pre">load_result_from_disk</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.TCToolbox.load_result_from_disk" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a previously calculated result from disk.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This <strong>only</strong> works for results created by calling one of the <code class="xref mat mat-func docutils literal notranslate"><span class="pre">save_result()</span></code> methods on a <cite>Result</cite>
+class created from a calculation.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <a class="reference internal" href="#+tc_toolbox.ResultLoader" title="+tc_toolbox.ResultLoader"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">ResultLoader</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.TCToolbox.select_database_and_elements">
+<span class="sig-name descname"><span class="pre">select_database_and_elements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">database_name</span></em>, <em class="sig-param"><span class="pre">list_of_elements</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.TCToolbox.select_database_and_elements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects a first thermodynamic or kinetic database and selects the elements in it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>database_name</strong> – The name of the database, for example “FEDEMO”</p></li>
+<li><p><strong>list_of_elements</strong> – The list of the selected elements in that database, for example [“Fe”, “C”]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">SystemBuilder</span></code> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.TCToolbox.select_thermodynamic_and_kinetic_databases_with_elements">
+<span class="sig-name descname"><span class="pre">select_thermodynamic_and_kinetic_databases_with_elements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">thermodynamic_db_name</span></em>, <em class="sig-param"><span class="pre">kinetic_db_name</span></em>, <em class="sig-param"><span class="pre">list_of_elements</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.TCToolbox.select_thermodynamic_and_kinetic_databases_with_elements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the thermodynamic and kinetic database at once, guarantees that the databases are added in the correct
+order. Further rejection or selection of phases applies to both databases.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>thermodynamic_db_name</strong> – The thermodynamic database name, for example “FEDEMO”</p></li>
+<li><p><strong>kinetic_db_name</strong> – The kinetic database name, for example “MFEDEMO”</p></li>
+<li><p><strong>list_of_elements</strong> – The list of the selected elements in that database, for example [“Fe”, “C”]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">MultiDatabaseSystemBuilder</span></code> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.TCToolbox.select_user_database_and_elements">
+<span class="sig-name descname"><span class="pre">select_user_database_and_elements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">path_to_user_database</span></em>, <em class="sig-param"><span class="pre">list_of_elements</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.TCToolbox.select_user_database_and_elements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects a user-defined database and selects the elements in it.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>By using a r-literal, it is possible to use slashes on all platforms, also on Windows: <cite>select_user_database_and_elements(r”my path/user_db.tdb”, [“Fe”, “Cr”]])</cite></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>On Linux and Mac the path is case-sensitive, also the file ending.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path_to_user_database</strong> – The path to the database file (“database”.TDB), defaults to the current working directory.
+Only filename is required if the database is located in the same folder as the
+script.</p></li>
+<li><p><strong>list_of_elements</strong> – The list of the selected elements in that database, for example [“Fe”, “C”]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">SystemBuilder</span></code> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.TCToolbox.set_cache_folder">
+<span class="sig-name descname"><span class="pre">set_cache_folder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">path</span></em>, <em class="sig-param"><span class="pre">precision_for_floats</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.TCToolbox.set_cache_folder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets a folder where results from calculations and state of systems are saved.
+If at any time a calculation is run which has the exact same setting as a previous, the calculation is not
+re-run. The result is instead loaded from this folder.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The same folder can be used in several scripts, and it can even be shared between different users.
+It can be a network folder.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> – path to the folder where results should be stored. It can be relative or absolute.</p></li>
+<li><p><strong>precision_for_floats</strong> – The number of significant figures used when comparing if the calculation has the same setting as a previous.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <cite>SetUp</cite> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.TCToolbox.set_ges_version">
+<span class="sig-name descname"><span class="pre">set_ges_version</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">version</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.TCToolbox.set_ges_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Setting the version of the Gibbs Energy System (GES).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>version</strong> – The GES-version (currently version 5 or 6)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <cite>SetUp</cite> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.TCToolbox.set_log_level_to_debug">
+<span class="sig-name descname"><span class="pre">set_log_level_to_debug</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.TCToolbox.set_log_level_to_debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets log level to DEBUG</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This <cite>SetUp</cite> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.TCToolbox.set_log_level_to_info">
+<span class="sig-name descname"><span class="pre">set_log_level_to_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.TCToolbox.set_log_level_to_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets log level to INFO</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This <cite>SetUp</cite> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.TCToolbox.with_metallurgy">
+<span class="sig-name descname"><span class="pre">with_metallurgy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.TCToolbox.with_metallurgy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides access to the calculation objects for all Process Metallurgy calculations.</p>
+<p>These are specialised calculations for working with metallurgical processes. Both equilibrium calculations and
+kinetic process simulations (Effective Equilibrium Reaction Zone model) are available.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="mat class">
+<dt class="sig sig-object mat" id="+tc_toolbox.TemperatureInterval">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+tc_toolbox.</span></span><span class="sig-name descname"><span class="pre">TemperatureInterval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">expression</span></em>, <em class="sig-param"><span class="pre">upper_temperature_limit</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.TemperatureInterval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Temperature interval expression used by the classes <a class="reference internal" href="#+tc_toolbox.SystemFunction" title="+tc_toolbox.SystemFunction"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">SystemFunction</span></code></a> and <a class="reference internal" href="#+tc_toolbox.PhaseParameter" title="+tc_toolbox.PhaseParameter"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">PhaseParameter</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>expression</strong> – The temperature function expressed in Thermo-Calc database syntax.</p></li>
+<li><p><strong>upper_temperature_limit</strong> – The upper temperature limit in K</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.TemperatureInterval.TemperatureInterval">
+<span class="sig-name descname"><span class="pre">TemperatureInterval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">expression</span></em>, <em class="sig-param"><span class="pre">upper_temperature_limit</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.TemperatureInterval.TemperatureInterval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs an instance of <a class="reference internal" href="#+tc_toolbox.TemperatureInterval" title="+tc_toolbox.TemperatureInterval"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">TemperatureInterval</span></code></a>.</p>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.TemperatureInterval.get_expression">
+<span class="sig-name descname"><span class="pre">get_expression</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.TemperatureInterval.get_expression" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the function expression of this temperature interval.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The temperature function expression</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.TemperatureInterval.get_upper_temperature_limit">
+<span class="sig-name descname"><span class="pre">get_upper_temperature_limit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.TemperatureInterval.get_upper_temperature_limit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the upper limit of this temperature interval.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The upper temperature limit in K</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.TemperatureInterval.set_expression">
+<span class="sig-name descname"><span class="pre">set_expression</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">expression</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.TemperatureInterval.set_expression" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the function expression of this temperature interval.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>expression</strong> – The temperature function expression</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.TemperatureInterval.set_upper_temperature_limit">
+<span class="sig-name descname"><span class="pre">set_upper_temperature_limit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">upper_temperature_limit</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.TemperatureInterval.set_upper_temperature_limit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the upper limit of this temperature interval.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>upper_temperature_limit</strong> – The upper temperature limit in K</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="mat class">
+<dt class="sig sig-object mat" id="+tc_toolbox.TemperatureProfile">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+tc_toolbox.</span></span><span class="sig-name descname"><span class="pre">TemperatureProfile</span></span><a class="headerlink" href="#+tc_toolbox.TemperatureProfile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents a time-temperature profile used by non-isothermal calculations.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The total simulation time can differ from the defined temperature profile. Constant temperature is assumed for
+any timepoint after the end of the defined profile.</p>
+</div>
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.TemperatureProfile.TemperatureProfile">
+<span class="sig-name descname"><span class="pre">TemperatureProfile</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.TemperatureProfile.TemperatureProfile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructor.
+Constructs an instance of <a class="reference internal" href="#+tc_toolbox.TemperatureProfile" title="+tc_toolbox.TemperatureProfile"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">TemperatureProfile</span></code></a>.</p>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.TemperatureProfile.add_time_temperature">
+<span class="sig-name descname"><span class="pre">add_time_temperature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">time</span></em>, <em class="sig-param"><span class="pre">temperature</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.TemperatureProfile.add_time_temperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a time-temperature point to the non-isothermal temperature profile.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>time</strong> – The time [s]</p></li>
+<li><p><strong>temperature</strong> – The temperature [K]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#+tc_toolbox.TemperatureProfile" title="+tc_toolbox.TemperatureProfile"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">TemperatureProfile</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="mat class">
+<dt class="sig sig-object mat" id="+tc_toolbox.ThermodynamicQuantity">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+tc_toolbox.</span></span><span class="sig-name descname"><span class="pre">ThermodynamicQuantity</span></span><a class="headerlink" href="#+tc_toolbox.ThermodynamicQuantity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Factory class providing quantities used for defining equilibrium calculations (single equilibrium, property and
+phase diagrams, …) and their results.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In this factory class only the most common quantities are defined, you can always use the <em>Console Mode</em> syntax
+strings in the respective methods as an alternative (for example: “NPM(*)”).</p>
+</div>
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ThermodynamicQuantity.activity_of_component">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">activity_of_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">component</span></em>, <em class="sig-param"><span class="pre">use_ser</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ThermodynamicQuantity.activity_of_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the activity of a component [-].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component</strong> – The name of the component, use <cite>ALL_COMPONENTS</cite> to choose all components</p></li>
+<li><p><strong>use_ser</strong> – Use Stable-Element-Reference(SER). The user-defined reference state is used if this setting is
+set to <cite>False</cite>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">ActivityOfComponent</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ThermodynamicQuantity.chemical_diffusion_coefficient">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">chemical_diffusion_coefficient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">phase</span></em>, <em class="sig-param"><span class="pre">diffusing_element</span></em>, <em class="sig-param"><span class="pre">gradient_element</span></em>, <em class="sig-param"><span class="pre">reference_element</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ThermodynamicQuantity.chemical_diffusion_coefficient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the chemical diffusion coefficient of a phase [m^2/s].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – The name of the phase</p></li>
+<li><p><strong>diffusing_element</strong> – The diffusing element</p></li>
+<li><p><strong>gradient_element</strong> – The gradient element</p></li>
+<li><p><strong>reference_element</strong> – The reference element (for example “Fe” in a steel)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">ChemicalDiffusionCoefficient</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ThermodynamicQuantity.chemical_potential_of_component">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">chemical_potential_of_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">component</span></em>, <em class="sig-param"><span class="pre">use_ser</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ThermodynamicQuantity.chemical_potential_of_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the chemical potential of a component [J].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component</strong> – The name of the component, use <cite>ALL_COMPONENTS</cite> to choose all components</p></li>
+<li><p><strong>use_ser</strong> – Use Stable-Element-Reference(SER). The user-defined reference state is used if this setting is
+set to <cite>False</cite>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">ChemicalPotentialOfComponent</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ThermodynamicQuantity.composition_of_phase_as_mole_fraction">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">composition_of_phase_as_mole_fraction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">phase</span></em>, <em class="sig-param"><span class="pre">component</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ThermodynamicQuantity.composition_of_phase_as_mole_fraction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the composition of a phase [mole-fraction].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – The name of the phase, use <cite>ALL_PHASES</cite> to choose all stable phases</p></li>
+<li><p><strong>component</strong> – The name of the component, use <cite>ALL_COMPONENTS</cite> to choose all components</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">CompositionOfPhaseAsMoleFraction</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ThermodynamicQuantity.composition_of_phase_as_weight_fraction">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">composition_of_phase_as_weight_fraction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">phase</span></em>, <em class="sig-param"><span class="pre">component</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ThermodynamicQuantity.composition_of_phase_as_weight_fraction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the composition of a phase [weight-fraction].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – The name of the phase, use <cite>ALL_PHASES</cite> to choose all stable phases</p></li>
+<li><p><strong>component</strong> – The name of the component, use <cite>ALL_COMPONENTS</cite> to choose all components</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">CompositionOfPhaseAsWeightFraction</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ThermodynamicQuantity.gibbs_energy_of_a_phase">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">gibbs_energy_of_a_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">phase</span></em>, <em class="sig-param"><span class="pre">use_ser</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ThermodynamicQuantity.gibbs_energy_of_a_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the Gibbs energy of a phase [J].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – The name of the phase or <cite>ALL_PHASES</cite> to choose all phases</p></li>
+<li><p><strong>use_ser</strong> – Use Stable-Element-Reference(SER). The user-defined reference state will be used when this setting is set to False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">GibbsEnergyOfAPhase</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ThermodynamicQuantity.mass_fraction_of_a_component">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">mass_fraction_of_a_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">component</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ThermodynamicQuantity.mass_fraction_of_a_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the mass fraction of a component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>component</strong> – The name of the component or <cite>ALL_COMPONENTS</cite> to choose all components</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">MassFractionOfAComponent</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ThermodynamicQuantity.mass_fraction_of_a_phase">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">mass_fraction_of_a_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">phase</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ThermodynamicQuantity.mass_fraction_of_a_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the mass fraction of a phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>phase</strong> – The name of the phase or <cite>ALL_PHASES</cite> to choose all phases.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">MassFractionOfAPhase</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ThermodynamicQuantity.mole_fraction_of_a_component">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">mole_fraction_of_a_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">component</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ThermodynamicQuantity.mole_fraction_of_a_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the mole fraction of a component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>component</strong> – The name of the component or <cite>ALL_COMPONENTS</cite> to choose all components</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">MoleFractionOfAComponent</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ThermodynamicQuantity.mole_fraction_of_a_phase">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">mole_fraction_of_a_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">phase</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ThermodynamicQuantity.mole_fraction_of_a_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the mole fraction of a phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>phase</strong> – The name of the phase or <cite>ALL_PHASES</cite> to choose all phases</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">MoleFractionOfAPhase</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ThermodynamicQuantity.normalized_driving_force_of_a_phase">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">normalized_driving_force_of_a_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">phase</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ThermodynamicQuantity.normalized_driving_force_of_a_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing normalized driving force of a phase [-].</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>A driving force calculation requires that the respective phase has been set to the state <em>DORMANT</em>.
+The parameter <cite>All</cite> is only reasonable if all phases have been set to that state.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>phase</strong> – The name of the phase or <cite>ALL_PHASES</cite> to choose all phases</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">DrivingForceOfAPhase</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ThermodynamicQuantity.pressure">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">pressure</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ThermodynamicQuantity.pressure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the pressure [Pa].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">Pressure</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ThermodynamicQuantity.system_size">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">system_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ThermodynamicQuantity.system_size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the system size [mol].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">SystemSize</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ThermodynamicQuantity.temperature">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">temperature</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ThermodynamicQuantity.temperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the temperature [K].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">Temperature</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ThermodynamicQuantity.tracer_diffusion_coefficient">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">tracer_diffusion_coefficient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">phase</span></em>, <em class="sig-param"><span class="pre">diffusing_element</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ThermodynamicQuantity.tracer_diffusion_coefficient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing tracer diffusion coefficient of a phase [m^2/s].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – The name of the phase</p></li>
+<li><p><strong>diffusing_element</strong> – The diffusing element</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">TracerDiffusionCoefficient</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ThermodynamicQuantity.u_fraction_of_a_component">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">u_fraction_of_a_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">component</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ThermodynamicQuantity.u_fraction_of_a_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the u-fraction of a component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>component</strong> – The name of the component</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">UFractionOfAComponent</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ThermodynamicQuantity.user_defined_function">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">user_defined_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">expression</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ThermodynamicQuantity.user_defined_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing a user-defined function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>expression</strong> – The function expression</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">Function</span></code> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat staticmethod">
+<dt class="sig sig-object mat" id="+tc_toolbox.ThermodynamicQuantity.volume_fraction_of_a_phase">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">volume_fraction_of_a_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">phase</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.ThermodynamicQuantity.volume_fraction_of_a_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a quantity representing the volume fraction of a phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>phase</strong> – The name of the phase or <cite>ALL_PHASES</cite> to choose all phases</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref mat mat-class docutils literal notranslate"><span class="pre">VolumeFractionOfAPhase</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../calculation_packages/process_metallurgy_modules/process.html" class="btn btn-neutral float-left" title="Package “process”" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="system.html" class="btn btn-neutral float-right" title="Package “system”" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Foundation of Computational Thermodynamics, Stockholm, Sweden.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>  
+
+<style>
+    /* Sidebar header (and topbar for mobile) */
+    .wy-side-nav-search, .wy-nav-top {
+        background: #700707;
+    }
+</style>
+
+
+</body>
+</html>

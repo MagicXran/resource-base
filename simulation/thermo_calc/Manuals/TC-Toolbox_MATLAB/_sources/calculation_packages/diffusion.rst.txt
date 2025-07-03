@@ -1,0 +1,7 @@
+Package "diffusion"
+~~~~~~~~~~~~~~~~~~~
+
+.. automodule:: +tc_toolbox.+diffusion
+    :members:
+    :exclude-members: backend
+    :undoc-members:

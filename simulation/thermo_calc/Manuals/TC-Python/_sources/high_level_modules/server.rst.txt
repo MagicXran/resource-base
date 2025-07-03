@@ -1,0 +1,7 @@
+Module "server"
+---------------
+
+.. automodule:: tc_python.server
+    :members:
+    :undoc-members:
+    :show-inheritance:

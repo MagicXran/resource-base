@@ -1,0 +1,7 @@
+Module "step_or_map_diagrams"
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. automodule:: tc_python.step_or_map_diagrams
+    :members:
+    :undoc-members:
+    :show-inheritance:

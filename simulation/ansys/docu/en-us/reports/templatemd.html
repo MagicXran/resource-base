@@ -1,0 +1,199 @@
+<!-- templatemd.html  ---  structural modal report  ---  with figures -->
+<!-- $Revision$ -->
+<!-- $Date$ -->
+<ansys>
+*ulib,report,lib
+_dogrph=1
+_fignum=1
+_tabnum=1
+*use,h_setup
+*abset,'Mechanical Toolbar Report Generator',bar
+</ansys>
+
+<HTML>
+<HEAD> <TITLE><ansys>*use,h_title,1</ansys></TITLE> </HEAD>
+<BODY>
+<a name="top">
+<IMG SRC="ansysnb.gif">
+<p>
+<blockquote>
+
+<!-- ######################################################## -->
+<!-- Get report title, author, date -->
+<!-- ######################################################## -->
+<ansys>*use,h_title</ansys>
+<p><hr><p>
+
+<!-- ######################################################## -->
+<!-- Resize the graphics window -->
+<!-- ######################################################## -->
+<ansys>
+*get,_igui,common,,mccom,,int,16
+*if,_igui,eq,1,then
+/ui,wsize,200,250,550,415
+*endif
+*del,_igui
+</ansys>
+
+<!-- ######################################################## -->
+<!-- Figure Vplot/Aplot -->
+<!-- ######################################################## -->
+<ansys>
+*abcheck,20,'Plotting Model Geometry'
+*use,h_gmplot,_fignum
+_fignum=_fignum+1
+</ansys>
+<blockquote><p><a href="#top"> Back to top</a><br></blockquote>
+
+<!-- ######################################################## -->
+<!-- Summary Section -->
+<!-- ######################################################## -->
+<a name="summary">
+<ansys>
+*abcheck,25,'Summary and Model Information'
+*use,h_summry
+</ansys>
+<p><hr><p>
+
+<!-- ######################################################## -->
+<!-- Model Information Section -->
+<!-- ######################################################## -->
+<a name="model">
+<ansys>*use,h_model</ansys>
+
+<!-- ######################################################## -->
+<!-- Figure Eplot -->
+<!-- ######################################################## -->
+<ansys>
+*abcheck,30,'Finite Element Mesh'
+*use,h_mshplt,_fignum
+_fignum=_fignum+1
+</ansys>
+<blockquote><p><a href="#top"> Back to top</a><br></blockquote>
+
+<!-- ######################################################## -->
+<!-- Geometry, Material, and Analysis Information Section -->
+<!-- ######################################################## -->
+<ansys>
+*abcheck,40,'Geometry, Material, and Analysis Information'
+*use,h_geom,_tabnum
+_tabnum=_tabnum+1
+_MATTB(1)=1   ! EX
+_MATTB(2)=1   ! NUXY
+_MATTB(3)=0   ! ALPX
+_MATTB(4)=1   ! DENS
+_MATTB(5)=0   ! KXX
+_MATTB(6)=0   ! C
+*use,h_mater,_tabnum
+_tabnum=_tabnum+1
+</ansys>
+
+<!-- ######################################################## -->
+<!-- Figure Contact Pair Plot -->
+<!-- ######################################################## -->
+<ansys>
+*if,_NCPAIRS,gt,0,then
+   *abcheck,35,'Plotting Contact Pairs'
+   *use,h_ctplot,_fignum
+   _fignum=_fignum+1
+   /com,<blockquote><p><a href="#top"> Back to top</a><br></blockquote>
+*endif
+</ansys>
+
+<!-- ######################################################## -->
+<!-- Table Contact Pairs -->
+<!-- ######################################################## -->
+<ansys>
+*if,_NCPAIRS,gt,0,then
+   *use,h_cttabl,_tabnum
+   _tabnum=_tabnum+1
+   /com,<blockquote>
+   /com,<p><a href="#top"> Back to top</a><br>
+   /com,</blockquote>
+*endif
+</ansys>
+<p><hr><p>
+<a name="analy">
+<ansys>*use,h_analy</ansys>
+
+<!-- ######################################################## -->
+<!-- Figure Vplot/Aplot with loads -->
+<!-- ######################################################## -->
+<ansys>
+*abcheck,45,'Loads and Boundary Conditions'
+*use,h_bcplot,_fignum
+_fignum=_fignum+1
+</ansys>
+<blockquote><p><a href="#top"> Back to top</a><br></blockquote>
+
+<!-- ######################################################## -->
+<!-- Table Loads & B.C. -->
+<!-- ######################################################## -->
+<ansys>
+mtenvprp,_curenv,_tabnum
+_tabnum=_tabnum+1
+</ansys>
+<p><hr><p>
+
+<!-- ######################################################## -->
+<!-- Results Information Section -->
+<!-- ######################################################## -->
+<a name="results">
+<ansys>
+*abcheck,50,'Results Information'
+*use,h_results
+</ansys>
+
+<!-- ######################################################## -->
+<!-- Figure First mode shape-->
+<!-- ######################################################## -->
+<ansys>
+*use,h_mdplot,1,_fignum
+_fignum=_fignum+1
+</ansys>
+
+<!-- ######################################################## -->
+<!-- Figure Second mode shape-->
+<!-- ######################################################## -->
+<ansys>
+*use,h_mdplot,2,_fignum
+_fignum=_fignum+1
+</ansys>
+
+<!-- ######################################################## -->
+<!-- Figure Third mode shape-->
+<!-- ######################################################## -->
+<ansys>
+*abcheck,95,'Natural Frequency Tables'
+*use,h_mdplot,3,_fignum
+_fignum=_fignum+1
+</ansys>
+
+<!-- ######################################################## -->
+<!-- Frequency Table -->
+<!-- ######################################################## -->
+<ansys>
+*use,h_nfreqs,_tabnum
+_tabnum=_tabnum+1
+</ansys>
+<p>
+<blockquote>
+<hr>
+<address>
+<B>Caution: </b>Do not accept or reject a design based solely on the
+results shown here. ANSYS, Inc. recommends that you also take into 
+account experimental test data and/or prior experience with similar
+analyses when evaluating a design.
+</address>
+<hr>
+</blockquote>
+</blockquote>
+<ansys>
+*use,h_finish
+*abfini
+_fignum=
+_tabnum=
+</ansys>
+</BODY>
+</HTML>
+

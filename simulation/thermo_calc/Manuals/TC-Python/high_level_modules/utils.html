@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module “utils” &mdash; TC-Python 2023b documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Module “propertymodel_sdk”" href="propertymodel_sdk.html" />
+    <link rel="prev" title="Module “quantity_factory”" href="quantity_factory.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            TC-Python
+          </a>
+              <div class="version">
+                2023b
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment_variables.html">Mac OS: Setting Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../best_practices.html">Best Practices</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api_reference.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../calculations.html">Calculations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system.html">Module “system”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entities.html">Module “entities”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server.html">Module “server”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quantity_factory.html">Module “quantity_factory”</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Module “utils”</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.utils.CompositionType"><code class="docutils literal notranslate"><span class="pre">CompositionType</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.utils.CompositionType.COMPONENT"><code class="docutils literal notranslate"><span class="pre">CompositionType.COMPONENT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.utils.CompositionType.ELEMENT"><code class="docutils literal notranslate"><span class="pre">CompositionType.ELEMENT</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.utils.CompositionUnit"><code class="docutils literal notranslate"><span class="pre">CompositionUnit</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.utils.CompositionUnit.MASS_FRACTION"><code class="docutils literal notranslate"><span class="pre">CompositionUnit.MASS_FRACTION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.utils.CompositionUnit.MASS_PERCENT"><code class="docutils literal notranslate"><span class="pre">CompositionUnit.MASS_PERCENT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.utils.CompositionUnit.MOLE_FRACTION"><code class="docutils literal notranslate"><span class="pre">CompositionUnit.MOLE_FRACTION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.utils.CompositionUnit.MOLE_PERCENT"><code class="docutils literal notranslate"><span class="pre">CompositionUnit.MOLE_PERCENT</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.utils.ConversionUnit"><code class="docutils literal notranslate"><span class="pre">ConversionUnit</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.utils.ConversionUnit.MOLE_FRACTION"><code class="docutils literal notranslate"><span class="pre">ConversionUnit.MOLE_FRACTION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.utils.ConversionUnit.MOLE_PERCENT"><code class="docutils literal notranslate"><span class="pre">ConversionUnit.MOLE_PERCENT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.utils.ConversionUnit.WEIGHT_FRACTION"><code class="docutils literal notranslate"><span class="pre">ConversionUnit.WEIGHT_FRACTION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.utils.ConversionUnit.WEIGHT_PERCENT"><code class="docutils literal notranslate"><span class="pre">ConversionUnit.WEIGHT_PERCENT</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.utils.GasAmountUnit"><code class="docutils literal notranslate"><span class="pre">GasAmountUnit</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.utils.GasAmountUnit.KILOGRAM"><code class="docutils literal notranslate"><span class="pre">GasAmountUnit.KILOGRAM</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.utils.GasAmountUnit.NORM_CUBIC_METER"><code class="docutils literal notranslate"><span class="pre">GasAmountUnit.NORM_CUBIC_METER</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.utils.GasCompositionUnit"><code class="docutils literal notranslate"><span class="pre">GasCompositionUnit</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.utils.GasCompositionUnit.MASS_FRACTION"><code class="docutils literal notranslate"><span class="pre">GasCompositionUnit.MASS_FRACTION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.utils.GasCompositionUnit.MASS_PERCENT"><code class="docutils literal notranslate"><span class="pre">GasCompositionUnit.MASS_PERCENT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.utils.GasCompositionUnit.MOLE_FRACTION"><code class="docutils literal notranslate"><span class="pre">GasCompositionUnit.MOLE_FRACTION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.utils.GasCompositionUnit.MOLE_PERCENT"><code class="docutils literal notranslate"><span class="pre">GasCompositionUnit.MOLE_PERCENT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.utils.GasCompositionUnit.VOLUME_FRACTION"><code class="docutils literal notranslate"><span class="pre">GasCompositionUnit.VOLUME_FRACTION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.utils.GasCompositionUnit.VOLUME_PERCENT"><code class="docutils literal notranslate"><span class="pre">GasCompositionUnit.VOLUME_PERCENT</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.utils.GasRateUnit"><code class="docutils literal notranslate"><span class="pre">GasRateUnit</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.utils.GasRateUnit.KILOGRAM_PER_SEC"><code class="docutils literal notranslate"><span class="pre">GasRateUnit.KILOGRAM_PER_SEC</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.utils.GasRateUnit.NORM_CUBIC_METER_PER_SEC"><code class="docutils literal notranslate"><span class="pre">GasRateUnit.NORM_CUBIC_METER_PER_SEC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.utils.InterfacePosition"><code class="docutils literal notranslate"><span class="pre">InterfacePosition</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.utils.InterfacePosition.LOWER"><code class="docutils literal notranslate"><span class="pre">InterfacePosition.LOWER</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.utils.InterfacePosition.UPPER"><code class="docutils literal notranslate"><span class="pre">InterfacePosition.UPPER</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.utils.PhaseUnit"><code class="docutils literal notranslate"><span class="pre">PhaseUnit</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.utils.PhaseUnit.MASS_FRACTION"><code class="docutils literal notranslate"><span class="pre">PhaseUnit.MASS_FRACTION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.utils.PhaseUnit.MOLE_FRACTION"><code class="docutils literal notranslate"><span class="pre">PhaseUnit.MOLE_FRACTION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.utils.PhaseUnit.VOLUME_FRACTION"><code class="docutils literal notranslate"><span class="pre">PhaseUnit.VOLUME_FRACTION</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.utils.ResultValueGroup"><code class="docutils literal notranslate"><span class="pre">ResultValueGroup</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.utils.ResultValueGroup.get_label"><code class="docutils literal notranslate"><span class="pre">ResultValueGroup.get_label()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.utils.ResultValueGroup.get_x"><code class="docutils literal notranslate"><span class="pre">ResultValueGroup.get_x()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.utils.ResultValueGroup.get_y"><code class="docutils literal notranslate"><span class="pre">ResultValueGroup.get_y()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.utils.TemperatureProfile"><code class="docutils literal notranslate"><span class="pre">TemperatureProfile</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.utils.TemperatureProfile.add_time_temperature"><code class="docutils literal notranslate"><span class="pre">TemperatureProfile.add_time_temperature()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="propertymodel_sdk.html">Module “propertymodel_sdk”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html">Module “exceptions”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="abstract_base.html">Module “abstract_base”</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">TC-Python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api_reference.html">API Reference</a></li>
+      <li class="breadcrumb-item active">Module “utils”</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-tc_python.utils">
+<span id="module-utils"></span><h1>Module “utils”<a class="headerlink" href="#module-tc_python.utils" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.utils.CompositionType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.utils.</span></span><span class="sig-name descname"><span class="pre">CompositionType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.utils.CompositionType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>The type of composition.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.utils.CompositionType.COMPONENT">
+<span class="sig-name descname"><span class="pre">COMPONENT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#tc_python.utils.CompositionType.COMPONENT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Composition given per component, this will be identical to <cite>ELEMENT</cite> in case of metals.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.utils.CompositionType.ELEMENT">
+<span class="sig-name descname"><span class="pre">ELEMENT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#tc_python.utils.CompositionType.ELEMENT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Composition given per element.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.utils.CompositionUnit">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.utils.</span></span><span class="sig-name descname"><span class="pre">CompositionUnit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.utils.CompositionUnit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>The composition unit.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.utils.CompositionUnit.MASS_FRACTION">
+<span class="sig-name descname"><span class="pre">MASS_FRACTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#tc_python.utils.CompositionUnit.MASS_FRACTION" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mass fraction.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.utils.CompositionUnit.MASS_PERCENT">
+<span class="sig-name descname"><span class="pre">MASS_PERCENT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#tc_python.utils.CompositionUnit.MASS_PERCENT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mass percent.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.utils.CompositionUnit.MOLE_FRACTION">
+<span class="sig-name descname"><span class="pre">MOLE_FRACTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#tc_python.utils.CompositionUnit.MOLE_FRACTION" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mole fraction.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.utils.CompositionUnit.MOLE_PERCENT">
+<span class="sig-name descname"><span class="pre">MOLE_PERCENT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#tc_python.utils.CompositionUnit.MOLE_PERCENT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mole percent.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.utils.ConversionUnit">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.utils.</span></span><span class="sig-name descname"><span class="pre">ConversionUnit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.utils.ConversionUnit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>The composition unit used in a conversion.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.utils.ConversionUnit.MOLE_FRACTION">
+<span class="sig-name descname"><span class="pre">MOLE_FRACTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#tc_python.utils.ConversionUnit.MOLE_FRACTION" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mole fraction.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.utils.ConversionUnit.MOLE_PERCENT">
+<span class="sig-name descname"><span class="pre">MOLE_PERCENT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#tc_python.utils.ConversionUnit.MOLE_PERCENT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mole percent.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.utils.ConversionUnit.WEIGHT_FRACTION">
+<span class="sig-name descname"><span class="pre">WEIGHT_FRACTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#tc_python.utils.ConversionUnit.WEIGHT_FRACTION" title="Permalink to this definition">¶</a></dt>
+<dd><p>Weight fraction.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.utils.ConversionUnit.WEIGHT_PERCENT">
+<span class="sig-name descname"><span class="pre">WEIGHT_PERCENT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#tc_python.utils.ConversionUnit.WEIGHT_PERCENT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Weight percent.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.utils.GasAmountUnit">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.utils.</span></span><span class="sig-name descname"><span class="pre">GasAmountUnit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.utils.GasAmountUnit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>The amount of a gas.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.utils.GasAmountUnit.KILOGRAM">
+<span class="sig-name descname"><span class="pre">KILOGRAM</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#tc_python.utils.GasAmountUnit.KILOGRAM" title="Permalink to this definition">¶</a></dt>
+<dd><p>Kilogram.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.utils.GasAmountUnit.NORM_CUBIC_METER">
+<span class="sig-name descname"><span class="pre">NORM_CUBIC_METER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#tc_python.utils.GasAmountUnit.NORM_CUBIC_METER" title="Permalink to this definition">¶</a></dt>
+<dd><p>Norm cubic meter (according to ISO 2533, p=101325 Pa, T=288.15 K, typically used for trading of gas bottles). Other
+definitions vary only slightly.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.utils.GasCompositionUnit">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.utils.</span></span><span class="sig-name descname"><span class="pre">GasCompositionUnit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.utils.GasCompositionUnit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>The composition unit for a gas.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.utils.GasCompositionUnit.MASS_FRACTION">
+<span class="sig-name descname"><span class="pre">MASS_FRACTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#tc_python.utils.GasCompositionUnit.MASS_FRACTION" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mass fraction.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.utils.GasCompositionUnit.MASS_PERCENT">
+<span class="sig-name descname"><span class="pre">MASS_PERCENT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#tc_python.utils.GasCompositionUnit.MASS_PERCENT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mass percent.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.utils.GasCompositionUnit.MOLE_FRACTION">
+<span class="sig-name descname"><span class="pre">MOLE_FRACTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#tc_python.utils.GasCompositionUnit.MOLE_FRACTION" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mole fraction.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.utils.GasCompositionUnit.MOLE_PERCENT">
+<span class="sig-name descname"><span class="pre">MOLE_PERCENT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#tc_python.utils.GasCompositionUnit.MOLE_PERCENT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mole percent.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.utils.GasCompositionUnit.VOLUME_FRACTION">
+<span class="sig-name descname"><span class="pre">VOLUME_FRACTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#tc_python.utils.GasCompositionUnit.VOLUME_FRACTION" title="Permalink to this definition">¶</a></dt>
+<dd><p>Volume fraction.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.utils.GasCompositionUnit.VOLUME_PERCENT">
+<span class="sig-name descname"><span class="pre">VOLUME_PERCENT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#tc_python.utils.GasCompositionUnit.VOLUME_PERCENT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Volume percent.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.utils.GasRateUnit">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.utils.</span></span><span class="sig-name descname"><span class="pre">GasRateUnit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.utils.GasRateUnit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>The rate of a gas flow.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.utils.GasRateUnit.KILOGRAM_PER_SEC">
+<span class="sig-name descname"><span class="pre">KILOGRAM_PER_SEC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#tc_python.utils.GasRateUnit.KILOGRAM_PER_SEC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Kilogram per second.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.utils.GasRateUnit.NORM_CUBIC_METER_PER_SEC">
+<span class="sig-name descname"><span class="pre">NORM_CUBIC_METER_PER_SEC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#tc_python.utils.GasRateUnit.NORM_CUBIC_METER_PER_SEC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Norm cubic meter per second (according to ISO 2533, p=101325 Pa, T=288.15 K, typically used for trading of gas
+bottles). Other definitions vary only slightly.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.utils.InterfacePosition">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.utils.</span></span><span class="sig-name descname"><span class="pre">InterfacePosition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.utils.InterfacePosition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>The position of an interface relative to its region. Only used for diffusion simulations.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.utils.InterfacePosition.LOWER">
+<span class="sig-name descname"><span class="pre">LOWER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#tc_python.utils.InterfacePosition.LOWER" title="Permalink to this definition">¶</a></dt>
+<dd><p>The interface is on the lower side of its region.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.utils.InterfacePosition.UPPER">
+<span class="sig-name descname"><span class="pre">UPPER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#tc_python.utils.InterfacePosition.UPPER" title="Permalink to this definition">¶</a></dt>
+<dd><p>The interface is on the upper side of its region.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.utils.PhaseUnit">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.utils.</span></span><span class="sig-name descname"><span class="pre">PhaseUnit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.utils.PhaseUnit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>The units available for a phase fraction.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.utils.PhaseUnit.MASS_FRACTION">
+<span class="sig-name descname"><span class="pre">MASS_FRACTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#tc_python.utils.PhaseUnit.MASS_FRACTION" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mass fraction.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.utils.PhaseUnit.MOLE_FRACTION">
+<span class="sig-name descname"><span class="pre">MOLE_FRACTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#tc_python.utils.PhaseUnit.MOLE_FRACTION" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mole fraction.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.utils.PhaseUnit.VOLUME_FRACTION">
+<span class="sig-name descname"><span class="pre">VOLUME_FRACTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#tc_python.utils.PhaseUnit.VOLUME_FRACTION" title="Permalink to this definition">¶</a></dt>
+<dd><p>Volume fraction.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.utils.ResultValueGroup">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.utils.</span></span><span class="sig-name descname"><span class="pre">ResultValueGroup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">result_line_group_java</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.utils.ResultValueGroup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A x-y-dataset representing a line data calculation result (i.e. a Thermo-Calc <cite>quantity 1</cite> vs. <cite>quantity 2</cite>).</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Depending on the calculator, the dataset might contain <cite>NaN</cite>-values to separate the data between different
+subsets.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>label</strong> – a str describing what the data corresponds to</p></li>
+<li><p><strong>x</strong> – list of floats representing the first quantity (“x-axis”)</p></li>
+<li><p><strong>y</strong> – list of floats representing the second quantity (“y-axis”)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.utils.ResultValueGroup.get_label">
+<span class="sig-name descname"><span class="pre">get_label</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#tc_python.utils.ResultValueGroup.get_label" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor for the line label
+:return the line label</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.utils.ResultValueGroup.get_x">
+<span class="sig-name descname"><span class="pre">get_x</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.utils.ResultValueGroup.get_x" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor for the x-values
+:return the x values</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.utils.ResultValueGroup.get_y">
+<span class="sig-name descname"><span class="pre">get_y</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.utils.ResultValueGroup.get_y" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor for the y-values
+:return the y values</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.utils.TemperatureProfile">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.utils.</span></span><span class="sig-name descname"><span class="pre">TemperatureProfile</span></span><a class="headerlink" href="#tc_python.utils.TemperatureProfile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represents a time-temperature profile used by non-isothermal calculations.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The total simulation time can differ from the defined temperature profile. Constant temperature is assumed for
+any timepoint after the end of the defined profile.</p>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.utils.TemperatureProfile.add_time_temperature">
+<span class="sig-name descname"><span class="pre">add_time_temperature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temperature</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.utils.TemperatureProfile.add_time_temperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a time-temperature point to the non-isothermal temperature profile.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>time</strong> – The time [s]</p></li>
+<li><p><strong>temperature</strong> – The temperature [K]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.utils.TemperatureProfile" title="tc_python.utils.TemperatureProfile"><code class="xref py py-class docutils literal notranslate"><span class="pre">TemperatureProfile</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="quantity_factory.html" class="btn btn-neutral float-left" title="Module “quantity_factory”" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="propertymodel_sdk.html" class="btn btn-neutral float-right" title="Module “propertymodel_sdk”" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Foundation of Computational Thermodynamics, Stockholm, Sweden.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

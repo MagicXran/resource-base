@@ -1,0 +1,7 @@
+Package "precipitation"
+~~~~~~~~~~~~~~~~~~~~~~~
+
+.. automodule:: +tc_toolbox.+precipitation
+    :members:
+    :exclude-members: backend
+    :undoc-members:

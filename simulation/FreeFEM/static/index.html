@@ -1,0 +1,669 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="GB2312">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>轧制应力场分析系统</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/visualization.css">
+    
+    <!-- 第三方库 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- 图标 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div id="app">
+        <!-- 头部 -->
+        <header class="app-header">
+            <div class="header-content">
+                <h1><i class="fas fa-industry"></i> 热轧过程应力场分析系统</h1>
+                <div class="header-info">
+                    <span class="status-indicator" :class="systemStatus">
+                        <i class="fas fa-circle"></i> {{ systemStatusText }}
+                    </span>
+                    <span class="time">{{ currentTime }}</span>
+                </div>
+            </div>
+        </header>
+        
+        <!-- 主体内容 -->
+        <main class="app-main">
+            <div class="container">
+                <!-- 参数输入区 -->
+                <section class="parameter-section card">
+                    <h2 class="section-title">
+                        <i class="fas fa-sliders-h"></i> 模拟参数设置
+                    </h2>
+                    
+                    <div class="parameter-tabs">
+                        <button 
+                            v-for="tab in parameterTabs" 
+                            :key="tab.key"
+                            class="tab-button"
+                            :class="{ active: activeTab === tab.key }"
+                            @click="activeTab = tab.key">
+                            <i :class="tab.icon"></i> {{ tab.name }}
+                        </button>
+                    </div>
+                    
+                    <!-- 几何参数 -->
+                    <div v-show="activeTab === 'geometry'" class="parameter-group">
+                        <div class="input-grid">
+                            <div class="input-group">
+                                <label>
+                                    <i class="fas fa-circle"></i> 轧辊半径
+                                    <span class="unit">(m)</span>
+                                </label>
+                                <input 
+                                    type="number" 
+                                    v-model.number="parameters.rolling_params.roll_radius"
+                                    min="0.1" max="2.0" step="0.1"
+                                    @input="validateParameters">
+                                <span class="input-hint">典型值: 0.5-0.8 m</span>
+                            </div>
+                            
+                            <div class="input-group">
+                                <label>
+                                    <i class="fas fa-ruler-vertical"></i> 初始厚度
+                                    <span class="unit">(mm)</span>
+                                </label>
+                                <input 
+                                    type="number" 
+                                    v-model.number="thickness_initial_mm"
+                                    min="10" max="100" step="1"
+                                    @input="validateParameters">
+                                <span class="input-hint">热轧: 20-50 mm</span>
+                            </div>
+                            
+                            <div class="input-group">
+                                <label>
+                                    <i class="fas fa-compress-alt"></i> 最终厚度
+                                    <span class="unit">(mm)</span>
+                                </label>
+                                <input 
+                                    type="number" 
+                                    v-model.number="thickness_final_mm"
+                                    min="5" max="50" step="1"
+                                    @input="validateParameters">
+                                <span class="input-hint">压下率: {{ reductionRatio }}%</span>
+                            </div>
+                            
+                            <div class="input-group">
+                                <label>
+                                    <i class="fas fa-arrows-alt-h"></i> 板宽
+                                    <span class="unit">(m)</span>
+                                </label>
+                                <input 
+                                    type="number" 
+                                    v-model.number="parameters.rolling_params.strip_width"
+                                    min="0.5" max="5.0" step="0.1"
+                                    @input="validateParameters">
+                                <span class="input-hint">典型值: 1-3 m</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 工艺参数 -->
+                    <div v-show="activeTab === 'process'" class="parameter-group">
+                        <div class="input-grid">
+                            <div class="input-group">
+                                <label>
+                                    <i class="fas fa-tachometer-alt"></i> 轧制速度
+                                    <span class="unit">(m/s)</span>
+                                </label>
+                                <input 
+                                    type="number" 
+                                    v-model.number="parameters.rolling_params.roll_speed"
+                                    min="0.5" max="20" step="0.1"
+                                    @input="validateParameters">
+                                <span class="input-hint">热轧: 2-10 m/s</span>
+                            </div>
+                            
+                            <div class="input-group">
+                                <label>
+                                    <i class="fas fa-temperature-high"></i> 初始温度
+                                    <span class="unit">(°C)</span>
+                                </label>
+                                <input 
+                                    type="number" 
+                                    v-model.number="temperature_initial_c"
+                                    min="800" max="1200" step="10"
+                                    @input="validateParameters">
+                                <span class="input-hint">热轧: 1000-1200°C</span>
+                            </div>
+                            
+                            <div class="input-group">
+                                <label>
+                                    <i class="fas fa-thermometer-half"></i> 轧辊温度
+                                    <span class="unit">(°C)</span>
+                                </label>
+                                <input 
+                                    type="number" 
+                                    v-model.number="temperature_roll_c"
+                                    min="50" max="500" step="10"
+                                    @input="validateParameters">
+                                <span class="input-hint">典型值: 100-200°C</span>
+                            </div>
+                            
+                            <div class="input-group">
+                                <label>
+                                    <i class="fas fa-grip-horizontal"></i> 摩擦系数
+                                </label>
+                                <input 
+                                    type="number" 
+                                    v-model.number="parameters.rolling_params.friction_coefficient"
+                                    min="0" max="1" step="0.05"
+                                    @input="validateParameters">
+                                <span class="input-hint">热轧: 0.2-0.4</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 材料参数 -->
+                    <div v-show="activeTab === 'material'" class="parameter-group">
+                        <div class="material-selector">
+                            <label>材料选择:</label>
+                            <select v-model="selectedMaterial" @change="loadMaterialProperties">
+                                <option value="carbon_steel">碳钢</option>
+                                <option value="stainless_steel">不锈钢</option>
+                                <option value="aluminum">铝合金</option>
+                                <option value="custom">自定义</option>
+                            </select>
+                        </div>
+                        
+                        <div class="input-grid">
+                            <div class="input-group">
+                                <label>
+                                    <i class="fas fa-weight"></i> 密度
+                                    <span class="unit">(kg/m³)</span>
+                                </label>
+                                <input 
+                                    type="number" 
+                                    v-model.number="parameters.material_props.density"
+                                    :disabled="selectedMaterial !== 'custom'"
+                                    min="1000" max="10000" step="10">
+                            </div>
+                            
+                            <div class="input-group">
+                                <label>
+                                    <i class="fas fa-compress"></i> 弹性模量
+                                    <span class="unit">(GPa)</span>
+                                </label>
+                                <input 
+                                    type="number" 
+                                    v-model.number="youngs_modulus_gpa"
+                                    :disabled="selectedMaterial !== 'custom'"
+                                    min="50" max="500" step="1">
+                            </div>
+                            
+                            <div class="input-group">
+                                <label>
+                                    <i class="fas fa-percentage"></i> 泊松比
+                                </label>
+                                <input 
+                                    type="number" 
+                                    v-model.number="parameters.material_props.poisson_ratio"
+                                    :disabled="selectedMaterial !== 'custom'"
+                                    min="0" max="0.5" step="0.01">
+                            </div>
+                            
+                            <div class="input-group">
+                                <label>
+                                    <i class="fas fa-fire"></i> 热导率
+                                    <span class="unit">(W/m·K)</span>
+                                </label>
+                                <input 
+                                    type="number" 
+                                    v-model.number="parameters.material_props.thermal_conductivity"
+                                    :disabled="selectedMaterial !== 'custom'"
+                                    min="1" max="500" step="1">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 计算设置 -->
+                    <div v-show="activeTab === 'solver'" class="parameter-group">
+                        <div class="input-grid">
+                            <div class="input-group">
+                                <label>
+                                    <i class="fas fa-clock"></i> 时间步数
+                                </label>
+                                <input 
+                                    type="number" 
+                                    v-model.number="parameters.solver_params.num_steps"
+                                    min="10" max="1000" step="10">
+                                <span class="input-hint">更多步数 = 更高精度</span>
+                            </div>
+                            
+                            <div class="input-group">
+                                <label>
+                                    <i class="fas fa-th"></i> 网格尺寸
+                                    <span class="unit">(mm)</span>
+                                </label>
+                                <input 
+                                    type="number" 
+                                    v-model.number="mesh_size_mm"
+                                    min="0.1" max="10" step="0.1">
+                                <span class="input-hint">更小尺寸 = 更细网格</span>
+                            </div>
+                            
+                            <div class="input-group">
+                                <label>
+                                    <i class="fas fa-save"></i> VTK输出间隔
+                                </label>
+                                <input 
+                                    type="number" 
+                                    v-model.number="parameters.solver_params.output_interval"
+                                    min="1" max="50" step="1">
+                                <span class="input-hint">每N步保存一次</span>
+                            </div>
+                            
+                            <div class="input-group">
+                                <label>
+                                    <i class="fas fa-bullseye"></i> 收敛容差
+                                </label>
+                                <select v-model="parameters.solver_params.tolerance">
+                                    <option value="1e-4">低精度 (1e-4)</option>
+                                    <option value="1e-6">中精度 (1e-6)</option>
+                                    <option value="1e-8">高精度 (1e-8)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 操作按钮 -->
+                    <div class="button-group">
+                        <button 
+                            @click="startSimulation" 
+                            :disabled="isRunning || !isValid"
+                            class="btn btn-primary">
+                            <i class="fas fa-play"></i>
+                            {{ isRunning ? '计算中...' : '开始模拟' }}
+                        </button>
+                        
+                        <button 
+                            @click="resetParameters" 
+                            class="btn btn-secondary"
+                            :disabled="isRunning">
+                            <i class="fas fa-undo"></i> 重置参数
+                        </button>
+                        
+                        <button 
+                            @click="loadPreset" 
+                            class="btn btn-secondary"
+                            :disabled="isRunning">
+                            <i class="fas fa-book"></i> 加载预设
+                        </button>
+                        
+                        <button 
+                            @click="saveParameters" 
+                            class="btn btn-secondary">
+                            <i class="fas fa-save"></i> 保存参数
+                        </button>
+                    </div>
+                    
+                    <!-- 验证错误 -->
+                    <div v-if="validationErrors.length > 0" class="validation-errors">
+                        <p class="error-title">
+                            <i class="fas fa-exclamation-triangle"></i> 参数验证错误:
+                        </p>
+                        <ul>
+                            <li v-for="error in validationErrors" :key="error">
+                                {{ error }}
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <!-- 进度显示 -->
+                <section v-if="currentTask" class="progress-section card">
+                    <h2 class="section-title">
+                        <i class="fas fa-tasks"></i> 计算进度
+                    </h2>
+                    
+                    <div class="task-info">
+                        <div class="task-id">
+                            任务ID: <code>{{ currentTask.task_id }}</code>
+                            <button @click="copyTaskId" class="btn-icon" title="复制ID">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <div class="task-status" :class="'status-' + currentTask.status">
+                            <i :class="getStatusIcon(currentTask.status)"></i>
+                            {{ getStatusText(currentTask.status) }}
+                        </div>
+                    </div>
+                    
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div 
+                                class="progress-fill" 
+                                :style="{width: currentTask.progress + '%'}"
+                                :class="{'animated': currentTask.status === 'running'}">
+                            </div>
+                        </div>
+                        <div class="progress-text">
+                            {{ currentTask.progress }}%
+                        </div>
+                    </div>
+                    
+                    <div class="progress-message">
+                        <i class="fas fa-info-circle"></i> {{ currentTask.message }}
+                    </div>
+                    
+                    <div v-if="currentTask.status === 'running'" class="elapsed-time">
+                        <i class="fas fa-stopwatch"></i> 
+                        已用时: {{ formatDuration(elapsedTime) }}
+                    </div>
+                    
+                    <div v-if="currentTask.status === 'failed'" class="error-message">
+                        <i class="fas fa-exclamation-circle"></i>
+                        {{ currentTask.error || '未知错误' }}
+                    </div>
+                    
+                    <div v-if="currentTask.status === 'running'" class="action-buttons">
+                        <button @click="cancelSimulation" class="btn btn-danger">
+                            <i class="fas fa-stop"></i> 取消任务
+                        </button>
+                    </div>
+                </section>
+                
+                <!-- 结果显示 -->
+                <section v-if="results" class="results-section card">
+                    <h2 class="section-title">
+                        <i class="fas fa-chart-line"></i> 计算结果
+                    </h2>
+                    
+                    <!-- 结果概要 -->
+                    <div class="results-summary">
+                        <div class="result-card">
+                            <div class="result-icon">
+                                <i class="fas fa-temperature-high"></i>
+                            </div>
+                            <div class="result-content">
+                                <h4>最高温度</h4>
+                                <p class="result-value">
+                                    {{ formatTemperature(results.simulation_results.max_temperature) }}
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="result-card">
+                            <div class="result-icon">
+                                <i class="fas fa-compress-arrows-alt"></i>
+                            </div>
+                            <div class="result-content">
+                                <h4>最大应力</h4>
+                                <p class="result-value">
+                                    {{ formatStress(results.simulation_results.max_stress) }}
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="result-card">
+                            <div class="result-icon">
+                                <i class="fas fa-weight-hanging"></i>
+                            </div>
+                            <div class="result-content">
+                                <h4>轧制力</h4>
+                                <p class="result-value">
+                                    {{ formatForce(results.simulation_results.final_rolling_force) }}
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="result-card">
+                            <div class="result-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="result-content">
+                                <h4>计算时间</h4>
+                                <p class="result-value">
+                                    {{ formatDuration(executionTime) }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 网格信息 -->
+                    <div v-if="results.mesh_info" class="mesh-info">
+                        <h3><i class="fas fa-th"></i> 网格信息</h3>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <span class="label">节点数:</span>
+                                <span class="value">{{ results.mesh_info.n_vertices }}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">单元数:</span>
+                                <span class="value">{{ results.mesh_info.n_elements }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 操作按钮 -->
+                    <div class="result-actions">
+                        <button @click="openVisualization" class="btn btn-primary">
+                            <i class="fas fa-eye"></i> 3D可视化
+                        </button>
+                        
+                        <button @click="downloadVTK" class="btn btn-secondary">
+                            <i class="fas fa-download"></i> 下载VTK文件
+                        </button>
+                        
+                        <button @click="viewReport" class="btn btn-secondary">
+                            <i class="fas fa-file-pdf"></i> 查看报告
+                        </button>
+                        
+                        <button @click="shareResults" class="btn btn-secondary">
+                            <i class="fas fa-share"></i> 分享结果
+                        </button>
+                    </div>
+                </section>
+                
+                <!-- 历史任务 -->
+                <section class="history-section card">
+                    <h2 class="section-title">
+                        <i class="fas fa-history"></i> 历史任务
+                        <button @click="refreshHistory" class="btn-icon" title="刷新">
+                            <i class="fas fa-sync-alt" :class="{'fa-spin': isRefreshing}"></i>
+                        </button>
+                    </h2>
+                    
+                    <div class="history-filters">
+                        <select v-model="historyFilter.status">
+                            <option value="">所有状态</option>
+                            <option value="completed">已完成</option>
+                            <option value="running">运行中</option>
+                            <option value="failed">失败</option>
+                            <option value="cancelled">已取消</option>
+                        </select>
+                        
+                        <input 
+                            type="text" 
+                            v-model="historyFilter.search"
+                            placeholder="搜索任务ID..."
+                            class="search-input">
+                    </div>
+                    
+                    <div class="task-table-container">
+                        <table class="task-table">
+                            <thead>
+                                <tr>
+                                    <th>任务ID</th>
+                                    <th>状态</th>
+                                    <th>进度</th>
+                                    <th>创建时间</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="task in filteredTasks" :key="task.task_id">
+                                    <td class="task-id">
+                                        <code>{{ task.task_id.substring(0, 8) }}...</code>
+                                    </td>
+                                    <td>
+                                        <span class="status-badge" :class="'status-' + task.status">
+                                            <i :class="getStatusIcon(task.status)"></i>
+                                            {{ getStatusText(task.status) }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="mini-progress">
+                                            <div class="mini-progress-fill" 
+                                                 :style="{width: task.progress + '%'}">
+                                            </div>
+                                            <span class="mini-progress-text">{{ task.progress }}%</span>
+                                        </div>
+                                    </td>
+                                    <td>{{ formatDate(task.created_at) }}</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button 
+                                                v-if="task.status === 'completed'"
+                                                @click="loadTask(task.task_id)"
+                                                class="btn-icon"
+                                                title="查看结果">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button 
+                                                v-if="task.status === 'running'"
+                                                @click="trackTask(task.task_id)"
+                                                class="btn-icon"
+                                                title="跟踪进度">
+                                                <i class="fas fa-chart-line"></i>
+                                            </button>
+                                            <button 
+                                                @click="deleteTask(task.task_id)"
+                                                class="btn-icon btn-danger"
+                                                title="删除">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <div v-if="filteredTasks.length === 0" class="no-data">
+                            <i class="fas fa-inbox"></i>
+                            <p>暂无任务记录</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 分页 -->
+                    <div v-if="totalPages > 1" class="pagination">
+                        <button 
+                            @click="currentPage--" 
+                            :disabled="currentPage === 1"
+                            class="btn-icon">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        
+                        <span class="page-info">
+                            第 {{ currentPage }} / {{ totalPages }} 页
+                        </span>
+                        
+                        <button 
+                            @click="currentPage++" 
+                            :disabled="currentPage === totalPages"
+                            class="btn-icon">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </section>
+            </div>
+        </main>
+        
+        <!-- 可视化模态框 -->
+        <div v-if="showVisualization" class="modal" @click.self="closeVisualization">
+            <div class="modal-content modal-large">
+                <div class="modal-header">
+                    <h3>3D可视化 - ParaviewWeb</h3>
+                    <button @click="closeVisualization" class="btn-close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <iframe 
+                        :src="visualizationUrl" 
+                        class="visualization-iframe"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="modal-footer">
+                    <button @click="fullscreenVisualization" class="btn btn-secondary">
+                        <i class="fas fa-expand"></i> 全屏
+                    </button>
+                    <button @click="closeVisualization" class="btn btn-primary">
+                        关闭
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 加载预设模态框 -->
+        <div v-if="showPresetModal" class="modal" @click.self="closePresetModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>选择预设参数</h3>
+                    <button @click="closePresetModal" class="btn-close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="preset-list">
+                        <div 
+                            v-for="preset in presets" 
+                            :key="preset.id"
+                            class="preset-item"
+                            @click="selectPreset(preset)">
+                            <h4>{{ preset.name }}</h4>
+                            <p>{{ preset.description }}</p>
+                            <div class="preset-info">
+                                <span><i class="fas fa-compress"></i> 压下率: {{ preset.reduction }}%</span>
+                                <span><i class="fas fa-temperature-high"></i> {{ preset.temperature }}°C</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 通知提示 -->
+        <transition-group name="notification" tag="div" class="notifications">
+            <div 
+                v-for="notification in notifications" 
+                :key="notification.id"
+                class="notification"
+                :class="'notification-' + notification.type">
+                <i :class="getNotificationIcon(notification.type)"></i>
+                <span>{{ notification.message }}</span>
+                <button @click="removeNotification(notification.id)" class="btn-close-small">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </transition-group>
+        
+        <!-- 加载遮罩 -->
+        <div v-if="isLoading" class="loading-overlay">
+            <div class="loading-content">
+                <div class="loading-spinner"></div>
+                <p>{{ loadingMessage }}</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- JavaScript -->
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

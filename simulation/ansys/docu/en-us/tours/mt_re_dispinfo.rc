@@ -1,0 +1,66 @@
+! Tour Page
+*mt_re_dispinfo*title: Tour - Display Results
+*mt_re_dispinfo*next: mt_re_genreport
+*mt_re_dispinfo*previous: mt_re_seleitem
+*mt_re_dispinfo*htmlhelp: docu $euidlArray(language) mechhelp mt_re_dispitem.html
+*mt_re_dispinfo*home: mt_mt_home
+
+! Tour Page Components
+*mt_re_dispinfo*tourlist: heading overview step1 step2 step3 step4 seenext
+
+!
+! Component Definition
+!
+! Note:
+!     Use \t to insert a tab into the text
+!     Use \n to insert a line feed into the text
+!     Use \i to insert an image into the text
+!     Use \ to continue a line within this file
+!
+!     The \ is a used to specify that special characters be taken literally.
+!     If using characters [, ], ", \, $ and perhaps others you must precede
+!     them with the \ (backslash) to use them.
+!
+!     You have the following options available for a component:
+!         Text          - The text to show for this component
+!         HyperlinkCall - The method to call when this component is clicked on
+!         Show          - The helpID of the buttcon to flash when choosing the
+!                         magnifing glass.  This puts the magnifing glass in.
+!         ImageList     - The list of images to place in the \i locations.
+!                         This is not needed for the Show item but you must
+!                         put the \i in the Text. NOT SUPPORTED YET
+
+! heading
+!
+*mt_re_dispinfo*headingText: "Displaying Results \n" HEADING2
+
+! overview
+!
+*mt_re_dispinfo*overviewText: "You can plot, query, animate, and list \
+the selected result item.  You can also generate an HTML report. \n" {BODY1} 
+
+! step1
+!
+*mt_re_dispinfo*step1Text: "Click the Plot Result button to plot \
+the results. \n" {STEP1 step1} 
+
+! step2
+!
+*mt_re_dispinfo*step2Text: "Click the Query Result button to query \
+the results. \n" {STEP1 step2} 
+
+! step3
+!
+*mt_re_dispinfo*step3Text: "Click the Animate Result button to \
+animate the results.  Click the black arrow to select the number \
+of frames to animate. \n" {STEP1 step3} 
+
+! step4
+!
+*mt_re_dispinfo*step4Text: "Click the List button to list the \
+results. \n" {STEP1 step4} 
+
+! seenext
+!
+*mt_re_dispinfo*seenextText: "\n\nClick Next to learn how to select a \
+report format.\n" {BODY1}

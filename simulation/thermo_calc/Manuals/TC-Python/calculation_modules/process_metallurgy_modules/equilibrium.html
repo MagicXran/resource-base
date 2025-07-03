@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module “equilibrium” &mdash; TC-Python 2023b documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Module “process”" href="process.html" />
+    <link rel="prev" title="Module “base”" href="base.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            TC-Python
+          </a>
+              <div class="version">
+                2023b
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../environment_variables.html">Mac OS: Setting Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture.html">Architecture overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../best_practices.html">Best Practices</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../api_reference.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../calculations.html">Calculations</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../single_equilibrium.html">Module “single_equilibrium”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../batch_equilibrium.html">Module “batch_equilibrium”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../precipitation.html">Module “precipitation”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scheil.html">Module “scheil”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../step_or_map_diagrams.html">Module “step_or_map_diagrams”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../diffusion.html">Module “diffusion”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../propertymodel.html">Module “propertymodel”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../material_to_material.html">Module “material_to_material”</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../process_metallurgy.html">Package “process_metallurgy”</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="base.html">Module “base”</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Module “equilibrium”</a></li>
+<li class="toctree-l4"><a class="reference internal" href="process.html">Module “process”</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../high_level_modules/system.html">Module “system”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../high_level_modules/entities.html">Module “entities”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../high_level_modules/server.html">Module “server”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../high_level_modules/quantity_factory.html">Module “quantity_factory”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../high_level_modules/utils.html">Module “utils”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../high_level_modules/propertymodel_sdk.html">Module “propertymodel_sdk”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../high_level_modules/exceptions.html">Module “exceptions”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../high_level_modules/abstract_base.html">Module “abstract_base”</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting.html">Troubleshooting</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">TC-Python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../api_reference.html">API Reference</a></li>
+          <li class="breadcrumb-item"><a href="../../calculations.html">Calculations</a></li>
+          <li class="breadcrumb-item"><a href="../process_metallurgy.html">Package “process_metallurgy”</a></li>
+      <li class="breadcrumb-item active">Module “equilibrium”</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-tc_python.process_metallurgy.equilibrium">
+<span id="module-equilibrium"></span><h1>Module “equilibrium”<a class="headerlink" href="#module-tc_python.process_metallurgy.equilibrium" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.AbstractEquilibriumAddition">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.process_metallurgy.equilibrium.</span></span><span class="sig-name descname"><span class="pre">AbstractEquilibriumAddition</span></span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.AbstractEquilibriumAddition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="base.html#tc_python.process_metallurgy.base.AbstractAddition" title="tc_python.process_metallurgy.base.AbstractAddition"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractAddition</span></code></a></p>
+<p>The base class for representing an addition to an equilibrium calculation.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.AbstractEquilibriumAddition.set_amount">
+<span class="sig-name descname"><span class="pre">set_amount</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">amount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.AbstractEquilibriumAddition.set_amount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change the amount of the addition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>amount</strong> – The new amount [in the amount unit of this addition]</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.AbstractEquilibriumAddition" title="tc_python.process_metallurgy.equilibrium.AbstractEquilibriumAddition"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractEquilibriumAddition</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.AbstractEquilibriumAddition.set_component_composition">
+<span class="sig-name descname"><span class="pre">set_component_composition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.AbstractEquilibriumAddition.set_component_composition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change the composition of a component of the addition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component</strong> – The component to be changed</p></li>
+<li><p><strong>content</strong> – The new content of the component [in the composition unit defined for this addition]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.AbstractEquilibriumAddition" title="tc_python.process_metallurgy.equilibrium.AbstractEquilibriumAddition"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractEquilibriumAddition</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.AdiabaticEquilibriumCalculation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.process_metallurgy.equilibrium.</span></span><span class="sig-name descname"><span class="pre">AdiabaticEquilibriumCalculation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">calculator</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.AdiabaticEquilibriumCalculation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.EquilibriumCalculation" title="tc_python.process_metallurgy.equilibrium.EquilibriumCalculation"><code class="xref py py-class docutils literal notranslate"><span class="pre">EquilibriumCalculation</span></code></a></p>
+<p>An <em>adiabatic</em> Process Metallurgy equilibrium calculation. Such calculations can for example be used to determine
+the global equilibrium state of a process.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.AdiabaticEquilibriumCalculation.add_addition">
+<span class="sig-name descname"><span class="pre">add_addition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">addition</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.AbstractEquilibriumAddition" title="tc_python.process_metallurgy.equilibrium.AbstractEquilibriumAddition"><span class="pre">AbstractEquilibriumAddition</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.AdiabaticEquilibriumCalculation.add_addition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds an addition to the calculation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>addition</strong> – A <a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.EquilibriumAddition" title="tc_python.process_metallurgy.equilibrium.EquilibriumAddition"><code class="xref py py-class docutils literal notranslate"><span class="pre">EquilibriumAddition</span></code></a> or <a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.EquilibriumGasAddition" title="tc_python.process_metallurgy.equilibrium.EquilibriumGasAddition"><code class="xref py py-class docutils literal notranslate"><span class="pre">EquilibriumGasAddition</span></code></a></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.AdiabaticEquilibriumCalculation" title="tc_python.process_metallurgy.equilibrium.AdiabaticEquilibriumCalculation"><code class="xref py py-class docutils literal notranslate"><span class="pre">AdiabaticEquilibriumCalculation</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.AdiabaticEquilibriumCalculation.add_poly_command">
+<span class="sig-name descname"><span class="pre">add_poly_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.AdiabaticEquilibriumCalculation.add_poly_command" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a Thermo-Calc Console syntax POLY module command which will be executed when performing the calculation
+using the <a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.AdiabaticEquilibriumCalculation.calculate" title="tc_python.process_metallurgy.equilibrium.AdiabaticEquilibriumCalculation.calculate"><code class="xref py py-func docutils literal notranslate"><span class="pre">calculate()</span></code></a> method.</p>
+<p>If multiple commands are added, they will be executed in the order of
+addition. Each command will only be executed one.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It should not be necessary for most users to use this method, try to use the corresponding method
+implemented in the API instead.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>As this method runs raw Thermo-Calc commands directly in the engine, it may hang the program in case
+of spelling mistakes (e.g. forgotten equals sign).</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>command</strong> – The POLY module command in Thermo-Calc console syntax</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.AdiabaticEquilibriumCalculation" title="tc_python.process_metallurgy.equilibrium.AdiabaticEquilibriumCalculation"><code class="xref py py-class docutils literal notranslate"><span class="pre">AdiabaticEquilibriumCalculation</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.AdiabaticEquilibriumCalculation.calculate">
+<span class="sig-name descname"><span class="pre">calculate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeout_in_minutes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.EquilibriumResult" title="tc_python.process_metallurgy.equilibrium.EquilibriumResult"><span class="pre">EquilibriumResult</span></a></span></span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.AdiabaticEquilibriumCalculation.calculate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs the Process Metallurgy equilibrium calculation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>timeout_in_minutes</strong> – The calculation will be aborted after that time, <strong>default: no timeout</strong></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.EquilibriumResult" title="tc_python.process_metallurgy.equilibrium.EquilibriumResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">EquilibriumResult</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.AdiabaticEquilibriumCalculation.remove_addition">
+<span class="sig-name descname"><span class="pre">remove_addition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">addition</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.AbstractEquilibriumAddition" title="tc_python.process_metallurgy.equilibrium.AbstractEquilibriumAddition"><span class="pre">AbstractEquilibriumAddition</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.AdiabaticEquilibriumCalculation.remove_addition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes an addition from the calculation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>addition</strong> – The addition to be removed</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.AdiabaticEquilibriumCalculation" title="tc_python.process_metallurgy.equilibrium.AdiabaticEquilibriumCalculation"><code class="xref py py-class docutils literal notranslate"><span class="pre">AdiabaticEquilibriumCalculation</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.AdiabaticEquilibriumCalculation.remove_all_additions">
+<span class="sig-name descname"><span class="pre">remove_all_additions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.AdiabaticEquilibriumCalculation.remove_all_additions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes all additions from the calculation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This <a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.AdiabaticEquilibriumCalculation" title="tc_python.process_metallurgy.equilibrium.AdiabaticEquilibriumCalculation"><code class="xref py py-class docutils literal notranslate"><span class="pre">AdiabaticEquilibriumCalculation</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.AdiabaticEquilibriumCalculation.set_pressure">
+<span class="sig-name descname"><span class="pre">set_pressure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pressure</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100000.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.AdiabaticEquilibriumCalculation.set_pressure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the pressure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pressure</strong> – The pressure [Pa]</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.AdiabaticEquilibriumCalculation" title="tc_python.process_metallurgy.equilibrium.AdiabaticEquilibriumCalculation"><code class="xref py py-class docutils literal notranslate"><span class="pre">AdiabaticEquilibriumCalculation</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.AdiabaticEquilibriumCalculation.with_options">
+<span class="sig-name descname"><span class="pre">with_options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="base.html#tc_python.process_metallurgy.base.ProcessMetallurgyOptions" title="tc_python.process_metallurgy.base.ProcessMetallurgyOptions"><span class="pre">ProcessMetallurgyOptions</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.AdiabaticEquilibriumCalculation.with_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the options for the calculation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>options</strong> – The options</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.AdiabaticEquilibriumCalculation" title="tc_python.process_metallurgy.equilibrium.AdiabaticEquilibriumCalculation"><code class="xref py py-class docutils literal notranslate"><span class="pre">AdiabaticEquilibriumCalculation</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.EquilibriumAddition">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.process_metallurgy.equilibrium.</span></span><span class="sig-name descname"><span class="pre">EquilibriumAddition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">composition</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temperature</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">293.15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">composition_unit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../high_level_modules/utils.html#tc_python.utils.CompositionUnit" title="tc_python.utils.CompositionUnit"><span class="pre">CompositionUnit</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">CompositionUnit.MASS_PERCENT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">do_scale</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.EquilibriumAddition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.AbstractEquilibriumAddition" title="tc_python.process_metallurgy.equilibrium.AbstractEquilibriumAddition"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractEquilibriumAddition</span></code></a></p>
+<p>An addition to an equilibrium calculation.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>By setting <cite>do_scale=True</cite>, the composition will be scaled to 100% / fraction of 1. This is useful if the
+composition provided is not summing to 100% / 1. An example could be a slag addition which is provided like
+this: <em>90 wt-% CaO - 5 wt-% Al2O3 - 4 wt-% SiO2</em>.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>composition</strong> – The composition</p></li>
+<li><p><strong>amount</strong> – The amount [kg]</p></li>
+<li><p><strong>temperature</strong> – The initial addition temperature (<strong>default: 20 °C</strong>) [K]</p></li>
+<li><p><strong>composition_unit</strong> – The composition unit</p></li>
+<li><p><strong>do_scale</strong> – If the composition is scaled to 100% / fraction of 1</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.EquilibriumAddition.get_amount">
+<span class="sig-name descname"><span class="pre">get_amount</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.EquilibriumAddition.get_amount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the amount of this addition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The amount [kg]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.EquilibriumAddition.get_composition_unit">
+<span class="sig-name descname"><span class="pre">get_composition_unit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../high_level_modules/utils.html#tc_python.utils.CompositionUnit" title="tc_python.utils.CompositionUnit"><span class="pre">CompositionUnit</span></a></span></span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.EquilibriumAddition.get_composition_unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the composition unit used in this addition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The composition unit</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.EquilibriumCalculation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.process_metallurgy.equilibrium.</span></span><span class="sig-name descname"><span class="pre">EquilibriumCalculation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metallurgical_reaction</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.EquilibriumCalculation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A Process Metallurgy equilibrium calculation. Such calculations can for example be used to determine the global
+equilibrium state of a process.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.EquilibriumCalculation.add_addition">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_addition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">addition</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.AbstractEquilibriumAddition" title="tc_python.process_metallurgy.equilibrium.AbstractEquilibriumAddition"><span class="pre">AbstractEquilibriumAddition</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.EquilibriumCalculation.add_addition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds an addition to the calculation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>addition</strong> – The addition</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.EquilibriumCalculation" title="tc_python.process_metallurgy.equilibrium.EquilibriumCalculation"><code class="xref py py-class docutils literal notranslate"><span class="pre">EquilibriumCalculation</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.EquilibriumCalculation.add_poly_command">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_poly_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.EquilibriumCalculation.add_poly_command" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a Thermo-Calc Console syntax POLY module command which will be executed when performing the calculation
+using the <a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.EquilibriumCalculation.calculate" title="tc_python.process_metallurgy.equilibrium.EquilibriumCalculation.calculate"><code class="xref py py-func docutils literal notranslate"><span class="pre">calculate()</span></code></a> method.</p>
+<p>If multiple commands are added, they will be executed in the order of
+addition. Each command will only be executed one.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It should not be necessary for most users to use this method, try to use the corresponding method
+implemented in the API instead.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>As this method runs raw Thermo-Calc commands directly in the engine, it may hang the program in case
+of spelling mistakes (e.g. forgotten equals sign).</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>command</strong> – The POLY module command in Thermo-Calc console syntax</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.EquilibriumCalculation" title="tc_python.process_metallurgy.equilibrium.EquilibriumCalculation"><code class="xref py py-class docutils literal notranslate"><span class="pre">EquilibriumCalculation</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.EquilibriumCalculation.calculate">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">calculate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeout_in_minutes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.EquilibriumResult" title="tc_python.process_metallurgy.equilibrium.EquilibriumResult"><span class="pre">EquilibriumResult</span></a></span></span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.EquilibriumCalculation.calculate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs the Process Metallurgy equilibrium calculation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>timeout_in_minutes</strong> – The calculation will be aborted after that time, <strong>default: no timeout</strong></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.EquilibriumResult" title="tc_python.process_metallurgy.equilibrium.EquilibriumResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">EquilibriumResult</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.EquilibriumCalculation.remove_addition">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">remove_addition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">addition</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.AbstractEquilibriumAddition" title="tc_python.process_metallurgy.equilibrium.AbstractEquilibriumAddition"><span class="pre">AbstractEquilibriumAddition</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.EquilibriumCalculation.remove_addition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes an addition from the calculation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>addition</strong> – The addition to be removed</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.EquilibriumCalculation" title="tc_python.process_metallurgy.equilibrium.EquilibriumCalculation"><code class="xref py py-class docutils literal notranslate"><span class="pre">EquilibriumCalculation</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.EquilibriumCalculation.remove_all_additions">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">remove_all_additions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.EquilibriumCalculation.remove_all_additions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes all additions from the calculation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This <a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.EquilibriumCalculation" title="tc_python.process_metallurgy.equilibrium.EquilibriumCalculation"><code class="xref py py-class docutils literal notranslate"><span class="pre">EquilibriumCalculation</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.EquilibriumCalculation.set_pressure">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_pressure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pressure</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100000.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.EquilibriumCalculation.set_pressure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the pressure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pressure</strong> – The pressure [Pa]</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.EquilibriumCalculation" title="tc_python.process_metallurgy.equilibrium.EquilibriumCalculation"><code class="xref py py-class docutils literal notranslate"><span class="pre">EquilibriumCalculation</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.EquilibriumCalculation.update_addition">
+<span class="sig-name descname"><span class="pre">update_addition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">addition</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.AbstractEquilibriumAddition" title="tc_python.process_metallurgy.equilibrium.AbstractEquilibriumAddition"><span class="pre">AbstractEquilibriumAddition</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.EquilibriumCalculation.update_addition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Replaces an already added addition with an updated one. This is usually used to change the composition or
+amount of an addition while iterating over them. Typically, this is done for stepping or mapping calculations.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The calculation must already contain the addition object to be updated.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>addition</strong> – The new addition containing updated values</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <code class="xref py py-class docutils literal notranslate"><span class="pre">IsoThermalMetallurgyCalculation</span></code> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.EquilibriumCalculation.with_options">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">with_options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="base.html#tc_python.process_metallurgy.base.ProcessMetallurgyOptions" title="tc_python.process_metallurgy.base.ProcessMetallurgyOptions"><span class="pre">ProcessMetallurgyOptions</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.EquilibriumCalculation.with_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the options for the calculation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>options</strong> – The options</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.EquilibriumCalculation" title="tc_python.process_metallurgy.equilibrium.EquilibriumCalculation"><code class="xref py py-class docutils literal notranslate"><span class="pre">EquilibriumCalculation</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.EquilibriumGasAddition">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.process_metallurgy.equilibrium.</span></span><span class="sig-name descname"><span class="pre">EquilibriumGasAddition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">composition</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temperature</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">293.15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amount_unit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../high_level_modules/utils.html#tc_python.utils.GasAmountUnit" title="tc_python.utils.GasAmountUnit"><span class="pre">GasAmountUnit</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">GasAmountUnit.NORM_CUBIC_METER</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">composition_unit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../high_level_modules/utils.html#tc_python.utils.GasCompositionUnit" title="tc_python.utils.GasCompositionUnit"><span class="pre">GasCompositionUnit</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">GasCompositionUnit.VOLUME_PERCENT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">do_scale</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.EquilibriumGasAddition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.AbstractEquilibriumAddition" title="tc_python.process_metallurgy.equilibrium.AbstractEquilibriumAddition"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractEquilibriumAddition</span></code></a></p>
+<p>A gas addition to an equilibrium calculation.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>By setting <cite>do_scale=True</cite>, the composition will be scaled to 100% / fraction of 1. This is useful if the
+composition provided is not summing to 100% / 1. An example could be a gas addition which is provided like
+this: <em>90 vol–% Ar - 10 vol-% O2</em>.</p>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.EquilibriumGasAddition.get_amount">
+<span class="sig-name descname"><span class="pre">get_amount</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.EquilibriumGasAddition.get_amount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the amount of this addition.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The amount unit can be obtained using <a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.EquilibriumGasAddition.get_amount_unit" title="tc_python.process_metallurgy.equilibrium.EquilibriumGasAddition.get_amount_unit"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_amount_unit()</span></code></a>.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The amount [in the amount unit]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.EquilibriumGasAddition.get_amount_unit">
+<span class="sig-name descname"><span class="pre">get_amount_unit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../high_level_modules/utils.html#tc_python.utils.GasAmountUnit" title="tc_python.utils.GasAmountUnit"><span class="pre">GasAmountUnit</span></a></span></span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.EquilibriumGasAddition.get_amount_unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the amount unit used in this addition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The amount unit</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.EquilibriumGasAddition.get_composition_unit">
+<span class="sig-name descname"><span class="pre">get_composition_unit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../high_level_modules/utils.html#tc_python.utils.GasCompositionUnit" title="tc_python.utils.GasCompositionUnit"><span class="pre">GasCompositionUnit</span></a></span></span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.EquilibriumGasAddition.get_composition_unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the composition unit used in this addition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The composition unit</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.EquilibriumResult">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.process_metallurgy.equilibrium.</span></span><span class="sig-name descname"><span class="pre">EquilibriumResult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">result</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.EquilibriumResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../high_level_modules/abstract_base.html#tc_python.abstract_base.AbstractResult" title="tc_python.abstract_base.AbstractResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractResult</span></code></a></p>
+<p>The result of a Process Metallurgy equilibrium calculation.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_activity_of_slag">
+<span class="sig-name descname"><span class="pre">get_activity_of_slag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="base.html#tc_python.process_metallurgy.base.ActivityReference" title="tc_python.process_metallurgy.base.ActivityReference"><span class="pre">ActivityReference</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">ActivityReference.LIQUID</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_activity_of_slag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the activity of a component in the slag.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component</strong> – The component</p></li>
+<li><p><strong>reference</strong> – The reference for the activity, can be liquid or solid slag, <strong>default: liquid slag</strong></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The activity of the component [-]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_amount">
+<span class="sig-name descname"><span class="pre">get_amount</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_amount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the total amount.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The total amount [kg]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_amount_of_elements">
+<span class="sig-name descname"><span class="pre">get_amount_of_elements</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_amount_of_elements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the amount of each element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The amount of the elements [kg]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_amount_of_phase_groups">
+<span class="sig-name descname"><span class="pre">get_amount_of_phase_groups</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="base.html#tc_python.process_metallurgy.base.PhaseGroup" title="tc_python.process_metallurgy.base.PhaseGroup"><span class="pre">PhaseGroup</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_amount_of_phase_groups" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the amount of each phase group (e.g., for example all liquid slag).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The amount of the phase groups [kg]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_amount_of_phases">
+<span class="sig-name descname"><span class="pre">get_amount_of_phases</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_amount_of_phases" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the amount of each phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The amount of the phases [kg]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_components">
+<span class="sig-name descname"><span class="pre">get_components</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_components" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all components defined for the elements present in this result.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The components present in this result</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_composition">
+<span class="sig-name descname"><span class="pre">get_composition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">composition_unit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../high_level_modules/utils.html#tc_python.utils.CompositionUnit" title="tc_python.utils.CompositionUnit"><span class="pre">CompositionUnit</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">CompositionUnit.MASS_PERCENT</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_composition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the composition of the result.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>composition_unit</strong> – The composition unit, <strong>default: mass percent</strong></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The composition</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_composition_of_phase">
+<span class="sig-name descname"><span class="pre">get_composition_of_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">composition_unit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../high_level_modules/utils.html#tc_python.utils.CompositionUnit" title="tc_python.utils.CompositionUnit"><span class="pre">CompositionUnit</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">CompositionUnit.MASS_PERCENT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">composition_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../high_level_modules/utils.html#tc_python.utils.CompositionType" title="tc_python.utils.CompositionType"><span class="pre">CompositionType</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">CompositionType.COMPONENT</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_composition_of_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the composition of a phase in the result.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – The phase name</p></li>
+<li><p><strong>composition_unit</strong> – The composition unit, <strong>default: mass percent</strong></p></li>
+<li><p><strong>composition_type</strong> – Defines if the composition is given by element (e.g., <cite>75 wt-% Fe - 25 wt-% Cr</cite>)
+or by component (e.g. <cite>65 wt-% Al2O3 - 35 wt-% CaO</cite>). In case of a metallic phase,
+the composition is given by element even if <em>component</em> is selected. <strong>Default: by
+component</strong>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The composition</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_composition_of_phase_group">
+<span class="sig-name descname"><span class="pre">get_composition_of_phase_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="base.html#tc_python.process_metallurgy.base.PhaseGroup" title="tc_python.process_metallurgy.base.PhaseGroup"><span class="pre">PhaseGroup</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">composition_unit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../high_level_modules/utils.html#tc_python.utils.CompositionUnit" title="tc_python.utils.CompositionUnit"><span class="pre">CompositionUnit</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">CompositionUnit.MASS_PERCENT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">composition_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../high_level_modules/utils.html#tc_python.utils.CompositionType" title="tc_python.utils.CompositionType"><span class="pre">CompositionType</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">CompositionType.COMPONENT</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_composition_of_phase_group" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the composition of a phase group (e.g., all liquid slag) in the result.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase_group</strong> – The phase group</p></li>
+<li><p><strong>composition_unit</strong> – The composition unit, <strong>default: mass percent</strong></p></li>
+<li><p><strong>composition_type</strong> – Defines if the composition is given by element (e.g., <cite>75 wt-% Fe - 25 wt-% Cr</cite>)
+or by component (e.g. <cite>65 wt-% Al2O3 - 35 wt-% CaO</cite>). In case of a metallic phase,
+the composition is given by element even if <em>component</em> is selected. <strong>Default: by
+component</strong>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The composition</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_elements">
+<span class="sig-name descname"><span class="pre">get_elements</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_elements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all elements defined for the result.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>All elements present in this result</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_formula_for_activity_of_slag">
+<span class="sig-name descname"><span class="pre">get_formula_for_activity_of_slag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="base.html#tc_python.process_metallurgy.base.ActivityReference" title="tc_python.process_metallurgy.base.ActivityReference"><span class="pre">ActivityReference</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">ActivityReference.LIQUID</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_formula_for_activity_of_slag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the Thermo-Calc Console syntax formula used for calculating the activity of a component in the slag
+(e.g. <cite>AC(AL2O3, IONIC_LIQ)</cite>. The actual activity can be obtained using <a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_activity_of_slag" title="tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_activity_of_slag"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_activity_of_slag()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component</strong> – The component</p></li>
+<li><p><strong>reference</strong> – The reference for the activity, can be liquid or solid slag, <strong>default: liquid slag</strong></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The formula for calculating the activity</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_formula_for_slag_property">
+<span class="sig-name descname"><span class="pre">get_formula_for_slag_property</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">slag_property</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="base.html#tc_python.process_metallurgy.base.SlagProperty" title="tc_python.process_metallurgy.base.SlagProperty"><span class="pre">SlagProperty</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">slag_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="base.html#tc_python.process_metallurgy.base.SlagType" title="tc_python.process_metallurgy.base.SlagType"><span class="pre">SlagType</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">SlagType.ALL</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_formula_for_slag_property" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the Thermo-Calc Console syntax formula used for calculating a property of the slag
+(e.g. <cite>B(CAO)/B(SIO2)</cite>. The actual slag property can be obtained using <a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_slag_property" title="tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_slag_property"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_slag_property()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>slag_property</strong> – The slag property</p></li>
+<li><p><strong>slag_type</strong> – The part of the slag for which the property will be calculated. Can be all slag, the liquid
+or the solid slag. <strong>Default: all slag</strong></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The formula for calculating the slag property</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_fraction_of_phase_groups">
+<span class="sig-name descname"><span class="pre">get_fraction_of_phase_groups</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../high_level_modules/utils.html#tc_python.utils.PhaseUnit" title="tc_python.utils.PhaseUnit"><span class="pre">PhaseUnit</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">PhaseUnit.MASS_FRACTION</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="base.html#tc_python.process_metallurgy.base.PhaseGroup" title="tc_python.process_metallurgy.base.PhaseGroup"><span class="pre">PhaseGroup</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_fraction_of_phase_groups" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the fraction of the phase groups (e.g., all liquid slag) in the result.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>unit</strong> – The unit of the fraction, <strong>default: volume fraction</strong></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The phase fractions</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_fraction_of_phases">
+<span class="sig-name descname"><span class="pre">get_fraction_of_phases</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../high_level_modules/utils.html#tc_python.utils.PhaseUnit" title="tc_python.utils.PhaseUnit"><span class="pre">PhaseUnit</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">PhaseUnit.MASS_FRACTION</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_fraction_of_phases" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the fraction of the stable phases in the result.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>unit</strong> – The unit of the fraction, <strong>default: volume fraction</strong></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The phase fractions</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_gas_components">
+<span class="sig-name descname"><span class="pre">get_gas_components</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_gas_components" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all components of the gas phase defined for the elements present in this result.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The components of the gas phase present in this result</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_oxygen_partial_pressure">
+<span class="sig-name descname"><span class="pre">get_oxygen_partial_pressure</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_oxygen_partial_pressure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the partial pressure of oxygen in the result.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The partial pressure [Pa]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_pressure">
+<span class="sig-name descname"><span class="pre">get_pressure</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_pressure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the pressure in the result.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The pressure [Pa]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_slag_property">
+<span class="sig-name descname"><span class="pre">get_slag_property</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">slag_property</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="base.html#tc_python.process_metallurgy.base.SlagProperty" title="tc_python.process_metallurgy.base.SlagProperty"><span class="pre">SlagProperty</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">slag_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="base.html#tc_python.process_metallurgy.base.SlagType" title="tc_python.process_metallurgy.base.SlagType"><span class="pre">SlagType</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">SlagType.ALL</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_slag_property" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a property of the slag. These properties are mostly used to describe the property of a slag to pick
+up sulfur.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>slag_property</strong> – The slag property</p></li>
+<li><p><strong>slag_type</strong> – The part of the slag for which the property will be calculated. Can be all slag, the liquid
+or the solid slag. <strong>Default: all slag</strong></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The slag property [unit depending on the property]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_stable_phases">
+<span class="sig-name descname"><span class="pre">get_stable_phases</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_stable_phases" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the stable phases in the result.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The stable phases</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_stable_phases_in_phase_group">
+<span class="sig-name descname"><span class="pre">get_stable_phases_in_phase_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="base.html#tc_python.process_metallurgy.base.PhaseGroup" title="tc_python.process_metallurgy.base.PhaseGroup"><span class="pre">PhaseGroup</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_stable_phases_in_phase_group" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the stable phases of a phase group (e.g., all liquid slag) in the result.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>phase_group</strong> – The phase group</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The stable phases</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_temperature">
+<span class="sig-name descname"><span class="pre">get_temperature</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_temperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the temperature in the result.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The temperature [K]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_value_of">
+<span class="sig-name descname"><span class="pre">get_value_of</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">classic_expression</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_value_of" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a value for a thermodynamic quantity.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>It should normally not be required to use this method, use the appropriate method available in the API
+instead.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>classic_expression</strong> – The thermodynamic quantity to get the value of in Thermo-Calc Console Mode syntax
+(for example “NPM(FCC_A1)”)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The requested value</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_viscosity_dynamic_of_phase">
+<span class="sig-name descname"><span class="pre">get_viscosity_dynamic_of_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_viscosity_dynamic_of_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the dynamic viscosity of a phase in the result.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>phase</strong> – The phase name</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The dynamic viscosity [Pa*s]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_viscosity_kinematic_of_phase">
+<span class="sig-name descname"><span class="pre">get_viscosity_kinematic_of_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_viscosity_kinematic_of_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the kinematic viscosity of a phase in the result.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>phase</strong> – The phase name</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The kinematic viscosity [m**2/s]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.process_metallurgy.equilibrium.</span></span><span class="sig-name descname"><span class="pre">IsoThermalEquilibriumCalculation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">calculation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.EquilibriumCalculation" title="tc_python.process_metallurgy.equilibrium.EquilibriumCalculation"><code class="xref py py-class docutils literal notranslate"><span class="pre">EquilibriumCalculation</span></code></a></p>
+<p>An <em>isothermal</em> Process Metallurgy equilibrium calculation. Such calculations can for example be used to determine
+the global equilibrium state of a process.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation.add_addition">
+<span class="sig-name descname"><span class="pre">add_addition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">addition</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.AbstractEquilibriumAddition" title="tc_python.process_metallurgy.equilibrium.AbstractEquilibriumAddition"><span class="pre">AbstractEquilibriumAddition</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation.add_addition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds an addition to the calculation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>addition</strong> – A <a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.EquilibriumAddition" title="tc_python.process_metallurgy.equilibrium.EquilibriumAddition"><code class="xref py py-class docutils literal notranslate"><span class="pre">EquilibriumAddition</span></code></a> or <a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.EquilibriumGasAddition" title="tc_python.process_metallurgy.equilibrium.EquilibriumGasAddition"><code class="xref py py-class docutils literal notranslate"><span class="pre">EquilibriumGasAddition</span></code></a></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation" title="tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation"><code class="xref py py-class docutils literal notranslate"><span class="pre">IsoThermalEquilibriumCalculation</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation.add_poly_command">
+<span class="sig-name descname"><span class="pre">add_poly_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation.add_poly_command" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a Thermo-Calc Console syntax POLY module command which will be executed when performing the calculation
+using the <a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation.calculate" title="tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation.calculate"><code class="xref py py-func docutils literal notranslate"><span class="pre">calculate()</span></code></a> method.</p>
+<p>If multiple commands are added, they will be executed in the order of
+addition. Each command will only be executed one.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It should not be necessary for most users to use this method, try to use the corresponding method
+implemented in the API instead.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>As this method runs raw Thermo-Calc commands directly in the engine, it may hang the program in case
+of spelling mistakes (e.g. forgotten equals sign).</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>command</strong> – The POLY module command in Thermo-Calc console syntax</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation" title="tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation"><code class="xref py py-class docutils literal notranslate"><span class="pre">IsoThermalEquilibriumCalculation</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation.calculate">
+<span class="sig-name descname"><span class="pre">calculate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeout_in_minutes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.EquilibriumResult" title="tc_python.process_metallurgy.equilibrium.EquilibriumResult"><span class="pre">EquilibriumResult</span></a></span></span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation.calculate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs the Process Metallurgy equilibrium calculation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>timeout_in_minutes</strong> – The calculation will be aborted after that time, <strong>default: no timeout</strong></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.EquilibriumResult" title="tc_python.process_metallurgy.equilibrium.EquilibriumResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">EquilibriumResult</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation.remove_addition">
+<span class="sig-name descname"><span class="pre">remove_addition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">addition</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.AbstractEquilibriumAddition" title="tc_python.process_metallurgy.equilibrium.AbstractEquilibriumAddition"><span class="pre">AbstractEquilibriumAddition</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation.remove_addition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes an addition from the calculation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>addition</strong> – The addition to be removed</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation" title="tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation"><code class="xref py py-class docutils literal notranslate"><span class="pre">IsoThermalEquilibriumCalculation</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation.remove_all_additions">
+<span class="sig-name descname"><span class="pre">remove_all_additions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation.remove_all_additions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes all additions from the calculation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This <a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation" title="tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation"><code class="xref py py-class docutils literal notranslate"><span class="pre">IsoThermalEquilibriumCalculation</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation.set_pressure">
+<span class="sig-name descname"><span class="pre">set_pressure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pressure</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100000.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation.set_pressure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the pressure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pressure</strong> – The pressure [Pa]</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation" title="tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation"><code class="xref py py-class docutils literal notranslate"><span class="pre">IsoThermalEquilibriumCalculation</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation.set_temperature">
+<span class="sig-name descname"><span class="pre">set_temperature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temperature</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation.set_temperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the temperature.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>temperature</strong> – The temperature [K]</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation" title="tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation"><code class="xref py py-class docutils literal notranslate"><span class="pre">IsoThermalEquilibriumCalculation</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation.update_addition">
+<span class="sig-name descname"><span class="pre">update_addition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">addition</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.AbstractEquilibriumAddition" title="tc_python.process_metallurgy.equilibrium.AbstractEquilibriumAddition"><span class="pre">AbstractEquilibriumAddition</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation.update_addition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Replaces an already added addition with an updated one.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>This is usually used to change the composition or amount of an addition while iterating over multiple
+values. Typically, this is done for stepping or mapping calculations.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The calculation must already contain the addition object to be updated.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>addition</strong> – A previously added addition object with the updated values</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation" title="tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation"><code class="xref py py-class docutils literal notranslate"><span class="pre">IsoThermalEquilibriumCalculation</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation.with_options">
+<span class="sig-name descname"><span class="pre">with_options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="base.html#tc_python.process_metallurgy.base.ProcessMetallurgyOptions" title="tc_python.process_metallurgy.base.ProcessMetallurgyOptions"><span class="pre">ProcessMetallurgyOptions</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation.with_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the options for the calculation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>options</strong> – The options</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation" title="tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation"><code class="xref py py-class docutils literal notranslate"><span class="pre">IsoThermalEquilibriumCalculation</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="base.html" class="btn btn-neutral float-left" title="Module “base”" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="process.html" class="btn btn-neutral float-right" title="Module “process”" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Foundation of Computational Thermodynamics, Stockholm, Sweden.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

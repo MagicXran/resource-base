@@ -1,0 +1,173 @@
+# -*- coding: gb2312 -*-
+version: '3.8'
+
+services:
+  # FreeFEM API服务
+  freefem-api:
+    build: .
+    container_name: freefem-api
+    restart: unless-stopped
+    ports:
+      - "8000:8000"  # FastAPI
+      - "80:80"      # Nginx
+    volumes:
+      - ./work:/app/work
+      - ./vtk_output:/app/vtk_output
+      - ./simulations:/app/simulations
+      - ./logs:/app/logs
+      - ./static:/app/static
+      - ./templates:/app/templates
+    environment:
+      - PYTHONIOENCODING=gb2312
+      - LANG=zh_CN.GB2312
+      - LC_ALL=zh_CN.GB2312
+      - TZ=Asia/Shanghai
+      - REDIS_URL=redis://redis:6379/0
+      - PARAVIEW_WS_URL=ws://paraview:9000/ws
+    networks:
+      - freefem-network
+    depends_on:
+      - redis
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # Redis缓存服务
+  redis:
+    image: redis:6-alpine
+    container_name: freefem-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes --maxmemory 512mb --maxmemory-policy allkeys-lru
+    networks:
+      - freefem-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  # ParaviewWeb服务（可选）
+  paraview:
+    image: kitware/paraviewweb:5.10
+    container_name: freefem-paraview
+    restart: unless-stopped
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./vtk_output:/data
+      - ./paraview-config:/opt/paraview/config
+    environment:
+      - DISPLAY=:99
+      - PVW_DATA_PATH=/data
+      - PVW_LAUNCHER_CONFIG=/opt/paraview/config/launcher.json
+    networks:
+      - freefem-network
+    command: /opt/paraview/bin/pvpython /opt/paraview/lib/python3.9/site-packages/wslink/launcher.py /opt/paraview/config/launcher.json
+
+  # Nginx反向代理（生产环境）
+  nginx:
+    image: nginx:alpine
+    container_name: freefem-nginx
+    restart: unless-stopped
+    ports:
+      - "443:443"
+      - "8080:80"
+    volumes:
+      - ./nginx-prod.conf:/etc/nginx/nginx.conf:ro
+      - ./static:/usr/share/nginx/html/static:ro
+      - ./ssl:/etc/nginx/ssl:ro
+      - nginx-cache:/var/cache/nginx
+    networks:
+      - freefem-network
+    depends_on:
+      - freefem-api
+
+  # MinIO对象存储（可选，用于大文件存储）
+  minio:
+    image: minio/minio:latest
+    container_name: freefem-minio
+    restart: unless-stopped
+    ports:
+      - "9001:9000"
+      - "9002:9001"
+    volumes:
+      - minio-data:/data
+    environment:
+      - MINIO_ROOT_USER=minioadmin
+      - MINIO_ROOT_PASSWORD=minioadmin123
+      - MINIO_BROWSER_REDIRECT_URL=http://localhost:9002
+    command: server /data --console-address ":9001"
+    networks:
+      - freefem-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+  # 监控服务 - Prometheus（可选）
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: freefem-prometheus
+    restart: unless-stopped
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+    networks:
+      - freefem-network
+
+  # 监控可视化 - Grafana（可选）
+  grafana:
+    image: grafana/grafana:latest
+    container_name: freefem-grafana
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./grafana/dashboards:/etc/grafana/provisioning/dashboards:ro
+      - ./grafana/datasources:/etc/grafana/provisioning/datasources:ro
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin123
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource
+    networks:
+      - freefem-network
+    depends_on:
+      - prometheus
+
+# 网络配置
+networks:
+  freefem-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.25.0.0/16
+
+# 数据卷
+volumes:
+  redis-data:
+    driver: local
+  minio-data:
+    driver: local
+  prometheus-data:
+    driver: local
+  grafana-data:
+    driver: local
+  nginx-cache:
+    driver: local

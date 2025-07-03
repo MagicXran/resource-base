@@ -1,0 +1,7 @@
+Package "equilibrium"
+~~~~~~~~~~~~~~~~~~~~~
+
+.. automodule:: +tc_toolbox.+process_metallurgy.+equilibrium
+    :members:
+    :exclude-members: backend
+    :undoc-members:

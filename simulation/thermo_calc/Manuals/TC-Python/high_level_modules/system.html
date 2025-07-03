@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module “system” &mdash; TC-Python 2023b documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Module “entities”" href="entities.html" />
+    <link rel="prev" title="Module “process”" href="../calculation_modules/process_metallurgy_modules/process.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            TC-Python
+          </a>
+              <div class="version">
+                2023b
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment_variables.html">Mac OS: Setting Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../best_practices.html">Best Practices</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api_reference.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../calculations.html">Calculations</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Module “system”</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.system.MultiDatabaseSystemBuilder"><code class="docutils literal notranslate"><span class="pre">MultiDatabaseSystemBuilder</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.MultiDatabaseSystemBuilder.create_and_select_species"><code class="docutils literal notranslate"><span class="pre">MultiDatabaseSystemBuilder.create_and_select_species()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.MultiDatabaseSystemBuilder.deselect_constituent_on_sublattice"><code class="docutils literal notranslate"><span class="pre">MultiDatabaseSystemBuilder.deselect_constituent_on_sublattice()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.MultiDatabaseSystemBuilder.deselect_phase"><code class="docutils literal notranslate"><span class="pre">MultiDatabaseSystemBuilder.deselect_phase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.MultiDatabaseSystemBuilder.deselect_species"><code class="docutils literal notranslate"><span class="pre">MultiDatabaseSystemBuilder.deselect_species()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.MultiDatabaseSystemBuilder.get_system"><code class="docutils literal notranslate"><span class="pre">MultiDatabaseSystemBuilder.get_system()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.MultiDatabaseSystemBuilder.select_constituent_on_sublattice"><code class="docutils literal notranslate"><span class="pre">MultiDatabaseSystemBuilder.select_constituent_on_sublattice()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.MultiDatabaseSystemBuilder.select_phase"><code class="docutils literal notranslate"><span class="pre">MultiDatabaseSystemBuilder.select_phase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.MultiDatabaseSystemBuilder.select_species"><code class="docutils literal notranslate"><span class="pre">MultiDatabaseSystemBuilder.select_species()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.MultiDatabaseSystemBuilder.with_new_composition_set"><code class="docutils literal notranslate"><span class="pre">MultiDatabaseSystemBuilder.with_new_composition_set()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.MultiDatabaseSystemBuilder.without_default_phases"><code class="docutils literal notranslate"><span class="pre">MultiDatabaseSystemBuilder.without_default_phases()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.system.System"><code class="docutils literal notranslate"><span class="pre">System</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.System.convert_composition"><code class="docutils literal notranslate"><span class="pre">System.convert_composition()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.System.get_all_elements_in_databases"><code class="docutils literal notranslate"><span class="pre">System.get_all_elements_in_databases()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.System.get_all_phases_in_databases"><code class="docutils literal notranslate"><span class="pre">System.get_all_phases_in_databases()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.System.get_all_species_in_databases"><code class="docutils literal notranslate"><span class="pre">System.get_all_species_in_databases()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.System.get_element_object"><code class="docutils literal notranslate"><span class="pre">System.get_element_object()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.System.get_elements_in_system"><code class="docutils literal notranslate"><span class="pre">System.get_elements_in_system()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.System.get_phase_object"><code class="docutils literal notranslate"><span class="pre">System.get_phase_object()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.System.get_phases_in_system"><code class="docutils literal notranslate"><span class="pre">System.get_phases_in_system()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.System.get_references"><code class="docutils literal notranslate"><span class="pre">System.get_references()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.System.get_species_in_system"><code class="docutils literal notranslate"><span class="pre">System.get_species_in_system()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.System.get_species_object"><code class="docutils literal notranslate"><span class="pre">System.get_species_object()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.System.get_system_data"><code class="docutils literal notranslate"><span class="pre">System.get_system_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.System.with_batch_equilibrium_calculation"><code class="docutils literal notranslate"><span class="pre">System.with_batch_equilibrium_calculation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.System.with_cct_precipitation_calculation"><code class="docutils literal notranslate"><span class="pre">System.with_cct_precipitation_calculation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.System.with_isothermal_diffusion_calculation"><code class="docutils literal notranslate"><span class="pre">System.with_isothermal_diffusion_calculation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.System.with_isothermal_precipitation_calculation"><code class="docutils literal notranslate"><span class="pre">System.with_isothermal_precipitation_calculation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.System.with_material_to_material"><code class="docutils literal notranslate"><span class="pre">System.with_material_to_material()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.System.with_non_isothermal_diffusion_calculation"><code class="docutils literal notranslate"><span class="pre">System.with_non_isothermal_diffusion_calculation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.System.with_non_isothermal_precipitation_calculation"><code class="docutils literal notranslate"><span class="pre">System.with_non_isothermal_precipitation_calculation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.System.with_phase_diagram_calculation"><code class="docutils literal notranslate"><span class="pre">System.with_phase_diagram_calculation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.System.with_property_diagram_calculation"><code class="docutils literal notranslate"><span class="pre">System.with_property_diagram_calculation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.System.with_property_model_calculation"><code class="docutils literal notranslate"><span class="pre">System.with_property_model_calculation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.System.with_scheil_calculation"><code class="docutils literal notranslate"><span class="pre">System.with_scheil_calculation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.System.with_single_equilibrium_calculation"><code class="docutils literal notranslate"><span class="pre">System.with_single_equilibrium_calculation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.System.with_ttt_precipitation_calculation"><code class="docutils literal notranslate"><span class="pre">System.with_ttt_precipitation_calculation()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.system.SystemBuilder"><code class="docutils literal notranslate"><span class="pre">SystemBuilder</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.SystemBuilder.create_and_select_species"><code class="docutils literal notranslate"><span class="pre">SystemBuilder.create_and_select_species()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.SystemBuilder.deselect_constituent_on_sublattice"><code class="docutils literal notranslate"><span class="pre">SystemBuilder.deselect_constituent_on_sublattice()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.SystemBuilder.deselect_phase"><code class="docutils literal notranslate"><span class="pre">SystemBuilder.deselect_phase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.SystemBuilder.deselect_species"><code class="docutils literal notranslate"><span class="pre">SystemBuilder.deselect_species()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.SystemBuilder.get_system"><code class="docutils literal notranslate"><span class="pre">SystemBuilder.get_system()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.SystemBuilder.select_constituent_on_sublattice"><code class="docutils literal notranslate"><span class="pre">SystemBuilder.select_constituent_on_sublattice()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.SystemBuilder.select_database_and_elements"><code class="docutils literal notranslate"><span class="pre">SystemBuilder.select_database_and_elements()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.SystemBuilder.select_phase"><code class="docutils literal notranslate"><span class="pre">SystemBuilder.select_phase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.SystemBuilder.select_species"><code class="docutils literal notranslate"><span class="pre">SystemBuilder.select_species()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.SystemBuilder.select_user_database_and_elements"><code class="docutils literal notranslate"><span class="pre">SystemBuilder.select_user_database_and_elements()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.SystemBuilder.with_new_composition_set"><code class="docutils literal notranslate"><span class="pre">SystemBuilder.with_new_composition_set()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.system.SystemBuilder.without_default_phases"><code class="docutils literal notranslate"><span class="pre">SystemBuilder.without_default_phases()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="entities.html">Module “entities”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server.html">Module “server”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quantity_factory.html">Module “quantity_factory”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">Module “utils”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="propertymodel_sdk.html">Module “propertymodel_sdk”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html">Module “exceptions”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="abstract_base.html">Module “abstract_base”</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">TC-Python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api_reference.html">API Reference</a></li>
+      <li class="breadcrumb-item active">Module “system”</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-tc_python.system">
+<span id="module-system"></span><h1>Module “system”<a class="headerlink" href="#module-tc_python.system" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.system.MultiDatabaseSystemBuilder">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.system.</span></span><span class="sig-name descname"><span class="pre">MultiDatabaseSystemBuilder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">multi_database_system_builder</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.system.MultiDatabaseSystemBuilder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Used to select databases, elements, phases etc. and create a System object.
+The difference to the class SystemBuilder is that the operations are performed on all the previously selected
+databases.
+The system is then used to create calculations.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.MultiDatabaseSystemBuilder.create_and_select_species">
+<span class="sig-name descname"><span class="pre">create_and_select_species</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stoichiometry</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.system.MultiDatabaseSystemBuilder.create_and_select_species" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify a species from the already entered elements. The stoichiometry of the species is the chemical formula of the species.
+The created species will also be automatically selected.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The elements in the chemical formula are normally separated by stoichiometric numbers. Neither parenthesis <cite>“()”</cite> nor an 
+underscore <cite>“_”</cite> is allowed in the chemical formula, while the special combination <cite>“/-”</cite> or <cite>“/+”</cite> can be used.
+Consult the Thermo-Calc database documentation for details about the syntax.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>stoichiometry</strong> – The stoichiometry of the species</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.system.MultiDatabaseSystemBuilder" title="tc_python.system.MultiDatabaseSystemBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiDatabaseSystemBuilder</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.MultiDatabaseSystemBuilder.deselect_constituent_on_sublattice">
+<span class="sig-name descname"><span class="pre">deselect_constituent_on_sublattice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sublattice_no</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constituent_name_to_deselect</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.system.MultiDatabaseSystemBuilder.deselect_constituent_on_sublattice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rejects a constituent on a sublattice in a phase in both the thermodynamic and the kinetic database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase_name</strong> – The name of the phase</p></li>
+<li><p><strong>sublattice_no</strong> – The number of the sublattice (starting with 1)</p></li>
+<li><p><strong>constituent_name_to_deselect</strong> – The name of the constituent to deselect</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.system.MultiDatabaseSystemBuilder" title="tc_python.system.MultiDatabaseSystemBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiDatabaseSystemBuilder</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.MultiDatabaseSystemBuilder.deselect_phase">
+<span class="sig-name descname"><span class="pre">deselect_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase_name_to_deselect</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.system.MultiDatabaseSystemBuilder.deselect_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rejects a phase for both the thermodynamic and the kinetic database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>phase_name_to_deselect</strong> – The phase name</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.system.MultiDatabaseSystemBuilder" title="tc_python.system.MultiDatabaseSystemBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiDatabaseSystemBuilder</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.MultiDatabaseSystemBuilder.deselect_species">
+<span class="sig-name descname"><span class="pre">deselect_species</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">species_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.system.MultiDatabaseSystemBuilder.deselect_species" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes the species from the system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>species_name</strong> – The species</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.system.MultiDatabaseSystemBuilder" title="tc_python.system.MultiDatabaseSystemBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiDatabaseSystemBuilder</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.MultiDatabaseSystemBuilder.get_system">
+<span class="sig-name descname"><span class="pre">get_system</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#tc_python.system.System" title="tc_python.system.System"><span class="pre">System</span></a></span></span><a class="headerlink" href="#tc_python.system.MultiDatabaseSystemBuilder.get_system" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new System object that is the basis for all calculation types. Several calculation types can be
+defined later from the object; these are independent.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <a class="reference internal" href="#tc_python.system.System" title="tc_python.system.System"><code class="xref py py-class docutils literal notranslate"><span class="pre">System</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.MultiDatabaseSystemBuilder.select_constituent_on_sublattice">
+<span class="sig-name descname"><span class="pre">select_constituent_on_sublattice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sublattice_no</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constituent_name_to_select</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.system.MultiDatabaseSystemBuilder.select_constituent_on_sublattice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects a constituent on a sublattice in a phase in both the thermodynamic and the kinetic database.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Previously the third parameter <cite>constituent_name_to_select</cite> had a wrong name, it has been corrected in
+version 2021b.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase_name</strong> – The name of the phase</p></li>
+<li><p><strong>sublattice_no</strong> – The number of the sublattice (starting with 1)</p></li>
+<li><p><strong>constituent_name_to_select</strong> – The name of the constituent to select</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.system.MultiDatabaseSystemBuilder" title="tc_python.system.MultiDatabaseSystemBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiDatabaseSystemBuilder</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.MultiDatabaseSystemBuilder.select_phase">
+<span class="sig-name descname"><span class="pre">select_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase_name_to_select</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.system.MultiDatabaseSystemBuilder.select_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects a phase for both the thermodynamic and the kinetic database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>phase_name_to_select</strong> – The phase name</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.system.MultiDatabaseSystemBuilder" title="tc_python.system.MultiDatabaseSystemBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiDatabaseSystemBuilder</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.MultiDatabaseSystemBuilder.select_species">
+<span class="sig-name descname"><span class="pre">select_species</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">species_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.system.MultiDatabaseSystemBuilder.select_species" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds the species to the system.
+Up to 1000 species can be defined in a single system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>species_name</strong> – The species</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.system.MultiDatabaseSystemBuilder" title="tc_python.system.MultiDatabaseSystemBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiDatabaseSystemBuilder</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.MultiDatabaseSystemBuilder.with_new_composition_set">
+<span class="sig-name descname"><span class="pre">with_new_composition_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">composition_set</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="entities.html#tc_python.entities.CompositionSet" title="tc_python.entities.CompositionSet"><span class="pre">CompositionSet</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.system.MultiDatabaseSystemBuilder.with_new_composition_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to enter two or more composition sets for a phase. If a phase has a miscibility gap it is necessary to have
+two composition sets, one for each possible composition that can be stable simultaneously.</p>
+<p>The databases often create the typical composition sets for phases automatically when data are retrieved.
+The equilibrium calculations (using the default settings with global minimization) will usually add new
+composition sets if needed.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Precipitation and diffusion calculations can require the user to define additional composition sets.
+E.g. in the case where the new composition set is needed in the configuration of the calculation.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>composition_set</strong> – the composition set</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.system.MultiDatabaseSystemBuilder" title="tc_python.system.MultiDatabaseSystemBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiDatabaseSystemBuilder</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.MultiDatabaseSystemBuilder.without_default_phases">
+<span class="sig-name descname"><span class="pre">without_default_phases</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.system.MultiDatabaseSystemBuilder.without_default_phases" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rejects all the default phases from both the thermodynamic and the kinetic database, any phase now needs to
+be selected manually for the databases.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This <a class="reference internal" href="#tc_python.system.MultiDatabaseSystemBuilder" title="tc_python.system.MultiDatabaseSystemBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiDatabaseSystemBuilder</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.system.System">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.system.</span></span><span class="sig-name descname"><span class="pre">System</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">system_instance</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.system.System" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A system containing selections for databases, elements, phases etc.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For the defined system, different calculations can be configured and run. <strong>Instances of this class should
+always be created from a SystemBuilder</strong>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The system object is <strong>immutable</strong>, i.e. it cannot be changed after is has been created. If you want to change
+the system, you must instead create a new one.</p>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.System.convert_composition">
+<span class="sig-name descname"><span class="pre">convert_composition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_composition</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_unit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="utils.html#tc_python.utils.ConversionUnit" title="tc_python.utils.ConversionUnit"><span class="pre">ConversionUnit</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_unit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="utils.html#tc_python.utils.ConversionUnit" title="tc_python.utils.ConversionUnit"><span class="pre">ConversionUnit</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">dependent_component</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.system.System.convert_composition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides conversion between composition units for any combination of chemical compounds. It is fast because
+no thermodynamic equilibrium calculation is involved.</p>
+<p><strong>Syntax of the chemical compounds</strong>: <cite>“Al2O3”, “FeO”, “CO”, “Fe”, “C”, …</cite></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is not required that the chemical compounds are components of the database. The only requirement is
+that all elements are present in the database.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_composition</strong> – Composition (for example: <cite>{“Al2O3”: 25.0, “FeO”: 75.0}</cite>)</p></li>
+<li><p><strong>input_unit</strong> – Unit of the input composition</p></li>
+<li><p><strong>output_unit</strong> – Requested output unit</p></li>
+<li><p><strong>dependent_component</strong> – The dependent component (optional), for example: <cite>“Fe”</cite>. If no dependent component
+is specified the sum of the input composition needs to match 100% / 1</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The composition in the requested output unit</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.System.get_all_elements_in_databases">
+<span class="sig-name descname"><span class="pre">get_all_elements_in_databases</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.system.System.get_all_elements_in_databases" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the names of all elements present in the selected databases, regardless of the actual selection of
+elements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of element names</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.System.get_all_phases_in_databases">
+<span class="sig-name descname"><span class="pre">get_all_phases_in_databases</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.system.System.get_all_phases_in_databases" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all phase names present in the selected databases, regardless of selected elements, phases etc.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of phase names</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.System.get_all_species_in_databases">
+<span class="sig-name descname"><span class="pre">get_all_species_in_databases</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.system.System.get_all_species_in_databases" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all species names present in the selected databases, regardless of the actual selection of elements,
+phases, ….</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of species names</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.System.get_element_object">
+<span class="sig-name descname"><span class="pre">get_element_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="entities.html#tc_python.entities.Element" title="tc_python.entities.Element"><span class="pre">Element</span></a></span></span><a class="headerlink" href="#tc_python.system.System.get_element_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the <code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code> object of an element. This can be used to obtain detailed information about the
+element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>element_name</strong> – The element name</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code>: object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.System.get_elements_in_system">
+<span class="sig-name descname"><span class="pre">get_elements_in_system</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.system.System.get_elements_in_system" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the names of all elements present in the selected system.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The list does not contain any elements or components that have been auto-selected by the database(s) in a
+calculator. Use the <code class="xref py py-func docutils literal notranslate"><span class="pre">get_components()</span></code> of the calculator object instead to get the complete
+information.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of element names</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.System.get_phase_object">
+<span class="sig-name descname"><span class="pre">get_phase_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="entities.html#tc_python.entities.Phase" title="tc_python.entities.Phase"><span class="pre">Phase</span></a></span></span><a class="headerlink" href="#tc_python.system.System.get_phase_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the <code class="xref py py-class docutils literal notranslate"><span class="pre">Phase</span></code> object of a phase. This can be used to obtain detailed information about the phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>phase_name</strong> – The phase name</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <code class="xref py py-class docutils literal notranslate"><span class="pre">Phase</span></code>: object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.System.get_phases_in_system">
+<span class="sig-name descname"><span class="pre">get_phases_in_system</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.system.System.get_phases_in_system" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all phase names present in the system due to its configuration (selected elements, phases, etc.).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of phase names</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.System.get_references">
+<span class="sig-name descname"><span class="pre">get_references</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.system.System.get_references" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides a dictionary with database references per database in the selected system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The database references</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.System.get_species_in_system">
+<span class="sig-name descname"><span class="pre">get_species_in_system</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.system.System.get_species_in_system" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the names of all species present in the selected system.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The list does not contain any species or components that have been auto-selected by the database(s) in a
+calculator. Use the <code class="xref py py-func docutils literal notranslate"><span class="pre">get_components()</span></code> of the calculator object instead to get the complete
+information.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The list of species names</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.System.get_species_object">
+<span class="sig-name descname"><span class="pre">get_species_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">species_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="entities.html#tc_python.entities.Species" title="tc_python.entities.Species"><span class="pre">Species</span></a></span></span><a class="headerlink" href="#tc_python.system.System.get_species_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the <code class="xref py py-class docutils literal notranslate"><span class="pre">Species</span></code> object of an species. This can be used to obtain detailed information about the
+species.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>species_name</strong> – The species name</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <code class="xref py py-class docutils literal notranslate"><span class="pre">Species</span></code>: object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.System.get_system_data">
+<span class="sig-name descname"><span class="pre">get_system_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="abstract_base.html#tc_python.abstract_base.SystemData" title="tc_python.abstract_base.SystemData"><span class="pre">SystemData</span></a></span></span><a class="headerlink" href="#tc_python.system.System.get_system_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the content of the database. This can be used to modify the parameters
+and functions and to change the current system by using <code class="xref py py-func docutils literal notranslate"><span class="pre">with_system_modifications()</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Parameters can only be read from unencrypted (i.e. <em>user</em>) databases loaded as <cite>*.tdb</cite>-file.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The system data</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.System.with_batch_equilibrium_calculation">
+<span class="sig-name descname"><span class="pre">with_batch_equilibrium_calculation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">default_conditions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">components</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../calculation_modules/batch_equilibrium.html#tc_python.batch_equilibrium.BatchEquilibriumCalculation" title="tc_python.batch_equilibrium.BatchEquilibriumCalculation"><span class="pre">BatchEquilibriumCalculation</span></a></span></span><a class="headerlink" href="#tc_python.system.System.with_batch_equilibrium_calculation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a batch-equilibrium calculation (a vectorized equilibrium calculation).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Use this instead of looping if you want to calculate equilibria for a larger number of compositions and
+know the conditions in advance. This calculation type has improved performance when calculating a large
+number of equilibria when each individual calculations is quick.  E.g. when evaluating single phase
+properties for thousands of compositions.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>default_conditions</strong> – If <cite>True</cite>, automatically sets the conditions <cite>N=1</cite> and <cite>P=100000</cite></p></li>
+<li><p><strong>components</strong> – Specify here the components of the system (for example: <cite>[AL2O3, …]</cite>), <em>only necessary if
+they differ from the elements</em>. If this option is used, <strong>all elements</strong> of the system need
+to be replaced by a component.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">BatchEquilibriumCalculation</span></code> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.System.with_cct_precipitation_calculation">
+<span class="sig-name descname"><span class="pre">with_cct_precipitation_calculation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../calculation_modules/precipitation.html#tc_python.precipitation.PrecipitationCCTCalculation" title="tc_python.precipitation.PrecipitationCCTCalculation"><span class="pre">PrecipitationCCTCalculation</span></a></span></span><a class="headerlink" href="#tc_python.system.System.with_cct_precipitation_calculation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a CCT diagram calculation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">PrecipitationCCTCalculation</span></code> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.System.with_isothermal_diffusion_calculation">
+<span class="sig-name descname"><span class="pre">with_isothermal_diffusion_calculation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../calculation_modules/diffusion.html#tc_python.diffusion.DiffusionIsoThermalCalculation" title="tc_python.diffusion.DiffusionIsoThermalCalculation"><span class="pre">DiffusionIsoThermalCalculation</span></a></span></span><a class="headerlink" href="#tc_python.system.System.with_isothermal_diffusion_calculation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an isothermal diffusion calculation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">DiffusionIsoThermalCalculation</span></code> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.System.with_isothermal_precipitation_calculation">
+<span class="sig-name descname"><span class="pre">with_isothermal_precipitation_calculation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../calculation_modules/precipitation.html#tc_python.precipitation.PrecipitationIsoThermalCalculation" title="tc_python.precipitation.PrecipitationIsoThermalCalculation"><span class="pre">PrecipitationIsoThermalCalculation</span></a></span></span><a class="headerlink" href="#tc_python.system.System.with_isothermal_precipitation_calculation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an isothermal precipitation calculation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">PrecipitationIsoThermalCalculation</span></code> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.System.with_material_to_material">
+<span class="sig-name descname"><span class="pre">with_material_to_material</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../calculation_modules/material_to_material.html#tc_python.material_to_material.MaterialToMaterialCalculationContainer" title="tc_python.material_to_material.MaterialToMaterialCalculationContainer"><span class="pre">MaterialToMaterialCalculationContainer</span></a></span></span><a class="headerlink" href="#tc_python.system.System.with_material_to_material" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides access to all Material to Material calculations. The actual calculation needs to be chosen in the
+returned object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">MaterialToMaterialCalculationContainer</span></code> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.System.with_non_isothermal_diffusion_calculation">
+<span class="sig-name descname"><span class="pre">with_non_isothermal_diffusion_calculation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../calculation_modules/diffusion.html#tc_python.diffusion.DiffusionNonIsoThermalCalculation" title="tc_python.diffusion.DiffusionNonIsoThermalCalculation"><span class="pre">DiffusionNonIsoThermalCalculation</span></a></span></span><a class="headerlink" href="#tc_python.system.System.with_non_isothermal_diffusion_calculation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a non-isothermal precipitation calculation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">PrecipitationNonIsoThermalCalculation</span></code> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.System.with_non_isothermal_precipitation_calculation">
+<span class="sig-name descname"><span class="pre">with_non_isothermal_precipitation_calculation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../calculation_modules/precipitation.html#tc_python.precipitation.PrecipitationNonIsoThermalCalculation" title="tc_python.precipitation.PrecipitationNonIsoThermalCalculation"><span class="pre">PrecipitationNonIsoThermalCalculation</span></a></span></span><a class="headerlink" href="#tc_python.system.System.with_non_isothermal_precipitation_calculation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a non-isothermal precipitation calculation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">PrecipitationNonIsoThermalCalculation</span></code> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.System.with_phase_diagram_calculation">
+<span class="sig-name descname"><span class="pre">with_phase_diagram_calculation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">default_conditions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">components</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../calculation_modules/step_or_map_diagrams.html#tc_python.step_or_map_diagrams.PhaseDiagramCalculation" title="tc_python.step_or_map_diagrams.PhaseDiagramCalculation"><span class="pre">PhaseDiagramCalculation</span></a></span></span><a class="headerlink" href="#tc_python.system.System.with_phase_diagram_calculation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a phase diagram (map) calculation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>default_conditions</strong> – If <cite>True</cite>, automatically sets the conditions <cite>N=1</cite> and <cite>P=100000</cite></p></li>
+<li><p><strong>components</strong> – Specify here the components of the system (for example: <cite>[AL2O3, …]</cite>), <em>only necessary if
+they differ from the elements</em>. If this option is used, <strong>all elements</strong> of the system need
+to be replaced by a component.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">PhaseDiagramCalculation</span></code> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.System.with_property_diagram_calculation">
+<span class="sig-name descname"><span class="pre">with_property_diagram_calculation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">default_conditions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">components</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../calculation_modules/step_or_map_diagrams.html#tc_python.step_or_map_diagrams.PropertyDiagramCalculation" title="tc_python.step_or_map_diagrams.PropertyDiagramCalculation"><span class="pre">PropertyDiagramCalculation</span></a></span></span><a class="headerlink" href="#tc_python.system.System.with_property_diagram_calculation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a property diagram (step) calculation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>default_conditions</strong> – If <cite>True</cite>, automatically sets the conditions <cite>N=1</cite> and <cite>P=100000</cite></p></li>
+<li><p><strong>components</strong> – Specify here the components of the system (for example: <cite>[AL2O3, …]</cite>), <em>only necessary if
+they differ from the elements</em>. If this option is used, <strong>all elements</strong> of the system need
+to be replaced by a component.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">PropertyDiagramCalculation</span></code> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.System.with_property_model_calculation">
+<span class="sig-name descname"><span class="pre">with_property_model_calculation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_to_models</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../calculation_modules/propertymodel.html#tc_python.propertymodel.PropertyModelCalculation" title="tc_python.propertymodel.PropertyModelCalculation"><span class="pre">PropertyModelCalculation</span></a></span></span><a class="headerlink" href="#tc_python.system.System.with_property_model_calculation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a Property Model calculation.</p>
+<p>The parameter <cite>debug_model</cite> is only used when debugging self-developed models.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> – The Property Model to be calculated.</p></li>
+<li><p><strong>path_to_models</strong> – The path where the Property Models are installed. If no value is entered, the Property
+Models folder used by the normal Thermo-Calc application is used.</p></li>
+<li><p><strong>debug_model</strong> – Used when debugging self-developed models.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">PropertyModelCalculation</span></code> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.System.with_scheil_calculation">
+<span class="sig-name descname"><span class="pre">with_scheil_calculation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../calculation_modules/scheil.html#tc_python.scheil.ScheilCalculation" title="tc_python.scheil.ScheilCalculation"><span class="pre">ScheilCalculation</span></a></span></span><a class="headerlink" href="#tc_python.system.System.with_scheil_calculation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a Scheil solidification calculation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">ScheilCalculation</span></code> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.System.with_single_equilibrium_calculation">
+<span class="sig-name descname"><span class="pre">with_single_equilibrium_calculation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">default_conditions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">components</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../calculation_modules/single_equilibrium.html#tc_python.single_equilibrium.SingleEquilibriumCalculation" title="tc_python.single_equilibrium.SingleEquilibriumCalculation"><span class="pre">SingleEquilibriumCalculation</span></a></span></span><a class="headerlink" href="#tc_python.system.System.with_single_equilibrium_calculation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a single equilibrium calculation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>default_conditions</strong> – If <cite>True</cite>, automatically sets the conditions <cite>N=1</cite> and <cite>P=100000</cite></p></li>
+<li><p><strong>components</strong> – Specify here the components of the system (for example: <cite>[AL2O3, …]</cite>), <em>only necessary if
+they differ from the elements</em>. If this option is used, <strong>all elements</strong> of the system need
+to be replaced by a component.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">SingleEquilibriumCalculation</span></code> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.System.with_ttt_precipitation_calculation">
+<span class="sig-name descname"><span class="pre">with_ttt_precipitation_calculation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../calculation_modules/precipitation.html#tc_python.precipitation.PrecipitationTTTCalculation" title="tc_python.precipitation.PrecipitationTTTCalculation"><span class="pre">PrecipitationTTTCalculation</span></a></span></span><a class="headerlink" href="#tc_python.system.System.with_ttt_precipitation_calculation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a TTT diagram calculation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">PrecipitationTTTCalculation</span></code> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.system.SystemBuilder">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.system.</span></span><span class="sig-name descname"><span class="pre">SystemBuilder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">system_builder</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.system.SystemBuilder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Used to select databases, elements, phases etc. and create a System object.
+The system is then used to create calculations.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.SystemBuilder.create_and_select_species">
+<span class="sig-name descname"><span class="pre">create_and_select_species</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stoichiometry</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.system.SystemBuilder.create_and_select_species" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify a species from the already entered elements. The stoichiometry of the species is the chemical formula of the species.
+The created species will also be automatically selected.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The elements in the chemical formula are normally separated by stoichiometric numbers. Neither parenthesis <cite>“()”</cite> nor an 
+underscore <cite>“_”</cite> is allowed in the chemical formula, while the special combination <cite>“/-”</cite> or <cite>“/+”</cite> can be used.
+Consult the Thermo-Calc database documentation for details about the syntax.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>stoichiometry</strong> – The stoichiometry of the species</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.system.SystemBuilder" title="tc_python.system.SystemBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">SystemBuilder</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.SystemBuilder.deselect_constituent_on_sublattice">
+<span class="sig-name descname"><span class="pre">deselect_constituent_on_sublattice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sublattice_no</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constituent_name_to_deselect</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.system.SystemBuilder.deselect_constituent_on_sublattice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rejects a constituent on a sublattice in a phase in the last specified database only.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase_name</strong> – The name of the phase</p></li>
+<li><p><strong>sublattice_no</strong> – The number of the sublattice (starting with 1)</p></li>
+<li><p><strong>constituent_name_to_deselect</strong> – The name of the constituent to deselect</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.system.SystemBuilder" title="tc_python.system.SystemBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">SystemBuilder</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.SystemBuilder.deselect_phase">
+<span class="sig-name descname"><span class="pre">deselect_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase_name_to_deselect</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.system.SystemBuilder.deselect_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rejects a phase in the last specified database only.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>phase_name_to_deselect</strong> – The name of the phase</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.system.SystemBuilder" title="tc_python.system.SystemBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">SystemBuilder</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.SystemBuilder.deselect_species">
+<span class="sig-name descname"><span class="pre">deselect_species</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stoichiometry</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.system.SystemBuilder.deselect_species" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes the species from the system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>stoichiometry</strong> – The species</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.system.SystemBuilder" title="tc_python.system.SystemBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">SystemBuilder</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.SystemBuilder.get_system">
+<span class="sig-name descname"><span class="pre">get_system</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#tc_python.system.System" title="tc_python.system.System"><span class="pre">System</span></a></span></span><a class="headerlink" href="#tc_python.system.SystemBuilder.get_system" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new System object that is the basis for all calculation types. Several calculation types can be
+defined later from the object; these are independent.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <a class="reference internal" href="#tc_python.system.System" title="tc_python.system.System"><code class="xref py py-class docutils literal notranslate"><span class="pre">System</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.SystemBuilder.select_constituent_on_sublattice">
+<span class="sig-name descname"><span class="pre">select_constituent_on_sublattice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sublattice_no</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constituent_name_to_select</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.system.SystemBuilder.select_constituent_on_sublattice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects a constituent on a sublattice in a phase in the last specified database only.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Previously the third parameter <cite>constituent_name_to_select</cite> had a wrong name, it has been corrected in
+version 2021b.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase_name</strong> – The name of the phase</p></li>
+<li><p><strong>sublattice_no</strong> – The number of the sublattice (starting with 1)</p></li>
+<li><p><strong>constituent_name_to_select</strong> – The name of the constituent to select</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.system.SystemBuilder" title="tc_python.system.SystemBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">SystemBuilder</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.SystemBuilder.select_database_and_elements">
+<span class="sig-name descname"><span class="pre">select_database_and_elements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">database_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_of_element_strings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.system.SystemBuilder.select_database_and_elements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects a thermodynamic or kinetic database and its selected elements (that will be appended).
+After that, phases can be selected or unselected.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>database_name</strong> – The database name, for example “FEDEMO”</p></li>
+<li><p><strong>list_of_element_strings</strong> – A list of one or more elements as strings, for example [“Fe”, “C”]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.system.SystemBuilder" title="tc_python.system.SystemBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">SystemBuilder</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.SystemBuilder.select_phase">
+<span class="sig-name descname"><span class="pre">select_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase_name_to_select</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.system.SystemBuilder.select_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects a phase in the last specified database only.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>phase_name_to_select</strong> – The name of the phase</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.system.SystemBuilder" title="tc_python.system.SystemBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">SystemBuilder</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.SystemBuilder.select_species">
+<span class="sig-name descname"><span class="pre">select_species</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stoichiometry</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.system.SystemBuilder.select_species" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds the species to the system.
+Up to 1000 species can be defined in a single system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>stoichiometry</strong> – The species</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.system.SystemBuilder" title="tc_python.system.SystemBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">SystemBuilder</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.SystemBuilder.select_user_database_and_elements">
+<span class="sig-name descname"><span class="pre">select_user_database_and_elements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_to_user_database</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_of_element_strings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.system.SystemBuilder.select_user_database_and_elements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects a thermodynamic database which is a user-defined database and select its elements (that will be
+appended).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>By using a r-literal, it is possible to use slashes on all platforms, also on Windows: <cite>select_user_database_and_elements(r”my path/user_db.tdb”, [“Fe”, “Cr”]])</cite></p>
+<p>Otherwise it is required to use <strong>double</strong> back-slashes on Windows as separator.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>On Linux and Mac the path is case-sensitive, also the file ending.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path_to_user_database</strong> – The path to the database file (“database”.TDB), defaults to the current working directory.
+Only the filename is required if the database is located in the same folder as
+the script.</p></li>
+<li><p><strong>list_of_element_strings</strong> – A list of one or more elements as strings, for example [“Fe”, “C”]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.system.SystemBuilder" title="tc_python.system.SystemBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">SystemBuilder</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.SystemBuilder.with_new_composition_set">
+<span class="sig-name descname"><span class="pre">with_new_composition_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">composition_set</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="entities.html#tc_python.entities.CompositionSet" title="tc_python.entities.CompositionSet"><span class="pre">CompositionSet</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.system.SystemBuilder.with_new_composition_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to enter composition sets for a phase.
+If a phase has a miscibility gap it is necessary to have two composition sets,
+one for each possible composition that can be stable simultaneously.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>composition_set</strong> – The composition set</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.system.SystemBuilder" title="tc_python.system.SystemBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">SystemBuilder</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.system.SystemBuilder.without_default_phases">
+<span class="sig-name descname"><span class="pre">without_default_phases</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.system.SystemBuilder.without_default_phases" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rejects all default phases in the last specified database only, any phase needs now to be selected manually
+for that database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This <a class="reference internal" href="#tc_python.system.SystemBuilder" title="tc_python.system.SystemBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">SystemBuilder</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../calculation_modules/process_metallurgy_modules/process.html" class="btn btn-neutral float-left" title="Module “process”" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="entities.html" class="btn btn-neutral float-right" title="Module “entities”" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Foundation of Computational Thermodynamics, Stockholm, Sweden.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

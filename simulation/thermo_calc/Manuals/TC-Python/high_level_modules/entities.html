@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module “entities” &mdash; TC-Python 2023b documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Module “server”" href="server.html" />
+    <link rel="prev" title="Module “system”" href="system.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            TC-Python
+          </a>
+              <div class="version">
+                2023b
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment_variables.html">Mac OS: Setting Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../best_practices.html">Best Practices</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api_reference.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../calculations.html">Calculations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system.html">Module “system”</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Module “entities”</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.entities.CompositionSet"><code class="docutils literal notranslate"><span class="pre">CompositionSet</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.entities.CompositionSet.set_major_constituents_for_sublattice"><code class="docutils literal notranslate"><span class="pre">CompositionSet.set_major_constituents_for_sublattice()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.entities.Element"><code class="docutils literal notranslate"><span class="pre">Element</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.entities.Element.get_enthalpy"><code class="docutils literal notranslate"><span class="pre">Element.get_enthalpy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.entities.Element.get_entropy_diff_0_to_298k"><code class="docutils literal notranslate"><span class="pre">Element.get_entropy_diff_0_to_298k()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.entities.Element.get_molar_mass"><code class="docutils literal notranslate"><span class="pre">Element.get_molar_mass()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.entities.Element.get_name"><code class="docutils literal notranslate"><span class="pre">Element.get_name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.entities.Element.get_stable_element_reference"><code class="docutils literal notranslate"><span class="pre">Element.get_stable_element_reference()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.entities.Element.is_interstitial"><code class="docutils literal notranslate"><span class="pre">Element.is_interstitial()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.entities.Element.is_special"><code class="docutils literal notranslate"><span class="pre">Element.is_special()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.entities.Element.is_valid"><code class="docutils literal notranslate"><span class="pre">Element.is_valid()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.entities.Phase"><code class="docutils literal notranslate"><span class="pre">Phase</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.entities.Phase.get_name"><code class="docutils literal notranslate"><span class="pre">Phase.get_name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.entities.Phase.get_species"><code class="docutils literal notranslate"><span class="pre">Phase.get_species()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.entities.Phase.get_species_for_composition_profile"><code class="docutils literal notranslate"><span class="pre">Phase.get_species_for_composition_profile()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.entities.Phase.get_sublattices"><code class="docutils literal notranslate"><span class="pre">Phase.get_sublattices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.entities.Phase.get_type"><code class="docutils literal notranslate"><span class="pre">Phase.get_type()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.entities.Phase.has_diffusion_data"><code class="docutils literal notranslate"><span class="pre">Phase.has_diffusion_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.entities.Phase.has_molar_volume_data"><code class="docutils literal notranslate"><span class="pre">Phase.has_molar_volume_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.entities.Phase.is_dilute_diffusion_model"><code class="docutils literal notranslate"><span class="pre">Phase.is_dilute_diffusion_model()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.entities.Phase.is_gas"><code class="docutils literal notranslate"><span class="pre">Phase.is_gas()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.entities.Phase.is_ionic_liquid"><code class="docutils literal notranslate"><span class="pre">Phase.is_ionic_liquid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.entities.Phase.is_liquid"><code class="docutils literal notranslate"><span class="pre">Phase.is_liquid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.entities.Phase.is_solid"><code class="docutils literal notranslate"><span class="pre">Phase.is_solid()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.entities.PhaseType"><code class="docutils literal notranslate"><span class="pre">PhaseType</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.entities.PhaseType.GAS"><code class="docutils literal notranslate"><span class="pre">PhaseType.GAS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.entities.PhaseType.IONIC_LIQUID"><code class="docutils literal notranslate"><span class="pre">PhaseType.IONIC_LIQUID</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.entities.PhaseType.LIQUID"><code class="docutils literal notranslate"><span class="pre">PhaseType.LIQUID</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.entities.PhaseType.SOLID"><code class="docutils literal notranslate"><span class="pre">PhaseType.SOLID</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.entities.Species"><code class="docutils literal notranslate"><span class="pre">Species</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.entities.Species.get_all_elements"><code class="docutils literal notranslate"><span class="pre">Species.get_all_elements()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.entities.Species.get_charge"><code class="docutils literal notranslate"><span class="pre">Species.get_charge()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.entities.Species.get_name"><code class="docutils literal notranslate"><span class="pre">Species.get_name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.entities.Species.is_element"><code class="docutils literal notranslate"><span class="pre">Species.is_element()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.entities.Species.is_interstitial"><code class="docutils literal notranslate"><span class="pre">Species.is_interstitial()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.entities.Species.is_special"><code class="docutils literal notranslate"><span class="pre">Species.is_special()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.entities.Species.is_valid"><code class="docutils literal notranslate"><span class="pre">Species.is_valid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.entities.Species.to_element"><code class="docutils literal notranslate"><span class="pre">Species.to_element()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.entities.Sublattice"><code class="docutils literal notranslate"><span class="pre">Sublattice</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.entities.Sublattice.get_constituents"><code class="docutils literal notranslate"><span class="pre">Sublattice.get_constituents()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.entities.Sublattice.get_nr_of_sites"><code class="docutils literal notranslate"><span class="pre">Sublattice.get_nr_of_sites()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="server.html">Module “server”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quantity_factory.html">Module “quantity_factory”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">Module “utils”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="propertymodel_sdk.html">Module “propertymodel_sdk”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html">Module “exceptions”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="abstract_base.html">Module “abstract_base”</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">TC-Python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api_reference.html">API Reference</a></li>
+      <li class="breadcrumb-item active">Module “entities”</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-tc_python.entities">
+<span id="module-entities"></span><h1>Module “entities”<a class="headerlink" href="#module-tc_python.entities" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.entities.CompositionSet">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.entities.</span></span><span class="sig-name descname"><span class="pre">CompositionSet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.entities.CompositionSet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Used by the method <a class="reference internal" href="system.html#tc_python.system.SystemBuilder.with_new_composition_set" title="tc_python.system.SystemBuilder.with_new_composition_set"><code class="xref py py-func docutils literal notranslate"><span class="pre">tc_python.system.SystemBuilder.with_new_composition_set()</span></code></a> to enter two or
+more composition sets for a phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>phase_name</strong> – The name of the phase for which a new composition set is required</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.entities.CompositionSet.set_major_constituents_for_sublattice">
+<span class="sig-name descname"><span class="pre">set_major_constituents_for_sublattice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sublattice_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">major_constituents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.entities.CompositionSet.set_major_constituents_for_sublattice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify the new major constituent(s) for the sublattice.</p>
+<p><strong>Default</strong>: If not specified, a default is automatically chosen based on the specified composition set.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is useful in order to make calculations converge faster and more easily
+(because it may simplify giving start values when calculating the equilibrium as those phases with miscibility
+gaps should have different major constituents for each composition set).
+<strong>The databases often set major constituents for several phases automatically when the data is retrieved.</strong></p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sublattice_index</strong> – Index of the sublattice to set the major constituents for (starting with <cite>1</cite>)</p></li>
+<li><p><strong>major_constituents</strong> – Optional list of the major constituents, which must be selected from the phase constitution of the current system.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.entities.CompositionSet" title="tc_python.entities.CompositionSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">CompositionSet</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.entities.Element">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.entities.</span></span><span class="sig-name descname"><span class="pre">Element</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.entities.Element" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represents an element, making detailed information about the element accessible.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.entities.Element.get_enthalpy">
+<span class="sig-name descname"><span class="pre">get_enthalpy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#tc_python.entities.Element.get_enthalpy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the enthalpy of the element at 298 K, part of the stable element reference state (SER).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The enthalpy [J]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.entities.Element.get_entropy_diff_0_to_298k">
+<span class="sig-name descname"><span class="pre">get_entropy_diff_0_to_298k</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#tc_python.entities.Element.get_entropy_diff_0_to_298k" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the entropy difference 0 - 298 K of the element, part of the stable element reference state (SER).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The entropy difference 0 - 298 K [J/K]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.entities.Element.get_molar_mass">
+<span class="sig-name descname"><span class="pre">get_molar_mass</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#tc_python.entities.Element.get_molar_mass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the molar mass of the element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The molar mass [g/mol]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.entities.Element.get_name">
+<span class="sig-name descname"><span class="pre">get_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#tc_python.entities.Element.get_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the name of the element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The element name</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.entities.Element.get_stable_element_reference">
+<span class="sig-name descname"><span class="pre">get_stable_element_reference</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#tc_python.entities.Element.get_stable_element_reference" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the stable element reference (i.e. the stable phase at 298.15 K and 1 bar, reference for all element
+thermodynamic data).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The name of the stable element reference</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.entities.Element.is_interstitial">
+<span class="sig-name descname"><span class="pre">is_interstitial</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#tc_python.entities.Element.is_interstitial" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns if the element is interstitial.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the diffusion simulations (DICTRA), the assumption that the volume is carried by the substitutional
+elements only is applied. The interstitial elements are assumed to have zero molar volumes.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>If the element is interstitial</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.entities.Element.is_special">
+<span class="sig-name descname"><span class="pre">is_special</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#tc_python.entities.Element.is_special" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns if the element is special (i.e. vacancies (VA) and electrons (denoted either as /- in gaseous, liquid or
+solid phases, or ZE in an aqueous solution phase)).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>If the element is special</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.entities.Element.is_valid">
+<span class="sig-name descname"><span class="pre">is_valid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#tc_python.entities.Element.is_valid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns if the element is valid. Non-valid elements are represented by an empty name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>If the element is valid</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.entities.Phase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.entities.</span></span><span class="sig-name descname"><span class="pre">Phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.entities.Phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represents a phase, making detailed information about the phase accessible.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.entities.Phase.get_name">
+<span class="sig-name descname"><span class="pre">get_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#tc_python.entities.Phase.get_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the name of the phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The phase name</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.entities.Phase.get_species">
+<span class="sig-name descname"><span class="pre">get_species</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#tc_python.entities.Species" title="tc_python.entities.Species"><span class="pre">Species</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.entities.Phase.get_species" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the species of the phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A set containing the species</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.entities.Phase.get_species_for_composition_profile">
+<span class="sig-name descname"><span class="pre">get_species_for_composition_profile</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#tc_python.entities.Species" title="tc_python.entities.Species"><span class="pre">Species</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.entities.Phase.get_species_for_composition_profile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all species that need to be defined in a composition profile of the phase for diffusion simulations -
+except for one species that needs to be the dependent species.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In a composition profile of a phase for diffusion simulations it is necessary to specify all
+non-stoichiometric and non-special species. In case of a DILUTE diffusion model, the database enforces
+the choice of a certain dependent species.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Set with the species</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.entities.Phase.get_sublattices">
+<span class="sig-name descname"><span class="pre">get_sublattices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#tc_python.entities.Sublattice" title="tc_python.entities.Sublattice"><span class="pre">Sublattice</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.entities.Phase.get_sublattices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the sublattices of the phase in a well-defined contiguous order.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list containing the <a class="reference internal" href="#tc_python.entities.Sublattice" title="tc_python.entities.Sublattice"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sublattice</span></code></a> objects</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.entities.Phase.get_type">
+<span class="sig-name descname"><span class="pre">get_type</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#tc_python.entities.PhaseType" title="tc_python.entities.PhaseType"><span class="pre">PhaseType</span></a></span></span><a class="headerlink" href="#tc_python.entities.Phase.get_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the type of the phase (liquid, ionic liquid, solid, gas).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The type of a phase</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.entities.Phase.has_diffusion_data">
+<span class="sig-name descname"><span class="pre">has_diffusion_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#tc_python.entities.Phase.has_diffusion_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns if diffusion data exists for the phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>If diffusion data exists for the phase</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.entities.Phase.has_molar_volume_data">
+<span class="sig-name descname"><span class="pre">has_molar_volume_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#tc_python.entities.Phase.has_molar_volume_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns if molar volume data exists for the phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>If molar volume data exists for the phase</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.entities.Phase.is_dilute_diffusion_model">
+<span class="sig-name descname"><span class="pre">is_dilute_diffusion_model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#tc_python.entities.Phase.is_dilute_diffusion_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns if diffusion is described using the DILUTE model for the phase. This will always return <cite>False</cite> if no
+diffusion data is available.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>If the DILUTE model is used</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.entities.Phase.is_gas">
+<span class="sig-name descname"><span class="pre">is_gas</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#tc_python.entities.Phase.is_gas" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns if the phase is a gas phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>If the phase is a gas phase</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.entities.Phase.is_ionic_liquid">
+<span class="sig-name descname"><span class="pre">is_ionic_liquid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#tc_python.entities.Phase.is_ionic_liquid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns if the phase is an ionic liquid phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>If the phase is an ionic liquid phase</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.entities.Phase.is_liquid">
+<span class="sig-name descname"><span class="pre">is_liquid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#tc_python.entities.Phase.is_liquid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns if the phase is a liquid or ionic liquid phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>If the phase is a liquid phase</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.entities.Phase.is_solid">
+<span class="sig-name descname"><span class="pre">is_solid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#tc_python.entities.Phase.is_solid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns if the phase is a solid phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>If the phase is a solid phase</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.entities.PhaseType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.entities.</span></span><span class="sig-name descname"><span class="pre">PhaseType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.entities.PhaseType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>The type of a phase.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.entities.PhaseType.GAS">
+<span class="sig-name descname"><span class="pre">GAS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#tc_python.entities.PhaseType.GAS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gas phase.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.entities.PhaseType.IONIC_LIQUID">
+<span class="sig-name descname"><span class="pre">IONIC_LIQUID</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#tc_python.entities.PhaseType.IONIC_LIQUID" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ionic liquid phase.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.entities.PhaseType.LIQUID">
+<span class="sig-name descname"><span class="pre">LIQUID</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#tc_python.entities.PhaseType.LIQUID" title="Permalink to this definition">¶</a></dt>
+<dd><p>Liquid phase.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.entities.PhaseType.SOLID">
+<span class="sig-name descname"><span class="pre">SOLID</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#tc_python.entities.PhaseType.SOLID" title="Permalink to this definition">¶</a></dt>
+<dd><p>Solid phase.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.entities.Species">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.entities.</span></span><span class="sig-name descname"><span class="pre">Species</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">species</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.entities.Species" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represents a species, making detailed information about the species accessible.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.entities.Species.get_all_elements">
+<span class="sig-name descname"><span class="pre">get_all_elements</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#tc_python.entities.Element" title="tc_python.entities.Element"><span class="pre">Element</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.entities.Species.get_all_elements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all the elements that the species is composed of.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List of all elements of the species and their stoichiometry</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.entities.Species.get_charge">
+<span class="sig-name descname"><span class="pre">get_charge</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#tc_python.entities.Species.get_charge" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the charge of the species.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The charge of the species</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.entities.Species.get_name">
+<span class="sig-name descname"><span class="pre">get_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#tc_python.entities.Species.get_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the name of the species.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The species name</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.entities.Species.is_element">
+<span class="sig-name descname"><span class="pre">is_element</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#tc_python.entities.Species.is_element" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns if the species actually represents an element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>If the species represents an element</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.entities.Species.is_interstitial">
+<span class="sig-name descname"><span class="pre">is_interstitial</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#tc_python.entities.Species.is_interstitial" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns if the species is interstitial.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the diffusion simulations (DICTRA), the assumption that the volume is carried by the substitutional
+elements only is applied. The interstitial elements are assumed to have zero molar
+volumes.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>If the species is interstitial</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.entities.Species.is_special">
+<span class="sig-name descname"><span class="pre">is_special</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#tc_python.entities.Species.is_special" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns if the species is special (i.e. vacancies (VA) and electrons (denoted either as /- in gaseous, liquid or
+solid phases, or ZE in an aqueous solution phase)).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>If the species is special</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.entities.Species.is_valid">
+<span class="sig-name descname"><span class="pre">is_valid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#tc_python.entities.Species.is_valid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns if the species is valid. Non-valid species are represented by an empty name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>If the species is valid</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.entities.Species.to_element">
+<span class="sig-name descname"><span class="pre">to_element</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#tc_python.entities.Element" title="tc_python.entities.Element"><span class="pre">Element</span></a></span></span><a class="headerlink" href="#tc_python.entities.Species.to_element" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the <cite>Element</cite> representation of the species - if the species actually represents an element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The <cite>Element</cite> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.entities.Sublattice">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.entities.</span></span><span class="sig-name descname"><span class="pre">Sublattice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sublattice</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.entities.Sublattice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represents a sublattice of a phase.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.entities.Sublattice.get_constituents">
+<span class="sig-name descname"><span class="pre">get_constituents</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#tc_python.entities.Species" title="tc_python.entities.Species"><span class="pre">Species</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.entities.Sublattice.get_constituents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the constituents of the sublattice.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A set containing the constituents</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.entities.Sublattice.get_nr_of_sites">
+<span class="sig-name descname"><span class="pre">get_nr_of_sites</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#tc_python.entities.Sublattice.get_nr_of_sites" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of sites in the sublattice.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A float number</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="system.html" class="btn btn-neutral float-left" title="Module “system”" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="server.html" class="btn btn-neutral float-right" title="Module “server”" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Foundation of Computational Thermodynamics, Stockholm, Sweden.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+Module "quantity_factory"
+-------------------------
+
+.. automodule:: tc_python.quantity_factory
+    :members:
+    :undoc-members:
+    :show-inheritance:

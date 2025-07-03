@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module “abstract_base” &mdash; TC-Python 2023b documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Troubleshooting" href="../troubleshooting.html" />
+    <link rel="prev" title="Module “exceptions”" href="exceptions.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            TC-Python
+          </a>
+              <div class="version">
+                2023b
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment_variables.html">Mac OS: Setting Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../best_practices.html">Best Practices</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api_reference.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../calculations.html">Calculations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system.html">Module “system”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entities.html">Module “entities”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server.html">Module “server”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quantity_factory.html">Module “quantity_factory”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">Module “utils”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="propertymodel_sdk.html">Module “propertymodel_sdk”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html">Module “exceptions”</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Module “abstract_base”</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.abstract_base.AbstractCalculation"><code class="docutils literal notranslate"><span class="pre">AbstractCalculation</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.abstract_base.AbstractCalculation.get_configuration_as_string"><code class="docutils literal notranslate"><span class="pre">AbstractCalculation.get_configuration_as_string()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.abstract_base.AbstractCalculation.get_system_data"><code class="docutils literal notranslate"><span class="pre">AbstractCalculation.get_system_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.abstract_base.AbstractCalculation.invalidate"><code class="docutils literal notranslate"><span class="pre">AbstractCalculation.invalidate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.abstract_base.AbstractCalculation.with_system_modifications"><code class="docutils literal notranslate"><span class="pre">AbstractCalculation.with_system_modifications()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.abstract_base.AbstractResult"><code class="docutils literal notranslate"><span class="pre">AbstractResult</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.abstract_base.AbstractResult.invalidate"><code class="docutils literal notranslate"><span class="pre">AbstractResult.invalidate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.abstract_base.PhaseParameter"><code class="docutils literal notranslate"><span class="pre">PhaseParameter</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.abstract_base.PhaseParameter.get_intervals"><code class="docutils literal notranslate"><span class="pre">PhaseParameter.get_intervals()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.abstract_base.PhaseParameter.get_lower_temperature_limit"><code class="docutils literal notranslate"><span class="pre">PhaseParameter.get_lower_temperature_limit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.abstract_base.PhaseParameter.get_name"><code class="docutils literal notranslate"><span class="pre">PhaseParameter.get_name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.abstract_base.PhaseParameter.remove_all_intervals"><code class="docutils literal notranslate"><span class="pre">PhaseParameter.remove_all_intervals()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.abstract_base.PhaseParameter.remove_interval_with_upper_limit"><code class="docutils literal notranslate"><span class="pre">PhaseParameter.remove_interval_with_upper_limit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.abstract_base.PhaseParameter.set_expression_with_upper_limit"><code class="docutils literal notranslate"><span class="pre">PhaseParameter.set_expression_with_upper_limit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.abstract_base.PhaseParameter.set_interval"><code class="docutils literal notranslate"><span class="pre">PhaseParameter.set_interval()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.abstract_base.PhaseParameter.set_lower_temperature_limit"><code class="docutils literal notranslate"><span class="pre">PhaseParameter.set_lower_temperature_limit()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.abstract_base.SystemData"><code class="docutils literal notranslate"><span class="pre">SystemData</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.abstract_base.SystemData.get_phase_parameter"><code class="docutils literal notranslate"><span class="pre">SystemData.get_phase_parameter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.abstract_base.SystemData.get_phase_parameter_names"><code class="docutils literal notranslate"><span class="pre">SystemData.get_phase_parameter_names()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.abstract_base.SystemData.get_system_function"><code class="docutils literal notranslate"><span class="pre">SystemData.get_system_function()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.abstract_base.SystemData.get_system_function_names"><code class="docutils literal notranslate"><span class="pre">SystemData.get_system_function_names()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.abstract_base.SystemFunction"><code class="docutils literal notranslate"><span class="pre">SystemFunction</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.abstract_base.SystemFunction.get_intervals"><code class="docutils literal notranslate"><span class="pre">SystemFunction.get_intervals()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.abstract_base.SystemFunction.get_lower_temperature_limit"><code class="docutils literal notranslate"><span class="pre">SystemFunction.get_lower_temperature_limit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.abstract_base.SystemFunction.get_name"><code class="docutils literal notranslate"><span class="pre">SystemFunction.get_name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.abstract_base.SystemFunction.remove_all_intervals"><code class="docutils literal notranslate"><span class="pre">SystemFunction.remove_all_intervals()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.abstract_base.SystemFunction.remove_interval_with_upper_limit"><code class="docutils literal notranslate"><span class="pre">SystemFunction.remove_interval_with_upper_limit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.abstract_base.SystemFunction.set_expression_with_upper_limit"><code class="docutils literal notranslate"><span class="pre">SystemFunction.set_expression_with_upper_limit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.abstract_base.SystemFunction.set_interval"><code class="docutils literal notranslate"><span class="pre">SystemFunction.set_interval()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.abstract_base.SystemFunction.set_lower_temperature_limit"><code class="docutils literal notranslate"><span class="pre">SystemFunction.set_lower_temperature_limit()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.abstract_base.SystemModifications"><code class="docutils literal notranslate"><span class="pre">SystemModifications</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.abstract_base.SystemModifications.run_ges_command"><code class="docutils literal notranslate"><span class="pre">SystemModifications.run_ges_command()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.abstract_base.SystemModifications.set"><code class="docutils literal notranslate"><span class="pre">SystemModifications.set()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.abstract_base.TemperatureInterval"><code class="docutils literal notranslate"><span class="pre">TemperatureInterval</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.abstract_base.TemperatureInterval.get_expression"><code class="docutils literal notranslate"><span class="pre">TemperatureInterval.get_expression()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.abstract_base.TemperatureInterval.get_upper_temperature_limit"><code class="docutils literal notranslate"><span class="pre">TemperatureInterval.get_upper_temperature_limit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.abstract_base.TemperatureInterval.set_expression"><code class="docutils literal notranslate"><span class="pre">TemperatureInterval.set_expression()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.abstract_base.TemperatureInterval.set_upper_temperature_limit"><code class="docutils literal notranslate"><span class="pre">TemperatureInterval.set_upper_temperature_limit()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">TC-Python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api_reference.html">API Reference</a></li>
+      <li class="breadcrumb-item active">Module “abstract_base”</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-tc_python.abstract_base">
+<span id="module-abstract-base"></span><h1>Module “abstract_base”<a class="headerlink" href="#module-tc_python.abstract_base" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.abstract_base.AbstractCalculation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.abstract_base.</span></span><span class="sig-name descname"><span class="pre">AbstractCalculation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">calculator</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.abstract_base.AbstractCalculation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Abstract base class for calculations.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.abstract_base.AbstractCalculation.get_configuration_as_string">
+<span class="sig-name descname"><span class="pre">get_configuration_as_string</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#tc_python.abstract_base.AbstractCalculation.get_configuration_as_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns detailed information about the current state of the calculation object.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The structure of the calculator objects is an implementation detail and might change between releases
+without notice. <strong>Therefore do not rely on the internal object structure</strong>.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.abstract_base.AbstractCalculation.get_system_data">
+<span class="sig-name descname"><span class="pre">get_system_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#tc_python.abstract_base.SystemData" title="tc_python.abstract_base.SystemData"><span class="pre">SystemData</span></a></span></span><a class="headerlink" href="#tc_python.abstract_base.AbstractCalculation.get_system_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the content of the database for the currently loaded system. This can be used to modify the parameters
+and functions and to change the current system by using <a class="reference internal" href="#tc_python.abstract_base.AbstractCalculation.with_system_modifications" title="tc_python.abstract_base.AbstractCalculation.with_system_modifications"><code class="xref py py-func docutils literal notranslate"><span class="pre">with_system_modifications()</span></code></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Parameters can only be read from unencrypted (i.e. <em>user</em>) databases loaded as <cite>*.tdb</cite>-file.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The system data</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.abstract_base.AbstractCalculation.invalidate">
+<span class="sig-name descname"><span class="pre">invalidate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.abstract_base.AbstractCalculation.invalidate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invalidates the object and frees the disk space used by it. <em>This is only required if the disk space occupied
+by the object needs to be released during the calculation</em>. No data can be retrieved from the object afterwards.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.abstract_base.AbstractCalculation.with_system_modifications">
+<span class="sig-name descname"><span class="pre">with_system_modifications</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">system_modifications</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#tc_python.abstract_base.SystemModifications" title="tc_python.abstract_base.SystemModifications"><span class="pre">SystemModifications</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.abstract_base.AbstractCalculation.with_system_modifications" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the system of this calculator with the supplied system modification (containing new phase parameters
+and system functions).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is only possible if the system has been read from unencrypted (i.e. <em>user</em>) databases loaded as a <code class="file docutils literal notranslate"><span class="pre">*.tdb</span></code>-file.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>system_modifications</strong> – The system modification to be performed</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.abstract_base.AbstractResult">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.abstract_base.</span></span><span class="sig-name descname"><span class="pre">AbstractResult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">result</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.abstract_base.AbstractResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Abstract base class for results.
+This can be used to query for specific values .</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.abstract_base.AbstractResult.invalidate">
+<span class="sig-name descname"><span class="pre">invalidate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.abstract_base.AbstractResult.invalidate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invalidates the object and frees the disk space used by it. <em>This is only required if the disk space occupied
+by the object needs to be released during the calculation</em>. No data can be retrieved from the object afterwards.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.abstract_base.PhaseParameter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.abstract_base.</span></span><span class="sig-name descname"><span class="pre">PhaseParameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">object</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.abstract_base.PhaseParameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Database phase parameter expression used by <a class="reference internal" href="#tc_python.abstract_base.SystemModifications.set" title="tc_python.abstract_base.SystemModifications.set"><code class="xref py py-func docutils literal notranslate"><span class="pre">SystemModifications.set()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parameter_name</strong> – The phase parameter name</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.abstract_base.PhaseParameter.get_intervals">
+<span class="sig-name descname"><span class="pre">get_intervals</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#tc_python.abstract_base.TemperatureInterval" title="tc_python.abstract_base.TemperatureInterval"><span class="pre">TemperatureInterval</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.abstract_base.PhaseParameter.get_intervals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the list of all defined intervals.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The defined temperature intervals</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.abstract_base.PhaseParameter.get_lower_temperature_limit">
+<span class="sig-name descname"><span class="pre">get_lower_temperature_limit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#tc_python.abstract_base.PhaseParameter.get_lower_temperature_limit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the lower temperature limit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The lower temperature limit in K</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.abstract_base.PhaseParameter.get_name">
+<span class="sig-name descname"><span class="pre">get_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#tc_python.abstract_base.PhaseParameter.get_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the name of the phase parameter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The name of the phase parameter.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.abstract_base.PhaseParameter.remove_all_intervals">
+<span class="sig-name descname"><span class="pre">remove_all_intervals</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.abstract_base.PhaseParameter.remove_all_intervals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes all previously defined temperature intervals.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This <a class="reference internal" href="#tc_python.abstract_base.PhaseParameter" title="tc_python.abstract_base.PhaseParameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">PhaseParameter</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.abstract_base.PhaseParameter.remove_interval_with_upper_limit">
+<span class="sig-name descname"><span class="pre">remove_interval_with_upper_limit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">upper_temperature_limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.abstract_base.PhaseParameter.remove_interval_with_upper_limit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes a previously defined temperature interval with matching upper temperature limit.</p>
+<p><strong>If no such interval exists, an exception is thrown.</strong></p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This <a class="reference internal" href="#tc_python.abstract_base.PhaseParameter" title="tc_python.abstract_base.PhaseParameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">PhaseParameter</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.abstract_base.PhaseParameter.set_expression_with_upper_limit">
+<span class="sig-name descname"><span class="pre">set_expression_with_upper_limit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter_expression</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper_temperature_limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">6000.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.abstract_base.PhaseParameter.set_expression_with_upper_limit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds/overwrites a parameter expression for a temperature interval.</p>
+<p><strong>Default value of the upper limit of the interval</strong>: 6000 K</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The lower temperature limit is either defined by the lower temperature limit given with
+<a class="reference internal" href="#tc_python.abstract_base.PhaseParameter.set_lower_temperature_limit" title="tc_python.abstract_base.PhaseParameter.set_lower_temperature_limit"><code class="xref py py-func docutils literal notranslate"><span class="pre">PhaseParameter.set_lower_temperature_limit()</span></code></a> or by the upper temperature limit of the adjacent
+interval.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If there is an existing interval with exactly the same <cite>upper_temperature_limit</cite>, that interval is
+overwritten, otherwise the interval is added.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parameter_expression</strong> – The parameter expression, example: <cite>+V34*T*LN(T)+V35*T**2+V36*T**(-1)+V37*T**3”)</cite></p></li>
+<li><p><strong>upper_temperature_limit</strong> – The upper temperature limit for which the expression should be used</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.abstract_base.PhaseParameter" title="tc_python.abstract_base.PhaseParameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">PhaseParameter</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.abstract_base.PhaseParameter.set_interval">
+<span class="sig-name descname"><span class="pre">set_interval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#tc_python.abstract_base.TemperatureInterval" title="tc_python.abstract_base.TemperatureInterval"><span class="pre">TemperatureInterval</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.abstract_base.PhaseParameter.set_interval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds/overwrites a temperature interval.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The lower temperature limit is either defined by the lower temperature limit given with
+<a class="reference internal" href="#tc_python.abstract_base.PhaseParameter.set_lower_temperature_limit" title="tc_python.abstract_base.PhaseParameter.set_lower_temperature_limit"><code class="xref py py-func docutils literal notranslate"><span class="pre">PhaseParameter.set_lower_temperature_limit()</span></code></a> or by the upper temperature limit of the adjacent
+interval.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If there is an existing interval with exactly the same <cite>upper_temperature_limit</cite>, that interval is
+overwritten, otherwise the interval is added.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This <a class="reference internal" href="#tc_python.abstract_base.PhaseParameter" title="tc_python.abstract_base.PhaseParameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">PhaseParameter</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.abstract_base.PhaseParameter.set_lower_temperature_limit">
+<span class="sig-name descname"><span class="pre">set_lower_temperature_limit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lower_temperature_limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">298.15</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.abstract_base.PhaseParameter.set_lower_temperature_limit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the lower temperature limit of the phase parameter.</p>
+<p><strong>Default</strong>: 298.15 K</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>lower_temperature_limit</strong> – The lower temperature limit in K</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.abstract_base.PhaseParameter" title="tc_python.abstract_base.PhaseParameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">PhaseParameter</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.abstract_base.SystemData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.abstract_base.</span></span><span class="sig-name descname"><span class="pre">SystemData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">system_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.abstract_base.SystemData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Provides information about the parameters and functions of a user database. The obtained objects can be used to modify
+the database using <code class="xref py py-func docutils literal notranslate"><span class="pre">with_system_modifications()</span></code> of all calculators.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Parameters can only be read from unencrypted (i.e. <em>user</em>) databases loaded as <cite>*.tdb</cite>-file.</p>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.abstract_base.SystemData.get_phase_parameter">
+<span class="sig-name descname"><span class="pre">get_phase_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#tc_python.abstract_base.PhaseParameter" title="tc_python.abstract_base.PhaseParameter"><span class="pre">PhaseParameter</span></a></span></span><a class="headerlink" href="#tc_python.abstract_base.SystemData.get_phase_parameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a phase parameter.</p>
+<p>Example:</p>
+<p><cite>system_data.get_phase_parameter(‘G(HCP_A3,FE:VA;0)’)</cite></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Parameters can only be read from unencrypted (i.e. <em>user</em>) databases loaded as a <code class="file docutils literal notranslate"><span class="pre">*.tdb</span></code>-file.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For details about the syntax search the Thermo-Calc help for <em>GES</em> (the name for the Gibbs Energy System
+module in Console Mode).</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parameter</strong> – The name of the phase parameter (for example: <cite>“G(LIQUID,FE;0)”</cite>)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The phase parameter</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.abstract_base.SystemData.get_phase_parameter_names">
+<span class="sig-name descname"><span class="pre">get_phase_parameter_names</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.abstract_base.SystemData.get_phase_parameter_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all phase parameters present in the current system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The list of phase parameters</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.abstract_base.SystemData.get_system_function">
+<span class="sig-name descname"><span class="pre">get_system_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#tc_python.abstract_base.SystemFunction" title="tc_python.abstract_base.SystemFunction"><span class="pre">SystemFunction</span></a></span></span><a class="headerlink" href="#tc_python.abstract_base.SystemData.get_system_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a system function.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The parameter ‘f’ was previously called ‘function’ but was renamed.</p>
+</div>
+<p>Example:</p>
+<p><cite>system_data.get_system_function(‘GHSERCR’)</cite></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Functions can only be read from unencrypted (i.e. <em>user</em>) databases loaded as a <code class="file docutils literal notranslate"><span class="pre">*.tdb</span></code>-file.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For details about the syntax search the Thermo-Calc help for <em>GES</em> (the name for the Gibbs Energy System
+module in Console Mode).</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>f</strong> – The name of the system function (for example: <cite>“GHSERCR”</cite>)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The system function</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.abstract_base.SystemData.get_system_function_names">
+<span class="sig-name descname"><span class="pre">get_system_function_names</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.abstract_base.SystemData.get_system_function_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all system functions present in the current system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The list of system functions</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.abstract_base.SystemFunction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.abstract_base.</span></span><span class="sig-name descname"><span class="pre">SystemFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">function_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">object</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.abstract_base.SystemFunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Database function expression used by <a class="reference internal" href="#tc_python.abstract_base.SystemModifications.set" title="tc_python.abstract_base.SystemModifications.set"><code class="xref py py-func docutils literal notranslate"><span class="pre">SystemModifications.set()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>function_name</strong> – The function name</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.abstract_base.SystemFunction.get_intervals">
+<span class="sig-name descname"><span class="pre">get_intervals</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#tc_python.abstract_base.TemperatureInterval" title="tc_python.abstract_base.TemperatureInterval"><span class="pre">TemperatureInterval</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.abstract_base.SystemFunction.get_intervals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the list of all defined intervals.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The defined temperature intervals</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.abstract_base.SystemFunction.get_lower_temperature_limit">
+<span class="sig-name descname"><span class="pre">get_lower_temperature_limit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#tc_python.abstract_base.SystemFunction.get_lower_temperature_limit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the lower temperature limit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The lower temperature limit in K</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.abstract_base.SystemFunction.get_name">
+<span class="sig-name descname"><span class="pre">get_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#tc_python.abstract_base.SystemFunction.get_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the name of the system function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The name of the system function</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.abstract_base.SystemFunction.remove_all_intervals">
+<span class="sig-name descname"><span class="pre">remove_all_intervals</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.abstract_base.SystemFunction.remove_all_intervals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes all previously defined temperature intervals.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This <a class="reference internal" href="#tc_python.abstract_base.SystemFunction" title="tc_python.abstract_base.SystemFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">SystemFunction</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.abstract_base.SystemFunction.remove_interval_with_upper_limit">
+<span class="sig-name descname"><span class="pre">remove_interval_with_upper_limit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">upper_temperature_limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.abstract_base.SystemFunction.remove_interval_with_upper_limit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes a previously defined temperature interval with matching upper temperature limit.</p>
+<p><strong>If no such interval exists, an exception is thrown.</strong></p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This <a class="reference internal" href="#tc_python.abstract_base.SystemFunction" title="tc_python.abstract_base.SystemFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">SystemFunction</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.abstract_base.SystemFunction.set_expression_with_upper_limit">
+<span class="sig-name descname"><span class="pre">set_expression_with_upper_limit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">function_expression</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper_temperature_limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">6000.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.abstract_base.SystemFunction.set_expression_with_upper_limit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds/overwrites a function expression for a temperature interval.</p>
+<p><strong>Default value of the upper limit of the interval</strong>: 6000 K</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The lower temperature limit is either defined by the lower temperature limit given with
+<a class="reference internal" href="#tc_python.abstract_base.SystemFunction.set_lower_temperature_limit" title="tc_python.abstract_base.SystemFunction.set_lower_temperature_limit"><code class="xref py py-func docutils literal notranslate"><span class="pre">SystemFunction.set_lower_temperature_limit()</span></code></a> or by the upper temperature limit of the adjacent
+interval.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If there is an existing interval with exactly the same <cite>upper_temperature_limit</cite>, that interval is
+overwritten, otherwise the interval is added.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>function_expression</strong> – The function expression, example: <cite>+V34*T*LN(T)+V35*T**2+V36*T**(-1)+V37*T**3”)</cite></p></li>
+<li><p><strong>upper_temperature_limit</strong> – The upper temperature limit for which the expression should be used</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.abstract_base.SystemFunction" title="tc_python.abstract_base.SystemFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">SystemFunction</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.abstract_base.SystemFunction.set_interval">
+<span class="sig-name descname"><span class="pre">set_interval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#tc_python.abstract_base.TemperatureInterval" title="tc_python.abstract_base.TemperatureInterval"><span class="pre">TemperatureInterval</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.abstract_base.SystemFunction.set_interval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds/overwrites a temperature interval.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The lower temperature limit is either defined by the lower temperature limit given with
+<a class="reference internal" href="#tc_python.abstract_base.SystemFunction.set_lower_temperature_limit" title="tc_python.abstract_base.SystemFunction.set_lower_temperature_limit"><code class="xref py py-func docutils literal notranslate"><span class="pre">SystemFunction.set_lower_temperature_limit()</span></code></a> or by the upper temperature limit of the adjacent
+interval.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If there is an existing interval with exactly the same <cite>upper_temperature_limit</cite>, that interval is
+overwritten, otherwise the interval is added.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This <a class="reference internal" href="#tc_python.abstract_base.SystemFunction" title="tc_python.abstract_base.SystemFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">SystemFunction</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.abstract_base.SystemFunction.set_lower_temperature_limit">
+<span class="sig-name descname"><span class="pre">set_lower_temperature_limit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lower_temperature_limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">298.15</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.abstract_base.SystemFunction.set_lower_temperature_limit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the lower temperature limit of the system function.</p>
+<p><strong>Default</strong>: 298.15 K</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>lower_temperature_limit</strong> – The lower limit in K</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.abstract_base.SystemFunction" title="tc_python.abstract_base.SystemFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">SystemFunction</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.abstract_base.SystemModifications">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.abstract_base.</span></span><span class="sig-name descname"><span class="pre">SystemModifications</span></span><a class="headerlink" href="#tc_python.abstract_base.SystemModifications" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Functionality to modify a user database during a calculation by changing phase parameters and system functions.</p>
+<p>The actual changes are <strong>only applied</strong> by using
+<a class="reference internal" href="#tc_python.abstract_base.AbstractCalculation.with_system_modifications" title="tc_python.abstract_base.AbstractCalculation.with_system_modifications"><code class="xref py py-func docutils literal notranslate"><span class="pre">tc_python.abstract_base.AbstractCalculation.with_system_modifications()</span></code></a> on a calculator object.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.abstract_base.SystemModifications.run_ges_command">
+<span class="sig-name descname"><span class="pre">run_ges_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ges_command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.abstract_base.SystemModifications.run_ges_command" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sends a GES-command. <strong>This is actually applied when running `with_system_modifications` on a calculator
+object.</strong></p>
+<p>Example: <cite>run_ges_command(“AM-PH-DE FCC_A1 C_S 2 Fe:C”)</cite> for adding a second composition set to the FCC_A1
+phase with <cite>Fe</cite> as major constituent on first sublattice and <cite>C</cite> as major constituent on second sublattice.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For details about the syntax search the Thermo-Calc help for <em>GES</em> (the name for the Gibbs Energy System
+module in Console Mode).</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It should not be necessary for most users to use this method, try to use the corresponding method
+implemented in the API instead.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>As this method runs raw GES-commands directly in the engine, it may hang the program in case
+of spelling mistakes (e.g. forgotten parenthesis, …).</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ges_command</strong> – The GES-command (for example: <cite>“AM-PH-DE FCC_A1 C_S 2 Fe:C”</cite>)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#tc_python.abstract_base.SystemModifications" title="tc_python.abstract_base.SystemModifications"><code class="xref py py-class docutils literal notranslate"><span class="pre">SystemModifications</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.abstract_base.SystemModifications.set">
+<span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter_or_function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#tc_python.abstract_base.PhaseParameter" title="tc_python.abstract_base.PhaseParameter"><span class="pre">PhaseParameter</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#tc_python.abstract_base.SystemFunction" title="tc_python.abstract_base.SystemFunction"><span class="pre">SystemFunction</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.abstract_base.SystemModifications.set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overwrites or creates a phase parameter or system function.</p>
+<p>Example: <cite>system_modifications.set(PhaseParameter(‘G(LIQUID,FE;0)’).set_expression_with_upper_limit(‘+1.2*GFELIQ’))</cite></p>
+<p>Example: <cite>system_modifications.set(SystemFunction(“DGDEF”).set_expression_with_upper_limit(‘+10.0-R*T’, 1000).set_expression_with_upper_limit(‘+20.0-R*T’, 3000))</cite></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The old parameter/function is <strong>overwritten</strong> and any temperature intervals not defined are lost.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Please consult the Thermo-Calc GES-system documentation for details about the syntax.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This <a class="reference internal" href="#tc_python.abstract_base.SystemModifications" title="tc_python.abstract_base.SystemModifications"><code class="xref py py-class docutils literal notranslate"><span class="pre">SystemModifications</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.abstract_base.TemperatureInterval">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.abstract_base.</span></span><span class="sig-name descname"><span class="pre">TemperatureInterval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expression</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">object</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper_temperature_limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.abstract_base.TemperatureInterval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Temperature interval expression used by the classes <a class="reference internal" href="#tc_python.abstract_base.SystemFunction" title="tc_python.abstract_base.SystemFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">SystemFunction</span></code></a> and <a class="reference internal" href="#tc_python.abstract_base.PhaseParameter" title="tc_python.abstract_base.PhaseParameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">PhaseParameter</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>expression</strong> – The temperature function expressed in Thermo-Calc database syntax.</p></li>
+<li><p><strong>upper_temperature_limit</strong> – The upper temperature limit in K</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.abstract_base.TemperatureInterval.get_expression">
+<span class="sig-name descname"><span class="pre">get_expression</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#tc_python.abstract_base.TemperatureInterval.get_expression" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the function expression of this temperature interval.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The temperature function expression</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.abstract_base.TemperatureInterval.get_upper_temperature_limit">
+<span class="sig-name descname"><span class="pre">get_upper_temperature_limit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#tc_python.abstract_base.TemperatureInterval.get_upper_temperature_limit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the upper limit of this temperature interval.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The upper temperature limit in K</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.abstract_base.TemperatureInterval.set_expression">
+<span class="sig-name descname"><span class="pre">set_expression</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expression</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.abstract_base.TemperatureInterval.set_expression" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the function expression of this temperature interval.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>expression</strong> – The temperature function expression</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.abstract_base.TemperatureInterval.set_upper_temperature_limit">
+<span class="sig-name descname"><span class="pre">set_upper_temperature_limit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">upper_temperature_limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.abstract_base.TemperatureInterval.set_upper_temperature_limit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the upper limit of this temperature interval.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>upper_temperature_limit</strong> – The upper temperature limit in K</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="exceptions.html" class="btn btn-neutral float-left" title="Module “exceptions”" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../troubleshooting.html" class="btn btn-neutral float-right" title="Troubleshooting" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Foundation of Computational Thermodynamics, Stockholm, Sweden.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

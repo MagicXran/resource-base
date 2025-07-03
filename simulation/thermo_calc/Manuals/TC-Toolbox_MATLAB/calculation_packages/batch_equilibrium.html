@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Package “batch_equilibrium” &mdash; TC-Toolbox for MATLAB® 2023b documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Package “precipitation”" href="precipitation.html" />
+    <link rel="prev" title="Package “single_equilibrium”" href="single_equilibrium.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            TC-Toolbox for MATLAB®
+          </a>
+              <div class="version">
+                2023b
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Quick Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../best_practices.html">Best Practices</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api_reference.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../calculations.html">Calculations</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="single_equilibrium.html">Package “single_equilibrium”</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Package “batch_equilibrium”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="precipitation.html">Package “precipitation”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scheil.html">Package “scheil”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="step_or_map_diagrams.html">Package “step_or_map_diagrams”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="diffusion.html">Package “diffusion”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="propertymodel.html">Package “propertymodel”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="material_to_material.html">Package “material_to_material”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy.html">Package “process_metallurgy”</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../high_level_packages/root.html">Root Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high_level_packages/system.html">Package “system”</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">TC-Toolbox for MATLAB®</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api_reference.html">API Reference</a></li>
+          <li class="breadcrumb-item"><a href="../calculations.html">Calculations</a></li>
+      <li class="breadcrumb-item active">Package “batch_equilibrium”</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-+tc_toolbox.+batch_equilibrium">
+<span id="package-batch-equilibrium"></span><h1>Package “batch_equilibrium”<a class="headerlink" href="#module-+tc_toolbox.+batch_equilibrium" title="Permalink to this heading">¶</a></h1>
+<dl class="mat class">
+<dt class="sig sig-object mat" id="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+tc_toolbox.+batch_equilibrium.</span></span><span class="sig-name descname"><span class="pre">BatchEquilibriumCalculation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">back</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configuration for a series of single equilibrium calculations performed in a vectorized fashion.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The performance of batch equilibrium calculations can be significantly better than looping and using
+<code class="xref mat mat-class docutils literal notranslate"><span class="pre">SingleEquilibriumCalculation</span></code> <strong>if the actual Thermo-Calc calculation is fast</strong>. There is little
+advantage if the Thermo-Calc equilibrium calculations take a long time (typically for large systems and
+databases).</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Specify the conditions and call <a class="reference internal" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.calculate" title="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.calculate"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">calculate()</span></code></a>.</p>
+</div>
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.BatchEquilibriumCalculation">
+<span class="sig-name descname"><span class="pre">BatchEquilibriumCalculation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">back</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.BatchEquilibriumCalculation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call base constructor: <code class="xref mat mat-class docutils literal notranslate"><span class="pre">tc_toolbox.AbstractCalculation</span></code>.</p>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.calculate">
+<span class="sig-name descname"><span class="pre">calculate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">quantities</span></em>, <em class="sig-param"><span class="pre">logging_frequency</span></em>, <em class="sig-param"><span class="pre">timeout_in_minutes</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.calculate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs the batch equilibrium calculation.
+The calculated <a class="reference internal" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumResult" title="+tc_toolbox.+batch_equilibrium.BatchEquilibriumResult"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">BatchEquilibriumResult</span></code></a> can then be queried for the values of the quantities specified.</p>
+<p>Example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">quantities</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="s1">&#39;X(BCC)&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>quantities</strong> – A list of the quantities to be calculated.</p></li>
+<li><p><strong>logging_frequency</strong> – Determines how often logging should be done.</p></li>
+<li><p><strong>timeout_in_minutes</strong> – Used to prevent the calculation from running longer than what is wanted, or from hanging. If the calculation runs longer than timeout_in_minutes, a UnrecoverableCalculationException will be thrown, the current TCPython-block will be unusable and a new TCPython block must be created for further calculations.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <a class="reference internal" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumResult" title="+tc_toolbox.+batch_equilibrium.BatchEquilibriumResult"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">BatchEquilibriumResult</span></code></a> which later can be used to get specific values from the calculated result.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.disable_global_minimization">
+<span class="sig-name descname"><span class="pre">disable_global_minimization</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.disable_global_minimization" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turns the global minimization completely off.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This <a class="reference internal" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation" title="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">BatchEquilibriumCalculation</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.enable_global_minimization">
+<span class="sig-name descname"><span class="pre">enable_global_minimization</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.enable_global_minimization" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turns the global minimization on (using the default settings).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This <a class="reference internal" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation" title="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">BatchEquilibriumCalculation</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.get_components">
+<span class="sig-name descname"><span class="pre">get_components</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.get_components" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of components in the system (including all components auto-selected by the database(s)).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The components</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.get_configuration_as_string">
+<span class="sig-name descname"><span class="pre">get_configuration_as_string</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.get_configuration_as_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns detailed information about the current state of the calculation object.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The structure of the calculator objects is an implementation detail and might change between releases
+without notice. <strong>Therefore do not rely on the internal object structure</strong>.</p>
+</div>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.get_gibbs_energy_addition_for">
+<span class="sig-name descname"><span class="pre">get_gibbs_energy_addition_for</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">phase</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.get_gibbs_energy_addition_for" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to get the additional energy term (always being a constant) of a given phase.
+The value given is added to the Gibbs energy of the (stoichiometric or solution) phase.
+It can represent a nucleation barrier, surface tension, elastic energy, etc.</p>
+<p>It is not composition-, temperature- or pressure-dependent.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>phase</strong> – Specify the name of the (stoichiometric or solution) phase with the addition</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Gibbs energy addition to G per mole formula unit.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.get_system_data">
+<span class="sig-name descname"><span class="pre">get_system_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.get_system_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the content of the database for the currently loaded system. This can be used to modify the parameters
+and functions and to change the current system by using <a class="reference internal" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.with_system_modifications" title="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.with_system_modifications"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">with_system_modifications()</span></code></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Parameters can only be read from unencrypted (i.e. <em>user</em>) databases loaded as <cite>*.tdb</cite>-file.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The system data</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.invalidate">
+<span class="sig-name descname"><span class="pre">invalidate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.invalidate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invalidates the object and frees the disk space used by it. <em>This is only required if the disk space occupied
+by the object needs to be released during the calculation</em>. No data can be retrieved from the object afterwards.</p>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.remove_all_conditions">
+<span class="sig-name descname"><span class="pre">remove_all_conditions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.remove_all_conditions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes all set conditions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This <a class="reference internal" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation" title="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">BatchEquilibriumCalculation</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.remove_condition">
+<span class="sig-name descname"><span class="pre">remove_condition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">quantity</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.remove_condition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes the specified condition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>quantity</strong> – the thermodynamic quantity to set as condition; a Console Mode syntax string can be used as an
+alternative (for example “X(Cr)”)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation" title="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">BatchEquilibriumCalculation</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.run_poly_command">
+<span class="sig-name descname"><span class="pre">run_poly_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">command</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.run_poly_command" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs a Thermo-Calc command from the Console Mode POLY module immediately in the engine.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It should not be necessary for most users to use this method, try to use the corresponding method
+implemented in the API instead.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>As this method runs raw Thermo-Calc commands directly in the engine, it may hang the program in case
+of spelling mistakes (e.g. forgotten equals sign).</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>command</strong> – The Thermo-Calc Console Mode command</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation" title="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">BatchEquilibriumCalculation</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.set_component_to_entered">
+<span class="sig-name descname"><span class="pre">set_component_to_entered</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">component</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.set_component_to_entered" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the specified component to the status ENTERED, that is the default state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>component</strong> – The component name or <cite>ALL_COMPONENTS</cite></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation" title="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">BatchEquilibriumCalculation</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.set_component_to_suspended">
+<span class="sig-name descname"><span class="pre">set_component_to_suspended</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">component</span></em>, <em class="sig-param"><span class="pre">reset_conditions</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.set_component_to_suspended" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the specified component to the status SUSPENDED, i.e. it is ignored in the calculation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>reset_conditions</strong> – if ‘True’ also remove composition conditions for the component if they are defined</p></li>
+<li><p><strong>component</strong> – The component name or <cite>ALL_COMPONENTS</cite></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation" title="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">BatchEquilibriumCalculation</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.set_condition">
+<span class="sig-name descname"><span class="pre">set_condition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">quantity</span></em>, <em class="sig-param"><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.set_condition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the specified condition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>quantity</strong> – The thermodynamic quantity to set as condition; a Console Mode syntax string can be used as an
+alternative (for example “X(Cr)”)</p></li>
+<li><p><strong>value</strong> – The value of the condition</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation" title="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">BatchEquilibriumCalculation</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.set_conditions_for_equilibria">
+<span class="sig-name descname"><span class="pre">set_conditions_for_equilibria</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">equilibria</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.set_conditions_for_equilibria" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the conditions of the equilibria to be calculated.</p>
+<p>This is done by sending a list of equilibria at once.</p>
+<p>Each equilibrium itself is a list of conditions that will be changed for that equilibrium.</p>
+<p>A condition is described by a tuple containing:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>A Console Mode syntax string or a <code class="xref mat mat-class docutils literal notranslate"><span class="pre">ThermodynamicQuantity</span></code> instance,</p></li>
+<li><p>A float value specifying the value of the condition.</p></li>
+</ul>
+</div></blockquote>
+<p>Example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="p">[[(</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="mi">800</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;X(Cr)&#39;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)],</span> <span class="p">[(</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="mi">850</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;X(Cr)&#39;</span><span class="p">,</span> <span class="mf">0.11</span><span class="p">)]]</span>
+</pre></div>
+</div>
+<p>You can use <code class="xref mat mat-class docutils literal notranslate"><span class="pre">ThermodynamicQuantity</span></code> instead of a Console Mode syntax string when specifying type of condition.</p>
+<p>Example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="p">[[(</span><span class="n">ThermodynamicQuantity</span><span class="o">.</span><span class="n">temperature</span><span class="p">(),</span> <span class="mi">800</span><span class="p">),</span> <span class="p">(</span><span class="n">ThermodynamicQuantity</span><span class="o">.</span><span class="n">mole_fraction_of_a_component</span><span class="p">(</span><span class="s1">&#39;Cr&#39;</span><span class="p">),</span> <span class="mf">0.1</span><span class="p">)],</span> <span class="p">[(</span><span class="n">ThermodynamicQuantity</span><span class="o">.</span><span class="n">temperature</span><span class="p">(),</span> <span class="mi">850</span><span class="p">),</span> <span class="p">(</span><span class="n">ThermodynamicQuantity</span><span class="o">.</span><span class="n">mole_fraction_of_a_component</span><span class="p">(</span><span class="s1">&#39;Cr&#39;</span><span class="p">),</span> <span class="mf">0.15</span><span class="p">)]]</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>equilibria</strong> – The list of equilibria</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation" title="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">BatchEquilibriumCalculation</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.set_gibbs_energy_addition_for">
+<span class="sig-name descname"><span class="pre">set_gibbs_energy_addition_for</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">phase</span></em>, <em class="sig-param"><span class="pre">gibbs_energy</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.set_gibbs_energy_addition_for" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to specify the additional energy term (always being a constant) of a given phase.
+The value (<cite>gibbs_energy</cite>) given is added to the Gibbs energy of the (stoichiometric or solution) phase.
+It can represent a nucleation barrier, surface tension, elastic energy, etc.</p>
+<p>It is not composition-, temperature- or pressure-dependent.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – Specify the name of the (stoichiometric or solution) phase with the addition</p></li>
+<li><p><strong>gibbs_energy</strong> – Addition to G per mole formula unit</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation" title="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">BatchEquilibriumCalculation</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.set_phase_to_dormant">
+<span class="sig-name descname"><span class="pre">set_phase_to_dormant</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">phase</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.set_phase_to_dormant" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the phase to the status DORMANT, necessary for calculating the driving force to form the specified phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>phase</strong> – The phase name or <cite>ALL_PHASES</cite> for all phases</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation" title="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">BatchEquilibriumCalculation</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.set_phase_to_entered">
+<span class="sig-name descname"><span class="pre">set_phase_to_entered</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">phase</span></em>, <em class="sig-param"><span class="pre">amount</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.set_phase_to_entered" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the phase to the status ENTERED, that is the default state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – The phase name or <cite>ALL_PHASES</cite> for all phases</p></li>
+<li><p><strong>amount</strong> – The phase fraction (between 0.0 and 1.0)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation" title="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">BatchEquilibriumCalculation</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.set_phase_to_fixed">
+<span class="sig-name descname"><span class="pre">set_phase_to_fixed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">phase</span></em>, <em class="sig-param"><span class="pre">amount</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.set_phase_to_fixed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the phase to the status FIXED, i.e. it is guaranteed to have the specified phase fraction after the
+calculation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – The phase name</p></li>
+<li><p><strong>amount</strong> – The fixed phase fraction (between 0.0 and 1.0)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation" title="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">BatchEquilibriumCalculation</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.set_phase_to_suspended">
+<span class="sig-name descname"><span class="pre">set_phase_to_suspended</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">phase</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.set_phase_to_suspended" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the phase to the status SUSPENDED, i.e. it is ignored in the calculation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>phase</strong> – The phase name or <cite>ALL_PHASES</cite> for all phases</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation" title="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">BatchEquilibriumCalculation</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.with_options">
+<span class="sig-name descname"><span class="pre">with_options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">options</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.with_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the simulation options.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>options</strong> – The simulation options</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation" title="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">BatchEquilibriumCalculation</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.with_reference_state">
+<span class="sig-name descname"><span class="pre">with_reference_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">component</span></em>, <em class="sig-param"><span class="pre">phase</span></em>, <em class="sig-param"><span class="pre">temperature</span></em>, <em class="sig-param"><span class="pre">pressure</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.with_reference_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>The reference state for a component is important when calculating activities, chemical potentials and enthalpies and is determined by the database being used.
+For each component the data must be referred to a selected phase, temperature and pressure, i.e. the reference state.</p>
+<p>All data in all phases where this component dissolves must use the same reference state.
+However, different databases can use different reference states for the same element/component. It is important to be careful when combining data obtained from different databases.</p>
+<p>By default, activities, chemical potentials and so forth are computed relative to the reference state used by the database.
+If the reference state in the database is not suitable for your purposes, use this command to set the reference state for a component using SER,
+i.e. the Stable Element Reference (which is usually set as default for a major component in alloys dominated by the component).
+In such cases, the temperature and pressure for the reference state is not needed.</p>
+<p>For a phase to be usable as a reference for a component, the component needs to have the same composition as an end member of the phase.
+The reference state is an end member of a phase. The selection of the end member associated with the reference state is only performed once this command is executed.</p>
+<p>If a component has the same composition as several end members of the chosen reference phase,
+then the end member that is selected at the specified temperature and pressure will have the lowest Gibbs energy.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component</strong> – The name of the element must be given.</p></li>
+<li><p><strong>phase</strong> – Name of a phase used as the new reference state. Or SER for the Stable Element Reference.</p></li>
+<li><p><strong>temperature</strong> – The Temperature (in K) for the reference state. Or <code class="xref mat mat-const docutils literal notranslate"><span class="pre">CURRENT_TEMPERATURE</span></code> which means that the current temperature is used at the time of evaluation of the reference energy for the calculation.</p></li>
+<li><p><strong>pressure</strong> – The Pressure (in Pa) for the reference state.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation" title="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">BatchEquilibriumCalculation</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.with_system_modifications">
+<span class="sig-name descname"><span class="pre">with_system_modifications</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">system_modifications</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation.with_system_modifications" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the system of this calculator with the supplied system modification (containing new phase parameters
+and system functions).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is only possible if the system has been read from unencrypted (i.e. <em>user</em>) databases loaded as a <code class="file docutils literal notranslate"><span class="pre">*.tdb</span></code>-file.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>system_modifications</strong> – The system modification to be performed</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation" title="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">BatchEquilibriumCalculation</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="mat class">
+<dt class="sig sig-object mat" id="+tc_toolbox.+batch_equilibrium.BatchEquilibriumResult">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+tc_toolbox.+batch_equilibrium.</span></span><span class="sig-name descname"><span class="pre">BatchEquilibriumResult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">back</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Result of a batch equilibrium calculation.
+This can be used to query for specific values.</p>
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+batch_equilibrium.BatchEquilibriumResult.BatchEquilibriumResult">
+<span class="sig-name descname"><span class="pre">BatchEquilibriumResult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">back</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumResult.BatchEquilibriumResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs an instance of <a class="reference internal" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumResult" title="+tc_toolbox.+batch_equilibrium.BatchEquilibriumResult"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">BatchEquilibriumResult</span></code></a>.</p>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+batch_equilibrium.BatchEquilibriumResult.get_values_of">
+<span class="sig-name descname"><span class="pre">get_values_of</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">quantity</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumResult.get_values_of" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns values from a batch equilibrium calculation.</p>
+<p>Example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">batch_result</span> <span class="o">=</span> <span class="n">batch_calculation</span><span class="o">.</span><span class="n">calculate</span><span class="p">(</span><span class="n">quantities</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="s1">&#39;X(BCC)&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">batch_result</span><span class="o">.</span><span class="n">get_values_of</span><span class="p">(</span><span class="s1">&#39;G&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The quantity must be one of the quantities specified for the <a class="reference internal" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation" title="+tc_toolbox.+batch_equilibrium.BatchEquilibriumCalculation"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">BatchEquilibriumCalculation</span></code></a> object
+that created the result object.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>quantity</strong> – the thermodynamic quantity to get the value of; a Console Mode syntax strings can be used as
+an alternative (for example “NPM(FCC_A1)”)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+tc_toolbox.+batch_equilibrium.BatchEquilibriumResult.invalidate">
+<span class="sig-name descname"><span class="pre">invalidate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#+tc_toolbox.+batch_equilibrium.BatchEquilibriumResult.invalidate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invalidates the object and frees the disk space used by it.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is only required if the disk space occupied
+by the object needs to be released during the calculation. No data can be retrieved from the object
+afterwards.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="single_equilibrium.html" class="btn btn-neutral float-left" title="Package “single_equilibrium”" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="precipitation.html" class="btn btn-neutral float-right" title="Package “precipitation”" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Foundation of Computational Thermodynamics, Stockholm, Sweden.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>  
+
+<style>
+    /* Sidebar header (and topbar for mobile) */
+    .wy-side-nav-search, .wy-nav-top {
+        background: #700707;
+    }
+</style>
+
+
+</body>
+</html>

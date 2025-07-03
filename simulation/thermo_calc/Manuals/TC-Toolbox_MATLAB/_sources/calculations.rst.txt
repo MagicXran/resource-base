@@ -1,0 +1,15 @@
+Calculations
+------------
+
+.. toctree::
+   :maxdepth: 5
+
+   calculation_packages/single_equilibrium
+   calculation_packages/batch_equilibrium
+   calculation_packages/precipitation
+   calculation_packages/scheil
+   calculation_packages/step_or_map_diagrams
+   calculation_packages/diffusion
+   calculation_packages/propertymodel
+   calculation_packages/material_to_material
+   calculation_packages/process_metallurgy

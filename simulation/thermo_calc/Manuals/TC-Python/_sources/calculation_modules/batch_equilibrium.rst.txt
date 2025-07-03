@@ -1,0 +1,7 @@
+Module "batch_equilibrium"
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. automodule:: tc_python.batch_equilibrium
+    :members:
+    :undoc-members:
+    :show-inheritance:

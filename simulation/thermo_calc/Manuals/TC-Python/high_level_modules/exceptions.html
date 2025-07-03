@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module “exceptions” &mdash; TC-Python 2023b documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Module “abstract_base”" href="abstract_base.html" />
+    <link rel="prev" title="Module “propertymodel_sdk”" href="propertymodel_sdk.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            TC-Python
+          </a>
+              <div class="version">
+                2023b
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment_variables.html">Mac OS: Setting Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../best_practices.html">Best Practices</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api_reference.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../calculations.html">Calculations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system.html">Module “system”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entities.html">Module “entities”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server.html">Module “server”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quantity_factory.html">Module “quantity_factory”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">Module “utils”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="propertymodel_sdk.html">Module “propertymodel_sdk”</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Module “exceptions”</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.exceptions.APIServerException"><code class="docutils literal notranslate"><span class="pre">APIServerException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.exceptions.CalculationException"><code class="docutils literal notranslate"><span class="pre">CalculationException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.exceptions.ComponentNotExistingException"><code class="docutils literal notranslate"><span class="pre">ComponentNotExistingException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.exceptions.DatabaseException"><code class="docutils literal notranslate"><span class="pre">DatabaseException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.exceptions.DegreesOfFreedomNotZeroException"><code class="docutils literal notranslate"><span class="pre">DegreesOfFreedomNotZeroException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.exceptions.EquilibriumException"><code class="docutils literal notranslate"><span class="pre">EquilibriumException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.exceptions.GeneralCalculationException"><code class="docutils literal notranslate"><span class="pre">GeneralCalculationException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.exceptions.GeneralException"><code class="docutils literal notranslate"><span class="pre">GeneralException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.exceptions.InvalidCalculationConfigurationException"><code class="docutils literal notranslate"><span class="pre">InvalidCalculationConfigurationException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.exceptions.InvalidCalculationStateException"><code class="docutils literal notranslate"><span class="pre">InvalidCalculationStateException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.exceptions.InvalidNumberOfResultGroupsException"><code class="docutils literal notranslate"><span class="pre">InvalidNumberOfResultGroupsException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.exceptions.InvalidResultConfigurationException"><code class="docutils literal notranslate"><span class="pre">InvalidResultConfigurationException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.exceptions.InvalidResultStateException"><code class="docutils literal notranslate"><span class="pre">InvalidResultStateException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.exceptions.LicenseException"><code class="docutils literal notranslate"><span class="pre">LicenseException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.exceptions.NoDataForPhaseException"><code class="docutils literal notranslate"><span class="pre">NoDataForPhaseException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.exceptions.NotAllowedOperationException"><code class="docutils literal notranslate"><span class="pre">NotAllowedOperationException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.exceptions.PhaseNotExistingException"><code class="docutils literal notranslate"><span class="pre">PhaseNotExistingException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.exceptions.ResultException"><code class="docutils literal notranslate"><span class="pre">ResultException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.exceptions.SyntaxException"><code class="docutils literal notranslate"><span class="pre">SyntaxException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.exceptions.TCException"><code class="docutils literal notranslate"><span class="pre">TCException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.exceptions.UnrecoverableCalculationException"><code class="docutils literal notranslate"><span class="pre">UnrecoverableCalculationException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.exceptions.handle_exception"><code class="docutils literal notranslate"><span class="pre">handle_exception()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="abstract_base.html">Module “abstract_base”</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">TC-Python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api_reference.html">API Reference</a></li>
+      <li class="breadcrumb-item active">Module “exceptions”</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-tc_python.exceptions">
+<span id="module-exceptions"></span><h1>Module “exceptions”<a class="headerlink" href="#module-tc_python.exceptions" title="Permalink to this heading">¶</a></h1>
+<dl class="py exception">
+<dt class="sig sig-object py" id="tc_python.exceptions.APIServerException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.exceptions.</span></span><span class="sig-name descname"><span class="pre">APIServerException</span></span><a class="headerlink" href="#tc_python.exceptions.APIServerException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tc_python.exceptions.GeneralException" title="tc_python.exceptions.GeneralException"><code class="xref py py-class docutils literal notranslate"><span class="pre">GeneralException</span></code></a></p>
+<p>An exception that occurred during the communication with the API-server. It is normally not related to an
+error in the user program.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="tc_python.exceptions.CalculationException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.exceptions.</span></span><span class="sig-name descname"><span class="pre">CalculationException</span></span><a class="headerlink" href="#tc_python.exceptions.CalculationException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tc_python.exceptions.TCException" title="tc_python.exceptions.TCException"><code class="xref py py-class docutils literal notranslate"><span class="pre">TCException</span></code></a></p>
+<p>An exception that occurred during a calculation.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="tc_python.exceptions.ComponentNotExistingException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.exceptions.</span></span><span class="sig-name descname"><span class="pre">ComponentNotExistingException</span></span><a class="headerlink" href="#tc_python.exceptions.ComponentNotExistingException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tc_python.exceptions.GeneralException" title="tc_python.exceptions.GeneralException"><code class="xref py py-class docutils literal notranslate"><span class="pre">GeneralException</span></code></a></p>
+<p>The selected component is not existing.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="tc_python.exceptions.DatabaseException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.exceptions.</span></span><span class="sig-name descname"><span class="pre">DatabaseException</span></span><a class="headerlink" href="#tc_python.exceptions.DatabaseException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tc_python.exceptions.CalculationException" title="tc_python.exceptions.CalculationException"><code class="xref py py-class docutils literal notranslate"><span class="pre">CalculationException</span></code></a></p>
+<p>Error loading a thermodynamic or kinetic database, typically due to a misspelled database name or a database
+missing in the system.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="tc_python.exceptions.DegreesOfFreedomNotZeroException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.exceptions.</span></span><span class="sig-name descname"><span class="pre">DegreesOfFreedomNotZeroException</span></span><a class="headerlink" href="#tc_python.exceptions.DegreesOfFreedomNotZeroException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tc_python.exceptions.CalculationException" title="tc_python.exceptions.CalculationException"><code class="xref py py-class docutils literal notranslate"><span class="pre">CalculationException</span></code></a></p>
+<p>The degrees of freedom in the system are not zero, i.e. not all required conditions have been defined. Please
+check the conditions given in the exception message.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="tc_python.exceptions.EquilibriumException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.exceptions.</span></span><span class="sig-name descname"><span class="pre">EquilibriumException</span></span><a class="headerlink" href="#tc_python.exceptions.EquilibriumException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tc_python.exceptions.CalculationException" title="tc_python.exceptions.CalculationException"><code class="xref py py-class docutils literal notranslate"><span class="pre">CalculationException</span></code></a></p>
+<p>An equilibrium calculation has failed, this might happen due to inappropriate conditions or a very difficult
+problem that can not be solved.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="tc_python.exceptions.GeneralCalculationException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.exceptions.</span></span><span class="sig-name descname"><span class="pre">GeneralCalculationException</span></span><a class="headerlink" href="#tc_python.exceptions.GeneralCalculationException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tc_python.exceptions.CalculationException" title="tc_python.exceptions.CalculationException"><code class="xref py py-class docutils literal notranslate"><span class="pre">CalculationException</span></code></a></p>
+<p>General error occurring while a calculation is performed.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="tc_python.exceptions.GeneralException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.exceptions.</span></span><span class="sig-name descname"><span class="pre">GeneralException</span></span><a class="headerlink" href="#tc_python.exceptions.GeneralException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tc_python.exceptions.TCException" title="tc_python.exceptions.TCException"><code class="xref py py-class docutils literal notranslate"><span class="pre">TCException</span></code></a></p>
+<p>A general exception that might occur in different situations.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="tc_python.exceptions.InvalidCalculationConfigurationException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.exceptions.</span></span><span class="sig-name descname"><span class="pre">InvalidCalculationConfigurationException</span></span><a class="headerlink" href="#tc_python.exceptions.InvalidCalculationConfigurationException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tc_python.exceptions.CalculationException" title="tc_python.exceptions.CalculationException"><code class="xref py py-class docutils literal notranslate"><span class="pre">CalculationException</span></code></a></p>
+<p>Thrown when errors are detected in the configuration of the calculation.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="tc_python.exceptions.InvalidCalculationStateException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.exceptions.</span></span><span class="sig-name descname"><span class="pre">InvalidCalculationStateException</span></span><a class="headerlink" href="#tc_python.exceptions.InvalidCalculationStateException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tc_python.exceptions.CalculationException" title="tc_python.exceptions.CalculationException"><code class="xref py py-class docutils literal notranslate"><span class="pre">CalculationException</span></code></a></p>
+<p>Trying to access an invalid calculation object that was invalidated by calling <cite>invalidate</cite> on it.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="tc_python.exceptions.InvalidNumberOfResultGroupsException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.exceptions.</span></span><span class="sig-name descname"><span class="pre">InvalidNumberOfResultGroupsException</span></span><a class="headerlink" href="#tc_python.exceptions.InvalidNumberOfResultGroupsException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tc_python.exceptions.ResultException" title="tc_python.exceptions.ResultException"><code class="xref py py-class docutils literal notranslate"><span class="pre">ResultException</span></code></a></p>
+<p>A calculation result contains several result groups, which is not supported for the used method.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="tc_python.exceptions.InvalidResultConfigurationException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.exceptions.</span></span><span class="sig-name descname"><span class="pre">InvalidResultConfigurationException</span></span><a class="headerlink" href="#tc_python.exceptions.InvalidResultConfigurationException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tc_python.exceptions.ResultException" title="tc_python.exceptions.ResultException"><code class="xref py py-class docutils literal notranslate"><span class="pre">ResultException</span></code></a></p>
+<p>A calculation result configuration is invalid.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="tc_python.exceptions.InvalidResultStateException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.exceptions.</span></span><span class="sig-name descname"><span class="pre">InvalidResultStateException</span></span><a class="headerlink" href="#tc_python.exceptions.InvalidResultStateException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tc_python.exceptions.CalculationException" title="tc_python.exceptions.CalculationException"><code class="xref py py-class docutils literal notranslate"><span class="pre">CalculationException</span></code></a></p>
+<p>Trying to access an invalid result (for example a <code class="xref py py-class docutils literal notranslate"><span class="pre">SingleEquilibriumTempResult</span></code> object that got already
+invalidated by condition changes or a result that was invalidated by calling <cite>invalidate</cite> on it).</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="tc_python.exceptions.LicenseException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.exceptions.</span></span><span class="sig-name descname"><span class="pre">LicenseException</span></span><a class="headerlink" href="#tc_python.exceptions.LicenseException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tc_python.exceptions.GeneralException" title="tc_python.exceptions.GeneralException"><code class="xref py py-class docutils literal notranslate"><span class="pre">GeneralException</span></code></a></p>
+<p>No valid license for the API or any Thermo-Calc product used by it found.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="tc_python.exceptions.NoDataForPhaseException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.exceptions.</span></span><span class="sig-name descname"><span class="pre">NoDataForPhaseException</span></span><a class="headerlink" href="#tc_python.exceptions.NoDataForPhaseException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tc_python.exceptions.ResultException" title="tc_python.exceptions.ResultException"><code class="xref py py-class docutils literal notranslate"><span class="pre">ResultException</span></code></a></p>
+<p>There is no result data available for a selected phase.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="tc_python.exceptions.NotAllowedOperationException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.exceptions.</span></span><span class="sig-name descname"><span class="pre">NotAllowedOperationException</span></span><a class="headerlink" href="#tc_python.exceptions.NotAllowedOperationException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tc_python.exceptions.CalculationException" title="tc_python.exceptions.CalculationException"><code class="xref py py-class docutils literal notranslate"><span class="pre">CalculationException</span></code></a></p>
+<p>The called method or operation is not allowed in the current mode of operation (i.e. debug or production mode).
+<cite>Production mode</cite> means that the Property Model is only present as an <cite>*.py.encrypted</cite>-file, while in <cite>debug mode</cite>
+it is available as <cite>*.py</cite>-file. Certain methods for obtaining internal model parameters are not available for
+encrypted models.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="tc_python.exceptions.PhaseNotExistingException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.exceptions.</span></span><span class="sig-name descname"><span class="pre">PhaseNotExistingException</span></span><a class="headerlink" href="#tc_python.exceptions.PhaseNotExistingException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tc_python.exceptions.GeneralException" title="tc_python.exceptions.GeneralException"><code class="xref py py-class docutils literal notranslate"><span class="pre">GeneralException</span></code></a></p>
+<p>The selected phase is not existing, so no data can be provided for it.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="tc_python.exceptions.ResultException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.exceptions.</span></span><span class="sig-name descname"><span class="pre">ResultException</span></span><a class="headerlink" href="#tc_python.exceptions.ResultException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tc_python.exceptions.TCException" title="tc_python.exceptions.TCException"><code class="xref py py-class docutils literal notranslate"><span class="pre">TCException</span></code></a></p>
+<p>An exception that occurred during the configuration of a calculation result.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="tc_python.exceptions.SyntaxException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.exceptions.</span></span><span class="sig-name descname"><span class="pre">SyntaxException</span></span><a class="headerlink" href="#tc_python.exceptions.SyntaxException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tc_python.exceptions.CalculationException" title="tc_python.exceptions.CalculationException"><code class="xref py py-class docutils literal notranslate"><span class="pre">CalculationException</span></code></a></p>
+<p>Syntax error in a Console Mode expression.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="tc_python.exceptions.TCException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.exceptions.</span></span><span class="sig-name descname"><span class="pre">TCException</span></span><a class="headerlink" href="#tc_python.exceptions.TCException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>The root exception of TC-Python.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="tc_python.exceptions.UnrecoverableCalculationException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.exceptions.</span></span><span class="sig-name descname"><span class="pre">UnrecoverableCalculationException</span></span><a class="headerlink" href="#tc_python.exceptions.UnrecoverableCalculationException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tc_python.exceptions.CalculationException" title="tc_python.exceptions.CalculationException"><code class="xref py py-class docutils literal notranslate"><span class="pre">CalculationException</span></code></a></p>
+<p>The calculation reached a state where no further actions are possible, this happens most often due to a FORTRAN-
+hard crash in the API server backend.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is possible to catch that exception outside of the <cite>with</cite>-clause context and to continue by setting up a
+new context (i.e. by a new <cite>with TCPython() as session</cite>).</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tc_python.exceptions.handle_exception">
+<span class="sig-prename descclassname"><span class="pre">tc_python.exceptions.</span></span><span class="sig-name descname"><span class="pre">handle_exception</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">e</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.exceptions.handle_exception" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="propertymodel_sdk.html" class="btn btn-neutral float-left" title="Module “propertymodel_sdk”" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="abstract_base.html" class="btn btn-neutral float-right" title="Module “abstract_base”" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Foundation of Computational Thermodynamics, Stockholm, Sweden.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

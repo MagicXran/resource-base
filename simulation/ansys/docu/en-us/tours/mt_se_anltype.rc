@@ -1,0 +1,25 @@
+! Tour Page
+*mt_se_anltype*title: Tour - Selecting an Analysis Type
+*mt_se_anltype*next: mt_se_unitsys
+*mt_se_anltype*previous: mt_se_discipl
+*mt_se_anltype*htmlhelp: docu $euidlArray(language) mechhelp mt_se_anltype.html
+*mt_se_anltype*home: mt_mt_home
+
+! Tour Page Components
+*mt_se_anltype*tourlist: heading onestep onestepa seenext
+
+!
+! Component Definition
+!
+*mt_se_anltype*headingText: "Selecting an Analysis Type\n" HEADING2
+
+*mt_se_anltype*onestepText: "Click the Analysis Type drop down list \
+box and select a type." {BODY1} 
+
+*mt_se_anltype*onestepaText: "\n\nIf you chose the structural discipline, \
+you can choose static or modal for the analysis type.  If you chose \
+the thermal discipline, you are limited to running a \
+steady-state analysis." {BODY1}
+
+*mt_se_anltype*seenextText: "\n\nClick Next to learn how to select a unit \
+system.\n" {BODY1}

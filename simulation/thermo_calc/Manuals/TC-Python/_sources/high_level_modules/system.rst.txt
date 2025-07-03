@@ -1,0 +1,7 @@
+Module "system"
+---------------
+
+.. automodule:: tc_python.system
+    :members:
+    :undoc-members:
+    :show-inheritance:

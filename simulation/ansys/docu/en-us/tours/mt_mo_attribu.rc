@@ -1,0 +1,69 @@
+! Tour Page
+*mt_mo_attribu*title: Tour - Setting Model Attributes
+*mt_mo_attribu*next: mt_lo_toc1
+*mt_mo_attribu*previous: mt_mo_defetoc
+*mt_mo_attribu*htmlhelp: docu $euidlArray(language) mechhelp mt_mo_attrtoc.html
+*mt_mo_attribu*home: mt_mt_home
+
+! Tour Page Components
+*mt_mo_attribu*tourlist: heading overview step1 step1a step2 step3 step3a step4 \
+step5 step6 step6a step7 seenext
+
+!
+! Component Definition
+!
+*mt_mo_attribu*headingText: "Setting Model Attributes\n" HEADING2
+
+*mt_mo_attribu*overviewText: "To set your model attributes, follow \
+these steps:\n" {BODY1}
+
+*mt_mo_attribu*step1Text: "1.\t" {STEP1 step1} "To select an element shape, \
+click the Default Shape drop down list box \
+and choose a shape." {STEP1 step1} 
+
+*mt_mo_attribu*step1aText: "\n\tIf you select shell or plane stress, \
+you must \
+specify a name and thickness for the shape in the resulting dialog \
+box and click OK." {STEP1 step1}
+
+*mt_mo_attribu*step2Text: "\n2.\t" {STEP1 step2} "To assign the selected \
+element shape to \
+the model, click the Assign Shape button to bring up a picker.  Using \
+the picker, select those entities to which you want to assign \
+this shape." {STEP1 step2} 
+
+*mt_mo_attribu*step3Text: "\n3.\t" {STEP1 step3} "To select a material, click \
+the Default Material drop down list box and choose \
+a material." {STEP1 step3} 
+
+*mt_mo_attribu*step3aText: "\n\tIf you select new material, \
+you must specify the \
+properties of the new material on the resulting dialog box.  The new \
+material will then appear in the Default Material drop down \
+list box." {STEP1 step3}
+
+*mt_mo_attribu*step4Text: "\n4.\t" {STEP1 step4} "To assign a material \
+to the model, click the Assign Material button.  In response, the \
+Material for Assignment dialog box appears.  Click on the desired \
+material and then click Continue to bring up a picker. \
+Using the picker, select those entities to which you want \
+to assign this material." {STEP1 step4} 
+
+*mt_mo_attribu*step5Text: "\n5.\t" {STEP1 step5} "To set an overall element \
+size for meshing, click the Mesh SmartSize slider and move it \
+to the desired position.  The scale is from fine (left) to \
+coarse (right)." {STEP1 step5} 
+
+*mt_mo_attribu*step6Text: "\n6.\t" {STEP1 step6} "To mesh the model now, \
+click the Mesh Model button.  If there is more than one entity in the \
+model, a picker will appear. Using the \
+picker, select those entities that you want to mesh." {STEP1 step6} 
+
+*mt_mo_attribu*step6aText: "\n\tIf you do not mesh now, meshing will occur \
+automatically when you solve the model." {STEP1 step6}
+
+*mt_mo_attribu*step7Text: "\n7.\t" {STEP1 step7} "To specify advanced mesh \
+settings (such as mesh refinement level), click the \
+MeshTool button." {STEP1 step7} 
+
+*mt_mo_attribu*seenextText: "\n\nClick Next to learn how to apply loads.\n" {BODY1}

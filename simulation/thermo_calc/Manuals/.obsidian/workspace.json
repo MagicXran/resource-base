@@ -1,0 +1,243 @@
+{
+  "main": {
+    "id": "3b04fca04c4f22cc",
+    "type": "split",
+    "children": [
+      {
+        "id": "22fed2f33b19f721",
+        "type": "split",
+        "children": [
+          {
+            "id": "68274f07ba0f00f5",
+            "type": "tabs",
+            "dimension": 24.709302325581394,
+            "children": [
+              {
+                "id": "eba9ba2cb7fb8c1b",
+                "type": "leaf",
+                "state": {
+                  "type": "pdf",
+                  "state": {
+                    "file": "All Thermo-Calc Documentation/Thermo-Calc_Documentation-Set.pdf",
+                    "page": 1644,
+                    "left": -7,
+                    "top": 719,
+                    "zoom": 2.0637254901960786
+                  },
+                  "icon": "lucide-file-text",
+                  "title": "Thermo-Calc_Documentation-Set"
+                }
+              }
+            ]
+          },
+          {
+            "id": "9b25b8c8082ee9f9",
+            "type": "tabs",
+            "dimension": 75.29069767441861,
+            "children": [
+              {
+                "id": "ae5da1edbdb5737d",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "All Thermo-Calc Documentation/thermo-document.md",
+                    "mode": "source",
+                    "source": false,
+                    "backlinks": true,
+                    "backlinkOpts": {
+                      "collapseAll": false,
+                      "extraContext": false,
+                      "sortOrder": "alphabetical",
+                      "showSearch": false,
+                      "searchQuery": "",
+                      "backlinkCollapsed": true,
+                      "unlinkedCollapsed": true
+                    }
+                  },
+                  "icon": "lucide-file",
+                  "title": "thermo-document"
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "horizontal"
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "c9049fa54df16b4d",
+    "type": "split",
+    "children": [
+      {
+        "id": "0b3ce88b47ec813c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7efe1e3cfed5369f",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "2d2f69f1a7081d16",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "tag:#Graphicaltag:#Graphical",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "2490b00b2cd06152",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 322.5,
+    "collapsed": true
+  },
+  "right": {
+    "id": "422dd14fbd6a5c09",
+    "type": "split",
+    "children": [
+      {
+        "id": "549816dab64a8041",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b25ba5439685d544",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "All Thermo-Calc Documentation/Thermo-Calc_Documentation-Set.pdf",
+                "collapseAll": true,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Thermo-Calc_Documentation-Set 的反向链接列表"
+            }
+          },
+          {
+            "id": "bb3d52fe97b56752",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "All Thermo-Calc Documentation/thermo-document.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "thermo-document 的出链列表"
+            }
+          },
+          {
+            "id": "1cdc6cc6dfbfcd39",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "7976ee614811788a",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "All Thermo-Calc Documentation/Thermo-Calc_Documentation-Set.pdf",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Thermo-Calc_Documentation-Set 的大纲"
+            }
+          }
+        ],
+        "currentTab": 3
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "pdf-plus:PDF++: Toggle auto-copy": false,
+      "pdf-plus:PDF++: Toggle auto-paste": false,
+      "smart-connections-visualizer:Open smart connections visualizer": false,
+      "markdown-importer:打开 Markdown 格式转换器": false,
+      "smart-connections:Open: View Smart Connections": false,
+      "smart-connections:Open: Smart Chat Conversation": false
+    }
+  },
+  "active": "ae5da1edbdb5737d",
+  "lastOpenFiles": [
+    "All Thermo-Calc Documentation/Thermo-Calc_Documentation-Set.pdf",
+    "All Thermo-Calc Documentation/fe-c-Phase.png",
+    "All Thermo-Calc Documentation/fe-c-Phase.exp",
+    "All Thermo-Calc Documentation/thermo-document.md",
+    "Pasted image 20250328215034.png",
+    "Pasted image 20250328215028.png",
+    "Pasted image 20250328215018.png",
+    "Pasted image 20250328215000.png",
+    "demo.png",
+    "All Thermo-Calc Documentation/Thermo-Calc Console Mode Example Macros.pdf",
+    "Thermo-calc 中文手册.pdf",
+    "Pasted image 20250327095552.png",
+    "Pasted image 20250327095535.png",
+    "All Thermo-Calc Documentation/Thermo-Calc_Graphical-Mode-Examples-Guide.pdf",
+    "All Thermo-Calc Documentation/标准模板.md",
+    "未命名.md",
+    "All Thermo-Calc Documentation/New Text Document.txt",
+    "All Thermo-Calc Documentation/模板文档",
+    "All Thermo-Calc Documentation/New folder",
+    "未命名.canvas"
+  ]
+}

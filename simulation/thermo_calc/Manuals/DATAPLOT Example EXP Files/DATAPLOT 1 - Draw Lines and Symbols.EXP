@@ -1,0 +1,24 @@
+$DATAPLOT Example 1
+
+PROLOG 1 EXAMPLE 1  0<X<100, 0<Y<100
+ XSCALE        0.00000       100    
+ YSCALE        0.00000       100
+ XTYPE LINEAR
+ YTYPE LINEAR
+ XLENGTH        11.5000    
+ YLENGTH        11.5000    
+ TITLE  EXAMPLE 1
+ XTEXT  X
+ YTEXT  Y
+
+DATASET 1 Two lines started with two symbols
+ATTRIBUTE CENTER
+0.05  0.95 N'Example 1
+0.7   0.95 NS'Line 1
+0.7   0.90 NS2'Line 2
+10    10  S1
+20    80  D
+80    80  S2
+80    10  D
+50    60  
+

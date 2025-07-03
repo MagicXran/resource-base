@@ -1,0 +1,7 @@
+Module "propertymodel"
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. automodule:: tc_python.propertymodel
+    :members:
+    :undoc-members:
+    :show-inheritance:

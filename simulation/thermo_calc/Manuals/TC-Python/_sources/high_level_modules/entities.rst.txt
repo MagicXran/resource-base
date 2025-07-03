@@ -1,0 +1,7 @@
+Module "entities"
+-----------------
+
+.. automodule:: tc_python.entities
+    :members:
+    :undoc-members:
+    :show-inheritance:

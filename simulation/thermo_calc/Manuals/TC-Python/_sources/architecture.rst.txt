@@ -1,0 +1,748 @@
+.. DO ONLY EDIT THE TEMPLATE FILE (*.template.rst) AND NOT THE *.rst FILE, OTHERWISE YOUR CHANGES WILL BE LOST DURING THE DOCUMENTATION GENERATION PROCESS!
+.. THIS IS NECESSARY TO INJECT THE RELEASE VERSION NUMBER INTO THE DOCUMENTATION.
+.. --------------------------------------------------------------------------------------------------------------------------------------------------------
+
+.. _high-level-architecture-chapter:
+
+Architecture overview
+=======================
+
+
+TC-Python contains classes of these types:
+
+* **TCPython**                   -- this is where you start with general settings.
+* **SystemBuilder** and **System**    -- where you choose database and elements etc.
+* **Calculation**                 -- where you choose and configure the calculation.
+* **Result**                      -- where you get the results from a calculation you have run.
+
+
+
+TCPython
+--------
+
+This is the starting point for all TC-Python usage.
+
+You can think of this as the start of a "wizard".
+
+You use it to select databases and elements. That will take you to the next step in the wizard, where you configure the
+system.
+
+
+**Example:**
+
+
+.. code-block:: python
+
+    from tc_python import *
+
+    with TCPython() as start:
+        start.select_database_and_elements(...
+        # e.t.c
+    # after with clause
+
+    # or like this
+    with TCPython():
+        SetUp().select_database_and_elements(...
+        # e.t.c
+    # after with clause
+
+.. tip::
+
+    If you use TC-Python from Jupyter Lab / Notebook, you should use TC-Python slightly different to be able to use
+    multiple cells. See :ref:`jupyter-notebook-chapter` for details.
+
+.. note::
+    When your python script runs a row like this:
+
+    .. code-block:: python
+
+        with TCPython() as start:
+
+    a process running a calculation server starts.
+    Your code, via TC-Python, uses socket communication to send and receive messages to and from that server.
+
+    When your Python script has run as far as this row:
+
+    .. code-block:: python
+
+        # after with clause
+
+    the calculation server automatically shuts down, and all temporary files are deleted.
+    It is important to ensure that this happens by structuring your Python code using a :func:`with` clause as in the
+    above example.
+
+
+.. note::
+
+    To re-use results from previous calculations, set a folder where TC-Python saves results, and looks for previous
+    results.
+
+    This is done with the function :func:`set_cache_folder()`.
+
+    .. code-block:: python
+
+         from tc_python import *
+
+         with TCPython() as start:
+            start.set_cache_folder("cache")
+
+    This folder can be a network folder and shared by many users.
+    If a previous TC-Python calculation has run with the same cache_folder and EXACTLY the same system and calculation
+    settings, the calculation is not re-run. Instead the result is automatically loaded from disk.
+
+    It is also possible to explicitly save and load results.
+
+.. code-block:: python
+
+         from tc_python import *
+
+         with TCPython() as start:
+            #... diffusion calculation (could be any calculation type)
+            calculation_result.save_to_disk('path to folder')
+            #...
+            loaded_result = start.load_result_from_disk().diffusion('path to folder')
+
+
+SystemBuilder and System
+------------------------
+
+A **SystemBuilder** is returned when you have selected your database and elements in **TCPython**.
+
+The **SystemBuilder** lets you further specify your system, for example the phases that should be part of your
+system.
+
+**Example:**
+
+.. code-block:: python
+
+    from tc_python import *
+
+    with TCPython() as start:
+        start.select_database_and_elements("ALDEMO", ["Al", "Sc"])
+             # e.t.c
+
+When all configuration is done, you call :func:`get_system()` which returns an instance of a **System** class.
+The **System** class is fixed and cannot be changed. If you later want to change the database, elements or something
+else, change the **SystemBuilder** and call :func:`get_system()` again, or create a new **SystemBuilder** and
+call :func:`get_system()`.
+
+From the **System** you can create one or more calculations, which is the next step in the "wizard".
+
+
+.. note::
+
+    You can use the same **System** object to create several calculations.
+
+
+Calculation
+-----------
+
+The best way to see how a calculation can be used is in the TC-Python examples included with the Thermo-Calc
+installation.
+
+Some calculations have many settings.
+Default values are used where it is applicable, and are overridden if you specify something different.
+
+When you have configured your calculation you call :func:`calculate()` to start the actual calculation.
+That returns a **Result**, which is the next step.
+
+
+Single equilibrium calculations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In single equilibrium calculations you need to specify the correct number of conditions, depending on how many elements
+your **System** contains.
+
+You do that by calling :func:`set_condition()`.
+
+An important difference from other calculations is that single equilibrium calculations have two functions to get
+result values.
+
+The :func:`calculate()` method, which gives a **SingleEquilibriumTempResult**, is used to get actual values.
+This result is "temporary", meaning that if you run other calculations or rerun the current one, the resulting object
+no longer gives values corresponding to the first calculation.
+
+This is different from how other calculations work. If you want a **Result** that you can use *after* running other
+calculations, you need to call :func:`calculate_with_state()`, which returns a **SingleEquilibriumResult**.
+
+.. note::
+
+    :func:`calculate()` is the recommended function and works in almost all situations. Also it has *much* better
+    performance than :func:`calculate_with_state()`.
+
+**Example:**
+
+.. code-block:: python
+
+    from tc_python import *
+
+    with TCPython() as start:
+        gibbs_energy = (
+            start.
+                select_database_and_elements("FEDEMO", ["Fe", "Cr", "C"]).
+                get_system().
+                with_single_equilibrium_calculation().
+                    set_condition(ThermodynamicQuantity.temperature(), 2000.0).
+                    set_condition(ThermodynamicQuantity.mole_fraction_of_a_component("Cr"), 0.1).
+                    set_condition(ThermodynamicQuantity.mole_fraction_of_a_component("C"), 0.01).
+                    calculate().
+                    get_value_of("G")
+            )
+
+
+Batch equilibrium calculations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Batch equilibrium calculations are used when you want to do many single equilibrium calculations and it is known from
+the beginning which result values are required from the equilibrium. This is a vectorized type of calculation that can
+reduce the overhead from Python and TC-Python similar to the approach used in `numpy`-functions for example.
+
+.. tip::
+
+    The performance of batch equilibrium calculations can be significantly better than looping and using single
+    equilibrium calculations **if the actual Thermo-Calc calculation is fast**. There is little advantage if the
+    Thermo-Calc equilibrium calculations take a long time (typically for large systems and databases).
+
+**Example:**
+
+.. code-block:: python
+
+    from tc_python import *
+
+    with TCPython() as start:
+        calculation = (
+            start
+                .set_cache_folder(os.path.basename(__file__) + "_cache")
+                .select_database_and_elements("NIDEMO", ["Ni", "Al", "Cr"])
+                .get_system()
+                .with_batch_equilibrium_calculation()
+                .set_condition("T", 800.1)
+                .set_condition("X(Al)", 1E-2)
+                .set_condition("X(Cr)", 1E-2)
+                .disable_global_minimization()
+        )
+
+        list_of_x_Al = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        list_of_x_Cr = [3, 5, 7, 9, 11, 13, 15]
+        lists_of_conditions = []
+        for x_Al in list_of_x_Al:
+            for x_Cr in list_of_x_Cr:
+                lists_of_conditions.append([
+                    ("X(Al)", x_Al / 100),
+                    ("X(Cr)", x_Cr / 100)])
+        calculation.set_conditions_for_equilibria(lists_of_conditions)
+
+        results = calculation.calculate(["BM", "VM"])
+
+        masses = results.get_values_of("BM")
+        volumes = results.get_values_of('VM')
+
+    print(masses)
+    print(volumes)
+
+
+Precipitation calculations
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+All that can be configured in the *Precipitation Calculator* in Graphical Mode can also be done here in this calculation.
+However, you must at least enter a matrix phase, a precipitate phase,
+temperature, simulation time and compositions.
+
+**Example:**
+
+.. code-block:: python
+
+    from tc_python import *
+
+    with TCPython() as start:
+        precipitation_curve = (
+            start.
+                select_thermodynamic_and_kinetic_databases_with_elements("ALDEMO", "MALDEMO", ["Al", "Sc"]).
+                get_system().
+                with_isothermal_precipitation_calculation().
+                    set_composition("Sc", 0.18).
+                    set_temperature(623.15).
+                    set_simulation_time(1e5).
+                    with_matrix_phase(MatrixPhase("FCC_A1").
+                                      add_precipitate_phase(PrecipitatePhase("AL3SC"))).
+                    calculate()
+        )
+
+
+Scheil calculations
+~~~~~~~~~~~~~~~~~~~
+
+All Scheil calculations available in Graphical Mode or Console Mode can also be done here in this calculation.
+The minimum you need to specify are the elements and compositions. Everything else is set to a default value.
+
+
+**Example:**
+
+.. code-block:: python
+
+    from tc_python import *
+
+    with TCPython() as start:
+        temperature_vs_mole_fraction_of_solid = (
+            start.
+                select_database_and_elements("FEDEMO", ["Fe", "C"]).
+                get_system().
+                with_scheil_calculation().
+                    set_composition("C", 0.3).
+                    calculate().
+                    get_values_of(ScheilQuantity.temperature(),
+                                  ScheilQuantity.mole_fraction_of_all_solid_phases())
+            )
+
+
+Property diagram calculations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the property diagram (step) calculation, everything that you can configure in the *Equilibrium Calculator* when
+choosing *One axis* in Graphical Mode can also be configured in this calculation. In Console Mode the property
+diagram is created using the Step command. The minimum you need to specify are elements, conditions and the calculation
+axis. Everything else is set to default values, if you do not specify otherwise.
+
+
+**Example:**
+
+.. code-block:: python
+
+    from tc_python import *
+
+    with TCPython() as start:
+        property_diagram = (
+            start.
+                select_database_and_elements("FEDEMO", ["Fe", "C"]).
+                get_system().
+                with_property_diagram_calculation().
+                    with_axis(CalculationAxis(ThermodynamicQuantity.temperature()).
+                        set_min(500).
+                        set_max(3000)).
+                    set_condition(ThermodynamicQuantity.mole_fraction_of_a_component("C"), 0.01).
+                    calculate().
+                    get_values_grouped_by_stable_phases_of(ThermodynamicQuantity.temperature(),
+                                                           ThermodynamicQuantity.volume_fraction_of_a_phase("ALL"))
+            )
+
+
+Phase diagram calculations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the phase diagram (map) calculation, everything that you can configure in the *Equilibrium Calculator* when
+choosing *Phase diagram* in Graphical Mode can also be configured in this calculation. In Console Mode the phase
+diagram is created using the Map command. The minimum you need to specify are elements, conditions and two calculation
+axes. Everything else is set to default values, if you do not specify otherwise.
+
+
+**Example:**
+
+.. code-block:: python
+
+    from tc_python import *
+
+    with TCPython() as start:
+        phase_diagram = (
+            start.
+                select_database_and_elements("FEDEMO", ["Fe", "C"]).
+                get_system().
+                with_phase_diagram_calculation().
+                    with_first_axis(CalculationAxis(ThermodynamicQuantity.temperature()).
+                        set_min(500).
+                        set_max(3000)).
+                    with_second_axis(CalculationAxis(ThermodynamicQuantity.mole_fraction_of_a_component("C")).
+                        set_min(0).
+                        set_max(1)).
+                    set_condition(ThermodynamicQuantity.mole_fraction_of_a_component("C"), 0.01).
+                    calculate().
+                    get_values_grouped_by_stable_phases_of(ThermodynamicQuantity.mass_fraction_of_a_component("C"),
+                                                           ThermodynamicQuantity.temperature())
+            )
+
+
+Diffusion calculations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For diffusion calculations, everything that you can configure in the *Diffusion Calculator* can also be configured in
+this calculation. The minimum you need to specify are elements, temperature, simulation time, a region with a grid and
+width, a phase and an initial composition.
+
+
+**Example:**
+
+.. code-block:: python
+
+    from tc_python import *
+
+    with TCPython() as start:
+        diffusion_result = (
+            start.
+                select_thermodynamic_and_kinetic_databases_with_elements("FEDEMO", "MFEDEMO", ["Fe", "Ni"]).
+                get_system().
+                with_isothermal_diffusion_calculation().
+                    set_temperature(1400.0).
+                    set_simulation_time(108000.0).
+                    add_region(Region("Austenite").
+                        set_width(1E-4).
+                        with_grid(CalculatedGrid.linear().set_no_of_points(50)).
+                        with_composition_profile(CompositionProfile().
+                            add("Ni", ElementProfile.linear(10.0, 50.0))
+                        ).
+                    add_phase("FCC_A1")).
+            calculate())
+
+        distance, ni_fraction = diffusion_result.get_mass_fraction_of_component_at_time("Ni", 108000.0)
+
+
+Property Model calculations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For Property Model calculations, everything that you can configure in the *Property Model Calculator* in Graphical
+Mode can also be configured in this calculation. The minimum you need to specify are elements, composition and
+which Property Model you want to use.
+
+**Example:**
+
+.. code-block:: python
+
+    from tc_python import *
+
+    with TCPython() as start:
+        print("Available Property Models: {}".format(start.get_property_models()))
+        property_model = (
+            start.
+                select_database_and_elements("FEDEMO", ["Fe", "C"]).
+                get_system().
+                with_property_model_calculation("Driving force").
+                set_composition("C", 1.0).
+                set_argument("precipitate", "GRAPHITE"))
+
+        print("Available arguments: {}".format(property_model.get_arguments()))
+        result = property_model.calculate()
+
+        print("Available result quantities: {}".format(result.get_result_quantities()))
+        driving_force = result.get_value_of("normalizedDrivingForce")
+
+
+Material to Material calculations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Material to Material calculations are generally regular single equilibrium, property diagram or phase diagram
+calculations but they are specialised to handle the mixture of two materials A and B. Everything that you can configure
+in the *Material to Material Calculator* in Graphical Mode can also be configured in this calculation. The minimum
+required configuration is shown below for a *Property diagram calculation for varying amount of material B*. The other
+calculators (single fraction of material B and phase diagram calculations) are configured in a similar way.
+
+**Example:**
+
+.. code-block:: python
+
+    from tc_python import *
+
+    with TCPython() as start:
+        material_to_material_property_diagram = (
+            start.
+                select_database_and_elements("FEDEMO", ["Fe", "Cr", "Ni", "C"]).
+                get_system().
+                with_material_to_material().
+                with_property_diagram_calculation().
+                set_material_a({"Cr": 10.0, "Ni": 15.0}, "Fe").
+                set_material_b({"Cr": 15.0, "Ni": 10.0}, "Fe").
+                set_activities({"C": 0.1}).
+                with_constant_condition(ConstantCondition.temperature(800 + 273.15)).
+                with_axis(MaterialToMaterialCalculationAxis.fraction_of_material_b(from_fraction=0.0,
+                                                                                   to_fraction=1.0,
+                                                                                   start_fraction=0.5))
+        )
+
+        result = material_to_material_property_diagram.calculate()
+        data = result.get_values_grouped_by_quantity_of(MATERIAL_B_FRACTION,
+                                                        ThermodynamicQuantity.volume_fraction_of_a_phase(ALL_PHASES))
+
+        for group in data.values():
+            fractions_of_b = group.x
+            volume_fractions_of_phase = group.y
+            phase_name = group.label
+
+
+Process Metallurgy calculations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Process Metallurgy calculations are specialized to support the convenient handling of component-based additions
+(i.e., slag compositions such as *50% Al2O3 - 30% CaO - 20% SiO2*), provide tailor-made result quantities, a framework
+for developing kinetic process simulations, and more useful features.
+
+There are two distinct types of calculations:
+
+* :class:`tc_python.process_metallurgy.equilibrium.EquilibriumCalculation`: isothermal and adiabatic equilibrium
+  calculations
+* :class:`tc_python.process_metallurgy.process.ProcessSimulationCalculation`: a kinetic process simulation framework,
+  based on an *Effective Equilibrium Reaction Zone* (EERZ) approach
+
+**Equilibrium calculation example:**
+
+Equilibrium calculations are useful in a large range of situations when considering the kinetics of a process is
+unnecessary.
+
+.. code-block:: python
+
+    from tc_python import *
+
+    with TCPython() as session:
+        metal = EquilibriumAddition({"Fe": None, "C": 4.5, "Si": 1.0}, 100e3, temperature=1650 + 273.15)
+        slag = EquilibriumAddition({"CaO": 75, "Al2O3": 25}, 3e3, temperature=1600 + 273.15)
+        gas = EquilibriumGasAddition({"O2": 100}, 1000, amount_unit=GasAmountUnit.NORM_CUBIC_METER)
+        calc = session.with_metallurgy().with_adiabatic_equilibrium_calculation(ProcessDatabase.OXDEMO)
+
+        (calc
+         .add_addition(metal)
+         .add_addition(slag)
+         .add_addition(gas))
+
+        result = calc.calculate()
+
+        print(f"Stable phases: {result.get_stable_phases()}, temperature: {result.get_temperature()} K")
+
+
+**Process simulation example:**
+
+TC-Python is providing a *framework* for modelling in principle any process in metallurgy, especially steel-making. It
+is up to the user to actually develop a concrete model for the process in question. The framework is in the current
+release limited to one reaction zone connecting two bulk zones. These bulk zones are typically the steel melt and the
+top slag, but not limited to that. The framework in its current version has proven to be useful to model industrial
+ladle furnaces, AOD- and VOD-converters and more. Process features such as heating and cooling, heat transfer between
+the bulk zones, inclusion formation and their flotation, etc., can be modelled.
+
+This is a very simplified minimal but complete model mimicking a BOF process:
+
+.. code-block:: python
+
+    from tc_python import *
+
+    with TCPython() as session:
+        calc = (session.with_metallurgy()
+                .with_adiabatic_process_calculation(ProcessDatabase.OXDEMO)
+                .set_end_time(15 * 60))
+
+        steel_zone = MetalBulkZone(density=7800)
+        slag_zone = SlagBulkZone(density=4500)
+
+        steel_zone.add_addition(SingleTimeAddition({"Fe": None, "C": 4.5, "Si": 1.0}, 120e3,
+                                                   temperature=1600 + 273.15), time=0)
+        slag_zone.add_addition(SingleTimeAddition({"CaO": 75, "SiO2": 25}, 1.2e3,
+                                                  temperature=1500 + 273.15,
+                                                  composition_unit=CompositionUnit.MOLE_PERCENT), time=0)
+
+        steel_zone.add_continuous_addition(ContinuousGasAddition({"O2": 100}, 1,
+                                                                 rate_unit=GasRateUnit.NORM_CUBIC_METER_PER_SEC))
+
+        calc.with_reaction_zone(ReactionZone(area=10.0,
+                                             left_zone=steel_zone, mass_transfer_coefficient_left=1.0e-5,
+                                             right_zone=slag_zone, mass_transfer_coefficient_right=1.0e-6))
+
+        result = calc.calculate()
+
+        print(f"Stable phases in the steel melt: {result.get_stable_phases(steel_zone)}")
+        print(f"C-content in steel vs. time: {result.get_composition_of_phase_group(steel_zone,
+                                                                                    PhaseGroup.ALL_METAL)['C']}")
+
+
+Result
+------
+
+All calculations have a method called :func:`calculate()` that starts the calculations and when finished, returns
+a **Result**.
+
+The **Result** classes have very different methods, depending on the type of calculation.
+
+The **Result** is used to get numerical values from a calculation that has run.
+
+The **Result** can be saved to disk by the method :func:`save_to_disk()`.
+
+Previously saved results can be loaded by the method :func:`load_result_from_disk()` on the **SetUp** class.
+
+**Example:**
+
+.. code-block:: python
+
+    # code above sets up the calculation
+    r = calculation.calculate()
+    time, meanRadius = r.get_mean_radius_of("AL3SC")
+
+
+The **Result** objects are completely independent from calculations done before or after they are created. The objects
+return valid values corresponding to the calculation they were created from, for their lifetime. The only exception is
+if you call :func:`calculate()` and not :func:`calculate_with_state()` on a single equilibrium calculation.
+
+As in the following example you can mix different calculations and results, and use old results after another
+calculation has run.
+
+**Example:**
+
+.. code-block:: python
+
+    # ...
+    # some code to set up a single equilibrium calculation
+    # ...
+
+    single_eq_result = single_eq_calculation.calculate_with_state()
+
+    # ...
+    # some code to set up a precipitation calculation
+    # ...
+
+    prec_result = precipitation_calculation.calculate()
+
+    # ...
+    # some code to set up a Scheil calculation
+    # ...
+
+    scheil_result = scheil_calculations.calculate()
+
+    # now it is possible to get results from the single equilibrium calculation,
+    # without having to re-run it (because it has been calculated with saving of the state)
+
+    gibbs = single_eq_result.get_value_of("G")
+
+
+
+DiffusionResult
+~~~~~~~~~~~~~~~
+
+The DiffusionResult class, that is returned when calling calculate() on any DiffusionCalculation,
+has the possibility to create a ContinuedDiffusionCalculation, in addition to the "normal" functionality for results.
+This makes it possible to run a diffusion calculation and then, depending on the result,
+change some settings and continue.
+
+**Example:**
+
+.. code-block:: python
+
+    # ...
+    # some code to set up a Diffusion calculation
+    # ...
+    first_diffusion_result = diffusion_calculation.calculate()
+
+    continued_calculation = first_diffusion_result.with_continued_calculation()
+
+    continued_calculation.set_simulation_time(110000.0)
+    continued_calculation.with_left_boundary_condition(BoundaryCondition.mixed_zero_flux_and_activity().set_activity_for_element('C', 1.0))
+    second_result = continued_calculation.calculate()
+    # ...
+    # Now you can use get second_result to get calculated values, just as normal.
+    # You can also use first_diffusion_result even after second_result is created.
+    # You can also use second_result (and even first_diffusion_result) to create a new ContinuedDiffusionCalculation by calling with_continued_calculation.
+
+
+Property Model Framework
+------------------------
+
+The *Python Property Model SDK* extends the Thermo-Calc software to enable you to create your own Property Models. A
+*Property Model* is a Python-based calculation that can use any TC-Python functionality (including diffusion and
+precipitation calculations) but is usable through the Graphical User Interface (UI) of Thermo-Calc in a more simple
+way. It is typically used to model material properties but by no means limited to that. Examples of Property Models
+provided by Thermo-Calc include Martensite and Pearlite formation in steel.
+
+The Property Model Framework uses standard Python 3 beginning with Thermo-Calc 2021a and can access all TC-Python
+functionality and any Python package including `numpy`, `scipy`, `tensorflow`, etc. The actual calculation code is
+nearly identical, regardless if called from within a Property Model or from standard Python.
+
+This is a complete rewrite of the original version of the framework that was based on Jython 2.7 and therefore had
+a number of limitations. **Property models written with the old Property Model Framework before Thermo-Calc 2021a are
+not compatible with the new framework**. However, the migration should be relatively easy because the syntax was changed
+as little as possible.
+
+Property models vs. TC-Python
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The main difference between a *Property Model* and regular *TC-Python code* is that a Property Model is directly
+integrated into the UI of Thermo-Calc via a plugin architecture while TC-Python code can only be accessed by programs
+and scripts written in Python.
+
+The user should develop a Property Model if the functionality needs to be available from the Thermo-Calc UI, especially
+if it should be applied by other users not familiar to programming languages. Otherwise it is preferable to implement
+the functionality directly in a TC-Python program. If required, Property Models can as well be accessed from within
+TC-Python.
+
+
+Architecture
+~~~~~~~~~~~~
+
+Every Property Model needs to contain a class that implements the interface
+:class:`tc_python.propertymodel_sdk.PropertyModel`. There are naming conventions that must to be fulfilled: the file
+name is required to follow the the pattern :file:`XYPythonModel.py` and the name of the class needs to match this.
+Additionally the file must be placed in a directory named :file:`XYPython` within the Property Model directory. The
+content of the placeholder :file:`XY` can be freely chosen.
+
+A simple complete Property Model, saved in a file called :file:`SimplePythonModel.py` in the directory
+:file:`SimplePython`, looks like this:
+
+.. code-block:: python
+
+    from tc_python import *
+
+
+    class SimplePythonModel(PropertyModel):
+        def provide_model_category(self) -> List[str]:
+            return ["Demo"]
+
+        def provide_model_name(self) -> str:
+            return "My Demo Model"
+
+        def provide_model_description(self) -> str:
+            return "This is a demo model."
+
+        def provide_ui_panel_components(self) -> List[UIComponent]:
+            return [UIBooleanComponent("CHECKBOX", "Should this be checked?", "Simple checkbox", setting=False)]
+
+        def provide_calculation_result_quantities(self) -> List[ResultQuantity]:
+            return [create_general_quantity("RESULT", "A result")]
+
+        def evaluate_model(self, context: CalculationContext):
+            if context.get_ui_boolean_value("CHECKBOX"):
+                self.logger.info("The checkbox is checked")
+
+            # obtain the entered values from the GUI
+            composition_as_mass_fraction = context.get_mass_fractions()
+            temp_in_k = context.get_temperature()
+            calc = context.system.with_single_equilibrium_calculation()
+            # continue with a TC-Python calculation now ...
+
+            context.set_result_quantity_value("RESULT", 5.0)  # the value would normally have been calculated
+
+The basic building blocks of the Property Model API are:
+
+    - :class:`tc_python.propertymodel_sdk.ResultQuantity`: Defines a calculation result of a Property Model that will be
+      provided to the UI after each model evaluation
+
+    - :class:`tc_python.propertymodel_sdk.CalculationContext`: Provides access to the data from the UI (such as the
+      entered composition and temperature) and to the current TC-Python system object which is the entrypoint for using
+      TC-Python from within the Property Model
+
+    - :class:`tc_python.propertymodel_sdk.UIComponent`: These are the UI-components that create the user interface of
+      the Property Model within the model panel of the Thermo-Calc application UI. Different components are available
+      (for example checkboxes, text fields and lists).
+
+
+.. _property-model-directory-chapter:
+
+Property Model directory
+~~~~~~~~~~~~~~~~~~~~~~~~
+The Property Model `py`-files need to be located within subdirectories of the *Property Model directory*, e.g.
+:file:`PropertyModels/XYPython/XYPythonModel.py`. The default Property Model directory can be changed in the
+menu `Tools` -> `Options` in the graphical user interface.
+
++-----------+-----------------------------------------------------------------------------------------------+
+| Operating | Default Property Model directory                                                              |
+| system    |                                                                                               |
++===========+===============================================================================================+
+| Windows   | :file:`C:\\Program Files\\Thermo-Calc\\2023b\\PropertyModels`                                 |
++-----------+-----------------------------------------------------------------------------------------------+
+| Linux     | :file:`/home/UserName/Thermo-Calc/2023b/PropertyModels`                                       |
+|           | or: :file:`/opt/Thermo-Calc/2023b/PropertyModels`                                             |
++-----------+-----------------------------------------------------------------------------------------------+
+| MacOS     | :file:`/Applications/Thermo-Calc-2023b.app/Contents/Resources/PropertyModels`                 |
++-----------+-----------------------------------------------------------------------------------------------+
+
+.. note::
+    The Property Model directory location has been changed in the release 2023b.

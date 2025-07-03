@@ -1,0 +1,22 @@
+! Tour Page
+*mt_se_discipl*title: Tour - Selecting an Engineering Discipline
+*mt_se_discipl*next: mt_se_anltype
+*mt_se_discipl*previous: mt_se_toc1
+*mt_se_discipl*htmlhelp: docu $euidlArray(language) mechhelp mt_se_discipl.html
+*mt_se_discipl*home: mt_mt_home
+
+! Tour Page Components
+*mt_se_discipl*tourlist: heading onestep seenext
+
+!
+! Component Definition
+!
+*mt_se_discipl*headingText: "Selecting an Engineering Discipline\n" HEADING2
+
+*mt_se_discipl*onestepText: "Click the Engineering Discipline \
+drop down list box and choose a discipline \
+(structural or thermal)." {BODY1} 
+
+*mt_se_discipl*seenextText: "\n\nClick Next to learn how to select an  \
+analysis type.\n" {BODY1}
+

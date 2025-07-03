@@ -1,0 +1,65 @@
+! Tour Page
+*mt_se_propert*title: Tour - Setting Options and Preferences
+*mt_se_propert*next: mt_mo_toc1
+*mt_se_propert*previous: mt_se_spetitl
+*mt_se_propert*htmlhelp: docu $euidlArray(language) mechhelp mt_se_propert.html
+*mt_se_propert*home: mt_mt_home
+
+! Tour Page Components
+*mt_se_propert*tourlist: heading overview step1 step1a step2 step3 step4 step5 \
+step6 step7 step8 seenext
+
+!
+! Component Definition
+!
+*mt_se_propert*headingText: "Setting Options and Preferences\n" HEADING2
+
+*mt_se_propert*overviewText: "Toolbar properties are options \
+and preferences that affect \
+the behavior of the Mechanical Toolbar.  To modify these \
+properties, follow these steps:\n" {BODY1}
+
+*mt_se_propert*step1Text: "1.\t" {STEP1 step1} "To access the Toolbar \
+Properties dialog box, click the Toolbar Properties \
+button." {STEP1 step1} 
+
+*mt_se_propert*step1aText: "\n\tThree tabs appear on the Toolbar \
+Properties dialog box:  General, User Info, and About. \
+Use the General tab to change the start-up configuration, define \
+a system calculator or system editor, or enable PostScript \
+printing.  Use the User Info tab to provide \
+user information.  Use the About tab to verify which version of \
+the Mechanical Toolbar you are using." {STEP1 step1}
+
+*mt_se_propert*step2Text: "\n2.\t" {STEP1 step2} "To change the start-up \
+configuration, click the General tab.  Then click the check box \
+that corresponds to the desired configuration \
+option." {STEP1 step2} 
+
+*mt_se_propert*step3Text: "\n3.\t" {STEP1 step3} "To define a system \
+calculator, type the name of the calculator in the Calculator \
+text entry box." {STEP1 step3} 
+
+*mt_se_propert*step4Text: "\n4.\t" {STEP1 step4} "To define a system \
+editor, type the name of the editor in \
+the Editor text entry box." {STEP1 step4} 
+
+*mt_se_propert*step5Text: "\n5.\t" {STEP1 step5} "If you are running \
+on Windows NT and you are using a PostScript-enabled printer, check \
+the Enable PS print box to allow better quality printing." {STEP1 step5} 
+
+*mt_se_propert*step6Text: "\n6.\t" {STEP1 step6} "To enter user information \
+for this copy of the Mechanical Toolbar, click the User Info tab. \
+Type your name, company name, and company address into the corresponding \
+text entry boxes." {STEP1 step6} 
+
+*mt_se_propert*step7Text: "\n7.\t" {STEP1 step7} "To verify which version of \
+the Mechanical Toolbar you are using, click the About tab." {STEP1 step7} \
+
+*mt_se_propert*step8Text: "\n8.\t" {STEP1 step8} "To put your changes into \
+effect and exit the Toolbar Properties dialog box, \
+click Ok.  To put any Start Configuration options into effect, you must \
+also reinitialize the Mechanical Toolbar." {STEP1 step8} 
+
+*mt_se_propert*seenextText: "\n\nClick Next to learn how to import and \
+define the model.\n" {BODY1}

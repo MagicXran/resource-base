@@ -1,0 +1,7 @@
+Package "batch_equilibrium"
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. automodule:: +tc_toolbox.+batch_equilibrium
+    :members:
+    :exclude-members: backend
+    :undoc-members:

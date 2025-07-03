@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module “server” &mdash; TC-Python 2023b documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Module “quantity_factory”" href="quantity_factory.html" />
+    <link rel="prev" title="Module “entities”" href="entities.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            TC-Python
+          </a>
+              <div class="version">
+                2023b
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment_variables.html">Mac OS: Setting Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../best_practices.html">Best Practices</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api_reference.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../calculations.html">Calculations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system.html">Module “system”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entities.html">Module “entities”</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Module “server”</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.server.LoggingPolicy"><code class="docutils literal notranslate"><span class="pre">LoggingPolicy</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.server.LoggingPolicy.FILE"><code class="docutils literal notranslate"><span class="pre">LoggingPolicy.FILE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.server.LoggingPolicy.NONE"><code class="docutils literal notranslate"><span class="pre">LoggingPolicy.NONE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.server.LoggingPolicy.SCREEN"><code class="docutils literal notranslate"><span class="pre">LoggingPolicy.SCREEN</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.server.MetallurgyCalculations"><code class="docutils literal notranslate"><span class="pre">MetallurgyCalculations</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.server.MetallurgyCalculations.with_adiabatic_equilibrium_calculation"><code class="docutils literal notranslate"><span class="pre">MetallurgyCalculations.with_adiabatic_equilibrium_calculation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.server.MetallurgyCalculations.with_adiabatic_process_calculation"><code class="docutils literal notranslate"><span class="pre">MetallurgyCalculations.with_adiabatic_process_calculation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.server.MetallurgyCalculations.with_isothermal_equilibrium_calculation"><code class="docutils literal notranslate"><span class="pre">MetallurgyCalculations.with_isothermal_equilibrium_calculation()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.server.ResultLoader"><code class="docutils literal notranslate"><span class="pre">ResultLoader</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.server.ResultLoader.diffusion"><code class="docutils literal notranslate"><span class="pre">ResultLoader.diffusion()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.server.ResultLoader.phase_diagram"><code class="docutils literal notranslate"><span class="pre">ResultLoader.phase_diagram()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.server.ResultLoader.precipitation_TTT_or_CCT"><code class="docutils literal notranslate"><span class="pre">ResultLoader.precipitation_TTT_or_CCT()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.server.ResultLoader.precipitation_single"><code class="docutils literal notranslate"><span class="pre">ResultLoader.precipitation_single()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.server.ResultLoader.property_diagram"><code class="docutils literal notranslate"><span class="pre">ResultLoader.property_diagram()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.server.ResultLoader.property_model"><code class="docutils literal notranslate"><span class="pre">ResultLoader.property_model()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.server.ResultLoader.scheil"><code class="docutils literal notranslate"><span class="pre">ResultLoader.scheil()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.server.ResultLoader.single_equilibrium"><code class="docutils literal notranslate"><span class="pre">ResultLoader.single_equilibrium()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.server.SetUp"><code class="docutils literal notranslate"><span class="pre">SetUp</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.server.SetUp.disable_caching"><code class="docutils literal notranslate"><span class="pre">SetUp.disable_caching()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.server.SetUp.get_database_info"><code class="docutils literal notranslate"><span class="pre">SetUp.get_database_info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.server.SetUp.get_database_path_on_disk"><code class="docutils literal notranslate"><span class="pre">SetUp.get_database_path_on_disk()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.server.SetUp.get_databases"><code class="docutils literal notranslate"><span class="pre">SetUp.get_databases()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.server.SetUp.get_property_models"><code class="docutils literal notranslate"><span class="pre">SetUp.get_property_models()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.server.SetUp.load_result_from_disk"><code class="docutils literal notranslate"><span class="pre">SetUp.load_result_from_disk()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.server.SetUp.select_database_and_elements"><code class="docutils literal notranslate"><span class="pre">SetUp.select_database_and_elements()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.server.SetUp.select_thermodynamic_and_kinetic_databases_with_elements"><code class="docutils literal notranslate"><span class="pre">SetUp.select_thermodynamic_and_kinetic_databases_with_elements()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.server.SetUp.select_user_database_and_elements"><code class="docutils literal notranslate"><span class="pre">SetUp.select_user_database_and_elements()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.server.SetUp.set_cache_folder"><code class="docutils literal notranslate"><span class="pre">SetUp.set_cache_folder()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.server.SetUp.set_ges_version"><code class="docutils literal notranslate"><span class="pre">SetUp.set_ges_version()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.server.SetUp.set_log_level_to_debug"><code class="docutils literal notranslate"><span class="pre">SetUp.set_log_level_to_debug()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.server.SetUp.set_log_level_to_info"><code class="docutils literal notranslate"><span class="pre">SetUp.set_log_level_to_info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tc_python.server.SetUp.with_metallurgy"><code class="docutils literal notranslate"><span class="pre">SetUp.with_metallurgy()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.server.TCPython"><code class="docutils literal notranslate"><span class="pre">TCPython</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.server.start_api_server"><code class="docutils literal notranslate"><span class="pre">start_api_server()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.server.start_matlab_server"><code class="docutils literal notranslate"><span class="pre">start_matlab_server()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc_python.server.stop_api_server"><code class="docutils literal notranslate"><span class="pre">stop_api_server()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="quantity_factory.html">Module “quantity_factory”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">Module “utils”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="propertymodel_sdk.html">Module “propertymodel_sdk”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html">Module “exceptions”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="abstract_base.html">Module “abstract_base”</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">TC-Python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api_reference.html">API Reference</a></li>
+      <li class="breadcrumb-item active">Module “server”</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-tc_python.server">
+<span id="module-server"></span><h1>Module “server”<a class="headerlink" href="#module-tc_python.server" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.server.LoggingPolicy">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.server.</span></span><span class="sig-name descname"><span class="pre">LoggingPolicy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.server.LoggingPolicy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>Logging policy that determines how the TC-Python logs are presented to the user.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.server.LoggingPolicy.FILE">
+<span class="sig-name descname"><span class="pre">FILE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#tc_python.server.LoggingPolicy.FILE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logging to a file.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.server.LoggingPolicy.NONE">
+<span class="sig-name descname"><span class="pre">NONE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#tc_python.server.LoggingPolicy.NONE" title="Permalink to this definition">¶</a></dt>
+<dd><p>No logging at all.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tc_python.server.LoggingPolicy.SCREEN">
+<span class="sig-name descname"><span class="pre">SCREEN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#tc_python.server.LoggingPolicy.SCREEN" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logging to the screen.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.server.MetallurgyCalculations">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.server.</span></span><span class="sig-name descname"><span class="pre">MetallurgyCalculations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metallurgy_calculations</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.server.MetallurgyCalculations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Provides access to the calculation objects for all Process Metallurgy calculations.</p>
+<p>These are specialised calculations for working with metallurgical processes. Both equilibrium calculations and
+kinetic process simulations (Effective Equilibrium Reaction Zone model) are available.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.server.MetallurgyCalculations.with_adiabatic_equilibrium_calculation">
+<span class="sig-name descname"><span class="pre">with_adiabatic_equilibrium_calculation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">database</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../calculation_modules/process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.ProcessDatabase" title="tc_python.process_metallurgy.base.ProcessDatabase"><span class="pre">ProcessDatabase</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../calculation_modules/process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.AdiabaticEquilibriumCalculation" title="tc_python.process_metallurgy.equilibrium.AdiabaticEquilibriumCalculation"><span class="pre">AdiabaticEquilibriumCalculation</span></a></span></span><a class="headerlink" href="#tc_python.server.MetallurgyCalculations.with_adiabatic_equilibrium_calculation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an adiabatic equilibrium calculation for Process Metallurgy.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>database</strong> – The thermodynamic database used in the calculation</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">AdiabaticEquilibriumCalculation</span></code> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.server.MetallurgyCalculations.with_adiabatic_process_calculation">
+<span class="sig-name descname"><span class="pre">with_adiabatic_process_calculation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">database</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../calculation_modules/process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.ProcessDatabase" title="tc_python.process_metallurgy.base.ProcessDatabase"><span class="pre">ProcessDatabase</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../calculation_modules/process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ProcessSimulationCalculation" title="tc_python.process_metallurgy.process.ProcessSimulationCalculation"><span class="pre">ProcessSimulationCalculation</span></a></span></span><a class="headerlink" href="#tc_python.server.MetallurgyCalculations.with_adiabatic_process_calculation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an adiabatic kinetic process simulation (EERZ, i.e. Effective Equilibrium Reaction Zone model).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>database</strong> – The thermodynamic database used in the calculation</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">ProcessSimulationCalculation</span></code> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.server.MetallurgyCalculations.with_isothermal_equilibrium_calculation">
+<span class="sig-name descname"><span class="pre">with_isothermal_equilibrium_calculation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">database</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../calculation_modules/process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.ProcessDatabase" title="tc_python.process_metallurgy.base.ProcessDatabase"><span class="pre">ProcessDatabase</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../calculation_modules/process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation" title="tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation"><span class="pre">IsoThermalEquilibriumCalculation</span></a></span></span><a class="headerlink" href="#tc_python.server.MetallurgyCalculations.with_isothermal_equilibrium_calculation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an isothermal equilibrium calculation for Process Metallurgy.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>database</strong> – The thermodynamic database used in the calculation</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">IsoThermalEquilibriumCalculation</span></code> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.server.ResultLoader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.server.</span></span><span class="sig-name descname"><span class="pre">ResultLoader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">result_loader</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.server.ResultLoader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Contains methods for loading results from previously done calculations.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.server.ResultLoader.diffusion">
+<span class="sig-name descname"><span class="pre">diffusion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../calculation_modules/diffusion.html#tc_python.diffusion.DiffusionCalculationResult" title="tc_python.diffusion.DiffusionCalculationResult"><span class="pre">DiffusionCalculationResult</span></a></span></span><a class="headerlink" href="#tc_python.server.ResultLoader.diffusion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a <code class="xref py py-class docutils literal notranslate"><span class="pre">DiffusionCalculationResult</span></code> from disc.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> – path to the folder where result was previously saved.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">DiffusionCalculationResult</span></code> object which later can be used to get specific values from the
+calculated result</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.server.ResultLoader.phase_diagram">
+<span class="sig-name descname"><span class="pre">phase_diagram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../calculation_modules/step_or_map_diagrams.html#tc_python.step_or_map_diagrams.PhaseDiagramResult" title="tc_python.step_or_map_diagrams.PhaseDiagramResult"><span class="pre">PhaseDiagramResult</span></a></span></span><a class="headerlink" href="#tc_python.server.ResultLoader.phase_diagram" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a <code class="xref py py-class docutils literal notranslate"><span class="pre">PhaseDiagramResult</span></code> from disc.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> – path to the folder where result was previously saved.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">PhaseDiagramResult</span></code> object which later can be used to get specific values from the
+calculated result</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.server.ResultLoader.precipitation_TTT_or_CCT">
+<span class="sig-name descname"><span class="pre">precipitation_TTT_or_CCT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../calculation_modules/precipitation.html#tc_python.precipitation.PrecipitationCalculationTTTorCCTResult" title="tc_python.precipitation.PrecipitationCalculationTTTorCCTResult"><span class="pre">PrecipitationCalculationTTTorCCTResult</span></a></span></span><a class="headerlink" href="#tc_python.server.ResultLoader.precipitation_TTT_or_CCT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a <code class="xref py py-class docutils literal notranslate"><span class="pre">PrecipitationCalculationTTTorCCTResult</span></code> from disc.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> – path to the folder where result was previously saved.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">PrecipitationCalculationTTTorCCTResult</span></code> object which later can be used to get specific values from the
+calculated result</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.server.ResultLoader.precipitation_single">
+<span class="sig-name descname"><span class="pre">precipitation_single</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../calculation_modules/precipitation.html#tc_python.precipitation.PrecipitationCalculationSingleResult" title="tc_python.precipitation.PrecipitationCalculationSingleResult"><span class="pre">PrecipitationCalculationSingleResult</span></a></span></span><a class="headerlink" href="#tc_python.server.ResultLoader.precipitation_single" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a <code class="xref py py-class docutils literal notranslate"><span class="pre">PrecipitationCalculationSingleResult</span></code> from disc.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> – path to the folder where result was previously saved.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">PrecipitationCalculationSingleResult</span></code> object which later can be used to get specific values from the
+calculated result</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.server.ResultLoader.property_diagram">
+<span class="sig-name descname"><span class="pre">property_diagram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../calculation_modules/step_or_map_diagrams.html#tc_python.step_or_map_diagrams.PropertyDiagramResult" title="tc_python.step_or_map_diagrams.PropertyDiagramResult"><span class="pre">PropertyDiagramResult</span></a></span></span><a class="headerlink" href="#tc_python.server.ResultLoader.property_diagram" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a <code class="xref py py-class docutils literal notranslate"><span class="pre">PropertyDiagramResult</span></code> from disc.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> – path to the folder where result was previously saved.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">PropertyDiagramResult</span></code> object which later can be used to get specific values from the
+calculated result</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.server.ResultLoader.property_model">
+<span class="sig-name descname"><span class="pre">property_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../calculation_modules/propertymodel.html#tc_python.propertymodel.PropertyModelResult" title="tc_python.propertymodel.PropertyModelResult"><span class="pre">PropertyModelResult</span></a></span></span><a class="headerlink" href="#tc_python.server.ResultLoader.property_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a <code class="xref py py-class docutils literal notranslate"><span class="pre">PropertyModelResult</span></code> from disc.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> – path to the folder where result was previously saved.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">PropertyModelResult</span></code> object which later can be used to get specific values from the
+calculated result</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.server.ResultLoader.scheil">
+<span class="sig-name descname"><span class="pre">scheil</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../calculation_modules/scheil.html#tc_python.scheil.ScheilCalculationResult" title="tc_python.scheil.ScheilCalculationResult"><span class="pre">ScheilCalculationResult</span></a></span></span><a class="headerlink" href="#tc_python.server.ResultLoader.scheil" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a <code class="xref py py-class docutils literal notranslate"><span class="pre">ScheilCalculationResult</span></code> from disc.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> – path to the folder where result was previously saved.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">ScheilCalculationResult</span></code> object which later can be used to get specific values from the
+calculated result</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.server.ResultLoader.single_equilibrium">
+<span class="sig-name descname"><span class="pre">single_equilibrium</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../calculation_modules/single_equilibrium.html#tc_python.single_equilibrium.SingleEquilibriumResult" title="tc_python.single_equilibrium.SingleEquilibriumResult"><span class="pre">SingleEquilibriumResult</span></a></span></span><a class="headerlink" href="#tc_python.server.ResultLoader.single_equilibrium" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a <code class="xref py py-class docutils literal notranslate"><span class="pre">SingleEquilibriumResult</span></code> from disc.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> – path to the folder where result was previously saved.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">SingleEquilibriumResult</span></code> object which later can be used to get specific values from the
+calculated result</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.server.SetUp">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.server.</span></span><span class="sig-name descname"><span class="pre">SetUp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">debug_logging</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.server.SetUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Starting point for all calculations.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This class exposes methods that have no precondition, it is used for choosing databases and elements.</p>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.server.SetUp.disable_caching">
+<span class="sig-name descname"><span class="pre">disable_caching</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.server.SetUp.disable_caching" title="Permalink to this definition">¶</a></dt>
+<dd><p>A previously set cache folder is no longer used.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Within the session, caching is activated and used through the default temporary directory.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This <cite>SetUp</cite> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.server.SetUp.get_database_info">
+<span class="sig-name descname"><span class="pre">get_database_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">database_short_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#tc_python.server.SetUp.get_database_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtains the short information available for the specified database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>database_short_name</strong> – The name of the database (i.e. “FEDEMO”, …)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The short information about the database</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.server.SetUp.get_database_path_on_disk">
+<span class="sig-name descname"><span class="pre">get_database_path_on_disk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">database_short_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#tc_python.server.SetUp.get_database_path_on_disk" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtains the path to the database file on disk. <cite>TCPATH</cite> is a placeholder for the root path of the used
+Thermo-Calc installation.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Encrypted databases (<cite>*.TDC</cite>) cannot be edited.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>database_short_name</strong> – The name of the database (i.e. “FEDEMO”, …)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The path to the database on disk</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.server.SetUp.get_databases">
+<span class="sig-name descname"><span class="pre">get_databases</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.server.SetUp.get_databases" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtains the short names of all databases available in the used Thermo-Calc installation.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Only databases with a valid license are listed.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List of the available databases</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.server.SetUp.get_property_models">
+<span class="sig-name descname"><span class="pre">get_property_models</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_to_models</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tc_python.server.SetUp.get_property_models" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lists the names of all Property Models in the specified directory.</p>
+<p>If the directory is not specified, the Property Model folder used by the normal Thermo-Calc application is used.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path_to_models</strong> – The path where the Property Models are installed. If no value is entered, the Property
+Model folder used by the normal Thermo-Calc application is used.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Set containing all Property Model names</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.server.SetUp.load_result_from_disk">
+<span class="sig-name descname"><span class="pre">load_result_from_disk</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#tc_python.server.ResultLoader" title="tc_python.server.ResultLoader"><span class="pre">ResultLoader</span></a></span></span><a class="headerlink" href="#tc_python.server.SetUp.load_result_from_disk" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a previously calculated result from disk.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This <strong>only</strong> works for results created by calling one of the <code class="xref py py-func docutils literal notranslate"><span class="pre">save_result()</span></code> methods on a <cite>Result</cite>
+class created from a calculation.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new <a class="reference internal" href="#tc_python.server.ResultLoader" title="tc_python.server.ResultLoader"><code class="xref py py-class docutils literal notranslate"><span class="pre">ResultLoader</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.server.SetUp.select_database_and_elements">
+<span class="sig-name descname"><span class="pre">select_database_and_elements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">database_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_of_elements</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="system.html#tc_python.system.SystemBuilder" title="tc_python.system.SystemBuilder"><span class="pre">SystemBuilder</span></a></span></span><a class="headerlink" href="#tc_python.server.SetUp.select_database_and_elements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects a first thermodynamic or kinetic database and selects the elements in it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>database_name</strong> – The name of the database, for example “FEDEMO”</p></li>
+<li><p><strong>list_of_elements</strong> – The list of the selected elements in that database, for example [“Fe”, “C”]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">SystemBuilder</span></code> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.server.SetUp.select_thermodynamic_and_kinetic_databases_with_elements">
+<span class="sig-name descname"><span class="pre">select_thermodynamic_and_kinetic_databases_with_elements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">thermodynamic_db_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kinetic_db_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_of_elements</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="system.html#tc_python.system.MultiDatabaseSystemBuilder" title="tc_python.system.MultiDatabaseSystemBuilder"><span class="pre">MultiDatabaseSystemBuilder</span></a></span></span><a class="headerlink" href="#tc_python.server.SetUp.select_thermodynamic_and_kinetic_databases_with_elements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the thermodynamic and kinetic database at once, guarantees that the databases are added in the correct
+order. Further rejection or selection of phases applies to both databases.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>thermodynamic_db_name</strong> – The thermodynamic database name, for example “FEDEMO”</p></li>
+<li><p><strong>kinetic_db_name</strong> – The kinetic database name, for example “MFEDEMO”</p></li>
+<li><p><strong>list_of_elements</strong> – The list of the selected elements in that database, for example [“Fe”, “C”]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">MultiDatabaseSystemBuilder</span></code> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.server.SetUp.select_user_database_and_elements">
+<span class="sig-name descname"><span class="pre">select_user_database_and_elements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_to_user_database</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_of_elements</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="system.html#tc_python.system.SystemBuilder" title="tc_python.system.SystemBuilder"><span class="pre">SystemBuilder</span></a></span></span><a class="headerlink" href="#tc_python.server.SetUp.select_user_database_and_elements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects a user-defined database and selects the elements in it.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>By using a r-literal, it is possible to use slashes on all platforms, also on Windows: <cite>select_user_database_and_elements(r”my path/user_db.tdb”, [“Fe”, “Cr”]])</cite></p>
+<p>Otherwise it is required to use <strong>double</strong> back-slashes on Windows as separator.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>On Linux and Mac the path is case-sensitive, also the file ending.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path_to_user_database</strong> – The path to the database file (“database”.TDB), defaults to the current working directory.
+Only filename is required if the database is located in the same folder as the
+script.</p></li>
+<li><p><strong>list_of_elements</strong> – The list of the selected elements in that database, for example [“Fe”, “C”]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">SystemBuilder</span></code> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.server.SetUp.set_cache_folder">
+<span class="sig-name descname"><span class="pre">set_cache_folder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precision_for_floats</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">12</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.server.SetUp.set_cache_folder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets a folder where results from calculations and state of systems are saved.
+If at any time a calculation is run which has the exact same setting as a previous, the calculation is not
+re-run. The result is instead loaded from this folder.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The same folder can be used in several scripts, and it can even be shared between different users.
+It can be a network folder.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> – path to the folder where results should be stored. It can be relative or absolute.</p></li>
+<li><p><strong>precision_for_floats</strong> – The number of significant figures used when comparing if the calculation has the same setting as a previous.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <cite>SetUp</cite> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.server.SetUp.set_ges_version">
+<span class="sig-name descname"><span class="pre">set_ges_version</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">6</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.server.SetUp.set_ges_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Setting the version of the Gibbs Energy System (GES).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>version</strong> – The GES-version (currently version 5 or 6)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <cite>SetUp</cite> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.server.SetUp.set_log_level_to_debug">
+<span class="sig-name descname"><span class="pre">set_log_level_to_debug</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.server.SetUp.set_log_level_to_debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets log level to DEBUG</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This <cite>SetUp</cite> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.server.SetUp.set_log_level_to_info">
+<span class="sig-name descname"><span class="pre">set_log_level_to_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.server.SetUp.set_log_level_to_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets log level to INFO</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This <cite>SetUp</cite> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tc_python.server.SetUp.with_metallurgy">
+<span class="sig-name descname"><span class="pre">with_metallurgy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#tc_python.server.MetallurgyCalculations" title="tc_python.server.MetallurgyCalculations"><span class="pre">MetallurgyCalculations</span></a></span></span><a class="headerlink" href="#tc_python.server.SetUp.with_metallurgy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides access to the calculation objects for all Process Metallurgy calculations.</p>
+<p>These are specialised calculations for working with metallurgical processes. Both equilibrium calculations and
+kinetic process simulations (Effective Equilibrium Reaction Zone model) are available.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tc_python.server.TCPython">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tc_python.server.</span></span><span class="sig-name descname"><span class="pre">TCPython</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logging_policy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">LoggingPolicy.SCREEN</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug_logging</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">do_throw_on_backend_hard_crash</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port_number</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.server.TCPython" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Starting point of the API.
+Typical syntax:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">TCPython</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+    <span class="n">session</span><span class="o">.</span><span class="n">select_database_and_elements</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Each usage of <cite>with TCPython()</cite> causes significant overhead (starting a new process, stopping the old one,
+cleaning up the temporary disk space). Usually it is recommendable to call <cite>with TCPython()</cite> only once for
+each process, even if working in a loop. Instead you should pass the session or calculator object into
+the loop and use them there.</p>
+<p>If necessary, beginning from version 2019a it is however possible to call <cite>with TCPython</cite> safely multiple
+times.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tc_python.server.start_api_server">
+<span class="sig-prename descclassname"><span class="pre">tc_python.server.</span></span><span class="sig-name descname"><span class="pre">start_api_server</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logging_policy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">LoggingPolicy.SCREEN</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_unittest</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">do_throw_on_backend_hard_crash</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port_number</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.server.start_api_server" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts a process of the API server and sets up the socket communication with it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>logging_policy</strong> – Determines if the TC-Python log output is sent to the screen (<cite>LoggingPolicy.SCREEN</cite>),
+to file (<cite>LoggingPolicy.FILE</cite>) or nothing is logged at all (<cite>LoggingPolicy.NONE</cite>)
+<strong>Default</strong>: <cite>LoggingPolicy.SCREEN</cite>. Note that the log-handlers can also be adapted through
+the <cite>tc_python.LOGGER</cite> object at any time.</p></li>
+<li><p><strong>log_file</strong> – The log-file relative to the current path or absolute, only relevant if
+<cite>logging_policy=LoggingPolicy.FILE</cite>. Log-output will be appended.</p></li>
+<li><p><strong>debug_mode</strong> – If <cite>True</cite> it is tried to open a connection to an already running API-server. <strong>This is only used
+for debugging the API itself</strong>.</p></li>
+<li><p><strong>is_unittest</strong> – Should be True if called by a unit test, <strong>only to be used internally for development</strong>.</p></li>
+<li><p><strong>do_throw_on_backend_hard_crash</strong> – If <cite>True</cite> an <cite>UnrecoverableCalculationException</cite> will be thrown if the
+Java-backend crashes hard, if <cite>False</cite> the application will simply crash with
+a FORTRAN-stacktrace. <em>If `True` the exception can be caught outside of the
+`with`-clause and the application can continue, if `False` more information
+about the error is shown by the stacktrace.</em>.</p></li>
+<li><p><strong>port_number</strong> – The port number for the communication with the Java-backend server. <strong>This is not required
+to be changed by normal users.</strong></p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Most users should use <a class="reference internal" href="#tc_python.server.TCPython" title="tc_python.server.TCPython"><code class="xref py py-class docutils literal notranslate"><span class="pre">TCPython</span></code></a> using a with-statement for automatic management of the resources
+(network sockets and temporary files). If you anyway need to use that method, make sure to call
+<a class="reference internal" href="#tc_python.server.stop_api_server" title="tc_python.server.stop_api_server"><code class="xref py py-func docutils literal notranslate"><span class="pre">stop_api_server()</span></code></a> <strong>in any case using the try-finally-pattern</strong>.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tc_python.server.start_matlab_server">
+<span class="sig-prename descclassname"><span class="pre">tc_python.server.</span></span><span class="sig-name descname"><span class="pre">start_matlab_server</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logging_policy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">LoggingPolicy.SCREEN</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_unittest</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">do_throw_on_backend_hard_crash</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port_number</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.server.start_matlab_server" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tc_python.server.stop_api_server">
+<span class="sig-prename descclassname"><span class="pre">tc_python.server.</span></span><span class="sig-name descname"><span class="pre">stop_api_server</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gateway_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tc_python.server.stop_api_server" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clears all resources used by the session (i.e. shuts down the API server and deletes all temporary
+files). The disk usage of temporary files might be significant.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Call this method only if you used <a class="reference internal" href="#tc_python.server.start_api_server" title="tc_python.server.start_api_server"><code class="xref py py-func docutils literal notranslate"><span class="pre">start_api_server()</span></code></a> initially. <strong>It should never be called when
+the API has been initialized in a with-statement</strong> using <a class="reference internal" href="#tc_python.server.TCPython" title="tc_python.server.TCPython"><code class="xref py py-class docutils literal notranslate"><span class="pre">TCPython</span></code></a>.</p>
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="entities.html" class="btn btn-neutral float-left" title="Module “entities”" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="quantity_factory.html" class="btn btn-neutral float-right" title="Module “quantity_factory”" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Foundation of Computational Thermodynamics, Stockholm, Sweden.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

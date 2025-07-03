@@ -1,0 +1,7 @@
+Package "propertymodel"
+~~~~~~~~~~~~~~~~~~~~~~~
+
+.. automodule:: +tc_toolbox.+propertymodel
+    :members:
+    :exclude-members: backend
+    :undoc-members:

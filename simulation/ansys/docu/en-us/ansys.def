@@ -1,0 +1,67 @@
+1
+{{ 	}}
+
+2
+{{
+}}
+
+10
+{{Information}}
+
+11
+{{Note}}
+
+12
+{{Warning}}
+
+
+13
+{{Error}}
+
+14
+{{Fatal Error}}
+
+15
+{{Close}}
+
+16
+{{Proceed}}
+
+21
+{{*** NOTE ***                            CP=%C:1   TIME= %C:2}}
+
+22
+{{*** NOTE ***      SUPPRESSED MESSAGE    CP=%C:1   TIME= %C:2}}
+
+23
+{{*** WARNING ***                         CP=%C:1   TIME= %C:2}}
+
+24
+{{*** WARNING ***   SUPPRESSED MESSAGE    CP=%C:1   TIME= %C:2}}
+
+25
+{{*** ERROR ***                           CP=%C:1   TIME= %C:2}}
+
+26
+{{*** ERROR ***     SUPPRESSED MESSAGE    CP=%C:1   TIME= %C:2}}
+
+27
+{{*** FATAL ***                           CP=%C:1   TIME= %C:2}}
+
+28
+{{*** FATAL ***     SUPPRESSED MESSAGE    CP=%C:1   TIME= %C:2}}
+
+4
+{{Number of displayed messages exceeds user specified maximum of %I:1 %/ Use the /NERR command to increase the number of messages %/ ANSYS run terminated by this error }}
+
+5
+{{Error messages discontinued after %I:1 messages were displayed. %/ More may exist. See ( %C:2 ) for suppressed messages.}}
+ 
+ 
+6
+{{The above error is non-recoverable by ANSYS %/ ANSYS run terminated by the indicated error %/ Current data base saved if possible}}
+
+
+7
+{{Please send your data to your ANSYS Technical Support Provider}}
+

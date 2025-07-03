@@ -1,0 +1,76 @@
+.. |reg| replace:: :sup:`®`
+.. |TM| replace:: :sup:`TM`
+
+Troubleshooting
+===============
+
+This section provides an FAQ for common problems that occur when using the TC-Toolbox for MATLAB\ |reg|.
+
+
+Diagnostics Script
+------------------
+
+If you have problems running TC-Toolbox, run the diagnostics script below.
+
+.. code:: matlab
+
+    %{
+        Run this script when troubleshooting TC-Toolbox
+
+        It is important to run this script EXACTLY the same way as you run your MATLAB script
+
+    %}
+
+    clc
+
+    toolbox_version = "2023b";
+
+
+    disp("Testing TC-Toolbox toolbox_version: " + toolbox_version)
+    disp('Please make sure that the variable "toolbox_version" above, matches the release that you want to test, if not change it and re-run this script.')
+
+    % below this line, nothing needs to be manually updated.
+
+    [matlab_version, matlab_release_data] = version;
+    fprintf("\n")
+    disp("MATLAB version: " + matlab_version)
+    fprintf("\n")
+
+
+    tc_env_variable = 'TC' + extractBetween(toolbox_version, 3, 5).upper() + '_HOME';
+    if isempty(getenv(tc_env_variable))
+        fprintf(2, 'No Thermo-calc environment variable for ' + toolbox_version + ' was found. (' + tc_env_variable + ')\n')
+    else
+        disp(getenv(tc_env_variable))
+    end
+    fprintf("\n")
+
+    disp('Url of license server: (if license server is NO-NET, you need a local license file)')
+    if isempty(getenv("LSHOST"))
+        disp('No Thermo-calc license server url was found. (LSHOST)')
+    else
+        disp(getenv("LSHOST"))
+    end
+    fprintf("\n")
+
+    disp('Path to local license file: (only necessary if not using license server)')
+    if isempty(getenv("LSERVRC"))
+        disp('No path to local license file was found. (LSERVRC)')
+    else
+        disp(getenv("LSERVRC"))
+    end
+    fprintf("\n")
+
+    try
+        session = tc_toolbox.TCToolbox();
+    catch e
+        fprintf(2,'TC-Toolbox not properly installed !!!\n%s\n', e.message);
+    end
+
+    fprintf("\n")
+    disp('Lists the databases: (should be a complete list of the installed databases that you have license for or do not require license)')
+    disp(transpose(session.get_databases()))
+
+    fprintf(1, 'Make sure no error messages were printed !\n\n')
+
+

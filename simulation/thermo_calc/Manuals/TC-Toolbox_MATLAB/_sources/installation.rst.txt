@@ -1,0 +1,99 @@
+.. DO ONLY EDIT THE TEMPLATE FILE (*.template.rst) AND NOT THE *.rst FILE, OTHERWISE YOUR CHANGES WILL BE LOST DURING THE DOCUMENTATION GENERATION PROCESS!
+.. THIS IS NECESSARY TO INJECT THE RELEASE VERSION NUMBER INTO THE DOCUMENTATION.
+.. --------------------------------------------------------------------------------------------------------------------------------------------------------
+
+.. |reg| replace:: :sup:`®`
+.. |TM| replace:: :sup:`TM`
+
+.. _installation-chapter:
+
+Quick Installation Guide
+========================
+
+This guide helps you to get a working TC-Toolbox for MATLAB\ |reg| installation. It is only a short guideline,
+please refer to the **Thermo-Calc Installation Guides** for more details if required.
+
+The present documentation is also included in your installation as a PDF-file. In the Thermo-Calc menu, select
+**Help → Manuals Folder**. Then double-click to open the **Software Development Kits (SDKs)** folder.
+
+.. note::
+
+    A license is required to run TC-Toolbox for MATLAB\ |reg|.
+
+.. note::
+
+    TC-Toolbox for MATLAB\ |reg| is available for Windows.
+
+
+Installing TC-Toolbox for MATLAB\ |reg|
+---------------------------------------
+
+Automatic Installation of TC-Toolbox
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When the following conditions are met, Thermo-Calc automatically installs the TC-Toolbox for MATLAB\ |reg| component
+on your computer.
+
+1. MATLAB\ |reg| is already installed.
+2. There is only one Windows user on the computer where TC-Toolbox is being installed.
+
+    .. note::
+        Administrator privileges are needed when you start the Thermo-Calc installer.
+
+Then follow the regular installation instructions for Thermo-Calc, choosing whether you use a Standalone or Network
+installation.
+
+
+Manual Installation of TC-Toolbox
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The installation is not automatic if:
+
+    * There are multiple Windows users on the same machine, or
+    * The installer cannot find the directory path to the MATLAB\ |reg| installation.
+
+
+Multiple Windows Users on Same Machine
+""""""""""""""""""""""""""""""""""""""
+
+If there are multiple Windows users on the same machine, then the following manual steps are done at the end of
+the automatic installation.
+
+1. A message at the end of the Thermo-Calc installation process displays with instructions.
+2. An Explorer window automatically opens to this folder :file:`C:\\Users\\<user>\\Documents\\Thermo-Calc\\2023b\\SDK\\TC-Toolbox-MATLAB`.
+3. Double-click the :file:`InstallTCToolboxMATLAB.cmd` file to finalize the process. This briefly launches
+   MATLAB\ |reg| and installs TC-Toolbox.
+
+
+Installer Cannot Find the MATLAB\ |reg| Installation Directory
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+1. Start the version of MATLAB\ |reg| that you want to install TC-Toolbox in.
+2. Open and run the script :file:`C:\\Users\\<user>\\Documents\\Thermo-Calc\\2023b\\SDK\\TC-Toolbox-MATLAB\\setupTCToolbox.m`.
+
+
+For more information, se the more detailed
+instructions given in the **Thermo-Calc Installation Guides**.
+
+
+Check the Installation
+~~~~~~~~~~~~~~~~~~~~~~
+
+To check if the installation was successful start MATLAB\ |reg| and run, for example, the diagnostics script, which
+is located in the folder
+:file:`C:\\Users\\<user>\\Documents\\Thermo-Calc\\2023b\\SDK\\TC-Toolbox-MATLAB\\Examples\\Miscellaneous`.
+
+Alternatively open the **Add-Ons** menu (in the **HOME** tab) in MATLAB\ |reg| and choose **Manage Add-Ons**. If
+the toolbox is installed it will be included in this list.
+
+Uninstalling TC-Toolbox for MATLAB\ |reg|
+-----------------------------------------
+
+If you are logged in as a **user with administrator rights, and have Thermo-Calc installed for this user**, then the
+uninstallation is automatically done at the same time as a full Thermo-Calc uninstallation. Otherwise a manual step
+is required:
+
+.. note::
+    To uninstall the TC-Toolbox for MATLAB\ |reg| if it is not uninstalled by the Thermo-Calc uninstaller, start
+    MATLAB\ |reg| and select (in the **HOME** tab) **Manage Add-Ons** from the **Add-Ons** menu. Right-click
+    TC-Toolbox and choose **Uninstall**.

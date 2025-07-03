@@ -1,0 +1,7 @@
+Module "equilibrium"
+~~~~~~~~~~~~~~~~~~~~
+
+.. automodule:: tc_python.process_metallurgy.equilibrium
+    :members:
+    :undoc-members:
+    :show-inheritance:

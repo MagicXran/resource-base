@@ -1,0 +1,35 @@
+# Prometheus配置文件
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    monitor: 'freefem-monitor'
+
+scrape_configs:
+  # FreeFEM API指标
+  - job_name: 'freefem-api'
+    static_configs:
+      - targets: ['freefem-api:9090']
+    metrics_path: '/metrics'
+    scrape_interval: 10s
+
+  # Redis导出器
+  - job_name: 'redis'
+    static_configs:
+      - targets: ['redis:6379']
+
+  # 节点导出器（如果需要）
+  - job_name: 'node'
+    static_configs:
+      - targets: ['node-exporter:9100']
+
+# 告警规则（可选）
+rule_files:
+  # - 'alerts.yml'
+
+# Alertmanager配置（可选）
+# alerting:
+#   alertmanagers:
+#     - static_configs:
+#         - targets:
+#             - alertmanager:9093

@@ -1,0 +1,7 @@
+Module "abstract_base"
+----------------------
+
+.. automodule:: tc_python.abstract_base
+    :members:
+    :undoc-members:
+    :show-inheritance:

@@ -1,0 +1,93 @@
+! Tour Page
+*mt_lo_applyload*title: Tour - Applying Loads and Boundary Conditions
+*mt_lo_applyload*next: mt_lo_modsym
+*mt_lo_applyload*previous: mt_lo_seleload
+*mt_lo_applyload*htmlhelp: docu $euidlArray(language) mechhelp mt_lo_applyloads.html
+*mt_lo_applyload*home: mt_mt_home
+
+! Tour Page Components
+*mt_lo_applyload*tourlist: heading overview option1 option2 option3 option4 \
+option5 option6 option7 body
+!
+! Component Definition
+!
+! Note:
+!     Use \t to insert a tab into the text
+!     Use \n to insert a line feed into the text
+!     Use \i to insert an image into the text
+!     Use \ to continue a line within this file
+!
+!     The \ is a used to specify that special characters be taken literally.
+!     If using characters [, ], ", \, $ and perhaps others you must precede
+!     them with the \ (backslash) to use them.
+!
+!     You have the following options available for a component:
+!         Text          - The text to show for this component
+!         HyperlinkCall - The method to call when this component is clicked on
+!         Show          - The helpID of the buttcon to flash when choosing the
+!                         magnifing glass.  This puts the magnifing glass in.
+!         ImageList     - The list of images to place in the \i locations.
+!                         This is not needed for the Show item but you must
+!                         put the \i in the Text. NOT SUPPORTED YET
+
+! heading
+!
+*mt_lo_applyload*headingText: "Applying Types of Loads and Boundary Conditions\n" \
+HEADING2
+
+! overview
+!
+*mt_lo_applyload*overviewText: "For a Structural Static analysis, use \
+the individual load buttons to apply loads to or delete loads from the \
+model. \n" {BODY1}
+
+! option1
+!
+*mt_lo_applyload*option1Text: "\tClick the Constrain <entity> button to \
+apply constraints. \n" \
+{STEP1 option1} 
+
+
+! option2
+!
+*mt_lo_applyload*option2Text: "\tClick the Fixed <entity> button to fix \
+an entity. \n" \
+{STEP1 option2} 
+
+
+! option3
+!
+*mt_lo_applyload*option3Text: "\tClick the <entity> Force button to \
+apply a total force. \n" \
+{STEP1 option3} 
+
+! option4
+!
+*mt_lo_applyload*option4Text: "\tClick the <entity> Moment button \
+to apply moments. \n" \
+{STEP1 option4} 
+
+! option5
+!
+*mt_lo_applyload*option5Text: "\tClick the <entity> Displacement \
+button to apply displacements. \n" \
+{STEP1 option5} 
+
+! option6
+!
+*mt_lo_applyload*option6Text: "\tClick the <entity> Pressure button \
+to apply pressure. \n" \
+{STEP1 option6} 
+
+! option7
+!
+*mt_lo_applyload*option7Text: "\tClick the Body Load button to apply \
+body loads. \n" \
+{STEP1 option7}
+
+! body
+!
+*mt_lo_applyload*bodyText: "\nFor a Structural Modal analysis, click \
+only the Constrain <entity> or Fixed <entity> buttons.\n\nFor a Thermal \
+Steady-State analysis, apply loads by clicking on buttons associated \
+with temperature, heat flux, heat flow, or convection loads. \n" {BODY1}  

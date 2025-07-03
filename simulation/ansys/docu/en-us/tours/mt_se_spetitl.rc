@@ -1,0 +1,24 @@
+! Tour Page
+*mt_se_spetitl*title: Tour - Specifying a Title for Graphic Plots
+*mt_se_spetitl*next: mt_se_propert
+*mt_se_spetitl*previous: mt_se_unitsys
+*mt_se_spetitl*htmlhelp: docu $euidlArray(language) mechhelp mt_se_spetitl.html
+*mt_se_spetitl*home: mt_mt_home
+
+! Tour Page Components
+*mt_se_spetitl*tourlist: heading onestep seenext
+
+!
+! Component Definition
+!
+*mt_se_spetitl*headingText: "Specifying a Title for Graphics \
+and the Report\n" HEADING2
+
+*mt_se_spetitl*onestepText: "Click the Graphic Title text entry \
+box.  Delete the default title text (ANSYS Analysis), and type in \
+the desired title text." {BODY1} 
+
+*mt_se_spetitl*seenextText: "\n\nClick Next to learn how to set \
+options and preferences.\n" {BODY1}
+
+

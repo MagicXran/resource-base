@@ -1,0 +1,35 @@
+Using the ANS_ADMIN Utility
+
+When you launch the ANS_ADMIN utility, you will be able to choose from the following options:
+
+- Relink MAPDL
+- Uninstall (UNIX/Linux only)
+
+You can also access Help and About on the ANS_ADMIN utility or exit the ANS_ADMIN utility. 
+If certain options are grayed out, your account may not have the necessary system administrator privileges necessary to run those options, or the corresponding product may not be installed.
+
+Relink MAPDL
+
+The Relink MAPDL option allows you to run ANSCUSTOM, a procedure you run to include user programmable features in ANSYS products. The FORTRAN source files for subroutines that can be modified to include user programmable features are included on the installation media in the subdirectory \custom\user (Windows) or /customize/user (UNIX/Linux). If you modify any of these subroutines, run ANSCUSTOM to link your changes. Output from a user-linked version is indicated by the following message: 
+
+NOTE:  This MAPDL version was linked by Licensee.
+
+For more information on ANSCUSTOM and the user programmable features, see the ANSYS Guide to User-Programmable Features. The customization files are available only if you perform a custom installation and choose to install the customization tools. If the Customization Tools option was not installed during a custom installation, this option will be grayed out.
+
+Uninstall
+
+The Uninstall option (UNIX/Linux only) allows you to remove selected ANSYS, Inc. products from your system. To uninstall an ANSYS, Inc. product, run the following script from a command line:
+
+/ansys_inc/v222/.ans_uninstall222
+
+This option is especially useful if you have installed ANSYS for demonstration purposes and now need to remove it from the system.
+ 
+You will be asked to select the product(s) to be removed and verify that the product(s) should be uninstalled from this system. 
+
+If you proceed with this option, the contents of the following directories will be deleted, depending on which products you uninstall: 
+
+- Product directories under /ansys_inc/v222 (ansys, aisol, CFX, TurboGrid, icemcfd, etc.)
+- Common files directory (/ansys_inc/v222/commonfiles)
+
+Use caution when uninstalling some but not all ANSYS, Inc. products; because the products may have interdependencies, uninstalling one or more products could result in unpredictable behavior for the remaining products. If you encounter problems after uninstalling a product, we recommend that you re-install just the product(s) you want. Licensing data is not removed with this option; to remove the license manager, you must use the ANSLIC_ADMIN utility.
+

@@ -1,0 +1,25 @@
+! Tour Page
+*mt_se_unitsys*title: Tour - Selecting a Unit System
+*mt_se_unitsys*next: mt_se_spetitl
+*mt_se_unitsys*previous: mt_se_anltype
+*mt_se_unitsys*htmlhelp: docu $euidlArray(language) mechhelp mt_se_unitsys.html
+*mt_se_unitsys*home: mt_mt_home
+
+! Tour Page Components
+*mt_se_unitsys*tourlist: heading onestep onestepa seenext
+
+!
+! Component Definition
+!
+*mt_se_unitsys*headingText: "Selecting a Unit System\n" HEADING2
+
+*mt_se_unitsys*onestepText: "Click the Unit System drop down \
+list box and choose a unit system." {BODY1} 
+
+*mt_se_unitsys*onestepaText: "\n\nIf you select New Unit System \
+from the drop down, you will need to specify properties for the \
+system on the New Unit System dialog box.  Then click OK." {BODY1}
+
+*mt_se_unitsys*seenextText: "\n\nClick Next to learn how to specify \
+a title for graphic plots and the report.\n" {BODY1}
+

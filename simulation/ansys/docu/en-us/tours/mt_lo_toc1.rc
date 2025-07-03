@@ -1,0 +1,67 @@
+! Tour Page
+*mt_lo_toc1*title: Tour - Applying Loads and Boundary Conditions
+*mt_lo_toc1*next: mt_so_toc1
+*mt_lo_toc1*previous: mt_mo_toc1
+*mt_lo_toc1*htmlhelp: docu $euidlArray(language) mechhelp mt_lo_toc1.html
+*mt_lo_toc1*home: mt_mt_home
+
+! Tour Page Components
+*mt_lo_toc1*tourlist: heading overview step1 step2 step3 step4
+
+!
+! Component Definition
+!
+! Note:
+!     Use \t to insert a tab into the text
+!     Use \n to insert a line feed into the text
+!     Use \i to insert an image into the text
+!     Use \ to continue a line within this file
+!
+!     The \ is a used to specify that special characters be taken literally.
+!     If using characters [, ], ", \, $ and perhaps others you must precede
+!     them with the \ (backslash) to use them.
+!
+!     You have the following options available for a component:
+!         Text          - The text to show for this component
+!         HyperlinkCall - The method to call when this component is clicked on
+!         Show          - The helpID of the buttcon to flash when choosing the
+!                         magnifing glass.  This puts the magnifing glass in.
+!         ImageList     - The list of images to place in the \i locations.
+!                         This is not needed for the Show item but you must
+!                         put the \i in the Text. NOT SUPPORTED YET
+
+! heading
+!
+*mt_lo_toc1*headingText: "Applying Loads and Boundary Conditions\n" HEADING2
+
+! overview
+!
+*mt_lo_toc1*overviewText: "Use the Load tab to apply loads \
+and boundary conditions:\n" {BODY1}
+
+! step1
+!
+*mt_lo_toc1*step1Text: "1.\t" {STEP1} "Define an environment." \
+{STEP1 HYPERLINK step1} 
+*mt_lo_toc1*step1HyperlinkCall: showTour mt_lo_defenvir1
+
+
+! step2
+!
+*mt_lo_toc1*step2Text: "\n2.\t" {STEP1} "Select a load state." \
+{STEP1 HYPERLINK step2} 
+*mt_lo_toc1*step2HyperlinkCall: showTour mt_lo_seleload
+
+
+! step3
+!
+*mt_lo_toc1*step3Text: "\n3.\t" {STEP1} "Apply the loads \
+and boundary conditions." \
+{STEP1 HYPERLINK step3} 
+*mt_lo_toc1*step3HyperlinkCall: showTour mt_lo_applyload
+
+! step4
+!
+*mt_lo_toc1*step4Text: "\n4.\t" {STEP1} "Assign model symmetry." \
+{STEP1 HYPERLINK step4} 
+*mt_lo_toc1*step4HyperlinkCall: showTour mt_lo_modsym

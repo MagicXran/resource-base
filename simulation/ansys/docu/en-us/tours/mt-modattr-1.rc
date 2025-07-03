@@ -1,0 +1,66 @@
+! Tour Page
+*MT-ModAttr-1*title: Tour - Model Attributes
+*MT-ModAttr-1*next: MT-ModAttr-1
+*MT-ModAttr-1*previous: MT-ModTabTOC-1
+*MT-ModAttr-1*htmlhelp: html mechtool mt-0008.htm
+*MT-ModAttr-1*home: MT-ModTabTOC-1
+
+! Tour Page Components
+*MT-ModAttr-1*tourlist: heading overview step1 step1a step2 step3 step4 step5 \
+step6 step6a step7 seenext
+
+!
+! Component Definition
+!
+*MT-ModAttr-1*headingText: "Set Model Attributes\n" HEADING2
+
+*MT-ModAttr-1*overviewText: "To set your model attributes, follow \
+these steps:\n" {BODY1}
+
+*MT-ModAttr-1*step1Text: "1.\t" {STEP1 step1} "To select an element shape, \
+click on the Define Shape button and choose a shape from the drop \
+down option menu." {STEP1 step1} "\i" {STEP1}
+
+*MT-ModAttr-1*step1aText: "\n\tIf you selected the shell shape, \
+specify a name and thickness for the shell in the Shell Properties dialog \
+box and click OK." {STEP1 step1}
+*MT-ModAttr-1*step1Show: MT-mod-defiShape
+
+*MT-ModAttr-1*step2Text: "\n2.\t" {STEP1 step2} "To assign elements to \
+the model, click the Assign Shape button to bring up a picking dialog.  Using \
+the picking dialog, select those entities to which you want to assign \
+this shape." {STEP1 step2} "\i" {STEP1}
+*MT-ModAttr-1*step2Show: MT-mod-assiShape
+
+*MT-ModAttr-1*step3Text: "\n3.\t" {STEP1 step3} "To select a material, click \
+on the Define Material button and choose a material from the drop down \
+option menu." {STEP1 step3} "\i" {STEP1}
+*MT-ModAttr-1*step3Show: MT-mod-defiMater
+
+*MT-ModAttr-1*step4Text: "\n4.\t" {STEP1 step4} "To assign a material \
+to the model, click on the Assign Material button to bring up a picking \
+dialog.  Using the picking dialog, select those entities to which you want \
+to assign this material." {STEP1 step4} "\i" {STEP1}
+*MT-ModAttr-1*step4Show: MT-mod-assiMater
+
+*MT-ModAttr-1*step5Text: "\n5.\t" {STEP1 step5} "To set an overall element \
+size for meshing, click on the Mesh SmartSize button and move the slider \
+to the desired position.  The scale is from fine (left) to \
+coarse (right)." {STEP1 step5} "\i" {STEP1}
+*MT-ModAttr-1*step5Show: MT-mod-meshSmart
+
+*MT-ModAttr-1*step6Text: "\n6.\t" {STEP1 step6} "To mesh the model, \
+click on the Mesh Model button to bring up a picking dialog.  Using the \
+picking dialog, select those entities that you want to mesh." {STEP1 step6} \
+"\i" {STEP1}
+
+*MT-ModAttr-1*step6aText: "\n\tIf you do not mesh now, meshing will occur \
+automatically when you solve the model." {STEP1 step6}
+*MT-ModAttr-1*step6Show: MT-mod-meshModel
+
+*MT-ModAttr-1*step7Text: "\n7.\t" {STEP1 step7} "To specify advanced mesh \
+settings (such as mesh refinement level), click on the \
+MeshTool button." {STEP1 step7} "\i" {STEP1}
+*MT-ModAttr-1*step7Show: MT-mod-meshTool 
+
+*MT-ModAttr-1*seenextText: "\n\nClick Next to learn how to apply loads.\n" {BODY1}

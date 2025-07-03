@@ -1,0 +1,7 @@
+Package "single_equilibrium"
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. automodule:: +tc_toolbox.+single_equilibrium
+    :members:
+    :exclude-members: backend
+    :undoc-members:

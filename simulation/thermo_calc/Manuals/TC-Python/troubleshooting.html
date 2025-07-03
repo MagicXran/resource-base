@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Troubleshooting &mdash; TC-Python 2023b documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Module “abstract_base”" href="high_level_modules/abstract_base.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            TC-Python
+          </a>
+              <div class="version">
+                2023b
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="environment_variables.html">Mac OS: Setting Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="best_practices.html">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference.html">API Reference</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#diagnostics-script">Diagnostics script</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#no-module-named-tc-python-error-on-first-usage">“No module named tc_python” error on first usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pip-install-fails-with-failed-to-establish-a-new-network-connection-or-similar">“pip install” fails with “Failed to establish a new network connection” or similar</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">TC-Python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Troubleshooting</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="troubleshooting">
+<h1>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this heading">¶</a></h1>
+<p>This section provides an FAQ for common problems that occur when using TC-Python.</p>
+<section id="diagnostics-script">
+<h2>Diagnostics script<a class="headerlink" href="#diagnostics-script" title="Permalink to this heading">¶</a></h2>
+<p>If you have problems running TC-Python, run the diagnostics script below.</p>
+<p>On Linux you can alternatively download the script directly into your current working directory by:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -O https://download.thermocalc.com/downloads/support/diagnostics-py/2023b/tc-python-diagnostic-script-2023b.py</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Run this script when troubleshooting TC-Python</span>
+
+<span class="sd">It is important to run this script EXACTLY the same way as you run your TC-Python script</span>
+<span class="sd">(In the same IDE, same project, same Python environment, same Jupyter notebook e.t.c)</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;2023b&#39;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Testing TC-Python version: &#39;</span> <span class="o">+</span> <span class="n">version</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Please make sure that the variable &quot;version&quot; above, matches the release that you want to test, if not change it and re-run this script.&#39;</span><span class="p">)</span>
+
+<span class="c1"># below this line, nothing needs to be manually updated.</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Python version: (should be at least 3.5 and can NOT be older than 3.0)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">version_info</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">version_info</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">3</span> <span class="ow">or</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Wrong version of Python !!!!!&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Python executable path: (gives a hint about the used virtual / conda environment, in case of Anaconda the corresponding </span><span class="se">\n</span><span class="s1">&#39;</span>
+      <span class="s1">&#39;environment name can be found by running `conda env list` on the Anaconda command prompt, &#39;</span>
+      <span class="s1">&#39;TC-Python must be installed into </span><span class="se">\n</span><span class="s1">EACH separate environment used!)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">executable</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Thermo-Calc &#39;</span> <span class="o">+</span> <span class="n">version</span> <span class="o">+</span> <span class="s1">&#39; installation directory: (must be a valid path to a complete installation of &#39;</span> <span class="o">+</span> <span class="n">version</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span><span class="p">)</span>
+<span class="n">tc_env_variable</span> <span class="o">=</span> <span class="s1">&#39;TC&#39;</span> <span class="o">+</span> <span class="n">version</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;_HOME&#39;</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="n">tc_env_variable</span><span class="p">])</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;No Thermo-calc environment variable for &#39;</span> <span class="o">+</span> <span class="n">version</span> <span class="o">+</span> <span class="s1">&#39; was found. (&#39;</span> <span class="o">+</span> <span class="n">tc_env_variable</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Url of license server: (if license server is NO-NET, you need a local license file)&#39;</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;LSHOST&#39;</span><span class="p">])</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;No Thermo-calc license server url was found. (LSHOST)&#39;</span><span class="p">)</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Path to local license file: (only necessary if not using license server)&#39;</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;LSERVRC&#39;</span><span class="p">])</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;No path to local license file was found. (LSERVRC)&#39;</span><span class="p">)</span>
+
+
+<span class="kn">import</span> <span class="nn">tc_python</span>
+<span class="n">numerical_version</span> <span class="o">=</span> <span class="n">version</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="k">if</span> <span class="n">version</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;a&#39;</span><span class="p">:</span>
+    <span class="n">numerical_version</span> <span class="o">+=</span> <span class="s1">&#39;.1.*&#39;</span>
+<span class="k">elif</span> <span class="n">version</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span>
+    <span class="n">numerical_version</span> <span class="o">+=</span> <span class="s1">&#39;.2.*&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;TC-Python version: (needs to be &#39;</span> <span class="o">+</span> <span class="n">numerical_version</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tc_python</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+
+
+<span class="k">with</span> <span class="n">tc_python</span><span class="o">.</span><span class="n">TCPython</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Lists the databases: (should be a complete list of the installed databases that you have license for or do not require license)&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">session</span><span class="o">.</span><span class="n">get_databases</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+<section id="no-module-named-tc-python-error-on-first-usage">
+<h2>“No module named tc_python” error on first usage<a class="headerlink" href="#no-module-named-tc-python-error-on-first-usage" title="Permalink to this heading">¶</a></h2>
+<p>This problem occurs because your used Python interpreter cannot find the TC-Python package. We expect that you have
+installed the TC-Python package in your <strong>Python system interpreter</strong> following the instructions in the
+<a class="reference internal" href="installation.html#installation-chapter"><span class="std std-ref">Installation Guide</span></a>.</p>
+<p>Normally the error message “<em>No module named tc_python</em>” is caused by unintentionally configuring a PyCharm project to
+use a so-called <strong>Virtual Environment</strong>. This happens unfortunately by default when creating a new PyCharm project
+with not changing the default settings.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A Virtual Environment is basically a separate and completely independent copy of
+the system-wide Python interpreter. It does not contain any packages.</p>
+</div>
+<p>On Windows systems we recommend to use the Anaconda Python Distribution as Python interpreter. However, the instructions
+given here are valid for any operating system and distribution.</p>
+<p>Since TC-Python 2018b we do recommend to <strong>not use Virtual Environments</strong> unless there is a reasonable use case for
+that.</p>
+<p>There are two possible solutions to fix the problem:</p>
+<ol class="arabic">
+<li><p>The quick fix for your problem is to run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>&lt;path<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>TC-Python<span class="w"> </span>folder&gt;/TC_Python-&lt;version&gt;-py3-none-any.whl
+</pre></div>
+</div>
+<p>within the <em>Terminal window</em> of the opened PyCharm project. This <em>Terminal window</em> automatically runs within the
+<em>Virtual Environment</em> configured for the project (if any). You can see the name of the <em>Virtual Environment</em> at the
+beginning of each command prompt line (here it is called <cite>venv</cite>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Microsoft<span class="w"> </span>Windows<span class="w"> </span><span class="o">[</span>Version<span class="w"> </span><span class="m">10</span>.0.16299.431<span class="o">]</span>
+<span class="o">(</span>c<span class="o">)</span><span class="w"> </span><span class="m">2017</span><span class="w"> </span>Microsoft<span class="w"> </span>Corporation.<span class="w"> </span>All<span class="w"> </span>rights<span class="w"> </span>reserved.
+
+<span class="o">(</span>venv<span class="o">)</span><span class="w"> </span>C:<span class="se">\U</span>sers<span class="se">\U</span>ser<span class="se">\D</span>ocuments<span class="se">\&gt;</span>
+</pre></div>
+</div>
+<p>The command will consequently <strong>install TC-Python also within that Virtual Environment automatically</strong>. The
+Terminal window can be found at the bottom of the IDE. Note that it might be necessary to enable these buttons
+first by selecting the menu entry <strong>View→Tool Buttons</strong>.</p>
+</li>
+<li><p>The better fix is to change your project <strong>to use the system interpreter</strong>. This is described in detail in the
+section <a class="reference internal" href="installation.html#installation-chapter-fixing-environ"><span class="std std-ref">Fixing potential issues with the environment</span></a> in Step 5 of the <a class="reference internal" href="installation.html#installation-chapter"><span class="std std-ref">Installation Guide</span></a>.</p>
+<p><em>It is recommendable to use that approach also for all your future projects.</em></p>
+</li>
+</ol>
+<p>Both fixes will only change the configuration of the opened project.
+Further useful information can be found in the section <a class="reference internal" href="best_practices.html#best-practices-chapter-virtual-envs"><span class="std std-ref">Python Virtual Environments</span></a>.</p>
+</section>
+<section id="pip-install-fails-with-failed-to-establish-a-new-network-connection-or-similar">
+<span id="pip-proxy-error-chapter"></span><h2>“pip install” fails with “Failed to establish a new network connection” or similar<a class="headerlink" href="#pip-install-fails-with-failed-to-establish-a-new-network-connection-or-similar" title="Permalink to this heading">¶</a></h2>
+<p>If <cite>pip install</cite> fails with a network related error (might also be “<em>socket not available</em>”, “<em>retrying after connection
+broken</em>”, …) it is often due to the computer being behind a proxy-server, this is common in large organizations.
+Of course also the network connection might be broken.</p>
+<p>TC-Python has dependencies to a few other packages:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><cite>py4j</cite></p></li>
+<li><p><cite>jproperties</cite></p></li>
+<li><p><cite>six</cite> (transient dependency of <cite>jproperties</cite>)</p></li>
+</ul>
+</div></blockquote>
+<ol class="arabic">
+<li><p>The recommended approach is to simply use <cite>pip</cite>. It will resolve the dependencies automatically by downloading them
+from the <cite>PyPI</cite>-repository server (<a class="reference external" href="https://pypi.org">https://pypi.org</a>). If your computer is located behind a proxy-server, the
+connection to the repository will fail. In that case it is necessary to configure <cite>pip</cite> with the detailed
+configuration of the proxy server:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-proxy<span class="w"> </span>user:password@proxy_ip:port<span class="w"> </span>py4j<span class="w"> </span>jproperties
+</pre></div>
+</div>
+</li>
+<li><p>Another alternative is to manually download the latest <code class="file docutils literal notranslate"><span class="pre">*.whl</span></code>-file of each dependency from the repository
+server (<a class="reference external" href="https://pypi.org">https://pypi.org</a> -&gt; <em>Search projects</em>) and to install it manually using:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>py4j-#.#.#-py2.py3-none-any.whl
+...
+</pre></div>
+</div>
+<p>The actual actual version number needs to be inserted into the file name. The downside of this
+approach is that updates to that package have to be fully manual also in the future. Additionally it is also
+necessary to install all transient dependencies in that way.</p>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="high_level_modules/abstract_base.html" class="btn btn-neutral float-left" title="Module “abstract_base”" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Foundation of Computational Thermodynamics, Stockholm, Sweden.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,376 @@
+.. DO ONLY EDIT THE TEMPLATE FILE (*.template.rst) AND NOT THE *.rst FILE, OTHERWISE YOUR CHANGES WILL BE LOST DURING THE DOCUMENTATION GENERATION PROCESS!
+.. THIS IS NECESSARY TO INJECT THE RELEASE VERSION NUMBER INTO THE DOCUMENTATION.
+.. --------------------------------------------------------------------------------------------------------------------------------------------------------
+
+.. _installation-chapter:
+
+Installation Guide
+==================
+
+
+    This guide helps you to get a working TC-Python API installation.
+
+    There is a PDF guide included with your installation. In the Thermo-Calc menu, select **Help → Manuals Folder**.
+    Then double-click to open the **Software Development Kits (SDKs)** folder.
+
+    .. note::
+
+        A license is required to run TC-Python.
+
+
+What type of installation should I choose?
+------------------------------------------
+
+There are two possibilities to install TC-Python:
+
+    #. :ref:`installation-chapter-via-bundled-python`: This interpreter has TC-Python preinstalled together
+       with some popular Python-packages. **This is the recommended option for new users to TC-Python, but it is limited
+       to the preinstalled packages**.
+
+    #. :ref:`installation-chapter-via-pip`: **This is the recommended option for any more
+       advanced usage and provides full flexibility.**
+
+
+.. _installation-chapter-via-bundled-python:
+
+Using the Python-interpreter bundled to Thermo-Calc
+---------------------------------------------------
+
+    .. note::
+
+        A Python-interpreter is bundled to Thermo-Calc beginning with version 2021a.
+
+Limitations
+~~~~~~~~~~~
+
+    The bundled Python 3.7.2 interpreter is containing the following major packages:
+
+    +--------------+--------+
+    | Package      | Version|
+    +==============+========+
+    | matplotlib   | 3.3.2  |
+    +--------------+--------+
+    | numpy        | 1.19.2 |
+    +--------------+--------+
+    | scikit-learn | 0.23.2 |
+    +--------------+--------+
+    | scipy        | 1.5.2  |
+    +--------------+--------+
+    | TC-Python    | 2023b  |
+    +--------------+--------+
+
+    Please contact the Thermo-Calc support if you think that further packages might be useful in future releases.
+
+    .. note::
+
+        The following TC-Python examples are requiring additional packages that are not available in the bundled
+        Python-interpreter, they can therefore not be run:
+
+        * `pyex_M_01_Input_from_file.py`
+        * `pyex_M_02_Output_to_file.py`
+
+
+    .. warning::
+
+        The Python-interpreter bundled to Thermo-Calc is also used for running the property models in Thermo-Calc. **Any
+        changes to the interpreter packages can therefore break Thermo-Calc and should be avoided**. If the installation
+        gets broken, it can be fixed by reinstalling Thermo-Calc after having removed it.
+
+
+Step 1: Install an IDE (Integrated Development Environment)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    Any editor can be used to write the Python code, but an IDE is recommended, e.g. PyCharm. These instructions are
+    based on the use of PyCharm.
+
+    Use of an IDE will give you access to code completion, which is of great help when you use the API as it will
+    give you the available methods on the objects you are working with.
+
+        #.  Navigate to the PyCharm website: https://www.jetbrains.com/pycharm/download.
+
+        #.  Click to choose your OS and then click **Download**. You can use the **Community** version of PyCharm.
+
+        #.  Follow the instructions. It is recommended you keep all the defaults.
+
+    .. note::
+
+        For Mac installations, you also need to set some environment variables as described below in
+        :ref:`mac-os-environment-variables`.
+
+
+Step 2: Configure PyCharm to use the bundled Python-interpreter
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    Open PyCharm and configure the interpreter:
+
+        1. Go the menu **File→Settings**.
+
+        2. Navigate in the tree to **Project: YourProjectName** and choose **Project Interpreter**.
+
+        3. Click on the settings symbol close to the **Project Interpreter** dropdown menu and choose **Add**.
+
+        4. Now choose **System Interpreter** and add the bundled Thermo-Calc Python 3 interpreter. It is located in
+           different places depending on the operating system:
+
+            +-----------+-------------------------------------------------------------------------------------------------------+
+            | Operating | Path to the bundled Python-interpreter                                                                |
+            | system    |                                                                                                       |
+            +===========+=======================================================================================================+
+            | Windows   | :file:`C:\\Program Files\\Thermo-Calc\\2023b\\python\\python.exe`                                     |
+            +-----------+-------------------------------------------------------------------------------------------------------+
+            | Linux     | :file:`/home/UserName/Thermo-Calc/2023b/python/bin/python3`                                           |
+            +-----------+-------------------------------------------------------------------------------------------------------+
+            | MacOS     | :file:`/Applications/Thermo-Calc-2023b.app/Contents/Resources/python/bin/python3`                     |
+            +-----------+-------------------------------------------------------------------------------------------------------+
+
+        5. Select your added interpreter and confirm.
+
+
+Step 3: Run a TC-Python Example
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    Now you are ready to start working with TC-Python.
+
+    It is recommended that you open one or more of the included examples to both check that the installation has worked
+    and to start familiarizing yourself with the code.
+
+
+Open the TC-Python Project in PyCharm
+"""""""""""""""""""""""""""""""""""""
+
+    When you first open the TC-Python project and examples, it can take a few moments for the Pycharm IDE to index
+    before some of the options are available.
+
+        1.  Open PyCharm and then choose **File→Open**. The first time you open the project you will need to navigate
+            to the path of the TC-Python installation:
+
+            +-----------+-------------------------------------------------------------------------------------------------------+
+            | Operating | Path to the TC-Python folder                                                                          |
+            | system    |                                                                                                       |
+            +===========+=======================================================================================================+
+            | Windows   | :file:`C:\\Users\\UserName\\Documents\\Thermo-Calc\\2023b\\SDK\\TC-Python`                            |
+            +-----------+-------------------------------------------------------------------------------------------------------+
+            | Linux     | :file:`/home/UserName/Thermo-Calc/2023b/SDK/TC-Python`                                                |
+            +-----------+-------------------------------------------------------------------------------------------------------+
+            | MacOS     | :file:`/Users/Shared/Thermo-Calc/2023b/SDK/TC-Python`                                                 |
+            +-----------+-------------------------------------------------------------------------------------------------------+
+
+        2.  Click on the :file:`Examples` folder and then click **OK**.
+
+        3.  From any subfolder:
+
+                * Double-click to open an example file to examine the code.
+                * Right-click an example and choose **Run** .
+
+    .. note::
+
+        If you are not following the recommended approach and create a *new* project (**File→New Project...**), you need
+        to consider that by default the options to choose the interpreter are hidden within the **Create Project**
+        window. So click on **Project Interpreter: New Virtual Environment** and in most cases choose your
+        *System Interpreter* containing the Python bundled to Thermo-Calc instead of the default
+        *New Virtual Environment*.
+
+
+.. _installation-chapter-via-pip:
+
+Installing TC-Python into the Python-interpreter of your choice
+---------------------------------------------------------------
+
+Step 1: Install a Python Distribution
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    If you already have a Python distribution installation, version 3.5 or higher, skip this step.
+
+    These instructions are based on using the Anaconda platform for the Python distribution. Install version 3.5 or
+    higher to be able to work with TC-Python, although it is recommended that you use the most recent version.
+
+Install Anaconda
+""""""""""""""""
+
+    #.  Navigate to the Anaconda website: https://www.anaconda.com/download/.
+
+    #.  Click to choose your OS (operating system) and then click **Download**. Follow the instructions. It is
+        recommended you keep all the defaults.
+
+
+
+Step 2: Install Thermo-Calc and the TC-Python SDK
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    .. note::
+
+        TC-Python is available starting with Thermo-Calc version 2018a.
+
+    #.  Install Thermo-Calc
+
+    #.  When the installation is complete, open the TC-Python folder that includes the \*.whl file needed for the next
+        step. There is also an file:`Examples` folder with Python files you can use in the IDE to understand and work
+        with TC-Python.
+
+
+Step 3: Install TC-Python
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    On Windows, it is recommended that you use the Python distribution prompt (i.e. Anaconda, ...), especially if you
+    have other Python installations.
+    **Do not use Virtual Environments unless you have a good reason for that.**
+
+        #.  Open the command line. For example, in Anaconda on a Windows OS, go to **Start→Anaconda→Anaconda Prompt**.
+
+        #.  At the command line, enter the following. Make sure there are no spaces at the end of the string or in the
+            folder name or it will not run:
+
+            .. code-block:: bash
+
+                pip install <path to the TC-Python folder>/TC_Python-<version>-py3-none-any.whl
+
+            .. tip::
+
+                Note that on Linux depending on the interpreter usually `pip3` is used.
+
+            +-----------+-------------------------------------------------------------------------------------------------------+
+            | Operating | Path to the TC-Python folder                                                                          |
+            | system    |                                                                                                       |
+            +===========+=======================================================================================================+
+            | Windows   | :file:`C:\\Users\\UserName\\Documents\\Thermo-Calc\\2023b\\SDK\\TC-Python`                            |
+            +-----------+-------------------------------------------------------------------------------------------------------+
+            | Linux     | :file:`/home/UserName/Thermo-Calc/2023b/SDK/TC-Python`                                                |
+            +-----------+-------------------------------------------------------------------------------------------------------+
+            | MacOS     | :file:`/Users/Shared/Thermo-Calc/2023b/SDK/TC-Python`                                                 |
+            +-----------+-------------------------------------------------------------------------------------------------------+
+
+        #. Press ``<Enter>``. When the process is completed, there is a confirmation that TC-Python is installed.
+
+    .. note::
+
+        If your computer is located behind a proxy-server, the default `pip`-command will fail with a network connection
+        error. In that case you need to install the dependencies of TC-Python in a special configuration:
+
+        .. code-block:: bash
+
+            pip install -proxy user:password@proxy_ip:port py4j jproperties
+
+        See :ref:`pip-proxy-error-chapter` for detailed information.
+
+
+Step 4: Install an IDE (Integrated Development Environment)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    Any editor can be used to write the Python code, but an IDE is recommended, e.g. PyCharm. These instructions are
+    based on the use of PyCharm.
+
+    Use of an IDE will give you access to code completion, which is of great help when you use the API as it will give
+    you the available methods on the objects you are working with.
+
+        #.  Navigate to the PyCharm website: https://www.jetbrains.com/pycharm/download.
+
+        #.  Click to choose your OS and then click **Download**. You can use the **Community** version of PyCharm.
+
+        #.  Follow the instructions. It is recommended you keep all the defaults.
+
+    .. note::
+
+        For Mac installations, you also need to set some environment variables as described below in
+        :ref:`mac-os-environment-variables`.
+
+
+Step 5: Open the IDE and Run a TC-Python Example
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    After you complete all the software installations, you are ready to open the IDE to start working with TC-Python.
+
+    It is recommended that you open one or more of the included examples to both check that the installation has worked
+    and to start familiarizing yourself with the code.
+
+
+Open the TC-Python Project in PyCharm
+"""""""""""""""""""""""""""""""""""""
+
+    When you first open the TC-Python project and examples, it can take a few moments for the Pycharm IDE to index
+    before some of the options are available.
+
+        1.  Open PyCharm and then choose **File→Open**. The first time you open the project you will need to navigate
+            to the path of the TC-Python installation.
+
+            +-----------+-------------------------------------------------------------------------------------------------------+
+            | Operating | Path to the TC-Python folder                                                                          |
+            | system    |                                                                                                       |
+            +===========+=======================================================================================================+
+            | Windows   | :file:`C:\\Users\\UserName\\Documents\\Thermo-Calc\\2023b\\SDK\\TC-Python`                            |
+            +-----------+-------------------------------------------------------------------------------------------------------+
+            | Linux     | :file:`/home/UserName/Thermo-Calc/2023b/SDK/TC-Python`                                                |
+            +-----------+-------------------------------------------------------------------------------------------------------+
+            | MacOS     | :file:`/Users/Shared/Thermo-Calc/2023b/SDK/TC-Python`                                                 |
+            +-----------+-------------------------------------------------------------------------------------------------------+
+
+        2.  Click on the :file:`Examples` folder and then click **OK**.
+
+        3.  From any subfolder:
+
+                * Double-click to open an example file to examine the code.
+                * Right-click an example and choose **Run** .
+
+
+.. _installation-chapter-fixing-environ:
+
+Fixing potential issues with the environment
+""""""""""""""""""""""""""""""""""""""""""""
+
+    In most cases you should run TC-Python within your **global** Python 3 interpreter and not use Virtual Environments
+    unless you have a good reason to do so.
+    A common problem on first usage of TC-Python is the error message "**No module named tc_python**".
+    You can resolve this and other problems with the interpreter settings as follows:
+
+        1. Go the menu **File→Settings**.
+
+        2. Navigate in the tree to **Project: YourProjectName** and choose **Project Interpreter**.
+
+        3. Click on the settings symbol close to the **Project Interpreter** dropdown menu and choose **Add**.
+
+        4. Now choose **System Interpreter** and add your existing Python 3 interpreter.
+
+        5. Select your added interpreter and confirm.
+
+
+    .. note::
+
+        If you are not following the recommended approach and create a *new* project (**File→New Project...**), you
+        need to consider that by default the options to choose the interpreter are hidden within the **Create Project**
+        window. So click on **Project Interpreter: New Virtual Environment** and in most cases choose your
+        *System Interpreter* instead of the default *New Virtual Environment*.
+
+    .. note::
+
+        If you really need to use a Virtual Environment, please consider the hints given in the
+        :ref:`best-practices-chapter-virtual-envs` chapter.
+
+
+Updating to a newer version
+---------------------------
+
+    When updating to a newer version of Thermo-Calc, **you need to also install the latest version of TC-Python**.
+    This is not necessary if are using the bundled Python-interpreter that has it automatically installed.
+    It is not sufficient to run the installer of Thermo-Calc:
+
+    .. code-block:: bash
+
+        pip install <path to the TC-Python folder>/TC_Python-<version>-py3-none-any.whl
+
+    .. tip::
+
+        Note that on Linux depending on the interpreter usually `pip3` is used.
+
+    In case of problems you may wish to uninstall the previous version of TC-Python in advance:
+
+    .. code-block:: bash
+
+        pip uninstall TC-Python
+        pip install <path to the TC-Python folder>/TC_Python-<version>-py3-none-any.whl
+
+    However, that should normally not be required.
+
+    You can check the currently installed version of TC-Python by running:
+
+    .. code-block:: bash
+
+        pip show TC-Python

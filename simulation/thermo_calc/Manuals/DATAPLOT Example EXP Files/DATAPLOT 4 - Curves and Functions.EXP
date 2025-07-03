@@ -1,0 +1,24 @@
+$DATAPLOT Example 4
+
+PROLOG 4 EXAMPLE 4  0<X<100, 0<Y<100
+ XSCALE        0.00000       100    
+ YSCALE        0.00000       100
+ XTYPE LINEAR
+ YTYPE LINEAR
+ XLENGTH        11.5000    
+ YLENGTH        11.5000    
+ TITLE  EXAMPLE 4
+ XTEXT  X
+ YTEXT  Y
+
+DATASET 4 Plot two functions as lines: 
+ATTRIBUTE CENTER
+0.05  0.95 N'Example 4
+$ Draw two lines defined by FUNCTIONS:
+FUNCTION Y=10+0.5*X+20*Sin(X/5); 0 100 100; DWA;
+FUNCTION Y=50+0.5*X; 0 100 10; DS1WA;
+$ Write functions beside the lines: 
+$    Note the real rotation angle (27 degree) can be seen 
+$      only on the PostScript hardcopy 
+0.25  0.68 N'^RO27Y=50+0.5*X
+0.25  0.45 N'^RO27Y=10+0.5*X+20*Sin(X/5)

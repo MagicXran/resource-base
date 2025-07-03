@@ -1,0 +1,7 @@
+Module "metallurgy_calculation"
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. automodule:: tc_python.metallurgy_calculation
+    :members:
+    :undoc-members:
+    :show-inheritance:

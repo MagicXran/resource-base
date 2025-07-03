@@ -1,0 +1,208 @@
+<ansys>
+*ulib,report_pds,lib
+_dogrph=1
+</ansys>
+
+<HTML>
+<HEAD>
+<script LANGUAGE="JavaScript1.2" SRC="ansysImages.js"> </script>
+<style type="text/css">
+<!--
+h1 { font-family: Georgia, serif; font-weight: bold; font-style: italic; font-size: 16pt; }
+h2 { page-break-before:right; font-family: Georgia, serif; font-weight: bold; font-size: 15pt; }
+h3 { font-family: Georgia, serif; font-size: 12pt; }
+h4 { font-family: Georgia, font-size: 12pt; }
+p  { font-family: Georgia, serif; font-size: 12pt; }
+address  { font-family: Georgia, serif; font-size: 10pt; font-style: italic; }
+th  { font-family: Georgia, serif; font-weight: bold; font-size: 10pt; }
+td  { font-family: Georgia, serif; font-size: 10pt; }
+ul  { font-family: Georgia, serif; font-size: 12pt; }
+blockquote { font-size: 10pt;  color:black; font-weight:bold}
+.legal { font-size: 8pt; text-align: center; }
+a:hover { color: red; }
+-->
+</style>
+
+<TITLE>My PDS Report File</TITLE>
+</HEAD>
+
+<BODY>
+<a name="top">
+<TABLE BORDER=0 width=95%>
+<tr><td>
+<IMG SRC="ansysnb.gif" HEIGHT=85 WIDTH=215 align="left", ALT="ANSYS NO BOUNDARY" BORDER="0">
+</td><td>
+<IMG SRC="pdslogo.gif" HEIGHT=85 WIDTH=150 align="right", ALT="PDS LOGO" BORDER="0">
+</td></tr>
+</TABLE>
+
+<!-- ######################################################## -->
+<!-- Get gif files for ANSYS and PDS logo                     -->
+<!-- ######################################################## -->
+<ansys>
+*use,h_agif
+</ansys>
+
+<!-- ######################################################## -->
+<!-- Get report title, author, date                           -->
+<!-- ######################################################## -->
+<ansys>
+*use,h_title
+</ansys>
+
+<!-- ######################################################## -->
+<!-- Resize the graphics window                               -->
+<!-- ######################################################## -->
+<ansys>
+*use,h_setup
+</ansys>
+
+<!-- ######################################################## -->
+<!-- summary -->
+<!-- ######################################################## -->
+<a name="intro"></a>
+<ansys>
+*use,h_intro
+</ansys>
+
+<!-- ######################################################## -->
+<!-- Deterministic Model Information Section --> 
+<!-- ######################################################## -->
+<a name="dmdl"></a>
+<ansys>
+*use,h_dmdl
+</ansys>
+
+<!-- ######################################################## -->
+<!-- Analysis File Information -->
+<!-- ######################################################## -->
+<ansys>
+*use,h_afile
+</ansys>
+
+<!-- ######################################################## -->
+<!-- Figure 1 Vplot/Aplot -->
+<!-- ######################################################## -->
+<!-- arg1=figure number -->
+<ansys>
+*use,h_gmplot
+</ansys>
+
+<!-- ######################################################## -->
+<!-- Table 1 geometry information -->
+<!-- ######################################################## -->
+<ansys>
+*use,h_geom
+</ansys>
+
+<!-- ######################################################## -->
+<!-- Table 2 materials -->
+<!-- ######################################################## -->
+<ansys>
+*use,h_mater
+</ansys>
+
+<!-- ######################################################## -->
+<!-- Probabilistic Model Information Section -->
+<!-- ######################################################## -->
+<a name="pmdl"></a>
+<ansys>
+*use,h_pmdl
+</ansys>
+
+<!-- ######################################################## -->
+<!-- Probabilistic Analysis Specifications -->
+<!-- ######################################################## -->
+<a name="panl"></a>
+<ansys>
+*use,h_panl
+</ansys>
+
+<!-- ######################################################## -->
+<!-- Response Surface Analysis Specifications -->
+<!-- ######################################################## -->
+<a name="rsan"></a>
+<ansys>
+*use,h_rsan
+</ansys>
+
+<!-- ######################################################## -->
+<!-- Probabilistic Result Information -->
+<!-- ######################################################## -->
+<a name="pres"></a>
+<ansys>
+*use,h_pres
+</ansys>
+
+<!-- ######################################################## -->
+<!-- Statistics of results Section                            -->
+<!-- ######################################################## -->
+<a name="stat"></a>
+<ansys>
+*use,h_stats
+</ansys>
+
+<!-- ######################################################## -->
+<!-- Sample History Information Section                       -->
+<!-- ######################################################## -->
+<a name="shis"></a>
+<ansys>
+*use,h_samphist
+</ansys>
+
+<!-- ######################################################## -->
+<!-- Probabilistic Result Information                         -->
+<!-- ######################################################## -->
+<a name="hist"></a>
+<ansys>
+*use,h_histplot
+</ansys>
+
+<!-- ######################################################## -->
+<!-- Cumulative Distribution Information Section              -->
+<!-- ######################################################## -->
+<a name="cdf"></a>
+<ansys>
+*use,h_cdfplot
+</ansys>
+
+<!-- ######################################################## -->
+<!-- Sensitivity Information Section                          -->
+<!-- ######################################################## -->
+<a name="sens"></a>
+<ansys>
+*use,h_sensplot
+</ansys>
+
+<!-- ######################################################## -->
+<!-- Correlation Coefficient Matrix Information Section -->
+<!-- ######################################################## -->
+<a name="cmat"></a>
+<ansys>
+*use,h_cmat
+</ansys>
+
+<ansys>
+)/NOPR
+)NPLOT
+~tcl,'ansys::report::finished'
+)/GO
+</ansys>
+
+<table align=center>
+<tr><td>
+<hr>
+<b>Caution: </b>Do not accept or reject a design based solely on the
+results shown here. <a href="http://www.ansys.com" content="NewWin0">ANSYS, Inc.</a> recommends that you also take into 
+account experimental test data and/or prior experience with similar
+analyses when evaluating a design.
+<hr>
+</td></tr>
+</table>
+
+<ansys>
+*abfini
+</ansys>
+</BODY>
+</font>
+</HTML>

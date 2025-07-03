@@ -1,0 +1,7 @@
+Package "scheil"
+~~~~~~~~~~~~~~~~
+
+.. automodule:: +tc_toolbox.+scheil
+    :members:
+    :exclude-members: backend
+    :undoc-members:

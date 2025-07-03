@@ -1,0 +1,26 @@
+! Tour Page
+*mt_lo_seleload*title: Tour - Selecting a Load State
+*mt_lo_seleload*next: mt_lo_applyload
+*mt_lo_seleload*previous: mt_lo_defenvir1
+*mt_lo_seleload*htmlhelp: docu $euidlArray(language) mechhelp mt_lo_applydel.html
+*mt_lo_seleload*home: mt_mt_home
+
+! Tour Page Components
+*mt_lo_seleload*tourlist: heading overview step1 step2 seenext 
+
+
+! Component Definition
+!
+*mt_lo_seleload*headingText: "Adding or Deleting Loads \n"  HEADING2
+
+*mt_lo_seleload*overviewText: "You can either add or delete loads by \
+clicking the appropriate button: \n" {BODY1}
+
+*mt_lo_seleload*step1Text: "Click the Add B.C. button to add \
+loads. \n" {STEP1 step1} 
+
+*mt_lo_seleload*step2Text: "Click the Delete B.C. button to delete \
+loads. \n" {STEP1 step2} 
+
+*mt_lo_seleload*seenextText: "\nClick Next to learn how to apply types \
+of loads." BODY1

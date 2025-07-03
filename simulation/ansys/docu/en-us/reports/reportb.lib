@@ -1,0 +1,2062 @@
+h_setup
+!******************************************************************************
+/nopr
+!
+! Get things rolling on ANSYS end. Initialize APDL variables, etc.
+!
+! Get logo, backgrounds, etc. for HTML template
+! This macro will have to updated by the system administrators
+! to provide the proper "base" directory for any gif's, jpg's,
+! etc. that would be needed by the report template. 
+!
+! Written by C.W.Aiken  9/18/98
+!
+! The Ansys apdl variable that contains the "destination" directory 
+! is called "_rdir" and is set in the htmlreport.c external command
+! code.
+!
+!
+! To use the function macros in this report library the following
+! variables must be set by the user or Mechanical Toolbar
+!
+! These keys will allow tables to be displayed in the output.
+! 1=yes output,  0=no output
+!*dim,_table,,20
+!_table(1)=1     ! Geometry (h_geom) (input)  
+!_table(2)=1     ! Constraints (h_constr) (input)  
+!_table(3)=1     ! Forces (h_force)  (input)  
+!_table(4)=1     ! Min/Max Disp (h_disp)  (results)  
+!_table(5)=1     ! Principal Stresses (h_prstr) (results)  
+!_table(6)=1     ! Reaction Forcers (h_rforce) (results)  
+!_table(7)=1     ! Materials (h_mater) (input)  
+!_table(8)=1     ! Direct Stresses (h_dirstr) (results)  
+!_table(9)=1     ! Component Strains (h_cstrain) (results)  
+!_table(10)=1    ! Shear Stress (h_shear) (results)
+!_table(11)=1    ! SI and SEQV (h_sishr) (results)
+!_table(12)=1    ! Thermal Gradient
+!_table(13)=1    ! Thermal Flux
+!_table(14)=1    ! Natural Frequencies (h_nfreqs) (results)
+!_table(15)=0    ! Spare
+!_table(16)=0    ! Spare
+!_table(17)=0    ! Spare
+!_table(18)=0    ! Spare
+!_table(19)=0    ! Spare
+!_table(20)=0    ! Spare
+!
+!
+!
+! These keys will limit principal stress output
+! 1=yes output,  0=no output (note _table(5)=1 must be set)
+!*dim,_prstrtb,,5
+!_prstrtb(1)=1    ! S1     
+!_prstrtb(2)=1    ! S2     
+!_prstrtb(3)=1    ! S3     
+!_prstrtb(4)=1    ! SINT   
+!_prstrtb(5)=1    ! SEQV   
+!
+!
+!
+! These keys will limit the material property output
+! 1=yes output,  0=no output (note _table(7)=1 must be set)
+!*dim,_mattb,,6
+!_mattb(1)=1   ! EX
+!_mattb(2)=1   ! NUXY
+!_mattb(3)=1   ! ALPX
+!_mattb(4)=1   ! DENS
+!_mattb(5)=1   ! KXX
+!_mattb(6)=1   ! C
+!
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+! get a logo gif 
+_i=parloc('_rdir')
+*if,_i,gt,0,then
+   /copy,ansysnb,gif,,   ansysnb,gif,%_rdir(1)%%_rdir(2)%%_rdir(3)%%_rdir(4)%
+*endif
+!
+_dogrph=0
+/EOF
+
+h_title
+!******************************************************************************
+/nopr
+!
+! get title, authors name, and report date for HTML template
+! authors data is assumed to be in the "_usrname" vector
+!
+! if "arg1" = 1 then get title only
+!
+! Written by C.W.Aiken  9/1/98
+!
+! get a report title from the /title command
+!
+*get,_tit1,active,,title,,start,1
+*get,_tit2,active,,title,,start,9
+*get,_tit3,active,,title,,start,17
+*get,_tit4,active,,title,,start,25
+*get,_tit5,active,,title,,start,33
+*get,_tit6,active,,title,,start,41
+*get,_tit7,active,,title,,start,49
+*get,_tit8,active,,title,,start,57
+!
+! get authors name from "_username" vector
+!
+_i=parloc('_usrname')
+*if,_i,gt,0,then
+   _l1=_usrname(1)
+   _l2=_usrname(2)
+   _l3=_usrname(3)
+   _l4=_usrname(4)
+   _l5=_usrname(5)
+   _l6=_usrname(6)
+   _l7=_usrname(7)
+   _l8=_usrname(8)
+*else
+   _l1=' '
+   _l2=' '
+   _l3=' '
+   _l4=' '
+   _l5=' '
+   _l6=' '
+   _l7=' '
+   _l8=' '
+*endif
+!
+! get system date
+!
+*get,_dt,active,,date
+!
+! calculate year
+_yr=nint(_dt/10000)
+!
+! calculate month
+_mn=nint((_dt-(_yr*10000))/100)
+_dy=nint(_dt-(_yr*10000)-(_mn*100))
+!
+! re-calculate year for Y2K
+*if,_yr,le,70,then
+   _yr=_yr+2000
+*else
+   _yr=_yr+1900
+*endif
+!
+!
+*if,arg1,eq,1,then
+   *vwrite,_tit1,_tit2,_tit3,_tit4,_tit5,_tit6,_tit7,_tit8
+   (a8,a8,a8,a8,a8,a8,a8,a8)
+*else
+   /com,<table border=0 cellpadding=7 width=95%>
+   /com,<tr>
+   /com,<td align=center>
+   /com,<h1>
+   *vwrite,_tit1,_tit2,_tit3,_tit4,_tit5,_tit6,_tit7,_tit8
+   (a8,a8,a8,a8,a8,a8,a8,a8)
+   /com,</h1>
+   /com,</td>
+   /com,</tr>
+   /com,<tr>
+   /com,<td align=center>
+   /com,<h3>
+   *vwrite,_l1,_l2,_l3,_l4,_l5,_l6,_l7,_l8
+   ('By ',8a)
+   /com,</h3>
+   /com,</td>
+   /com,</tr>
+   /com,<tr>
+   /com,<td align=center>
+   /com,<b>
+   _dy=chrval(_dy)
+   _yr=chrval(_yr)
+   *if,_mn,eq,1,then
+   *vwrite,_dy,_yr
+   ('January ',a,', ',a)
+   *elseif,_mn,eq,2,then
+   *vwrite,_dy,_yr
+   ('February ',a,', ',a)
+   *elseif,_mn,eq,3,then
+   *vwrite,_dy,_yr
+   ('March ',a,', ',a)
+   *elseif,_mn,eq,4,then
+   *vwrite,_dy,_yr
+   ('April ',a,', ',a)
+   *elseif,_mn,eq,5,then
+   *vwrite,_dy,_yr
+   ('May ',a,', ',a)
+   *elseif,_mn,eq,6,then
+   *vwrite,_dy,_yr
+   ('June ',a,', ',a)
+   *elseif,_mn,eq,7,then
+   *vwrite,_dy,_yr
+   ('July ',a,', ',a)
+   *elseif,_mn,eq,8,then
+   *vwrite,_dy,_yr
+   ('August ',a,', ',a)
+   *elseif,_mn,eq,9,then
+   *vwrite,_dy,_yr
+   ('September ',a,', ',a)
+   *elseif,_mn,eq,10,then
+   *vwrite,_dy,_yr
+   ('October ',a,', ',a)
+   *elseif,_mn,eq,11,then
+   *vwrite,_dy,_yr
+   ('November ',a,', ',a)
+   *elseif,_mn,eq,12,then
+   *vwrite,_dy,_yr
+   ('December ',a,', ',a)
+   *endif
+   /com,</b>
+   /com,</td>
+   /com,</tr>
+   /com,<tr>
+   /com,<td align=center>
+   /com,<h2>An ANSYS Analysis</h2>
+   /com,</td>
+   /com,</tr>
+   /com,<tr>
+   /com,<td align=center>
+   /com,<b>Report Generated by ANSYS Mechanical Toolbar</b>
+   /com,</td>
+   /com,</tr>
+   /com,<tr><td>&nbsp;</td></tr>
+   /com,<tr>
+   /com,<td align=center>
+   /com,<b>
+   /com,<a href="#summary">Summary</a> &nbsp;&nbsp;&nbsp; 
+   /com,<a href="#model">Model Information</a> &nbsp;&nbsp;&nbsp;
+   /com,<a href="#analy">Analysis Information</a> &nbsp;&nbsp;&nbsp;
+   /com,<a href="#results">Results Information</a> 
+   /com,</b>
+   /com,</td>
+   /com,</tr>
+   /com,</table>
+*endif
+!
+!
+_tit1=
+_tit2=
+_tit3=
+_tit4=
+_tit5=
+_tit6=
+_tit7=
+_tit8=
+_l1=
+_l2=
+_l3=
+_l4=
+_l5=
+_l6=
+_l7=
+_l8=
+_i=
+_dt=
+_mn=
+_dy=
+_yr=
+/EOF
+
+h_summry
+!******************************************************************************
+/nopr
+!
+! output a summary of results.
+!
+! Written by C.W.Aiken  10/14/98
+!
+_rev=0
+_j=0
+! get ansys revision
+*get,_rev,active,,rev
+! determine analysis type
+*get,_struc,active,,keyw,,PR_STRUC
+*get,_modal,active,,keyw,,MODAL
+*if,_struc,eq,1,then
+   *if,_modal,eq,0,then
+      _antyp=1          ! structural
+   *else
+      _antyp=2          ! modal
+   *endif
+*else
+   _antyp=3             ! thermal
+*endif
+! get part name.
+_b1=_prtfil(1,1)
+_b2=_prtfil(1,2)
+_b3=_prtfil(1,3)
+_b4=_prtfil(1,4)
+_b5=_prtfil(1,5)
+_b6=_prtfil(1,6)
+_b7=_prtfil(1,7)
+_b8=_prtfil(1,8)
+_b9=_prtfil(1,9)
+_b10=_prtfil(1,10)
+! get part name.
+_c1=_prtnam(1,1)
+_c2=_prtnam(1,2)
+_c3=_prtnam(1,3)
+_c4=_prtnam(1,4)
+!
+/com,<blockquote>
+/com,<font size=+2><b>Summary</b></font><p>
+*if,_antyp,eq,1,then
+   *vwrite,_c1,_c2,_c3,_c4
+   ('This report documents a linear static analysis of the part <I>',4a,'</I>')
+*elseif,_antyp,eq,2,then
+   *vwrite,_c1,_c2,_c3,_c4
+   ('This report documents a modal analysis of the part <I>',4a,'</I>')
+*elseif,_antyp,eq,3,then
+   *vwrite,_c1,_c2,_c3,_c4
+   ('This report documents a steady-state thermal analysis of the part <I>',4a,'</I>')
+*endif
+*vwrite,_b1,_b2,_b3,_b4,_b5,_b6,_b7,_b8,_b9,_b10
+('which was imported from the file ',10a,' and ')
+_a1=_envnam(_curenv,1)
+_a2=_envnam(_curenv,2)
+_a3=_envnam(_curenv,3)
+_a4=_envnam(_curenv,4)
+*vwrite,_a1,_a2,_a3,_a4
+('subjected to the load environment <I>',4a,'</I>. The analysis was ')
+*vwrite,_rev
+('performed using the ANSYS ',f6.1,' CAE software.<p>')
+*if,_MATLCNT,eq,1,then
+   *vwrite,_c1,_c2,_c3,_c4
+   ('The part <I>',4a,'</I> was assigned properties of the material ')
+   _a1=
+   _a2=
+   _a3=
+   _a4=
+   *do,_j,1,_nummatl
+      *if,_matldp(_j,4),gt,0,then
+         _a1=_matlnam(_j,1)
+         _a2=_matlnam(_j,2)
+         _a3=_matlnam(_j,3)
+         _a4=_matlnam(_j,4)
+      *endif
+   *enddo
+   *vwrite,_a1,_a2,_a3,_a4
+   ('<a href="#table2">',4a,'</a> and showed ')
+*else   
+   *vwrite,_c1,_c2,_c3,_c4
+   ('The part <I>',4a,'</I> was assigned properties of the materials given in ')
+   /com,<a href="#table2">Table 2</a> and showed 
+*endif
+/com,the following results: <p>
+/com,<b>
+*if,_antyp,eq,1,then
+   _b=_lenglab(_curunit)
+   nsort,u,sum
+   *get,_a,sort,,max
+   *vwrite,_a,_b
+   ('Maximum total deflection= ',1pg12.5,1x,a,'<br>')
+   _b=_preslab(_curunit)
+   nsort,s,eqv
+   *get,_a,sort,,max
+   *vwrite,_a,_b
+   ('Maximum equivalent stress= ',1pg12.5,1x,a,'<br>')
+*elseif,_antyp,eq,2,then
+   *get,_nModes,common,,ENGCOM,,int,605
+   *if,_nModes,eq,1,then
+      *get,_a,mode,1,freq
+      *vwrite,_a
+      ('The first natural frequency=',1pg12.5,' Hz.')
+   *elseif,_nModes,eq,2,then
+      *get,_a,mode,1,freq
+      *get,_b,mode,2,freq
+      *vwrite,_a,_b
+      ('The first two natural frequencies=',1pg12.5,' and ',1pg12.5,' Hz.')
+   *else
+      *get,_a,mode,1,freq
+      *get,_b,mode,2,freq
+      *get,_c,mode,3,freq
+      *vwrite,_a,_b,_c
+      ('The first three natural frequencies= ',2(1pg12.5,', '),' and ',1pg12.5,' Hz.')
+   *endif
+*elseif,_antyp,eq,3,then
+   _b=_templab(_curunit)
+   nsort,temp
+   *get,_a,sort,,min
+   *vwrite,_a,_b
+   ('Minimum temperature= ',1pg12.5,1x,a,'<br>')
+   *get,_a,sort,,max
+   *vwrite,_a,_b
+   ('Maximum temperature= ',1pg12.5,1x,a,'<br>')
+   nsort,tg,sum
+   *get,_a,sort,,max
+   _b=strcat(_b,'/')
+   _b=strcat(_b,_lenglab(_curunit))
+   *vwrite,_a,_b
+   ('Maximum thermal gradient= ',1pg12.5,1x,a,'<br>')
+*endif
+/com,</b><p>
+/com,For details about the analysis, see
+/com,<a href="#model">Model Information</a>,
+/com,<a href="#analy">Analysis Information</a>,
+/com,and <a href="#results">Results Information</a>.
+/com,<p><a href="#top"> Back to top</a><br>
+/com,</blockquote>
+_nModes=
+_struc=
+_modal=
+_antyp=
+_rev=
+_j=
+_a=
+_b=
+_a1=
+_a2=
+_a3=
+_a4=
+_b1=
+_b2=
+_b3=
+_b4=
+_b5=
+_b6=
+_b7=
+_b8=
+_b9=
+_b10=
+_c1=
+_c2=
+_c3=
+_c4=
+/EOF 
+
+h_model
+!******************************************************************************
+/nopr
+!
+! output the model information
+!
+! Written by C.W.Aiken  10/14/98
+!
+! get part name. 
+_b1=_prtfil(1,1)
+_b2=_prtfil(1,2)
+_b3=_prtfil(1,3)
+_b4=_prtfil(1,4)
+_b5=_prtfil(1,5)
+_b6=_prtfil(1,6)
+_b7=_prtfil(1,7)
+_b8=_prtfil(1,8)
+_b9=_prtfil(1,9)
+_b10=_prtfil(1,10)
+! get part name.
+_c1=_prtnam(1,1)
+_c2=_prtnam(1,2)
+_c3=_prtnam(1,3)
+_c4=_prtnam(1,4)
+! get CAD import name
+/com,<blockquote>
+/com,<font size=+2><b>Model Information</b></font><p>
+*vwrite,_c1,_c2,_c3,_c4
+('The part ',4a)
+*vwrite,_b1,_b2,_b3,_b4,_b5,_b6,_b7,_b8,_b9,_b10
+('was imported from ',10a,'.')
+/com,<a href="#table1">Table 1</a> lists the number of nodes and 
+/com,elements and 
+/com,<a href="#table2">Table 2</a> lists the properties of the 
+*if,_MATLCNT,eq,1,then
+   _a1=
+   _a2=
+   _a3=
+   _a4=
+   *do,_j,1,_nummatl
+      *if,_matldp(_j,4),gt,0,then
+         _a1=_matlnam(_j,1)
+         _a2=_matlnam(_j,2)
+         _a3=_matlnam(_j,3)
+         _a4=_matlnam(_j,4)
+      *endif
+   *enddo
+   *vwrite,_a1,_a2,_a3,_a4
+   ('material (',4a,') ')
+*else
+   /com,materials
+*endif
+/com,used in the model.
+/com,</blockquote>
+_a1=
+_a2=
+_a3=
+_a4=
+_b1=
+_b2=
+_b3=
+_b4=
+_b5=
+_b6=
+_b7=
+_b8=
+_b9=
+_b10=
+_c1=
+_c2=
+_c3=
+_c4=
+/EOF
+
+h_geom 
+!******************************************************************************
+/nopr
+*if,_table(1),gt,0,then
+!
+! display a table of geometric entities that contains
+! number defined and number selected. 
+! Written by C.W.Aiken  9/1/98
+!
+! set up a table of element names from the ELCXXX routines
+*dim,_ename,char,200
+_ename(1)='LINK1','PLANE2','BEAM3','BEAM4','SOLID5'
+_ename(6)='SURF6','COMBIN7','LINK8','INFIN9','LINK10'
+_ename(11)='LINK11','CONTAC12','PLANE13','COMBIN14','FLUID15'
+_ename(16)='PIPE16','PIPE17','PIPE18','SURF19','PIPE20'
+_ename(21)='MASS21','SURF22','BEAM23','BEAM24','PLANE25'
+_ename(26)='CONTAC26','MATRIX27','SHELL28','FLUID29','FLUID30'
+_ename(31)='LINK31','LINK32','LINK33','LINK34','PLANE35'
+_ename(36)='SOURC36','COMBIN37','FLUID38','COMBIN39','COMBIN40'
+_ename(41)='SHELL41','PLANE42','SHELL43','BEAM44','SOLID45'
+_ename(46)='SOLID46','INFIN47','CONTAC48','CONTAC49','MATRIX50'
+_ename(51)='SHELL51','CONTAC52','PLANE53','BEAM54','PLANE55'
+_ename(56)='HYPER56','SHELL57','HYPER58','PIPE59','PIPE60'
+_ename(61)='SHELL61','SOLID62','SHELL63','SOLID64','SOLID65'
+_ename(66)='FLUID66','PLANE67','LINK68','SOLID69','SOLID70'
+_ename(71)='MASS71','SOLID72','SOLID73','HYPER74','PLANE75'
+_ename(76)='SURF76','PLANE77','PLANE78','FLUID79','FLUID80'
+_ename(81)='FLUID81','PLANE82','PLANE83','HYPER84','SOLID85'
+_ename(86)='HYPER86','SOLID87','VISCO88','VISCO89','SOLID90'
+_ename(91)='SHELL91','SOLID92','SHELL93','STIF94','SOLID95'
+_ename(96)='SOLID96','SOLID97','SOLID98','SHELL99','xxxxxxxx'
+_ename(101)='xxxxxxxx','xxxxxxxx','xxxxxxxx','xxxxxxxx','xxxxxxxx'
+_ename(106)='VISCO106','VISCO107','VISCO108','VISCO109','INFIN110'
+_ename(111)='INFIN111','xxxxxxxx','HF113','HF114','INTER115'
+_ename(116)='FLUID116','SOLID117','xxxxxxxx','HF119','HF120'
+_ename(121)='PLANE121','SOLID122','SOLID123','CIRCU124','CIRCU125'
+_ename(126)='xxxxxxxx','xxxxxxxx','xxxxxxxx','FLUID129','FLUID130'
+_ename(131)='FLUID131','FLUID132','FLUID133','FLUID134','FLUID135'
+_ename(136)='FLUID136','FLUID137','FLUID138','FLUID139','FLUID140'
+_ename(141)='FLUID141','FLUID142','SHELL143','xxxxxxxx','PLANE145'
+_ename(146)='PLANE146','SOLID147','SOLID148','xxxxxxxx','SHELL150'
+_ename(151)='SURF151','SURF152','SURF153','SURF154','SOIL155'
+_ename(156)='SOIL156','SHELL157','HYPER158','xxxxxxxx','LINK160'
+_ename(161)='BEAM161','SHELL162','SHELL163','SOLID164','COMBI165'
+_ename(166)='MASS166','LINK167','xxxxxxxx','TARGE169','TARGE170'
+_ename(171)='CONTA171','CONTA172','CONTA173','CONTA174','xxxxxxxx'
+_ename(176)='xxxxxxxx','xxxxxxxx','xxxxxxxx','xxxxxxxx','xxxxxxxx'
+_ename(181)='SHELL181','PLANE182','xxxxxxxx','xxxxxxxx','SOLID185'
+_ename(186)='xxxxxxxx','xxxxxxxx','BEAM188','BEAM189','xxxxxxxx'
+_ename(191)='xxxxxxxx','xxxxxxxx','RIGID193','RIGID194','xxxxxxxx'
+_ename(196)='xxxxxxxx','xxxxxxxx','xxxxxxxx','xxxxxxxx','xxxxxxxx'
+
+/com,<a name="table1">
+/com,<blockquote>
+/com,<p><b>Table 1.  Details of the Finite Element Model</b>
+_numt=etyiqr(0,14)
+*dim,_etyp,,_numt
+_nume=elmiqr(0,14)
+*do,_i,1,_nume
+	_typ=elmiqr(_i,-2)
+   *if,_typ,gt,0,then
+      _etyp(_typ)=_etyp(_typ)+1
+   *endif
+*enddo
+/com,<table border=1 cellpadding=7>
+/com,<tr>
+/com,<td> <b>Entity</b> </td>
+/com,<td align=center> <b>Number Defined</b> </td>
+/com,</tr>
+*do,_i,1,_numt
+   *if,_etyp(_i,1),gt,0,then
+      _typ=etyiqr(_i,-2)
+      _name=_ename(_typ)
+      _def=_etyp(_i)
+      /com,<tr>
+      /com,<td>
+      *vwrite,_name
+      ('<b>',a,'</b>')
+      /com,</td>
+      _def=chrval(_def)
+      *vwrite,_def
+      ('<td align=center>',a,'</td>')
+      /com,</tr>
+   *endif
+*enddo
+*if,ndinqr(0,12),gt,0,then
+   /com,<tr>
+   /com,<td> <b>Nodes</b> </td>
+   _a=ndinqr(0,12) 
+   _a=chrval(_a)
+   *vwrite,_a
+   ('<td align=center>',a,'</td>')
+*endif
+!!! skip total number of DOF: no way to get it from PCG solver or runstat or...
+!/com,<tr>
+!/com,<td><b>DOF</b></td>
+!*GET,_a,COMMON,,EQNCOM,,INT,1
+!_a=chrval(_a)
+!*vwrite,_a
+!('<td align=center>',a,'</td>')
+!/com,</tr>
+/com,</table>
+/com,<p><a href="#top"> Back to top</a><br>
+/com,</blockquote>
+_a=
+_ename=
+_etyp=
+_nume=
+_numt=
+_num=
+_i=
+_typ=
+_sel=
+_def=
+_name=
+_namea=
+_nameb=
+_namec=
+_named=
+*endif
+/EOF
+
+h_mater
+!******************************************************************************
+/nopr
+*if,_table(7),gt,0,then
+!
+! display the material properties
+! Written by C.W.Aiken  9/23/98
+!
+/com,<a name="table2">
+/com,<blockquote>
+/com,<b>Table 2. Material Properties</b><br>
+/com,<table border=1 cellpadding=7>
+/com,</th> </tr>
+*do,_j,1,_nummatl
+   *if,_matldp(_j,4),gt,0,then
+      _a1=_matlnam(_j,1)
+      _a2=_matlnam(_j,2)
+      _a3=_matlnam(_j,3)
+      _a4=_matlnam(_j,4)
+      *vwrite,_a1,_a2,_a3,_a4
+      ('<tr><th colspan=2><br>Material Properties for ',4a,'</th></tr>')
+      *if,_mattb(1),gt,0,then
+         _a=_preslab(_curunit)
+         *vwrite,_a
+         ('<tr><td align=left><b>Modulus of Elasticity [ ',a,' ]</b></td>')
+         *get,_a,ex,_j,temp
+         *vwrite,_a
+         ('<td align=center>',1pg12.4,'</td></tr>')
+      *endif
+      *if,_mattb(4),gt,0,then
+         _a=_denslab(_curunit)
+         *vwrite,_a
+         ('<tr><td align=left><b>Density [ ',a,' ]</b></td>')
+         *get,_a,dens,_j,temp
+         *vwrite,_a
+         ('<td align=center>',1pg12.4,'</td></tr>')
+      *endif
+      *if,_mattb(2),gt,0,then
+         /com,<tr><td align=left><b>Poisson's Ratio</b></td>
+         *get,_a,nuxy,_j,temp
+         *vwrite,_a
+         ('<td align=center>',1pg12.4,'</td></tr>')
+      *endif
+      *if,_mattb(3),gt,0,then
+         _a=_templab(_curunit)
+         *vwrite,_a
+         ('<tr><td align=left><b>Thermal Expansion Coefficient [ 1/',a,' ]</b></td>')
+         *get,_a,alpx,_j,temp
+         *vwrite,_a
+         ('<td align=center>',1pg12.4,'</td></tr>')
+      *endif
+      *if,_mattb(5),gt,0,then
+         _a=_condlab(_curunit)
+         *vwrite,_a
+         ('<tr><td align=left><b>Thermal Conductivity [ ',a,' ]</b></td>')
+         *get,_a,kxx,_j,temp
+         *vwrite,_a
+         ('<td align=center>',1pg12.4,'</td></tr>')
+      *endif
+      *if,_mattb(6),gt,0,then
+         _a=_sphtlab(_curunit)
+         *vwrite,_a
+         ('<tr><td align=left><b>Specific Heat [ ',a,' ]</b></td>')
+         *get,_a,c,_j,temp
+         *vwrite,_a
+         ('<td align=center>',1pg12.4,'</td></tr>')
+      *endif
+   *endif
+*enddo
+/com,</table>
+/com,<p><a href="#top"> Back to top</a><br>
+/com,</blockquote>
+_j=
+_a1=
+_a2=
+_a3=
+_a4=
+_a=
+*endif
+/EOF
+
+h_analy
+!******************************************************************************
+/nopr
+!
+! output the analysis information
+!
+! Written by C.W.Aiken  10/14/98
+!
+! get environment name.
+_a1=_envnam(_curenv,1)
+_a2=_envnam(_curenv,2)
+_a3=_envnam(_curenv,3)
+_a4=_envnam(_curenv,4)
+! get part name.
+_b1=_prtnam(1,1)
+_b2=_prtnam(1,2)
+_b3=_prtnam(1,3)
+_b4=_prtnam(1,4)
+! determine analysis type
+*get,_struc,active,,keyw,,PR_STRUC
+*get,_modal,active,,keyw,,MODAL
+*if,_struc,eq,1,then
+   *if,_modal,eq,0,then
+      _antyp=1          ! structural
+   *else
+      _antyp=2          ! modal
+   *endif
+*else
+   _antyp=3             ! thermal
+*endif
+/com,<blockquote>
+/com,<font size=+2><b>Analysis Information</b></font><p>
+*vwrite,_b1,_b2,_b3,_b4
+('The part <I>',4a,'</I> was subjected to the ')
+*vwrite,_a1,_a2,_a3,_a4
+('load environment <I>',4a,'</I>')
+/com,(see 
+/com,<a href="#table3">Table 3</a>) and evaluated with a
+*if,_antyp,eq,1,then
+/com,linear static analysis.
+*elseif,_antyp,eq,2,then
+/com,modal analysis.
+*elseif,_antype,eq,3,then
+/com,steady-state thermal analysis.
+*endif
+/com,</blockquote>
+_struc=
+_modal=
+_antyp=
+_a1=
+_a2=
+_a3=
+_a4=
+_b1=
+_b2=
+_b3=
+_b4=
+_b5=
+_b6=
+_b7=
+_b8=
+_b9=
+_b10=
+/EOF
+
+h_results
+!******************************************************************************
+/nopr
+!
+! output the results information
+!
+! Written by C.W.Aiken  10/14/98
+!
+! get material name.
+_a1=_matlnam(_curenv,1)
+_a2=_matlnam(_curenv,2)
+_a3=_matlnam(_curenv,3)
+_a4=_matlnam(_curenv,4)
+! get part name. 
+_b1=_prtnam(1,1)
+_b2=_prtnam(1,2)
+_b3=_prtnam(1,3)
+_b4=_prtnam(1,4)
+! get environment name.
+_c1=_envnam(_curenv,1)
+_c2=_envnam(_curenv,2)
+_c3=_envnam(_curenv,3)
+_c4=_envnam(_curenv,4)
+! determine analysis type
+*get,_struc,active,,keyw,,PR_STRUC
+*get,_modal,active,,keyw,,MODAL
+*if,_struc,eq,1,then
+   *if,_modal,eq,0,then
+      _antyp=1          ! structural
+   *else
+      _antyp=2          ! modal
+   *endif
+*else
+   _antyp=3             ! thermal
+*endif
+/com,<blockquote>
+/com,<font size=+2><b>Results Information</b></font><p>
+/com,The following tables show the response of the
+*if,_MATCNT,eq,1,then
+   *vwrite,_a1,_a2,_a3,_a4
+   ('<a href="#table2">',4a,'</a>')
+*else
+   /com,<a href="#table2">materials</a>
+*endif
+*vwrite,_b1,_b2,_b3,_b4
+('in the part <I>',4a,'</I> to the load environment')
+*vwrite,_c1,_c2,_c3,_c4
+('<I>',4a,'</I>.')
+*if,_antyp,eq,1,then
+   _b=_lenglab(_curunit)
+   nsort,u,sum
+   *get,_a,sort,,max
+   *vwrite,_a,_b
+   ('The maximum total deflection is ',1pg12.5,1x,a)
+   _b=_preslab(_curunit)
+   nsort,s,eqv
+   *get,_a,sort,,max
+   *vwrite,_a,_b
+   ('and the maximum equivalent stress is ',1pg12.5,1x,a,'.')
+*elseif,_antyp,eq,2,then
+   *get,_nModes,common,,ENGCOM,,int,605
+   *if,_nModes,eq,1,then
+      *get,_a,mode,1,freq
+      *vwrite,_a
+      ('The first natural frequency=',1pg12.5,' Hz.')
+   *elseif,_nModes,eq,2,then
+      *get,_a,mode,1,freq
+      *get,_b,mode,2,freq
+      *vwrite,_a,_b
+      ('The first two natural frequencies=',1pg12.5,' and ',1pg12.5,' Hz.')
+   *else
+      *get,_a,mode,1,freq
+      *get,_b,mode,2,freq
+      *get,_c,mode,3,freq
+      *vwrite,_a,_b,_c
+      ('The first three natural frequencies= ',2(1pg12.5,', '),' and ',1pg12.5,' Hz.')
+   *endif
+*elseif,_antyp,eq,3,then
+   _b=_templab(_curunit)
+   nsort,temp
+   *get,_a,sort,,min
+   *get,_c,sort,,max
+   *vwrite,_a,_b,_c,_b
+   ('The minimum and maximum temperatures are ',1pg12.5,1x,a,' and ',1pg12.5,1x,a,'.')
+   nsort,tg,sum
+   *get,_a,sort,,max
+   _b=strcat(_b,'/')
+   _b=strcat(_b,_lenglab(_curunit))
+   *vwrite,_a,_b
+   ('and the maximum thermal gradent is ',1pg12.5,1x,a,'.')
+*endif
+/com,</blockquote>
+_a=
+_b=
+_c=
+_a1=
+_a2=
+_a3=
+_a4=
+_b1=
+_b2=
+_b3=
+_b4=
+_b5=
+_b6=
+_b7=
+_b8=
+_b9=
+_b10=
+_c1=
+_c2=
+_c3=
+_c4=
+_j=
+/EOF
+
+h_rforce
+!******************************************************************************
+/nopr
+*if,_table(6),gt,0,then
+!
+! display a table of the reaction forces
+! assumption is made that post1 data is avaliable.
+! Written by C.W.Aiken  9/1/98
+!
+cm,_temp,nodes   ! save users selected node set
+/com,<a name="table4">
+/com,<blockquote>
+/com,<b>Table 4. Sum of the Reaction Forces</b> <br>
+/com,<table border=1 cellpadding=7>
+/com,<tr> <th colspan=3><br>Total Reaction Force
+_a=_forclab(_curunit)
+*vwrite,_a
+('<font size=-1>','[ ',a,' ]','</font></th> </tr>')
+/com,<tr>
+/com,<td align=center> <b>X</b> </td>
+/com,<td align=center> <b>Y</b> </td>
+/com,<td align=center> <b>Z</b> </td>
+/com,</tr>
+/com,<tr>
+nsel,s,d,ux,-.00001,.00001   ! select nodes with imposed disps
+fsum,,1
+*get,_a,fsum,,item,fx
+*vwrite,-1.0d0*_a
+('<td align=center>',1pg12.5,'</td>')
+nsel,s,d,uy,-.00001,.00001   ! select nodes with imposed disps
+fsum,,1
+*get,_a,fsum,,item,fy
+*vwrite,-1.0d0*_a
+('<td align=center>',1pg12.5,'</td>')
+nsel,s,d,uz,-.00001,.00001   ! select nodes with imposed disps
+fsum,,1
+*get,_a,fsum,,item,fz
+*vwrite,-1.0d0*_a
+('<td align=center>',1pg12.5,'</td>')
+/com,</tr>
+/com,</table>
+/com,<p><a href="#top"> Back to top</a><p>
+/com,<a name="table5">
+/com,<b>Table 5. Moment About the Global Origin Due to the Reactions</b> <br>
+/com,<table border=1 cellpadding=7>
+/com,<tr> <th colspan=3><br>Total Moment
+_a=_forclab(_curunit)
+_b=_lenglab(_curunit)
+*vwrite,_a,_b
+('<font size=-1>','[ ',2a,' ]','</font></th> </tr>')
+/com,<tr>
+/com,<td align=center> <b>X</b> </td>
+/com,<td align=center> <b>Y</b> </td>
+/com,<td align=center> <b>Z</b> </td>
+/com,</tr>
+/com,<tr>
+nsel,s,d,u,-.00001,.00001   ! select nodes with imposed disps
+fsum,,1
+*get,_a,fsum,,item,mx
+*vwrite,-1.0d0*_a
+('<td align=center>',1pg12.5,'</td>')
+*get,_a,fsum,,item,my
+*vwrite,-1.0d0*_a
+('<td align=center>',1pg12.5,'</td>')
+*get,_a,fsum,,item,mz
+*vwrite,-1.0d0*_a
+('<td align=center>',1pg12.5,'</td>')
+/com,</tr>
+/com,</table>
+/com,<p><a href="#top"> Back to top</a><br>
+/com,</blockquote>
+/com,<p>
+cmsel,s,_temp   ! get the users selected node set back
+cmdel,_temp   ! remove temporary node component
+_a=
+*endif
+/EOF
+
+h_disp
+!******************************************************************************
+/nopr
+*if,_table(4),gt,0,then
+!
+! display a table of the max & min displacements
+! assumption is made that post1 data is avaliable.
+! Written by C.W.Aiken  9/1/98
+!
+/com,<a name="table6">
+/com,<blockquote>
+/com,<b>Table 6. Deflections</b><br>
+/com,<table border=1 cellpadding=7>
+/com,<tr> <th colspan=5><br>Deflections
+_a=_lenglab(_curunit)
+*vwrite,_a
+('<font size=-1>','[ ',a,' ]','</font></th></tr>')
+/com,<tr>
+/com,<td> <b><br></b> </td>
+/com,<td align=center> <b>X</b> </td>
+/com,<td align=center> <b>Y</b> </td>
+/com,<td align=center> <b>Z</b> </td>
+/com,<td align=center> <b>Vector Sum</b> </td>
+/com,</tr>
+/com,<tr>
+/com,<td><b>Maximum</b></td>
+nsort,u,x,,1
+*get,_a,sort,,max
+*vwrite,_a
+('<td align=center>',1pg12.5,'</td>')
+nsort,u,y,,1
+*get,_a,sort,,max
+*vwrite,_a
+('<td align=center>',1pg12.5,'</td>')
+nsort,u,z,,1
+*get,_a,sort,,max
+*vwrite,_a
+('<td align=center>',1pg12.5,'</td>')
+nsort,u,sum
+*get,_a,sort,,max
+*vwrite,_a
+('<td align=center>',1pg12.5,'</td>')
+/com,</tr>
+/com,</table>
+/com,<p><a href="#top"> Back to top</a><br>
+/com,</blockquote>
+/com,<p>
+_a=
+*endif
+/EOF
+
+h_dirstr
+!******************************************************************************
+/nopr
+*if,_table(8),gt,0,then
+!
+! display a table of the max & min direct stresses
+! assumption is made that post1 data is available.
+! Written by C.W.Aiken  9/23/98
+!
+/com,<a name="table7">
+/com,<blockquote>
+/com,<b>Table 7. Direct Stresses</b><br>
+/com,<table border=1 cellpadding=7>
+/com,<tr> <th colspan=4><br>Direct Stresses
+_a=_preslab(_curunit)
+*vwrite,_a
+('<font size=-1>','[ ',a,' ]','</font></th> </tr>')
+/com,<tr>
+/com,<td> <b><br></b> </td>
+/com,<td align=center> <b>X</b> </td>
+/com,<td align=center> <b>Y</b> </td>
+/com,<td align=center> <b>Z</b> </td>
+/com,</tr>
+/com,<tr>
+/com,<td align=center> <B>Minimum</B> </td>
+nsort,s,x
+*get,_a,sort,,min
+*vwrite,_a
+('<td align=center>',1pg12.5,'</td>')
+nsort,s,y
+*get,_a,sort,,min
+*vwrite,_a
+('<td align=center>',1pg12.5,'</td>')
+nsort,s,z
+*get,_a,sort,,min
+*vwrite,_a
+('<td align=center>',1pg12.5,'</td>')
+/com,</tr>
+/com,<tr>
+/com,<td align=center> <B>Maximum</B> </td>
+nsort,s,x
+*get,_a,sort,,max
+*vwrite,_a
+('<td align=center>',1pg12.5,'</td>')
+nsort,s,y
+*get,_a,sort,,max
+*vwrite,_a
+('<td align=center>',1pg12.5,'</td>')
+nsort,s,z
+*get,_a,sort,,max
+*vwrite,_a
+('<td align=center>',1pg12.5,'</td>')
+/com,</tr>
+/com,</table>
+/com,<p><a href="#top"> Back to top</a><br>
+/com,</blockquote>
+/com,<p>
+_a=
+*endif
+/EOF
+
+h_shear
+!******************************************************************************
+/nopr
+*if,_table(10),gt,0,then
+!
+! display a table of the max & min shear stresses
+! assumption is made that post1 data is available.
+! Written by C.W.Aiken  10/15/98
+!
+/com,<a name="table8">
+/com,<blockquote>
+/com,<b>Table 8. Shear Stresses</b><br>
+/com,<table border=1 cellpadding=7>
+/com,<tr> <th colspan=4><br>Shear Stresses
+_a=_preslab(_curunit)
+*vwrite,_a
+('<font size=-1>','[ ',a,' ]','</font></th> </tr>')
+/com,<tr>
+/com,<td> <b><br></b> </td>
+/com,<td align=center> <b>XY</b> </td>
+/com,<td align=center> <b>YZ</b> </td>
+/com,<td align=center> <b>XZ</b> </td>
+/com,</tr>
+/com,<tr>
+/com,<td align=center> <B>Minimum</B> </td>
+nsort,s,xy
+*get,_a,sort,,min
+*vwrite,_a
+('<td align=center>',1pg12.5,'</td>')
+nsort,s,yZ
+*get,_a,sort,,min
+*vwrite,_a
+('<td align=center>',1pg12.5,'</td>')
+nsort,s,xz
+*get,_a,sort,,min
+*vwrite,_a
+('<td align=center>',1pg12.5,'</td>')
+/com,</tr>
+/com,<tr>
+/com,<td align=center> <B>Maximum</B> </td>
+nsort,s,xy
+*get,_a,sort,,max
+*vwrite,_a
+('<td align=center>',1pg12.5,'</td>')
+nsort,s,yz
+*get,_a,sort,,max
+*vwrite,_a
+('<td align=center>',1pg12.5,'</td>')
+nsort,s,xz
+*get,_a,sort,,max
+*vwrite,_a
+('<td align=center>',1pg12.5,'</td>')
+/com,</tr>
+/com,</table>
+/com,<p><a href="#top"> Back to top</a><br>
+/com,</blockquote>
+/com,<p>
+_a=
+*endif
+/EOF
+
+h_prstr
+!******************************************************************************
+/nopr
+*if,_table(5),gt,0,then
+!
+! display a table of the max & min principal stresses
+! assumption is made that post1 data is available.
+! Written by C.W.Aiken  9/1/98
+!
+/com,<a name="table9">
+/com,<blockquote>
+/com,<b>Table 9. Principal Stresses</b><br>
+/com,<table border=1 cellpadding=7>
+/com,<tr> <th colspan=4><br>Principal Stresses
+_a=_preslab(_curunit)
+*vwrite,_a
+('<font size=-1>','[ ',a,' ]','</font></th> </tr>')
+/com,<tr>
+/com,<td> <b><br></b> </td>
+/com,<td align=center> <b>1st</b> </td>
+/com,<td align=center> <b>2nd</b> </td>
+/com,<td align=center> <b>3rd</b> </td>
+/com,</tr>
+/com,<tr>
+/com,<td align=center> <B>Minimum</B> </td>
+*if,_prstrtb(1),gt,0,then
+   nsort,s,1
+   *get,_a,sort,,min
+   *vwrite,_a
+   ('<td align=center>',1pg12.5,'</td>')
+*endif
+*if,_prstrtb(2),gt,0,then
+   nsort,s,2
+   *get,_a,sort,,min
+   *vwrite,_a
+   ('<td align=center>',1pg12.5,'</td>')
+*endif
+*if,_prstrtb(3),gt,0,then
+   nsort,s,3
+   *get,_a,sort,,min
+   *vwrite,_a
+   ('<td align=center>',1pg12.5,'</td>')
+*endif
+/com,</tr>
+/com,<tr>
+/com,<td align=center> <B>Maximum</B> </td>
+*if,_prstrtb(1),gt,0,then
+   nsort,s,1
+   *get,_a,sort,,max
+   *vwrite,_a
+   ('<td align=center>',1pg12.5,'</td>')
+*endif
+*if,_prstrtb(2),gt,0,then
+   nsort,s,2
+   *get,_a,sort,,max
+   *vwrite,_a
+   ('<td align=center>',1pg12.5,'</td>')
+*endif
+*if,_prstrtb(3),gt,0,then
+   nsort,s,3
+   *get,_a,sort,,max
+   *vwrite,_a
+   ('<td align=center>',1pg12.5,'</td>')
+*endif
+/com,</tr>
+/com,</table>
+/com,<p><a href="#top"> Back to top</a><br>
+/com,</blockquote>
+/com,<p>
+_a=
+*endif
+/EOF
+
+h_sistr
+!******************************************************************************
+/nopr
+*if,_table(11),gt,0,then
+!
+! display a table of the max & min stress intensity and equivalent stress
+! assumption is made that post1 data is available.
+! Written by C.W.Aiken  10/15/98
+!
+/com,<a name="table10">
+/com,<blockquote>
+/com,<b>Table 10. Stress Intensity and Equivalent Stress</b><br>
+/com,<table border=1 cellpadding=7>
+/com,<tr> <th colspan=4><br>Stress Intensity and Equivalent Stress
+_a=_preslab(_curunit)
+*vwrite,_a
+('<font size=-1>','[ ',a,' ]','</font></th> </tr>')
+/com,<tr>
+/com,<td> <b><br></b> </td>
+/com,<td align=center> <b>Stress Intensity</b> </td>
+/com,<td align=center> <b>Equivalent Stress</b> </td>
+/com,</tr>
+/com,<tr>
+/com,<td align=center> <B>Minimum</B> </td>
+*if,_prstrtb(4),gt,0,then
+   nsort,s,int
+   *get,_a,sort,,min
+   *vwrite,_a
+   ('<td align=center>',1pg12.5,'</td>')
+*endif
+*if,_prstrtb(5),gt,0,then
+   nsort,s,eqv
+   *get,_a,sort,,min
+   *vwrite,_a
+   ('<td align=center>',1pg12.5,'</td>')
+*endif
+/com,</tr>
+/com,<tr>
+/com,<td align=center> <B>Maximum</B> </td>
+*if,_prstrtb(4),gt,0,then
+   nsort,s,int
+   *get,_a,sort,,max
+   *vwrite,_a
+   ('<td align=center>',1pg12.5,'</td>')
+*endif
+*if,_prstrtb(5),gt,0,then
+   nsort,s,eqv
+   *get,_a,sort,,max
+   *vwrite,_a
+   ('<td align=center>',1pg12.5,'</td>')
+*endif
+/com,</tr>
+/com,</table>
+/com,<p><a href="#top"> Back to top</a><br>
+/com,</blockquote>
+/com,<p>
+_a=
+*endif
+/EOF
+
+h_thgrad
+!******************************************************************************
+/nopr
+*if,_table(12),gt,0,then
+!
+! display a table of the max & min thermal gradients
+! assumption is made that post1 data is available.
+! Written by C.W.Aiken  10/19/98
+!
+/com,<a name="table5">
+/com,<blockquote>
+/com,<b>Table 5. Thermal Gradients</b><br>
+/com,<table border=1 cellpadding=7>
+/com,<tr> <th colspan=5><br>Thermal Gradients
+_a=_templab(_curunit)
+_a=strcat(_a,'/')
+_a=strcat(_a,_lenglab(_curunit))
+*vwrite,_a
+('<font size=-1>','[ ',a,' ]','</font></th> </tr>')
+/com,<tr>
+/com,<td> <b><br></b> </td>
+/com,<td align=center> <b>TGX</b> </td>
+/com,<td align=center> <b>TGY</b> </td>
+/com,<td align=center> <b>TGZ</b> </td>
+/com,<td align=center> <b>Vector Sum</b> </td>
+/com,</tr>
+/com,<tr>
+/com,<td align=center> <B>Minimum</B> </td>
+nsort,tg,x
+*get,_a,sort,,min
+*vwrite,_a
+('<td align=center>',1pg12.5,'</td>')
+nsort,tg,y
+*get,_a,sort,,min
+*vwrite,_a
+('<td align=center>',1pg12.5,'</td>')
+nsort,tg,z
+*get,_a,sort,,min
+*vwrite,_a
+('<td align=center>',1pg12.5,'</td>')
+nsort,tg,sum
+*get,_a,sort,,min
+*vwrite,_a
+('<td align=center>',1pg12.5,'</td>')
+/com,</tr>
+/com,<tr>
+/com,<td align=center> <B>Maximum</B> </td>
+nsort,tg,x
+*get,_a,sort,,max
+*vwrite,_a
+('<td align=center>',1pg12.5,'</td>')
+nsort,tg,y
+*get,_a,sort,,max
+*vwrite,_a
+('<td align=center>',1pg12.5,'</td>')
+nsort,tg,z
+*get,_a,sort,,max
+*vwrite,_a
+('<td align=center>',1pg12.5,'</td>')
+nsort,tg,sum
+*get,_a,sort,,max
+*vwrite,_a
+('<td align=center>',1pg12.5,'</td>')
+/com,</tr>
+/com,</table>
+/com,<p><a href="#top"> Back to top</a><br>
+/com,</blockquote>
+/com,<p>
+_a=
+*endif
+/EOF
+
+h_thflux
+!******************************************************************************
+/nopr
+*if,_table(13),gt,0,then
+!
+! display a table of the max & min thermal flux
+! assumption is made that post1 data is available.
+! Written by C.W.Aiken  10/19/98
+!
+/com,<a name="table6">
+/com,<blockquote>
+/com,<b>Table 6. Thermal Flux</b><br>
+/com,<table border=1 cellpadding=7>
+/com,<tr> <th colspan=5><br>Thermal Flux
+_a=_hflxlab(_curunit)
+*vwrite,_a
+('<font size=-1>','[ ',a,' ]','</font></th> </tr>')
+/com,<tr>
+/com,<td> <b><br></b> </td>
+/com,<td align=center> <b>TFX</b> </td>
+/com,<td align=center> <b>TFY</b> </td>
+/com,<td align=center> <b>TFZ</b> </td>
+/com,<td align=center> <b>Vector Sum</b> </td>
+/com,</tr>
+/com,<tr>
+/com,<td align=center> <B>Minimum</B> </td>
+nsort,tf,x
+*get,_a,sort,,min
+*vwrite,_a
+('<td align=center>',1pg12.5,'</td>')
+nsort,tf,y
+*get,_a,sort,,min
+*vwrite,_a
+('<td align=center>',1pg12.5,'</td>')
+nsort,tf,z
+*get,_a,sort,,min
+*vwrite,_a
+('<td align=center>',1pg12.5,'</td>')
+nsort,tf,sum
+*get,_a,sort,,min
+*vwrite,_a
+('<td align=center>',1pg12.5,'</td>')
+/com,</tr>
+/com,<tr>
+/com,<td align=center> <B>Maximum</B> </td>
+nsort,tf,x
+*get,_a,sort,,max
+*vwrite,_a
+('<td align=center>',1pg12.5,'</td>')
+nsort,tf,y
+*get,_a,sort,,max
+*vwrite,_a
+('<td align=center>',1pg12.5,'</td>')
+nsort,tf,z
+*get,_a,sort,,max
+*vwrite,_a
+('<td align=center>',1pg12.5,'</td>')
+nsort,tf,sum
+*get,_a,sort,,max
+*vwrite,_a
+('<td align=center>',1pg12.5,'</td>')
+/com,</tr>
+/com,</table>
+/com,<p><a href="#top"> Back to top</a><br>
+/com,</blockquote>
+/com,<p>
+_a=
+*endif
+/EOF
+
+h_temps
+!******************************************************************************
+/nopr
+*if,_table(14),gt,0,then
+!
+! display a table of the max & min extreme temperatures
+! assumption is made that post1 data is available.
+! Written by C.W.Aiken  10/22/98
+!
+/com,<a name="table4">
+/com,<blockquote>
+/com,<b>Table 4. Extreme Temperatures</b><br>
+/com,<table border=1 cellpadding=7>
+/com,<tr> <th colspan=2><br>Extreme Temperatures
+_a=_templab(_curunit)
+*vwrite,_a
+('<font size=-1>','[ ',a,' ]','</font></th> </tr>')
+/com,<tr>
+/com,<td align=left> <b>Minimum</b> </td>
+nsort,temp
+*get,_a,sort,,min
+*vwrite,_a
+('<td align=center>',1pg12.5,'</td>')
+/com,</tr>
+/com,<tr>
+/com,<td align=left> <B>Maximum</B> </td>
+nsort,temp
+*get,_a,sort,,max
+*vwrite,_a
+('<td align=center>',1pg12.5,'</td>')
+/com,</tr>
+/com,</table>
+/com,<p><a href="#top"> Back to top</a><br>
+/com,</blockquote>
+/com,<p>
+_a=
+*endif
+/EOF
+
+h_nfreqs
+!******************************************************************************
+/nopr
+*if,_table(14),gt,0,then
+!
+! display a table of natural frequencies
+! assumption is made that post1 data is available.
+! Written by C.W.Aiken  10/30/98
+!
+/com,<a name="table4">
+/com,<blockquote>
+/com,<b>Table 4. Natural Frequencies</b><br>
+/com,<table border=1 cellpadding=7>
+/com,<tr> <th colspan=2><br>Natural Frequencies</th></tr>
+/com,<tr>
+/com,<td align=center> <b>Mode Number</b> </td>
+/com,<td align=center> <b>Frequency <font size=-1>(Hz)</font></b> </td>
+*get,_nModes,common,,ENGCOM,,int,605
+*if,_nModes,gt,0,then
+   *do,_i,1,_nModes,
+      *get,_freqs,mode,_i,freq
+      _a=chrval(_i)
+      *vwrite,_a
+      ('<tr><td align=center>',a,'</td>')
+      *vwrite,_freqs
+      ('<td align=center>',1pg12.5,'</td></tr>')
+   *enddo
+*endif
+/com,</table>
+/com,<p><a href="#top"> Back to top</a><br>
+/com,</blockquote>
+/com,<p>
+_i=
+_a=
+_nModes=
+_freqs=
+*endif
+/EOF
+
+h_mdplot
+!******************************************************************************
+! plot the mode shapes and form jpeg files.
+! when jpegs are finished, copy to report directory.
+!
+! arg1 = mode to plot
+! arg2 = figure number. max of 9999 allowed at this time.
+!/nopr
+/gopr
+*if,_dogrph,gt,0,then
+   _mode=arg1
+   _fig=arg2
+   !
+   ! get job name
+   *get,_jn1,active,,jobname,,start,1
+   *get,_jn2,active,,jobname,,start,9
+   *get,_jn3,active,,jobname,,start,17
+   *get,_jn4,active,,jobname,,start,25
+   *get,_nModes,common,,ENGCOM,,int,605
+   !
+   ! check if the mode to be plotted exists
+   *if,_nModes,ge,_mode,then
+      _work1='Plotting'
+      _work2=' Mode Sh'
+      _work3='ape'
+      _work4=chrval(%_mode%)
+      *abcheck,60,'%_work1%%_work2%%_work3%%_work4%'
+      _work1=chrval(_fig)
+      *if,_fig,ge,1000,then
+         *vwrite,_work1
+         ('<a name="figure',a4,'">')
+      *elseif,_fig,ge,100,then
+         *vwrite,_work1
+         ('<a name="figure',a3,'">')
+      *elseif,_fig,ge,10,then
+         *vwrite,_work1
+         ('<a name="figure',a2,'">')
+      *else
+         *vwrite,_work1
+         ('<a name="figure',a1,'">')
+      *endif
+      /com,<blockquote>
+      /com,<table border=1 cellpadding=7>
+      *get,_freq,mode,_mode,freq
+      _work1=chrval(_mode)
+      *vwrite,_fig,_work1,_freq
+      ('<tr><th> Figure ',f6.0,' Mode Shape ',a,'(',1pg13.5,' Hz)</th></tr>')
+      /com,<tr><td align=center>
+      /inq,_a,exist,%_jn1%%_jn2%%_jn3%%_jn4%,jpg
+      *if,_a,gt,0,then
+         /del,%_jn1%%_jn2%%_jn3%%_jn4%,jpg
+      *endif
+      set,,_mode
+      /ui,raise
+      mtbcsymb,0,0
+      mtplot,12,7
+      mtjpeg,0
+      _work1=chrval(_fig)
+      *if,_fig,ge,1000,then
+         *vwrite,_work1
+         ('<img src="figure',a4,'.jpg" width=483 height=363>')
+      *elseif,_fig,ge,100,then
+         *vwrite,_work1
+         ('<img src="figure',a3,'.jpg" width=483 height=363>')
+      *elseif,_fig,ge,10,then
+         *vwrite,_work1
+         ('<img src="figure',a2,'.jpg" width=483 height=363>')
+      *else
+         *vwrite,_work1
+         ('<img src="figure',a1,'.jpg" width=483 height=363>')
+      *endif
+      /com,</td></tr>
+      /com,</table>
+      /com,<p><a href="#top"> Back to top</a><br>
+      /com,</blockquote>
+      /copy,'%_jn1%%_jn2%%_jn3%%_jn4%',jpg,,'figure%_work1%',jpg,'%_rdir(1)%%_rdir(2)%%_rdir(3)%%_rdir(4)%'
+   *endif
+*endif
+/com,<p>
+_nModes=
+_fig=
+_jn=
+_work1=
+_work2=
+_work3=
+_work4=
+_freq=
+/EOF
+
+h_gmplot
+!******************************************************************************
+! plot the model geometry and form jpeg files.
+! when jpegs are finished, copy to report directory.
+!
+! arg1 = figure number. max of 9999 allowed at this time.
+/nopr
+*if,_dogrph,gt,0,then
+   _fig=arg1
+   !
+   ! get job name
+   *get,_jn1,active,,jobname,,start,1
+   *get,_jn2,active,,jobname,,start,9
+   *get,_jn3,active,,jobname,,start,17
+   *get,_jn4,active,,jobname,,start,25
+   _work1=chrval(%_fig%)
+   *if,_fig,ge,1000,then
+      *vwrite,_work1
+      ('<a name="figure',a4,'">')
+   *elseif,_fig,ge,100,then
+      *vwrite,_work1
+      ('<a name="figure',a3,'">')
+   *elseif,_fig,ge,10,then
+      *vwrite,_work1
+      ('<a name="figure',a2,'">')
+   *else
+      *vwrite,_work1
+      ('<a name="figure',a1,'">')
+   *endif
+   /com,<blockquote>
+   /com,<table border=1 cellpadding=7>
+   *vwrite,_fig
+   ('<tr><th> Figure',f6.0,' Model Geometry</th></tr>')
+   /com,<tr><td align=center>
+   /inq,_a,exist,%_jn1%%_jn2%%_jn3%%_jn4%,jpg
+   *if,_a,gt,0,then
+      /del,%_jn1%%_jn2%%_jn3%%_jn4%,jpg
+   *endif
+   /ui,raise
+   mtbcsymb,0,0
+   mtplot,4,1 
+   mtjpeg,0
+   *if,_fig,ge,1000,then
+      *vwrite,_work1
+      ('<img src="figure',a4,'.jpg" width=483 height=363>')
+   *elseif,_fig,ge,100,then
+      *vwrite,_work1
+      ('<img src="figure',a3,'.jpg" width=483 height=363>')
+   *elseif,_fig,ge,10,then
+      *vwrite,_work1
+      ('<img src="figure',a2,'.jpg" width=483 height=363>')
+   *else
+      *vwrite,_work1
+      ('<img src="figure',a1,'.jpg" width=483 height=363>')
+   *endif
+   /com,</td></tr>
+   /com,</table>
+   /com,</blockquote>
+   /copy,'%_jn1%%_jn2%%_jn3%%_jn4%',jpg,,'figure%_work1%',jpg,'%_rdir(1)%%_rdir(2)%%_rdir(3)%%_rdir(4)%'
+   _fig=
+   _work1=
+   _jn1=
+   _jn2=
+   _jn3=
+   _jn4=
+*endif
+/com,<p>
+/EOF   
+
+h_mshplt
+!******************************************************************************
+! plot the finite element mesh and form jpeg files.
+! when jpegs are finished, copy to report directory.
+!
+! arg1 = figure number. max of 9999 allowed at this time.
+/nopr
+*if,_dogrph,gt,0,then
+   _fig=arg1
+   !
+   ! get job name
+   *get,_jn1,active,,jobname,,start,1
+   *get,_jn2,active,,jobname,,start,9
+   *get,_jn3,active,,jobname,,start,17
+   *get,_jn4,active,,jobname,,start,25
+      _work1=chrval(%_fig%)
+   *if,_fig,ge,1000,then
+      *vwrite,_work1
+      ('<a name="figure',a4,'">')
+   *elseif,_fig,ge,100,then
+      *vwrite,_work1
+      ('<a name="figure',a3,'">')
+   *elseif,_fig,ge,10,then
+      *vwrite,_work1
+      ('<a name="figure',a2,'">')
+   *else
+      *vwrite,_work1
+      ('<a name="figure',a1,'">')
+   *endif
+   /com,<blockquote>
+   /com,<table border=1 cellpadding=7>
+   *vwrite,_fig
+   ('<tr><th> Figure',f6.0,' Finite Element Mesh</th></tr>')
+   /com,<tr><td align=center>
+   /inq,_a,exist,%_jn1%%_jn2%%_jn3%%_jn4%,jpg
+   *if,_a,gt,0,then
+      /del,%_jn1%%_jn2%%_jn3%%_jn4%,jpg
+   *endif
+   /ui,raise
+   mtbcsymb,0,0
+   mtplot,6,6 
+   mtjpeg,0
+   *if,_fig,ge,1000,then
+      *vwrite,_work1
+      ('<img src="figure',a4,'.jpg" width=483 height=363>')
+   *elseif,_fig,ge,100,then
+      *vwrite,_work1
+      ('<img src="figure',a3,'.jpg" width=483 height=363>')
+   *elseif,_fig,ge,10,then
+      *vwrite,_work1
+      ('<img src="figure',a2,'.jpg" width=483 height=363>')
+   *else
+      *vwrite,_work1
+      ('<img src="figure',a1,'.jpg" width=483 height=363>')
+   *endif
+   /com,</td></tr>
+   /com,</table>
+   /com,</blockquote>
+   /copy,'%_jn1%%_jn2%%_jn3%%_jn4%',jpg,,'figure%_work1%',jpg,'%_rdir(1)%%_rdir(2)%%_rdir(3)%%_rdir(4)%'
+   _fig=
+   _work1=
+   _jn1=
+   _jn2=
+   _jn3=
+   _jn4=
+*endif
+/com,<p>
+/EOF   
+
+h_bcplot
+!******************************************************************************
+! plot the loads and boundry conditions and form jpeg files.
+! when jpegs are finished, copy to report directory.
+!
+! arg1 = figure number. max of 9999 allowed at this time.
+/nopr
+*if,_dogrph,gt,0,then
+   _fig=arg1
+   !
+   ! get job name
+   *get,_jn1,active,,jobname,,start,1
+   *get,_jn2,active,,jobname,,start,9
+   *get,_jn3,active,,jobname,,start,17
+   *get,_jn4,active,,jobname,,start,25
+      _work1=chrval(%_fig%)
+   *if,_fig,ge,1000,then
+      *vwrite,_work1
+      ('<a name="figure',a4,'">')
+   *elseif,_fig,ge,100,then
+      *vwrite,_work1
+      ('<a name="figure',a3,'">')
+   *elseif,_fig,ge,10,then
+      *vwrite,_work1
+      ('<a name="figure',a2,'">')
+   *else
+      *vwrite,_work1
+      ('<a name="figure',a1,'">')
+   *endif
+   /com,<blockquote>
+   /com,<table border=1 cellpadding=7>
+   *vwrite,_fig
+   ('<tr><th> Figure',f6.0,' Loads and Boundary Conditions</th></tr>')
+   /com,<tr><td align=center>
+   /inq,_a,exist,%_jn1%%_jn2%%_jn3%%_jn4%,jpg
+   *if,_a,gt,0,then
+      /del,%_jn1%%_jn2%%_jn3%%_jn4%,jpg
+   *endif
+   /ui,raise
+   mtbcsymb,1,0
+   mtplot,4,1 
+   mtjpeg,0
+   *if,_fig,ge,1000,then
+      *vwrite,_work1
+      ('<img src="figure',a4,'.jpg" width=483 height=363>')
+   *elseif,_fig,ge,100,then
+      *vwrite,_work1
+      ('<img src="figure',a3,'.jpg" width=483 height=363>')
+   *elseif,_fig,ge,10,then
+      *vwrite,_work1
+      ('<img src="figure',a2,'.jpg" width=483 height=363>')
+   *else
+      *vwrite,_work1
+      ('<img src="figure',a1,'.jpg" width=483 height=363>')
+   *endif
+   /com,</td></tr>
+   /com,</table>
+   /com,</blockquote>
+   /copy,'%_jn1%%_jn2%%_jn3%%_jn4%',jpg,,'figure%_work1%',jpg,'%_rdir(1)%%_rdir(2)%%_rdir(3)%%_rdir(4)%'
+   _fig=
+   _work1=
+   _jn1=
+   _jn2=
+   _jn3=
+   _jn4=
+*endif
+/com,<p>
+/EOF   
+
+h_defplt
+!******************************************************************************
+! plot the deformed shape and form jpeg files.
+! when jpegs are finished, copy to report directory.
+!
+! arg1 = figure number. max of 9999 allowed at this time.
+/nopr
+*if,_dogrph,gt,0,then
+   _fig=arg1
+   !
+   ! get job name
+   *get,_jn1,active,,jobname,,start,1
+   *get,_jn2,active,,jobname,,start,9
+   *get,_jn3,active,,jobname,,start,17
+   *get,_jn4,active,,jobname,,start,25
+      _work1=chrval(%_fig%)
+   *if,_fig,ge,1000,then
+      *vwrite,_work1
+      ('<a name="figure',a4,'">')
+   *elseif,_fig,ge,100,then
+      *vwrite,_work1
+      ('<a name="figure',a3,'">')
+   *elseif,_fig,ge,10,then
+      *vwrite,_work1
+      ('<a name="figure',a2,'">')
+   *else
+      *vwrite,_work1
+      ('<a name="figure',a1,'">')
+   *endif
+   /com,<blockquote>
+   /com,<table border=1 cellpadding=7>
+   *vwrite,_fig
+   ('<tr><th> Figure',f6.0,' Deformed Shape</th></tr>')
+   /com,<tr><td align=center>
+   /inq,_a,exist,%_jn1%%_jn2%%_jn3%%_jn4%,jpg
+   *if,_a,gt,0,then
+      /del,%_jn1%%_jn2%%_jn3%%_jn4%,jpg
+   *endif
+   set,last
+   /ui,raise
+   mtbcsymb,0,0
+   mtplot,102,1 
+   mtjpeg,0
+   *if,_fig,ge,1000,then
+      *vwrite,_work1
+      ('<img src="figure',a4,'.jpg" width=483 height=363>')
+   *elseif,_fig,ge,100,then
+      *vwrite,_work1
+      ('<img src="figure',a3,'.jpg" width=483 height=363>')
+   *elseif,_fig,ge,10,then
+      *vwrite,_work1
+      ('<img src="figure',a2,'.jpg" width=483 height=363>')
+   *else
+      *vwrite,_work1
+      ('<img src="figure',a1,'.jpg" width=483 height=363>')
+   *endif
+   /com,</td></tr>
+   /com,</table>
+   /com,</blockquote>
+   /copy,'%_jn1%%_jn2%%_jn3%%_jn4%',jpg,,'figure%_work1%',jpg,'%_rdir(1)%%_rdir(2)%%_rdir(3)%%_rdir(4)%'
+   _fig=
+   _work1=
+   _jn1=
+   _jn2=
+   _jn3=
+   _jn4=
+*endif
+/com,<p>
+/EOF   
+
+h_esplot
+!******************************************************************************
+! plot the equivalent stresses and form jpeg files.
+! when jpegs are finished, copy to report directory.
+!
+! arg1 = figure number. max of 9999 allowed at this time.
+/nopr
+*if,_dogrph,gt,0,then
+   _fig=arg1
+   !
+   ! get job name
+   *get,_jn1,active,,jobname,,start,1
+   *get,_jn2,active,,jobname,,start,9
+   *get,_jn3,active,,jobname,,start,17
+   *get,_jn4,active,,jobname,,start,25
+      _work1=chrval(%_fig%)
+   *if,_fig,ge,1000,then
+      *vwrite,_work1
+      ('<a name="figure',a4,'">')
+   *elseif,_fig,ge,100,then
+      *vwrite,_work1
+      ('<a name="figure',a3,'">')
+   *elseif,_fig,ge,10,then
+      *vwrite,_work1
+      ('<a name="figure',a2,'">')
+   *else
+      *vwrite,_work1
+      ('<a name="figure',a1,'">')
+   *endif
+   /com,<blockquote>
+   /com,<table border=1 cellpadding=7>
+   *vwrite,_fig
+   ('<tr><th> Figure',f6.0,' Equivalent Stress Contours</th></tr>')
+   /com,<tr><td align=center>
+   /inq,_a,exist,%_jn1%%_jn2%%_jn3%%_jn4%,jpg
+   *if,_a,gt,0,then
+      /del,%_jn1%%_jn2%%_jn3%%_jn4%,jpg
+   *endif
+   set,last
+   /ui,raise
+   mtbcsymb,0,0
+   mtplot,101,1 
+   mtjpeg,0
+   *if,_fig,ge,1000,then
+      *vwrite,_work1
+      ('<img src="figure',a4,'.jpg" width=483 height=363>')
+   *elseif,_fig,ge,100,then
+      *vwrite,_work1
+      ('<img src="figure',a3,'.jpg" width=483 height=363>')
+   *elseif,_fig,ge,10,then
+      *vwrite,_work1
+      ('<img src="figure',a2,'.jpg" width=483 height=363>')
+   *else
+      *vwrite,_work1
+      ('<img src="figure',a1,'.jpg" width=483 height=363>')
+   *endif
+   /com,</td></tr>
+   /com,</table>
+   /com,</blockquote>
+   /copy,'%_jn1%%_jn2%%_jn3%%_jn4%',jpg,,'figure%_work1%',jpg,'%_rdir(1)%%_rdir(2)%%_rdir(3)%%_rdir(4)%'
+   _fig=
+   _work1=
+   _jn1=
+   _jn2=
+   _jn3=
+   _jn4=
+*endif
+/com,<p>
+/EOF   
+
+h_tmpplt
+!******************************************************************************
+! plot the temperature contours and form jpeg files.
+! when jpegs are finished, copy to report directory.
+!
+! arg1 = figure number. max of 9999 allowed at this time.
+/nopr
+*if,_dogrph,gt,0,then
+   _fig=arg1
+   !
+   ! get job name
+   *get,_jn1,active,,jobname,,start,1
+   *get,_jn2,active,,jobname,,start,9
+   *get,_jn3,active,,jobname,,start,17
+   *get,_jn4,active,,jobname,,start,25
+      _work1=chrval(%_fig%)
+   *if,_fig,ge,1000,then
+      *vwrite,_work1
+      ('<a name="figure',a4,'">')
+   *elseif,_fig,ge,100,then
+      *vwrite,_work1
+      ('<a name="figure',a3,'">')
+   *elseif,_fig,ge,10,then
+      *vwrite,_work1
+      ('<a name="figure',a2,'">')
+   *else
+      *vwrite,_work1
+      ('<a name="figure',a1,'">')
+   *endif
+   /com,<blockquote>
+   /com,<table border=1 cellpadding=7>
+   *vwrite,_fig
+   ('<tr><th> Figure',f6.0,' Temperature Contours</th></tr>')
+   /com,<tr><td align=center>
+   /inq,_a,exist,%_jn1%%_jn2%%_jn3%%_jn4%,jpg
+   *if,_a,gt,0,then
+      /del,%_jn1%%_jn2%%_jn3%%_jn4%,jpg
+   *endif
+   set,last
+   /ui,raise
+   mtbcsymb,0,0
+   mtplot,101,1 
+   mtjpeg,0
+   *if,_fig,ge,1000,then
+      *vwrite,_work1
+      ('<img src="figure',a4,'.jpg" width=483 height=363>')
+   *elseif,_fig,ge,100,then
+      *vwrite,_work1
+      ('<img src="figure',a3,'.jpg" width=483 height=363>')
+   *elseif,_fig,ge,10,then
+      *vwrite,_work1
+      ('<img src="figure',a2,'.jpg" width=483 height=363>')
+   *else
+      *vwrite,_work1
+      ('<img src="figure',a1,'.jpg" width=483 height=363>')
+   *endif
+   /com,</td></tr>
+   /com,</table>
+   /com,</blockquote>
+   /copy,'%_jn1%%_jn2%%_jn3%%_jn4%',jpg,,'figure%_work1%',jpg,'%_rdir(1)%%_rdir(2)%%_rdir(3)%%_rdir(4)%'
+   _fig=
+   _work1=
+   _jn1=
+   _jn2=
+   _jn3=
+   _jn4=
+*endif
+/com,<p>
+/EOF   
+
+h_tgrplt
+!******************************************************************************
+! plot the temperature gradient contours and form jpeg files.
+! when jpegs are finished, copy to report directory.
+!
+! arg1 = figure number. max of 9999 allowed at this time.
+/nopr
+*if,_dogrph,gt,0,then
+   _fig=arg1
+   !
+   ! get job name
+   *get,_jn1,active,,jobname,,start,1
+   *get,_jn2,active,,jobname,,start,9
+   *get,_jn3,active,,jobname,,start,17
+   *get,_jn4,active,,jobname,,start,25
+      _work1=chrval(%_fig%)
+   *if,_fig,ge,1000,then
+      *vwrite,_work1
+      ('<a name="figure',a4,'">')
+   *elseif,_fig,ge,100,then
+      *vwrite,_work1
+      ('<a name="figure',a3,'">')
+   *elseif,_fig,ge,10,then
+      *vwrite,_work1
+      ('<a name="figure',a2,'">')
+   *else
+      *vwrite,_work1
+      ('<a name="figure',a1,'">')
+   *endif
+   /com,<blockquote>
+   /com,<table border=1 cellpadding=7>
+   *vwrite,_fig
+   ('<tr><th> Figure',f6.0,' Temperature Gradient Contours</th></tr>')
+   /com,<tr><td align=center>
+   /inq,_a,exist,%_jn1%%_jn2%%_jn3%%_jn4%,jpg
+   *if,_a,gt,0,then
+      /del,%_jn1%%_jn2%%_jn3%%_jn4%,jpg
+   *endif
+   set,last
+   /ui,raise
+   mtbcsymb,0,0
+   mtplot,102,1 
+   mtjpeg,0
+   *if,_fig,ge,1000,then
+      *vwrite,_work1
+      ('<img src="figure',a4,'.jpg" width=483 height=363>')
+   *elseif,_fig,ge,100,then
+      *vwrite,_work1
+      ('<img src="figure',a3,'.jpg" width=483 height=363>')
+   *elseif,_fig,ge,10,then
+      *vwrite,_work1
+      ('<img src="figure',a2,'.jpg" width=483 height=363>')
+   *else
+      *vwrite,_work1
+      ('<img src="figure',a1,'.jpg" width=483 height=363>')
+   *endif
+   /com,</td></tr>
+   /com,</table>
+   /com,</blockquote>
+   /copy,'%_jn1%%_jn2%%_jn3%%_jn4%',jpg,,'figure%_work1%',jpg,'%_rdir(1)%%_rdir(2)%%_rdir(3)%%_rdir(4)%'
+   _fig=
+   _work1=
+   _jn1=
+   _jn2=
+   _jn3=
+   _jn4=
+*endif
+/com,<p>
+/EOF   

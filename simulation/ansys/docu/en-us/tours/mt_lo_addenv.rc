@@ -1,0 +1,57 @@
+! Tour Page
+*mt_lo_addenv*title: Tour - Adding a New Environment
+*mt_lo_addenv*next: mt_lo_copyenv
+*mt_lo_addenv*previous: mt_lo_defenvir1
+*mt_lo_addenv*htmlhelp: docu $euidlArray(language) mechhelp mt_lo_createnvir.html
+*mt_lo_addenv*home: mt_mt_home
+
+! Tour Page Components
+*mt_lo_addenv*tourlist: heading step1 step2 step3 body seenext
+
+!
+! Component Definition
+!
+! Note:
+!     Use \t to insert a tab into the text
+!     Use \n to insert a line feed into the text
+!     Use \i to insert an image into the text
+!     Use \ to continue a line within this file
+!
+!     The \ is a used to specify that special characters be taken literally.
+!     If using characters [, ], ", \, $ and perhaps others you must precede
+!     them with the \ (backslash) to use them.
+!
+!     You have the following options available for a component:
+!         Text          - The text to show for this component
+!         HyperlinkCall - The method to call when this component is clicked on
+!         Show          - The helpID of the buttcon to flash when choosing the
+!                         magnifing glass.  This puts the magnifing glass in.
+!         ImageList     - The list of images to place in the \i locations.
+!                         This is not needed for the Show item but you must
+!                         put the \i in the Text. NOT SUPPORTED YET
+
+! heading
+!
+*mt_lo_addenv*headingText: "Adding a New Environment\n" HEADING2
+
+! step1
+!
+*mt_lo_addenv*step1Text: "1.\t" {STEP1} "Click New Environment..." \
+{STEP1 step1} 
+
+! step2
+!
+*mt_lo_addenv*step2Text: "\n2.\t" {STEP1} "Enter the new environment name." \
+{STEP1 step2} 
+
+! step3
+!
+*mt_lo_addenv*step3Text: "\n3.\t" {STEP1} "Click OK. \n" {STEP1 step3} 
+
+! body
+!
+*mt_lo_addenv*bodyText: "\nThe environment you added now appears in the \
+Load Environment drop down list box.\n" BODY1
+
+*mt_lo_addenv*seenextText: "\n\nClick Next to learn how to copy an\
+ environment.\n" {BODY1}

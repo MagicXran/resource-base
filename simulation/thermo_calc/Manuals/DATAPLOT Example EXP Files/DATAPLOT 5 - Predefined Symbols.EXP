@@ -1,0 +1,45 @@
+$DATAPLOT Example 5 Symbols
+
+PROLOG 5 EXAMPLE 5  0<X<100, 0<Y<100
+ XSCALE        0.00000       100    
+ YSCALE        0.00000       100
+ XTYPE LINEAR
+ YTYPE LINEAR
+ XLENGTH        11.5000    
+ YLENGTH        11.5000    
+ TITLE  EXAMPLE 5
+ XTEXT  X
+ YTEXT  Y
+
+DATASET 5 Write equations and strings with different properties
+
+STRING TEST1A \latex \alpha \beta \gamma \delta \epsilon \zeta \eta \theta
+STRING TEST1B \latex \iota \kappa \lambda \mu \nu \xi \omicron
+STRING TEST1C \latex  \pi \rho \sigma \tau \upsilon \phi \chi \psi \omega
+
+STRING TEST2A   a b c d e f g h i j k
+
+STRING TEST2B   l m n o p q r s t u v w x y z
+STRING BCC1 \latex \alpha_1
+STRING ACA2CO3 \latex \alpha_{Ca_2CO_3}
+
+
+ATTRIBUTE CENTER
+CHARSIZE 1
+0.05  0.95 N'Example 5
+CLIP OFF
+0.01  0.85 N'~TEST1A
+0.01  0.80 N'~TEST1B
+0.01  0.75 N'~TEST1C
+FONT 1
+0.01  0.65 N'~TEST2A
+FONT 2
+0.01  0.60 N'~TEST2B
+0.01  0.55 N'\latex \textsf{Sans serif in LaTeX}
+0.01  0.50 N'\latex \textrm{Roman text in LaTeX}
+0.01  0.45 N'\latex \texttt{Monospaced text in LaTeX}
+0.01  0.40 N'\latex as opposed to math mode LaTeX
+0.01  0.35 N'~BCC1
+CHARSIZE 0.8
+0.01  0.30 N'\latex M_{23}C_6
+0.01  0.25 N'~ACA2CO3

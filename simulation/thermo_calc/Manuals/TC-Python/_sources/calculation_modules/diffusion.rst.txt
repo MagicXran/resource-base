@@ -1,0 +1,7 @@
+Module "diffusion"
+~~~~~~~~~~~~~~~~~~
+
+.. automodule:: tc_python.diffusion
+    :members:
+    :undoc-members:
+    :show-inheritance:

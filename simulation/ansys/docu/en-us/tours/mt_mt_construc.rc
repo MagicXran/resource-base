@@ -1,0 +1,19 @@
+! Tour Page
+*mt_mt_construc*title: Tour - Under Construction
+*mt_mt_construc*next: mt_mt_home
+*mt_mt_construc*previous: mt_mt_home
+*mt_mt_construc*htmlhelp: docu $euidlArray(language) mechhelp mt_mt_construc.html
+*mt_mt_construc*home: mt_mt_home
+
+! Tour Page Components
+*mt_mt_construc*tourlist: heading onestep
+
+!
+! Component Definition
+!
+*mt_mt_construc*headingText: "Under Construction\n" HEADING2
+
+*mt_mt_construc*onestepText: "This tour page \
+is under construction." {BODY1}
+
+

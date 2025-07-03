@@ -1,0 +1,71 @@
+! Tour Page
+*mt_mt_home*title: HOME Tour Page
+*mt_mt_home*next: mt_se_toc1
+*mt_mt_home*previous: mt_mt_home
+*mt_mt_home*htmlhelp: ans_loadhelp stovervw
+*mt_mt_home*home: mt_mt_home
+
+! Tour Page Components
+*mt_mt_home*tourlist: heading overview step1 step2 step3 step4 step5
+
+!
+! Component Definition
+!
+! Note:
+!     Use \t to insert a tab into the text
+!     Use \n to insert a line feed into the text
+!     Use \i to insert an image into the text
+!     Use \ to continue a line within this file
+!
+!     The \ is a used to specify that special characters be taken literally.
+!     If using characters [, ], ", \, $ and perhaps others you must precede
+!     them with the \ (backslash) to use them.
+!
+!     You have the following options available for a component:
+!         Text          - The text to show for this component
+!         HyperlinkCall - The method to call when this component is clicked on
+!         Show          - The helpID of the buttcon to flash when choosing the
+!                         magnifing glass.  This puts the magnifing glass in.
+!         ImageList     - The list of images to place in the \i locations.
+!                         This is not needed for the Show item but you must
+!                         put the \i in the Text. NOT SUPPORTED YET
+
+! heading
+!
+*mt_mt_home*headingText: "Running an Analysis\n" HEADING2
+
+! overview
+!
+*mt_mt_home*overviewText: "To run an analysis using the \
+Mechanical Toolbar, follow these steps:\n" {BODY1}
+
+! step1
+!
+*mt_mt_home*step1Text: "1.\t" {STEP1} "Specify analysis settings." \
+{STEP1 HYPERLINK step1} 
+*mt_mt_home*step1HyperlinkCall: showTour mt_se_toc1
+
+! step2
+!
+*mt_mt_home*step2Text: "\n2.\t" {STEP1} "Import and define the model." \
+{STEP1 HYPERLINK step2} 
+*mt_mt_home*step2HyperlinkCall: showTour mt_mo_toc1
+
+! step3
+!
+*mt_mt_home*step3Text: "\n3.\t" {STEP1} "Apply loads and boundary conditions." \
+{STEP1 HYPERLINK step3} 
+*mt_mt_home*step3HyperlinkCall: showTour mt_lo_toc1
+
+! step4
+!
+*mt_mt_home*step4Text: "\n4.\t" {STEP1} "Solve the analysis." \
+{STEP1 HYPERLINK step4} 
+*mt_mt_home*step4HyperlinkCall: showTour mt_so_toc1
+
+
+! step5
+!
+*mt_mt_home*step5Text: "\n5.\t" {STEP1} "Review the results." \
+{STEP1 HYPERLINK step5} 
+*mt_mt_home*step5HyperlinkCall: showTour mt_re_toc1

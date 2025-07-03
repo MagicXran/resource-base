@@ -1,0 +1,106 @@
+<!-- templatbmd.html  ---  structural modal report  ---  NO figures -->
+<!-- $Revision$ -->
+<!-- $Date$ -->
+<ansys>
+*ulib,report,lib
+_dogrph=0
+_tabnum=1
+*use,h_setup
+</ansys>
+
+<HTML>
+<HEAD> <TITLE><ansys>*use,h_title,1</ansys></TITLE> </HEAD>
+<BODY>
+<a name="top">
+<IMG SRC="ansysnb.gif">
+<p>
+<blockquote>
+
+<!-- ######################################################## -->
+<!-- Get report title, author, date -->
+<!-- ######################################################## -->
+<ansys>*use,h_title</ansys>
+<p><hr><p>
+
+<!-- ######################################################## -->
+<!-- Summary Section -->
+<!-- ######################################################## -->
+<a name="summary">
+<ansys>*use,h_summry</ansys>
+<p><hr><p>
+
+<!-- ######################################################## -->
+<!-- Model Information Section -->
+<!-- ######################################################## -->
+<a name="model">
+<ansys>*use,h_model</ansys>
+
+<!-- ######################################################## -->
+<!-- Geometry, Material, and Analysis Information Section -->
+<!-- ######################################################## -->
+<ansys>
+*use,h_geom,_tabnum
+_tabnum=_tabnum+1
+_MATTB(1)=1   ! EX
+_MATTB(2)=1   ! NUXY
+_MATTB(3)=0   ! ALPX
+_MATTB(4)=1   ! DENS
+_MATTB(5)=0   ! KXX
+_MATTB(6)=0   ! C
+*use,h_mater,_tabnum
+_tabnum=_tabnum+1
+</ansys>
+
+<!-- ######################################################## -->
+<!-- Table Contact Pairs -->
+<!-- ######################################################## -->
+<ansys>
+*if,_NCPAIRS,gt,0,then
+   *use,h_cttabl,_tabnum
+   _tabnum=_tabnum+1
+   /com,<blockquote>
+   /com,<p><a href="#top"> Back to top</a><br>
+   /com,</blockquote>
+*endif
+</ansys>
+<p><hr><p>
+<a name="analy">
+<ansys>*use,h_analy</ansys>
+
+<!-- ######################################################## -->
+<!-- Table Loads & B.C. -->
+<!-- ######################################################## -->
+<ansys>
+mtenvprp,_curenv,_tabnum
+_tabnum=_tabnum+1
+</ansys>
+<blockquote>
+<p><a href="#top"> Back to top</a><br>
+</blockquote>
+<p><hr><p>
+
+<!-- ######################################################## -->
+<!-- Results Information Section -->
+<!-- ######################################################## -->
+<a name="results">
+<ansys>
+*use,h_results
+*use,h_nfreqs,_tabnum
+_tabnum=_tabnum+1
+_tabnum=
+</ansys>
+<p>
+<blockquote>
+<hr>
+<address>
+<B>Caution: </b>Do not accept or reject a design based solely on the
+results shown here. ANSYS, Inc. recommends that you also take into 
+account experimental test data and/or prior experience with similar
+analyses when evaluating a design.
+</address>
+<hr>
+</blockquote>
+</blockquote>
+</BODY>
+</HTML>
+

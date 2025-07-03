@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TC-Toolbox for MATLAB® API reference documentation &mdash; TC-Toolbox for MATLAB® 2023b documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Quick Installation Guide" href="installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            TC-Toolbox for MATLAB®
+          </a>
+              <div class="version">
+                2023b
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Quick Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="best_practices.html">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">TC-Toolbox for MATLAB®</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">TC-Toolbox for MATLAB® API reference documentation</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tc-toolbox-for-matlab-api-reference-documentation">
+<h1>TC-Toolbox for MATLAB® API reference documentation<a class="headerlink" href="#tc-toolbox-for-matlab-api-reference-documentation" title="Permalink to this heading">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Quick Installation Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#installing-tc-toolbox-for-matlabreg">Installing TC-Toolbox for MATLAB<sup>®</sup></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#automatic-installation-of-tc-toolbox">Automatic Installation of TC-Toolbox</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#manual-installation-of-tc-toolbox">Manual Installation of TC-Toolbox</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="installation.html#multiple-windows-users-on-same-machine">Multiple Windows Users on Same Machine</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation.html#installer-cannot-find-the-matlabreg-installation-directory">Installer Cannot Find the MATLAB<sup>®</sup> Installation Directory</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#check-the-installation">Check the Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#uninstalling-tc-toolbox-for-matlabreg">Uninstalling TC-Toolbox for MATLAB<sup>®</sup></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#tctoolbox">TCToolbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#systembuilder-and-system">SystemBuilder and System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#calculation">Calculation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#single-equilibrium-calculations">Single Equilibrium Calculations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#batch-equilibrium-calculations">Batch Equilibrium Calculations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#precipitation-calculations">Precipitation Calculations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#scheil-calculations">Scheil Calculations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#property-diagram-calculations">Property Diagram Calculations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#phase-diagram-calculations">Phase Diagram Calculations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#diffusion-calculations">Diffusion Calculations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#property-model-calculations">Property Model Calculations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#material-to-material-calculations">Material to Material Calculations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#process-metallurgy-calculations">Process Metallurgy Calculations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#result">Result</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="best_practices.html">Best Practices</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="best_practices.html#using-tab-completion-and-the-integrated-documentation">Using Tab-Completion and the Integrated documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="best_practices.html#re-use-of-the-single-equilibrium-calculation-state">Re-use of the Single Equilibrium Calculation State</a></li>
+<li class="toctree-l2"><a class="reference internal" href="best_practices.html#re-use-and-saving-results">Re-use and Saving Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="best_practices.html#using-the-tctoolbox-class-efficiently">Using the TCToolbox class efficiently</a></li>
+<li class="toctree-l2"><a class="reference internal" href="best_practices.html#parallel-calculations">Parallel Calculations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="best_practices.html#handling-calculation-engine-crashes">Handling Calculation Engine Crashes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="best_practices.html#process-metallurgy-calculations">Process Metallurgy Calculations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="best_practices.html#equilibrium-calculations-with-changing-elements-between-calculations">Equilibrium calculations with changing elements between calculations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="best_practices.html#zones">Zones</a></li>
+<li class="toctree-l3"><a class="reference internal" href="best_practices.html#applications">Applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="best_practices.html#implementation-of-practical-process-models">Implementation of practical process models</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="calculations.html">Calculations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="calculation_packages/single_equilibrium.html">Package “single_equilibrium”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="calculation_packages/batch_equilibrium.html">Package “batch_equilibrium”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="calculation_packages/precipitation.html">Package “precipitation”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="calculation_packages/scheil.html">Package “scheil”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="calculation_packages/step_or_map_diagrams.html">Package “step_or_map_diagrams”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="calculation_packages/diffusion.html">Package “diffusion”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="calculation_packages/propertymodel.html">Package “propertymodel”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="calculation_packages/material_to_material.html">Package “material_to_material”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="calculation_packages/process_metallurgy.html">Package “process_metallurgy”</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="calculation_packages/process_metallurgy_modules/base.html">Package “base”</a></li>
+<li class="toctree-l4"><a class="reference internal" href="calculation_packages/process_metallurgy_modules/equilibrium.html">Package “equilibrium”</a></li>
+<li class="toctree-l4"><a class="reference internal" href="calculation_packages/process_metallurgy_modules/process.html">Package “process”</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="high_level_packages/root.html">Root Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="high_level_packages/system.html">Package “system”</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="troubleshooting.html#diagnostics-script">Diagnostics Script</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="installation.html" class="btn btn-neutral float-right" title="Quick Installation Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Foundation of Computational Thermodynamics, Stockholm, Sweden.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>  
+
+<style>
+    /* Sidebar header (and topbar for mobile) */
+    .wy-side-nav-search, .wy-nav-top {
+        background: #700707;
+    }
+</style>
+
+
+</body>
+</html>

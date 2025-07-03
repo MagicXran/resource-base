@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Package “process_metallurgy” &mdash; TC-Python 2023b documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Module “base”" href="process_metallurgy_modules/base.html" />
+    <link rel="prev" title="Module “material_to_material”" href="material_to_material.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            TC-Python
+          </a>
+              <div class="version">
+                2023b
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment_variables.html">Mac OS: Setting Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../best_practices.html">Best Practices</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api_reference.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../calculations.html">Calculations</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="single_equilibrium.html">Module “single_equilibrium”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="batch_equilibrium.html">Module “batch_equilibrium”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="precipitation.html">Module “precipitation”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scheil.html">Module “scheil”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="step_or_map_diagrams.html">Module “step_or_map_diagrams”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="diffusion.html">Module “diffusion”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="propertymodel.html">Module “propertymodel”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="material_to_material.html">Module “material_to_material”</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Package “process_metallurgy”</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="process_metallurgy_modules/base.html">Module “base”</a></li>
+<li class="toctree-l4"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html">Module “equilibrium”</a></li>
+<li class="toctree-l4"><a class="reference internal" href="process_metallurgy_modules/process.html">Module “process”</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../high_level_modules/system.html">Module “system”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high_level_modules/entities.html">Module “entities”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high_level_modules/server.html">Module “server”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high_level_modules/quantity_factory.html">Module “quantity_factory”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high_level_modules/utils.html">Module “utils”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high_level_modules/propertymodel_sdk.html">Module “propertymodel_sdk”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high_level_modules/exceptions.html">Module “exceptions”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high_level_modules/abstract_base.html">Module “abstract_base”</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">TC-Python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api_reference.html">API Reference</a></li>
+          <li class="breadcrumb-item"><a href="../calculations.html">Calculations</a></li>
+      <li class="breadcrumb-item active">Package “process_metallurgy”</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="package-process-metallurgy">
+<h1>Package “process_metallurgy”<a class="headerlink" href="#package-process-metallurgy" title="Permalink to this heading">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="process_metallurgy_modules/base.html">Module “base”</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.AbstractAddition"><code class="docutils literal notranslate"><span class="pre">AbstractAddition</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.AbstractAddition.get_composition"><code class="docutils literal notranslate"><span class="pre">AbstractAddition.get_composition()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.AbstractAddition.get_composition_unit"><code class="docutils literal notranslate"><span class="pre">AbstractAddition.get_composition_unit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.AbstractAddition.get_dependent_component"><code class="docutils literal notranslate"><span class="pre">AbstractAddition.get_dependent_component()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.AbstractAddition.get_elements"><code class="docutils literal notranslate"><span class="pre">AbstractAddition.get_elements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.AbstractAddition.get_id"><code class="docutils literal notranslate"><span class="pre">AbstractAddition.get_id()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.AbstractAddition.get_temperature"><code class="docutils literal notranslate"><span class="pre">AbstractAddition.get_temperature()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.AbstractAddition.is_do_scale"><code class="docutils literal notranslate"><span class="pre">AbstractAddition.is_do_scale()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.AbstractAddition.is_empty"><code class="docutils literal notranslate"><span class="pre">AbstractAddition.is_empty()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.ActivityReference"><code class="docutils literal notranslate"><span class="pre">ActivityReference</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.ActivityReference.LIQUID"><code class="docutils literal notranslate"><span class="pre">ActivityReference.LIQUID</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.ActivityReference.SOLID"><code class="docutils literal notranslate"><span class="pre">ActivityReference.SOLID</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.PhaseGroup"><code class="docutils literal notranslate"><span class="pre">PhaseGroup</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.PhaseGroup.ALL_METAL"><code class="docutils literal notranslate"><span class="pre">PhaseGroup.ALL_METAL</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.PhaseGroup.ALL_SLAG"><code class="docutils literal notranslate"><span class="pre">PhaseGroup.ALL_SLAG</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.PhaseGroup.GAS"><code class="docutils literal notranslate"><span class="pre">PhaseGroup.GAS</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.PhaseGroup.LIQUID_METAL"><code class="docutils literal notranslate"><span class="pre">PhaseGroup.LIQUID_METAL</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.PhaseGroup.LIQUID_SLAG"><code class="docutils literal notranslate"><span class="pre">PhaseGroup.LIQUID_SLAG</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.PhaseGroup.SOLID_METAL"><code class="docutils literal notranslate"><span class="pre">PhaseGroup.SOLID_METAL</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.PhaseGroup.SOLID_SLAG"><code class="docutils literal notranslate"><span class="pre">PhaseGroup.SOLID_SLAG</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.ProcessDatabase"><code class="docutils literal notranslate"><span class="pre">ProcessDatabase</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.ProcessDatabase.LATEST"><code class="docutils literal notranslate"><span class="pre">ProcessDatabase.LATEST</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.ProcessDatabase.OXDEMO"><code class="docutils literal notranslate"><span class="pre">ProcessDatabase.OXDEMO</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.ProcessDatabase.TCOX10"><code class="docutils literal notranslate"><span class="pre">ProcessDatabase.TCOX10</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.ProcessDatabase.TCOX11"><code class="docutils literal notranslate"><span class="pre">ProcessDatabase.TCOX11</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.ProcessDatabase.TCOX12"><code class="docutils literal notranslate"><span class="pre">ProcessDatabase.TCOX12</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.ProcessDatabase.TCOX8"><code class="docutils literal notranslate"><span class="pre">ProcessDatabase.TCOX8</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.ProcessDatabase.TCOX9"><code class="docutils literal notranslate"><span class="pre">ProcessDatabase.TCOX9</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.ProcessDatabase.get_name"><code class="docutils literal notranslate"><span class="pre">ProcessDatabase.get_name()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.ProcessMetallurgyOptions"><code class="docutils literal notranslate"><span class="pre">ProcessMetallurgyOptions</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.ProcessMetallurgyOptions.disable_approximate_driving_force_for_metastable_phases"><code class="docutils literal notranslate"><span class="pre">ProcessMetallurgyOptions.disable_approximate_driving_force_for_metastable_phases()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.ProcessMetallurgyOptions.disable_control_step_size_during_minimization"><code class="docutils literal notranslate"><span class="pre">ProcessMetallurgyOptions.disable_control_step_size_during_minimization()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.ProcessMetallurgyOptions.disable_force_positive_definite_phase_hessian"><code class="docutils literal notranslate"><span class="pre">ProcessMetallurgyOptions.disable_force_positive_definite_phase_hessian()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.ProcessMetallurgyOptions.enable_approximate_driving_force_for_metastable_phases"><code class="docutils literal notranslate"><span class="pre">ProcessMetallurgyOptions.enable_approximate_driving_force_for_metastable_phases()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.ProcessMetallurgyOptions.enable_control_step_size_during_minimization"><code class="docutils literal notranslate"><span class="pre">ProcessMetallurgyOptions.enable_control_step_size_during_minimization()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.ProcessMetallurgyOptions.enable_force_positive_definite_phase_hessian"><code class="docutils literal notranslate"><span class="pre">ProcessMetallurgyOptions.enable_force_positive_definite_phase_hessian()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.ProcessMetallurgyOptions.set_global_minimization_max_grid_points"><code class="docutils literal notranslate"><span class="pre">ProcessMetallurgyOptions.set_global_minimization_max_grid_points()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.ProcessMetallurgyOptions.set_max_no_of_iterations"><code class="docutils literal notranslate"><span class="pre">ProcessMetallurgyOptions.set_max_no_of_iterations()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.ProcessMetallurgyOptions.set_process_minimization_policy"><code class="docutils literal notranslate"><span class="pre">ProcessMetallurgyOptions.set_process_minimization_policy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.ProcessMetallurgyOptions.set_required_accuracy"><code class="docutils literal notranslate"><span class="pre">ProcessMetallurgyOptions.set_required_accuracy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.ProcessMetallurgyOptions.set_smallest_fraction"><code class="docutils literal notranslate"><span class="pre">ProcessMetallurgyOptions.set_smallest_fraction()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.ProcessMinimizationPolicy"><code class="docutils literal notranslate"><span class="pre">ProcessMinimizationPolicy</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.ProcessMinimizationPolicy.GLOBAL"><code class="docutils literal notranslate"><span class="pre">ProcessMinimizationPolicy.GLOBAL</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.ProcessMinimizationPolicy.GLOBAL_TEST"><code class="docutils literal notranslate"><span class="pre">ProcessMinimizationPolicy.GLOBAL_TEST</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.ProcessMinimizationPolicy.GLOBAL_TEST__GLOBAL"><code class="docutils literal notranslate"><span class="pre">ProcessMinimizationPolicy.GLOBAL_TEST__GLOBAL</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.ProcessMinimizationPolicy.LOCAL"><code class="docutils literal notranslate"><span class="pre">ProcessMinimizationPolicy.LOCAL</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.ProcessMinimizationPolicy.LOCAL__GLOBAL_TEST"><code class="docutils literal notranslate"><span class="pre">ProcessMinimizationPolicy.LOCAL__GLOBAL_TEST</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.ProcessMinimizationPolicy.LOCAL__GLOBAL_TEST__GLOBAL"><code class="docutils literal notranslate"><span class="pre">ProcessMinimizationPolicy.LOCAL__GLOBAL_TEST__GLOBAL</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.SlagProperty"><code class="docutils literal notranslate"><span class="pre">SlagProperty</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.SlagProperty.B2"><code class="docutils literal notranslate"><span class="pre">SlagProperty.B2</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.SlagProperty.B3"><code class="docutils literal notranslate"><span class="pre">SlagProperty.B3</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.SlagProperty.B4"><code class="docutils literal notranslate"><span class="pre">SlagProperty.B4</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.SlagProperty.BAS2"><code class="docutils literal notranslate"><span class="pre">SlagProperty.BAS2</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.SlagProperty.BELLS_RATIO"><code class="docutils literal notranslate"><span class="pre">SlagProperty.BELLS_RATIO</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.SlagProperty.LOG_10_SULPHUR_CAPACITY"><code class="docutils literal notranslate"><span class="pre">SlagProperty.LOG_10_SULPHUR_CAPACITY</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.SlagProperty.LS"><code class="docutils literal notranslate"><span class="pre">SlagProperty.LS</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.SlagType"><code class="docutils literal notranslate"><span class="pre">SlagType</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.SlagType.ALL"><code class="docutils literal notranslate"><span class="pre">SlagType.ALL</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.SlagType.LIQUID"><code class="docutils literal notranslate"><span class="pre">SlagType.LIQUID</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/base.html#tc_python.process_metallurgy.base.SlagType.SOLID"><code class="docutils literal notranslate"><span class="pre">SlagType.SOLID</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html">Module “equilibrium”</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.AbstractEquilibriumAddition"><code class="docutils literal notranslate"><span class="pre">AbstractEquilibriumAddition</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.AbstractEquilibriumAddition.set_amount"><code class="docutils literal notranslate"><span class="pre">AbstractEquilibriumAddition.set_amount()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.AbstractEquilibriumAddition.set_component_composition"><code class="docutils literal notranslate"><span class="pre">AbstractEquilibriumAddition.set_component_composition()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.AdiabaticEquilibriumCalculation"><code class="docutils literal notranslate"><span class="pre">AdiabaticEquilibriumCalculation</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.AdiabaticEquilibriumCalculation.add_addition"><code class="docutils literal notranslate"><span class="pre">AdiabaticEquilibriumCalculation.add_addition()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.AdiabaticEquilibriumCalculation.add_poly_command"><code class="docutils literal notranslate"><span class="pre">AdiabaticEquilibriumCalculation.add_poly_command()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.AdiabaticEquilibriumCalculation.calculate"><code class="docutils literal notranslate"><span class="pre">AdiabaticEquilibriumCalculation.calculate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.AdiabaticEquilibriumCalculation.remove_addition"><code class="docutils literal notranslate"><span class="pre">AdiabaticEquilibriumCalculation.remove_addition()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.AdiabaticEquilibriumCalculation.remove_all_additions"><code class="docutils literal notranslate"><span class="pre">AdiabaticEquilibriumCalculation.remove_all_additions()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.AdiabaticEquilibriumCalculation.set_pressure"><code class="docutils literal notranslate"><span class="pre">AdiabaticEquilibriumCalculation.set_pressure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.AdiabaticEquilibriumCalculation.with_options"><code class="docutils literal notranslate"><span class="pre">AdiabaticEquilibriumCalculation.with_options()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.EquilibriumAddition"><code class="docutils literal notranslate"><span class="pre">EquilibriumAddition</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.EquilibriumAddition.get_amount"><code class="docutils literal notranslate"><span class="pre">EquilibriumAddition.get_amount()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.EquilibriumAddition.get_composition_unit"><code class="docutils literal notranslate"><span class="pre">EquilibriumAddition.get_composition_unit()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.EquilibriumCalculation"><code class="docutils literal notranslate"><span class="pre">EquilibriumCalculation</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.EquilibriumCalculation.add_addition"><code class="docutils literal notranslate"><span class="pre">EquilibriumCalculation.add_addition()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.EquilibriumCalculation.add_poly_command"><code class="docutils literal notranslate"><span class="pre">EquilibriumCalculation.add_poly_command()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.EquilibriumCalculation.calculate"><code class="docutils literal notranslate"><span class="pre">EquilibriumCalculation.calculate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.EquilibriumCalculation.remove_addition"><code class="docutils literal notranslate"><span class="pre">EquilibriumCalculation.remove_addition()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.EquilibriumCalculation.remove_all_additions"><code class="docutils literal notranslate"><span class="pre">EquilibriumCalculation.remove_all_additions()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.EquilibriumCalculation.set_pressure"><code class="docutils literal notranslate"><span class="pre">EquilibriumCalculation.set_pressure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.EquilibriumCalculation.update_addition"><code class="docutils literal notranslate"><span class="pre">EquilibriumCalculation.update_addition()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.EquilibriumCalculation.with_options"><code class="docutils literal notranslate"><span class="pre">EquilibriumCalculation.with_options()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.EquilibriumGasAddition"><code class="docutils literal notranslate"><span class="pre">EquilibriumGasAddition</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.EquilibriumGasAddition.get_amount"><code class="docutils literal notranslate"><span class="pre">EquilibriumGasAddition.get_amount()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.EquilibriumGasAddition.get_amount_unit"><code class="docutils literal notranslate"><span class="pre">EquilibriumGasAddition.get_amount_unit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.EquilibriumGasAddition.get_composition_unit"><code class="docutils literal notranslate"><span class="pre">EquilibriumGasAddition.get_composition_unit()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.EquilibriumResult"><code class="docutils literal notranslate"><span class="pre">EquilibriumResult</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_activity_of_slag"><code class="docutils literal notranslate"><span class="pre">EquilibriumResult.get_activity_of_slag()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_amount"><code class="docutils literal notranslate"><span class="pre">EquilibriumResult.get_amount()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_amount_of_elements"><code class="docutils literal notranslate"><span class="pre">EquilibriumResult.get_amount_of_elements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_amount_of_phase_groups"><code class="docutils literal notranslate"><span class="pre">EquilibriumResult.get_amount_of_phase_groups()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_amount_of_phases"><code class="docutils literal notranslate"><span class="pre">EquilibriumResult.get_amount_of_phases()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_components"><code class="docutils literal notranslate"><span class="pre">EquilibriumResult.get_components()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_composition"><code class="docutils literal notranslate"><span class="pre">EquilibriumResult.get_composition()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_composition_of_phase"><code class="docutils literal notranslate"><span class="pre">EquilibriumResult.get_composition_of_phase()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_composition_of_phase_group"><code class="docutils literal notranslate"><span class="pre">EquilibriumResult.get_composition_of_phase_group()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_elements"><code class="docutils literal notranslate"><span class="pre">EquilibriumResult.get_elements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_formula_for_activity_of_slag"><code class="docutils literal notranslate"><span class="pre">EquilibriumResult.get_formula_for_activity_of_slag()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_formula_for_slag_property"><code class="docutils literal notranslate"><span class="pre">EquilibriumResult.get_formula_for_slag_property()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_fraction_of_phase_groups"><code class="docutils literal notranslate"><span class="pre">EquilibriumResult.get_fraction_of_phase_groups()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_fraction_of_phases"><code class="docutils literal notranslate"><span class="pre">EquilibriumResult.get_fraction_of_phases()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_gas_components"><code class="docutils literal notranslate"><span class="pre">EquilibriumResult.get_gas_components()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_oxygen_partial_pressure"><code class="docutils literal notranslate"><span class="pre">EquilibriumResult.get_oxygen_partial_pressure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_pressure"><code class="docutils literal notranslate"><span class="pre">EquilibriumResult.get_pressure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_slag_property"><code class="docutils literal notranslate"><span class="pre">EquilibriumResult.get_slag_property()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_stable_phases"><code class="docutils literal notranslate"><span class="pre">EquilibriumResult.get_stable_phases()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_stable_phases_in_phase_group"><code class="docutils literal notranslate"><span class="pre">EquilibriumResult.get_stable_phases_in_phase_group()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_temperature"><code class="docutils literal notranslate"><span class="pre">EquilibriumResult.get_temperature()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_value_of"><code class="docutils literal notranslate"><span class="pre">EquilibriumResult.get_value_of()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_viscosity_dynamic_of_phase"><code class="docutils literal notranslate"><span class="pre">EquilibriumResult.get_viscosity_dynamic_of_phase()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.EquilibriumResult.get_viscosity_kinematic_of_phase"><code class="docutils literal notranslate"><span class="pre">EquilibriumResult.get_viscosity_kinematic_of_phase()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation"><code class="docutils literal notranslate"><span class="pre">IsoThermalEquilibriumCalculation</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation.add_addition"><code class="docutils literal notranslate"><span class="pre">IsoThermalEquilibriumCalculation.add_addition()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation.add_poly_command"><code class="docutils literal notranslate"><span class="pre">IsoThermalEquilibriumCalculation.add_poly_command()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation.calculate"><code class="docutils literal notranslate"><span class="pre">IsoThermalEquilibriumCalculation.calculate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation.remove_addition"><code class="docutils literal notranslate"><span class="pre">IsoThermalEquilibriumCalculation.remove_addition()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation.remove_all_additions"><code class="docutils literal notranslate"><span class="pre">IsoThermalEquilibriumCalculation.remove_all_additions()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation.set_pressure"><code class="docutils literal notranslate"><span class="pre">IsoThermalEquilibriumCalculation.set_pressure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation.set_temperature"><code class="docutils literal notranslate"><span class="pre">IsoThermalEquilibriumCalculation.set_temperature()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation.update_addition"><code class="docutils literal notranslate"><span class="pre">IsoThermalEquilibriumCalculation.update_addition()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/equilibrium.html#tc_python.process_metallurgy.equilibrium.IsoThermalEquilibriumCalculation.with_options"><code class="docutils literal notranslate"><span class="pre">IsoThermalEquilibriumCalculation.with_options()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="process_metallurgy_modules/process.html">Module “process”</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.AbstractContinuousAddition"><code class="docutils literal notranslate"><span class="pre">AbstractContinuousAddition</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.AbstractProcessAddition"><code class="docutils literal notranslate"><span class="pre">AbstractProcessAddition</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.AbstractSingleTimeAddition"><code class="docutils literal notranslate"><span class="pre">AbstractSingleTimeAddition</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.BulkZone"><code class="docutils literal notranslate"><span class="pre">BulkZone</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.BulkZone.add_addition"><code class="docutils literal notranslate"><span class="pre">BulkZone.add_addition()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.BulkZone.add_continuous_addition"><code class="docutils literal notranslate"><span class="pre">BulkZone.add_continuous_addition()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.BulkZone.add_power"><code class="docutils literal notranslate"><span class="pre">BulkZone.add_power()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.BulkZone.disable_degassing"><code class="docutils literal notranslate"><span class="pre">BulkZone.disable_degassing()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.BulkZone.enable_degassing"><code class="docutils literal notranslate"><span class="pre">BulkZone.enable_degassing()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.BulkZone.get_density"><code class="docutils literal notranslate"><span class="pre">BulkZone.get_density()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.BulkZone.get_elements"><code class="docutils literal notranslate"><span class="pre">BulkZone.get_elements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.BulkZone.get_id"><code class="docutils literal notranslate"><span class="pre">BulkZone.get_id()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.BulkZone.get_phase_group_to_transfer"><code class="docutils literal notranslate"><span class="pre">BulkZone.get_phase_group_to_transfer()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.BulkZone.is_degassing_enabled"><code class="docutils literal notranslate"><span class="pre">BulkZone.is_degassing_enabled()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ContinuousAddition"><code class="docutils literal notranslate"><span class="pre">ContinuousAddition</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ContinuousAddition.get_composition_unit"><code class="docutils literal notranslate"><span class="pre">ContinuousAddition.get_composition_unit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ContinuousAddition.get_rate"><code class="docutils literal notranslate"><span class="pre">ContinuousAddition.get_rate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ContinuousGasAddition"><code class="docutils literal notranslate"><span class="pre">ContinuousGasAddition</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ContinuousGasAddition.get_composition_unit"><code class="docutils literal notranslate"><span class="pre">ContinuousGasAddition.get_composition_unit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ContinuousGasAddition.get_rate"><code class="docutils literal notranslate"><span class="pre">ContinuousGasAddition.get_rate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ContinuousGasAddition.get_rate_unit"><code class="docutils literal notranslate"><span class="pre">ContinuousGasAddition.get_rate_unit()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ExhaustGasResult"><code class="docutils literal notranslate"><span class="pre">ExhaustGasResult</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ExhaustGasResult.get_amount"><code class="docutils literal notranslate"><span class="pre">ExhaustGasResult.get_amount()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ExhaustGasResult.get_amount_of_components"><code class="docutils literal notranslate"><span class="pre">ExhaustGasResult.get_amount_of_components()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ExhaustGasResult.get_composition"><code class="docutils literal notranslate"><span class="pre">ExhaustGasResult.get_composition()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ExhaustGasResult.get_pressure"><code class="docutils literal notranslate"><span class="pre">ExhaustGasResult.get_pressure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ExhaustGasResult.get_stable_phases"><code class="docutils literal notranslate"><span class="pre">ExhaustGasResult.get_stable_phases()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ExhaustGasResult.get_temperature"><code class="docutils literal notranslate"><span class="pre">ExhaustGasResult.get_temperature()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.MassTransferCoefficients"><code class="docutils literal notranslate"><span class="pre">MassTransferCoefficients</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.MassTransferCoefficients.add"><code class="docutils literal notranslate"><span class="pre">MassTransferCoefficients.add()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.MetalBulkZone"><code class="docutils literal notranslate"><span class="pre">MetalBulkZone</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.MetalBulkZone.add_addition"><code class="docutils literal notranslate"><span class="pre">MetalBulkZone.add_addition()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.MetalBulkZone.add_continuous_addition"><code class="docutils literal notranslate"><span class="pre">MetalBulkZone.add_continuous_addition()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.MetalBulkZone.add_power"><code class="docutils literal notranslate"><span class="pre">MetalBulkZone.add_power()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.MetalBulkZone.disable_degassing"><code class="docutils literal notranslate"><span class="pre">MetalBulkZone.disable_degassing()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.MetalBulkZone.enable_degassing"><code class="docutils literal notranslate"><span class="pre">MetalBulkZone.enable_degassing()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.MetalBulkZone.get_density"><code class="docutils literal notranslate"><span class="pre">MetalBulkZone.get_density()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.MetalBulkZone.get_elements"><code class="docutils literal notranslate"><span class="pre">MetalBulkZone.get_elements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.MetalBulkZone.get_id"><code class="docutils literal notranslate"><span class="pre">MetalBulkZone.get_id()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.MetalBulkZone.get_phase_group_to_transfer"><code class="docutils literal notranslate"><span class="pre">MetalBulkZone.get_phase_group_to_transfer()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.MetalBulkZone.is_degassing_enabled"><code class="docutils literal notranslate"><span class="pre">MetalBulkZone.is_degassing_enabled()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ProcessSimulationCalculation"><code class="docutils literal notranslate"><span class="pre">ProcessSimulationCalculation</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ProcessSimulationCalculation.calculate"><code class="docutils literal notranslate"><span class="pre">ProcessSimulationCalculation.calculate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ProcessSimulationCalculation.set_end_time"><code class="docutils literal notranslate"><span class="pre">ProcessSimulationCalculation.set_end_time()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ProcessSimulationCalculation.set_initial_time_step"><code class="docutils literal notranslate"><span class="pre">ProcessSimulationCalculation.set_initial_time_step()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ProcessSimulationCalculation.set_max_allowed_temp_change_per_step"><code class="docutils literal notranslate"><span class="pre">ProcessSimulationCalculation.set_max_allowed_temp_change_per_step()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ProcessSimulationCalculation.set_max_time_step"><code class="docutils literal notranslate"><span class="pre">ProcessSimulationCalculation.set_max_time_step()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ProcessSimulationCalculation.set_min_time_step"><code class="docutils literal notranslate"><span class="pre">ProcessSimulationCalculation.set_min_time_step()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ProcessSimulationCalculation.set_pressure"><code class="docutils literal notranslate"><span class="pre">ProcessSimulationCalculation.set_pressure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ProcessSimulationCalculation.set_pressure_in_time_period"><code class="docutils literal notranslate"><span class="pre">ProcessSimulationCalculation.set_pressure_in_time_period()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ProcessSimulationCalculation.with_options"><code class="docutils literal notranslate"><span class="pre">ProcessSimulationCalculation.with_options()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ProcessSimulationCalculation.with_reaction_zone"><code class="docutils literal notranslate"><span class="pre">ProcessSimulationCalculation.with_reaction_zone()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ProcessSimulationResult"><code class="docutils literal notranslate"><span class="pre">ProcessSimulationResult</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ProcessSimulationResult.get_activity_of_slag"><code class="docutils literal notranslate"><span class="pre">ProcessSimulationResult.get_activity_of_slag()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ProcessSimulationResult.get_amount"><code class="docutils literal notranslate"><span class="pre">ProcessSimulationResult.get_amount()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ProcessSimulationResult.get_amount_of_elements"><code class="docutils literal notranslate"><span class="pre">ProcessSimulationResult.get_amount_of_elements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ProcessSimulationResult.get_amount_of_phase_groups"><code class="docutils literal notranslate"><span class="pre">ProcessSimulationResult.get_amount_of_phase_groups()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ProcessSimulationResult.get_amount_of_phases"><code class="docutils literal notranslate"><span class="pre">ProcessSimulationResult.get_amount_of_phases()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ProcessSimulationResult.get_components"><code class="docutils literal notranslate"><span class="pre">ProcessSimulationResult.get_components()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ProcessSimulationResult.get_composition"><code class="docutils literal notranslate"><span class="pre">ProcessSimulationResult.get_composition()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ProcessSimulationResult.get_composition_of_phase"><code class="docutils literal notranslate"><span class="pre">ProcessSimulationResult.get_composition_of_phase()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ProcessSimulationResult.get_composition_of_phase_group"><code class="docutils literal notranslate"><span class="pre">ProcessSimulationResult.get_composition_of_phase_group()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ProcessSimulationResult.get_elements"><code class="docutils literal notranslate"><span class="pre">ProcessSimulationResult.get_elements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ProcessSimulationResult.get_enthalpy"><code class="docutils literal notranslate"><span class="pre">ProcessSimulationResult.get_enthalpy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ProcessSimulationResult.get_exhaust_gas"><code class="docutils literal notranslate"><span class="pre">ProcessSimulationResult.get_exhaust_gas()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ProcessSimulationResult.get_formula_for_activity_of_slag"><code class="docutils literal notranslate"><span class="pre">ProcessSimulationResult.get_formula_for_activity_of_slag()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ProcessSimulationResult.get_formula_for_slag_property"><code class="docutils literal notranslate"><span class="pre">ProcessSimulationResult.get_formula_for_slag_property()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ProcessSimulationResult.get_fraction_of_phase_groups"><code class="docutils literal notranslate"><span class="pre">ProcessSimulationResult.get_fraction_of_phase_groups()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ProcessSimulationResult.get_fraction_of_phases"><code class="docutils literal notranslate"><span class="pre">ProcessSimulationResult.get_fraction_of_phases()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ProcessSimulationResult.get_gas_components"><code class="docutils literal notranslate"><span class="pre">ProcessSimulationResult.get_gas_components()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ProcessSimulationResult.get_num_of_performed_steps"><code class="docutils literal notranslate"><span class="pre">ProcessSimulationResult.get_num_of_performed_steps()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ProcessSimulationResult.get_oxygen_partial_pressure"><code class="docutils literal notranslate"><span class="pre">ProcessSimulationResult.get_oxygen_partial_pressure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ProcessSimulationResult.get_pressure"><code class="docutils literal notranslate"><span class="pre">ProcessSimulationResult.get_pressure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ProcessSimulationResult.get_slag_property"><code class="docutils literal notranslate"><span class="pre">ProcessSimulationResult.get_slag_property()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ProcessSimulationResult.get_stable_phases"><code class="docutils literal notranslate"><span class="pre">ProcessSimulationResult.get_stable_phases()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ProcessSimulationResult.get_stable_phases_in_phase_group"><code class="docutils literal notranslate"><span class="pre">ProcessSimulationResult.get_stable_phases_in_phase_group()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ProcessSimulationResult.get_temperature"><code class="docutils literal notranslate"><span class="pre">ProcessSimulationResult.get_temperature()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ProcessSimulationResult.get_time_points"><code class="docutils literal notranslate"><span class="pre">ProcessSimulationResult.get_time_points()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ProcessSimulationResult.get_value_of"><code class="docutils literal notranslate"><span class="pre">ProcessSimulationResult.get_value_of()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ProcessSimulationResult.get_viscosity_dynamic_of_phase"><code class="docutils literal notranslate"><span class="pre">ProcessSimulationResult.get_viscosity_dynamic_of_phase()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ProcessSimulationResult.get_viscosity_kinematic_of_phase"><code class="docutils literal notranslate"><span class="pre">ProcessSimulationResult.get_viscosity_kinematic_of_phase()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ReactionZone"><code class="docutils literal notranslate"><span class="pre">ReactionZone</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ReactionZone.add_addition"><code class="docutils literal notranslate"><span class="pre">ReactionZone.add_addition()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ReactionZone.add_continuous_addition"><code class="docutils literal notranslate"><span class="pre">ReactionZone.add_continuous_addition()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ReactionZone.add_heat_transfer"><code class="docutils literal notranslate"><span class="pre">ReactionZone.add_heat_transfer()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ReactionZone.add_power"><code class="docutils literal notranslate"><span class="pre">ReactionZone.add_power()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ReactionZone.add_transfer_of_phase_group"><code class="docutils literal notranslate"><span class="pre">ReactionZone.add_transfer_of_phase_group()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ReactionZone.disable_degassing"><code class="docutils literal notranslate"><span class="pre">ReactionZone.disable_degassing()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ReactionZone.enable_degassing"><code class="docutils literal notranslate"><span class="pre">ReactionZone.enable_degassing()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ReactionZone.get_elements"><code class="docutils literal notranslate"><span class="pre">ReactionZone.get_elements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ReactionZone.get_id"><code class="docutils literal notranslate"><span class="pre">ReactionZone.get_id()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.ReactionZone.is_degassing_enabled"><code class="docutils literal notranslate"><span class="pre">ReactionZone.is_degassing_enabled()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.SingleTimeAddition"><code class="docutils literal notranslate"><span class="pre">SingleTimeAddition</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.SingleTimeAddition.get_amount"><code class="docutils literal notranslate"><span class="pre">SingleTimeAddition.get_amount()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.SingleTimeAddition.get_composition_unit"><code class="docutils literal notranslate"><span class="pre">SingleTimeAddition.get_composition_unit()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.SingleTimeGasAddition"><code class="docutils literal notranslate"><span class="pre">SingleTimeGasAddition</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.SingleTimeGasAddition.get_amount"><code class="docutils literal notranslate"><span class="pre">SingleTimeGasAddition.get_amount()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.SingleTimeGasAddition.get_amount_unit"><code class="docutils literal notranslate"><span class="pre">SingleTimeGasAddition.get_amount_unit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.SingleTimeGasAddition.get_composition_unit"><code class="docutils literal notranslate"><span class="pre">SingleTimeGasAddition.get_composition_unit()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.SlagBulkZone"><code class="docutils literal notranslate"><span class="pre">SlagBulkZone</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.SlagBulkZone.add_addition"><code class="docutils literal notranslate"><span class="pre">SlagBulkZone.add_addition()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.SlagBulkZone.add_continuous_addition"><code class="docutils literal notranslate"><span class="pre">SlagBulkZone.add_continuous_addition()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.SlagBulkZone.add_power"><code class="docutils literal notranslate"><span class="pre">SlagBulkZone.add_power()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.SlagBulkZone.disable_degassing"><code class="docutils literal notranslate"><span class="pre">SlagBulkZone.disable_degassing()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.SlagBulkZone.enable_degassing"><code class="docutils literal notranslate"><span class="pre">SlagBulkZone.enable_degassing()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.SlagBulkZone.get_density"><code class="docutils literal notranslate"><span class="pre">SlagBulkZone.get_density()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.SlagBulkZone.get_elements"><code class="docutils literal notranslate"><span class="pre">SlagBulkZone.get_elements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.SlagBulkZone.get_id"><code class="docutils literal notranslate"><span class="pre">SlagBulkZone.get_id()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.SlagBulkZone.get_phase_group_to_transfer"><code class="docutils literal notranslate"><span class="pre">SlagBulkZone.get_phase_group_to_transfer()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.SlagBulkZone.is_degassing_enabled"><code class="docutils literal notranslate"><span class="pre">SlagBulkZone.is_degassing_enabled()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.TransferOfPhaseGroup"><code class="docutils literal notranslate"><span class="pre">TransferOfPhaseGroup</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.TransferOfPhaseGroup.add"><code class="docutils literal notranslate"><span class="pre">TransferOfPhaseGroup.add()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.TransferOfPhaseGroup.get_phase_group_to_transfer"><code class="docutils literal notranslate"><span class="pre">TransferOfPhaseGroup.get_phase_group_to_transfer()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.TransferOfPhaseGroup.get_transfer_source_zone_id"><code class="docutils literal notranslate"><span class="pre">TransferOfPhaseGroup.get_transfer_source_zone_id()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.Zone"><code class="docutils literal notranslate"><span class="pre">Zone</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.Zone.add_addition"><code class="docutils literal notranslate"><span class="pre">Zone.add_addition()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.Zone.add_continuous_addition"><code class="docutils literal notranslate"><span class="pre">Zone.add_continuous_addition()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.Zone.add_power"><code class="docutils literal notranslate"><span class="pre">Zone.add_power()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.Zone.disable_degassing"><code class="docutils literal notranslate"><span class="pre">Zone.disable_degassing()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.Zone.enable_degassing"><code class="docutils literal notranslate"><span class="pre">Zone.enable_degassing()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.Zone.get_elements"><code class="docutils literal notranslate"><span class="pre">Zone.get_elements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.Zone.get_id"><code class="docutils literal notranslate"><span class="pre">Zone.get_id()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_metallurgy_modules/process.html#tc_python.process_metallurgy.process.Zone.is_degassing_enabled"><code class="docutils literal notranslate"><span class="pre">Zone.is_degassing_enabled()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="material_to_material.html" class="btn btn-neutral float-left" title="Module “material_to_material”" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="process_metallurgy_modules/base.html" class="btn btn-neutral float-right" title="Module “base”" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Foundation of Computational Thermodynamics, Stockholm, Sweden.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,8 @@
+Module "exceptions"
+-------------------
+
+.. automodule:: tc_python.exceptions
+    :members:
+    :undoc-members:
+    :exclude-members: raise_python_exceptions
+    :show-inheritance:

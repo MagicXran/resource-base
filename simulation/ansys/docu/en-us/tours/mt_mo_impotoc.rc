@@ -1,0 +1,46 @@
+! Tour Page
+*mt_mo_impotoc*title: Tour - Importing the Model
+*mt_mo_impotoc*next: mt_mo_defetoc
+*mt_mo_impotoc*previous: mt_mo_toc1
+*mt_mo_impotoc*htmlhelp: docu $euidlArray(language) mechhelp mt_mo_modeltoc.html
+*mt_mo_impotoc*home: mt_mt_home
+
+! Tour Page Components
+*mt_mo_impotoc*tourlist: heading overview step1 step2 step3
+
+!
+! Component Definition
+!
+! Note:
+!     Use \t to insert a tab into the text
+!     Use \n to insert a line feed into the text
+!     Use \i to insert an image into the text
+!     Use \ to continue a line within this file
+!
+!     The \ is a used to specify that special characters be taken literally.
+!     If using characters [, ], ", \, $ and perhaps others you must precede
+!     them with the \ (backslash) to use them.
+!
+!     You have the following options available for a component:
+!         Text          - The text to show for this component
+!         HyperlinkCall - The method to call when this component is clicked on
+!         Show          - The helpID of the buttcon to flash when choosing the
+!                         magnifing glass.  This puts the magnifing glass in.
+!         ImageList     - The list of images to place in the \i locations.
+!                         This is not needed for the Show item but you must
+!                         put the \i in the Text. NOT SUPPORTED YET
+! Tour Page Components
+*mt_mo_impotoc*tourlist: heading overview step1 step2
+
+*mt_mo_impotoc*headingText: "Importing the Model \n" HEADING2
+
+*mt_mo_impotoc*overviewText: "Follow these steps to import \
+the model:\n" {BODY1}
+
+*mt_mo_impotoc*step1Text: "1.\t" {STEP1 step1} "Select correct \
+model type.   Your choices are ANSYS, IGES or ANSYS connections \
+filters."  {STEP1 step1} 
+
+*mt_mo_impotoc*step2Text: "\n2.\t" {STEP1 step2} "Select import options. \
+You can choose between No model clean-up (preferred) and Allow \
+defeaturing (you can do limited model clean-up).\n"  {STEP1 step2}

@@ -1,0 +1,7 @@
+Module "utils"
+--------------
+
+.. automodule:: tc_python.utils
+    :members:
+    :undoc-members:
+    :show-inheritance:
